@@ -1,0 +1,31 @@
+enabled: true
+
+# Periodic scan of online inventories plus the nearest loaded chunks.
+scan:
+  enabled: true
+  interval-seconds: 120
+  min-trigger-interval-seconds: 30
+  max-chunks-per-pass: 48
+  include-ground-items: true
+  include-entity-equipment: false
+
+# Changed snapshots are persisted asynchronously through RootMC's shared MySQL pool.
+mysql:
+  min-write-interval-seconds: 120
+
+messages:
+  prefix: ""
+  players-only: "&cPlayers only."
+  no-permission: "&cYou do not have permission."
+  unknown-item: "&eUnknown item &f{query}&e. Hold an item or use a material id (e.g. &fdiamond&e)."
+  usage: "&eUsage: &f/info [item|hand|gold|top|reload]"
+  line-id: "&7Item id: &f{id}"
+  line-total: "&7World total (scanned): &f{count}"
+  line-avg: "&7Average value: &f{avg} G&7 / unit"
+  line-avg-none: "&7Average value: &8unknown &7(no shop/worth data yet)"
+  line-gold-g: "&7Mint-peg gold in those stacks: &f{gold} G"
+  line-as-of: "&8As of {when} · loaded containers + online inventories (shop chests counted once; unloaded chunks incomplete)"
+  top-header: "&6Top resources &7({n}):"
+  top-line: "&7{rank}. &f{id} &8×&f{count}"
+  reloaded: "&aRoot-ItemInfo reloaded. Rescan scheduled."
+  disabled: "&eItem info is disabled."

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Site — RootRecord</title>
+  <meta name="description" content="Hosted site."/>
+  <link rel="stylesheet" href="/styles.css?v=17"/>
+  <link rel="icon" href="/favicon-32.png"/>
+  <style>
+    :root {
+      --wh-bg: #081018;
+      --wh-surface: #101a28;
+      --wh-text: #e8eef8;
+      --wh-muted: #9ab0d0;
+      --wh-accent: #3d9a6a;
+      --wh-line: #243246;
+    }
+    body.theme-minimal { --wh-bg:#f6f4ef; --wh-surface:#fff; --wh-text:#1a1a1a; --wh-muted:#5a5a5a; --wh-accent:#0f766e; --wh-line:#ddd6c8; }
+    body.theme-editorial { --wh-bg:#14110f; --wh-surface:#1e1916; --wh-text:#f3ebe3; --wh-muted:#b9a89a; --wh-accent:#d97757; --wh-line:#3a302a; }
+    body.theme-default { --wh-bg:#081018; --wh-surface:#101a28; --wh-text:#e8eef8; --wh-muted:#9ab0d0; --wh-accent:#3d9a6a; --wh-line:#243246; }
+    body.wh-site { background: var(--wh-bg); color: var(--wh-text); }
+    .wh-top { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:0.85rem 1.25rem; border-bottom:1px solid var(--wh-line); background: var(--wh-surface); position:sticky; top:0; z-index:40; }
+    .wh-brand { font-weight:700; color:var(--wh-text); text-decoration:none; }
+    .wh-nav { display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center; }
+    .wh-nav a, .wh-nav button { background:none; border:0; color:var(--wh-muted); cursor:pointer; font:inherit; text-decoration:none; font-size:0.92rem; }
+    .wh-nav a:hover, .wh-nav button:hover { color:var(--wh-text); }
+    .wh-main { min-height:60vh; padding:2rem 1.25rem 5rem; max-width:52rem; margin:0 auto; }
+    .wh-title { font-size:clamp(1.8rem,4vw,2.6rem); margin:0 0 0.6rem; }
+    .wh-body { color:var(--wh-muted); white-space:pre-wrap; line-height:1.55; }
+    .wh-banner, .wh-cta {
+      position:fixed; left:0; right:0; bottom:0; z-index:50;
+      background: rgba(8,16,24,0.94); border-top:1px solid var(--wh-line);
+      padding:0.75rem 1.25rem; display:flex; flex-wrap:wrap; gap:0.75rem; align-items:center; justify-content:space-between;
+    }
+    .wh-cta { bottom:3.1rem; background: rgba(16,40,28,0.95); }
+    .wh-banner a, .wh-cta a { color: var(--wh-accent); }
+    .paywall-backdrop { position:fixed; inset:0; background:rgba(0,8,20,0.72); display:flex; align-items:center; justify-content:center; padding:1.25rem; z-index:80; }
+    .paywall-modal, .auth-modal, .editor-panel {
+      background: var(--wh-surface); border:1px solid var(--wh-line); border-radius:12px; padding:1.4rem; max-width:28rem; width:100%;
+    }
+    .editor-panel { max-width:40rem; max-height:85vh; overflow:auto; }
+    .paywall-modal[hidden], .paywall-backdrop[hidden], .auth-modal[hidden], .editor-panel[hidden], .wh-banner[hidden], .wh-cta[hidden] { display:none !important; }
+    .auth-modal label, .editor-panel label { display:block; margin:0.6rem 0 0.25rem; font-size:0.88rem; color:var(--wh-muted); }
+    .auth-modal input, .editor-panel input, .editor-panel select, .editor-panel textarea {
+      width:100%; background:var(--wh-bg); color:var(--wh-text); border:1px solid var(--wh-line); border-radius:6px; padding:0.5rem 0.65rem; font:inherit;
+    }
+    .editor-panel textarea { min-height:8rem; font-family:ui-monospace,monospace; font-size:0.85rem; }
+    .wh-actions { display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:0.85rem; }
+    .btn { display:inline-flex; align-items:center; gap:0.35rem; border-radius:8px; padding:0.5rem 0.85rem; border:1px solid var(--wh-line); background:var(--wh-bg); color:var(--wh-text); text-decoration:none; cursor:pointer; font:inherit; }
+    .btn.primary { background:var(--wh-accent); border-color:transparent; color:#06140e; font-weight:600; }
+    #dev-css { display:none; }
+  </style>
+  <style id="theme-custom"></style>
+</head>
+<body class="wh-site theme-default">
+  <header class="wh-top">
+    <a class="wh-brand" href="#" id="wh-brand">Site</a>
+    <nav class="wh-nav" id="wh-nav" aria-label="Site"></nav>
+    <nav class="wh-nav" aria-label="Account">
+      <button type="button" id="btn-login">Sign in</button>
+      <button type="button" id="btn-logout" hidden>Sign out</button>
+      <button type="button" id="btn-edit" hidden>Edit</button>
+    </nav>
+  </header>
+
+  <main class="wh-main" id="main">
+    <p class="site-meta" id="shell-meta" style="color:var(--wh-muted);font-size:0.85rem">Loading…</p>
+    <h1 class="wh-title" id="shell-title">—</h1>
+    <div class="wh-body" id="shell-body"></div>
+  </main>
+
+  <div class="wh-cta" id="build-cta" hidden>
+    <span>Like this site? Launch yours in minutes.</span>
+    <a class="btn primary" href="https://rootrecord.info/website-hosting">Build your own website</a>
+  </div>
+  <div class="wh-banner" id="built-by" hidden>
+    <span>Built by <a href="https://avaivy.cloud">Ava</a> on the <a href="https://rootrecord.info">Root Record</a></span>
+  </div>
+
+  <div class="paywall-backdrop" id="paywall" hidden role="dialog" aria-modal="true">
+    <div class="paywall-modal">
+      <h2>Subscription inactive</h2>
+      <p>Renew Website Hosting for <strong>$10/month</strong> to keep editing unlocked without the owner paywall.</p>
+      <p class="note" id="paywall-invoice" hidden></p>
+      <div class="wh-actions">
+        <a class="btn primary" href="https://rootrecord.info/account/settings/website">Renew</a>
+        <button type="button" class="btn" id="paywall-dismiss">Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="paywall-backdrop" id="auth-wrap" hidden>
+    <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title">
+      <h2 id="auth-title">Sign in</h2>
+      <p style="color:var(--wh-muted);font-size:0.9rem">Same Root Record account — branded for this site.</p>
+      <label for="auth-email">Email</label>
+      <input id="auth-email" type="email" autocomplete="username"/>
+      <label for="auth-pass">Password</label>
+      <input id="auth-pass" type="password" autocomplete="current-password"/>
+      <p id="auth-status" style="color:var(--wh-muted);font-size:0.85rem;min-height:1.2em"></p>
+      <div class="wh-actions">
+        <button type="button" class="btn primary" id="auth-submit">Sign in</button>
+        <button type="button" class="btn" id="auth-cancel">Cancel</button>
+        <a class="btn" href="https://rootrecord.info/account-signup">Create account</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="paywall-backdrop" id="editor-wrap" hidden>
+    <div class="editor-panel" role="dialog" aria-modal="true">
+      <h2>Site studio</h2>
+      <p style="color:var(--wh-muted);font-size:0.9rem">Add/remove pages, pick a theme, or open developer mode.</p>
+      <label for="ed-theme">Theme</label>
+      <select id="ed-theme">
+        <option value="default">Default (navy)</option>
+        <option value="minimal">Minimal</option>
+        <option value="editorial">Editorial</option>
+      </select>
+      <label for="ed-page">Page</label>
+      <select id="ed-page"></select>
+      <label for="ed-page-title">Page title</label>
+      <input id="ed-page-title" type="text"/>
+      <label for="ed-page-body">Page body</label>
+      <textarea id="ed-page-body"></textarea>
+      <label><input type="checkbox" id="ed-dev"/> Developer mode (custom CSS / HTML)</label>
+      <div id="ed-dev-fields" hidden>
+        <label for="ed-css">Custom CSS</label>
+        <textarea id="ed-css" placeholder="body { ... }"></textarea>
+        <label for="ed-html">Optional raw HTML block</label>
+        <textarea id="ed-html" placeholder="&lt;section&gt;...&lt;/section&gt;"></textarea>
+      </div>
+      <p id="ed-status" style="color:var(--wh-muted);font-size:0.85rem;min-height:1.2em"></p>
+      <div class="wh-actions">
+        <button type="button" class="btn primary" id="ed-save">Save</button>
+        <button type="button" class="btn" id="ed-add">Add page</button>
+        <button type="button" class="btn" id="ed-del">Remove page</button>
+        <button type="button" class="btn" id="ed-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function () {
+  const TOKEN_KEY = "rootrecord_portal_token";
+  let apiBase = "";
+  let siteId = "";
+  let site = null;
+  let me = null;
+  let isOwner = false;
+  let pages = [];
+  let currentPath = "/";
+
+  function resolveSiteId() {
+    const u = new URL(location.href);
+    const q = u.searchParams.get("id") || u.searchParams.get("site");
+    if (q) return q.trim();
+    const parts = u.pathname.replace(/\/+$/, "").split("/").filter(Boolean);
+    if (parts[0] === "sites" && parts[1]) return decodeURIComponent(parts[1]);
+    if (parts.length === 1) {
+      const raw = decodeURIComponent(parts[0]);
+      const vanity = raw.match(/^([0-9a-f-]{36})-Website$/i);
+      if (vanity) return vanity[1];
+      if (/^[0-9a-f-]{36}$/i.test(raw)) return raw;
+    }
+    return "";
+  }
+
+  async function loadConfig() {
+    try {
+      const res = await fetch("/api/site-config", { cache: "no-store" });
+      if (!res.ok) return;
+      const j = await res.json();
+      if (j && typeof j.apiBase === "string") apiBase = j.apiBase.replace(/\/+$/, "");
+    } catch {}
+  }
+
+  function token() { return localStorage.getItem(TOKEN_KEY) || ""; }
+
+  async function api(path, opts) {
+    const headers = new Headers((opts && opts.headers) || {});
+    const t = token();
+    if (t) headers.set("Authorization", "Bearer " + t);
+    if (!headers.has("X-Guest-Id")) headers.set("X-Guest-Id", guestId());
+    if (opts && opts.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+    return fetch((apiBase || "") + path, Object.assign({}, opts, { headers: headers, credentials: "include" }));
+  }
+
+  function guestId() {
+    var KEY = "rootrecord_portal_device_id";
+    var id = localStorage.getItem(KEY);
+    if (id && id.length >= 8) return id;
+    var bytes = new Uint8Array(24);
+    crypto.getRandomValues(bytes);
+    id = Array.from(bytes, function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+    localStorage.setItem(KEY, id);
+    return id;
+  }
+
+  function applyTheme(cfg) {
+    const theme = (cfg && cfg.theme) || "default";
+    document.body.classList.remove("theme-default", "theme-minimal", "theme-editorial");
+    document.body.classList.add("theme-" + theme);
+    const css = (cfg && cfg.customCss) || "";
+    document.getElementById("theme-custom").textContent = css;
+  }
+
+  function renderNav() {
+    const nav = document.getElementById("wh-nav");
+    nav.innerHTML = "";
+    pages.forEach(function (p) {
+      const a = document.createElement("a");
+      a.href = "#";
+      a.textContent = p.title || p.path || "Page";
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        showPage(p.path || "/");
+      });
+      nav.appendChild(a);
+    });
+  }
+
+  function showPage(path) {
+    currentPath = path || "/";
+    const p = pages.find(function (x) { return (x.path || "/") === currentPath; }) || pages[0] || {};
+    document.getElementById("shell-title").textContent = p.title || (site && site.title) || "Untitled";
+    document.getElementById("shell-body").textContent = p.body || "";
+    const html = (site && site.config && site.config.customHtml) || "";
+    if (html) {
+      const box = document.createElement("div");
+      box.innerHTML = html;
+      document.getElementById("shell-body").appendChild(box);
+    }
+  }
+
+  function renderChrome() {
+    const cfg = (site && site.config) || {};
+    applyTheme(cfg);
+    document.getElementById("wh-brand").textContent = (site && site.title) || "Site";
+    document.title = ((site && site.title) || "Site");
+    pages = Array.isArray(cfg.pages) && cfg.pages.length
+      ? cfg.pages
+      : [{ path: "/", title: "Home", body: "" }];
+    renderNav();
+    showPage(currentPath);
+
+    document.getElementById("built-by").hidden = !site.showBuiltByBanner;
+    document.getElementById("build-cta").hidden = !site.showBuildYourOwn;
+
+    // Paywall only when logged in AND lapsed
+    const showPay = Boolean(me && site.paywall);
+    document.getElementById("paywall").hidden = !showPay;
+    if (showPay && site.invoice) {
+      const inv = document.getElementById("paywall-invoice");
+      inv.hidden = false;
+      inv.textContent = "Invoice $" + ((site.invoice.amountCents || 1000) / 100).toFixed(0) +
+        " · status " + (site.invoice.status || "open");
+    }
+
+    document.getElementById("btn-login").hidden = Boolean(me);
+    document.getElementById("btn-logout").hidden = !me;
+    document.getElementById("btn-edit").hidden = !(me && isOwner);
+    document.getElementById("shell-meta").textContent =
+      (site.customDomain ? site.customDomain + " · " : "") +
+      "Hosted site" +
+      (site.subscriptionStatus ? " · " + site.subscriptionStatus : "");
+  }
+
+  async function refreshAuth() {
+    me = null;
+    isOwner = false;
+    if (!token()) return;
+    const res = await api("/api/auth/me", { method: "GET" });
+    if (!res.ok) return;
+    me = await res.json().catch(function () { return null; });
+    if (!me) return;
+    const mine = await api("/api/sites/me", { method: "GET" });
+    if (mine.ok) {
+      const data = await mine.json();
+      if (data.site && data.site.id === siteId) isOwner = true;
+    }
+  }
+
+  async function loadSite() {
+    siteId = resolveSiteId();
+    if (!siteId) {
+      document.getElementById("shell-meta").textContent = "Missing site id.";
+      return;
+    }
+    const res = await api("/public/sites/" + encodeURIComponent(siteId), { method: "GET" });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok) {
+      document.getElementById("shell-meta").textContent = data.detail || "Unavailable";
+      document.getElementById("shell-title").textContent = "Unavailable";
+      return;
+    }
+    site = data;
+    await refreshAuth();
+    renderChrome();
+  }
+
+  function fillEditor() {
+    const cfg = (site && site.config) || {};
+    document.getElementById("ed-theme").value = cfg.theme || "default";
+    document.getElementById("ed-css").value = cfg.customCss || "";
+    document.getElementById("ed-html").value = cfg.customHtml || "";
+    document.getElementById("ed-dev").checked = Boolean(cfg.developerMode);
+    document.getElementById("ed-dev-fields").hidden = !cfg.developerMode;
+    const sel = document.getElementById("ed-page");
+    sel.innerHTML = "";
+    pages.forEach(function (p, i) {
+      const o = document.createElement("option");
+      o.value = String(i);
+      o.textContent = (p.title || p.path || ("Page " + (i + 1)));
+      sel.appendChild(o);
+    });
+    sel.onchange = function () {
+      const p = pages[Number(sel.value)] || {};
+      document.getElementById("ed-page-title").value = p.title || "";
+      document.getElementById("ed-page-body").value = p.body || "";
+    };
+    sel.dispatchEvent(new Event("change"));
+  }
+
+  document.getElementById("btn-login").onclick = function () {
+    document.getElementById("auth-wrap").hidden = false;
+  };
+  document.getElementById("auth-cancel").onclick = function () {
+    document.getElementById("auth-wrap").hidden = true;
+  };
+  document.getElementById("btn-logout").onclick = function () {
+    localStorage.removeItem(TOKEN_KEY);
+    me = null; isOwner = false; renderChrome();
+  };
+  document.getElementById("paywall-dismiss").onclick = function () {
+    document.getElementById("paywall").hidden = true;
+  };
+  document.getElementById("btn-edit").onclick = function () {
+    fillEditor();
+    document.getElementById("editor-wrap").hidden = false;
+  };
+  document.getElementById("ed-close").onclick = function () {
+    document.getElementById("editor-wrap").hidden = true;
+  };
+  document.getElementById("ed-dev").onchange = function () {
+    document.getElementById("ed-dev-fields").hidden = !document.getElementById("ed-dev").checked;
+  };
+
+  document.getElementById("auth-submit").onclick = async function () {
+    const status = document.getElementById("auth-status");
+    status.textContent = "Signing in…";
+    const res = await api("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        email: document.getElementById("auth-email").value.trim(),
+        password: document.getElementById("auth-pass").value,
+        device_id: guestId()
+      })
+    });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok) {
+      status.textContent = data.detail || "Sign in failed.";
+      return;
+    }
+    const tok = data.token || data.access_token || data.session_token;
+    if (tok) localStorage.setItem(TOKEN_KEY, tok);
+    status.textContent = "OK";
+    document.getElementById("auth-wrap").hidden = true;
+    await refreshAuth();
+    renderChrome();
+  };
+
+  document.getElementById("ed-add").onclick = function () {
+    const title = prompt("New page title", "Page") || "Page";
+    const path = "/" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    pages.push({ path: path, title: title, body: "" });
+    fillEditor();
+    document.getElementById("ed-page").value = String(pages.length - 1);
+    document.getElementById("ed-page").dispatchEvent(new Event("change"));
+  };
+  document.getElementById("ed-del").onclick = function () {
+    const i = Number(document.getElementById("ed-page").value);
+    if (pages.length <= 1) { document.getElementById("ed-status").textContent = "Keep at least one page."; return; }
+    pages.splice(i, 1);
+    fillEditor();
+  };
+  document.getElementById("ed-save").onclick = async function () {
+    if (!isOwner || !siteId) return;
+    const i = Number(document.getElementById("ed-page").value);
+    if (pages[i]) {
+      pages[i].title = document.getElementById("ed-page-title").value.trim() || pages[i].title;
+      pages[i].body = document.getElementById("ed-page-body").value;
+    }
+    const config = Object.assign({}, (site && site.config) || {}, {
+      theme: document.getElementById("ed-theme").value,
+      pages: pages,
+      developerMode: document.getElementById("ed-dev").checked,
+      customCss: document.getElementById("ed-css").value,
+      customHtml: document.getElementById("ed-html").value
+    });
+    document.getElementById("ed-status").textContent = "Saving…";
+    const res = await api("/api/sites/" + encodeURIComponent(siteId), {
+      method: "PATCH",
+      body: JSON.stringify({ config: config })
+    });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok) {
+      document.getElementById("ed-status").textContent = data.detail || "Save failed.";
+      return;
+    }
+    site = Object.assign({}, site, data.site || {}, { config: config });
+    // merge public flags if missing from PATCH response
+    document.getElementById("ed-status").textContent = "Saved.";
+    renderChrome();
+  };
+
+  loadConfig().then(loadSite);
+})();
+  </script>
+</body>
+</html>

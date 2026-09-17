@@ -1,0 +1,17 @@
+id: maces_crush
+display-name: Crush
+description: Bonus mace hit damage.
+skill: maces
+unlock-level: 25
+max-rank: 5
+mana-cost: 0
+cooldown-seconds: 0
+duration-seconds: 0
+triggers:
+  - on_entity_damage
+effects:
+  - id: DAMAGE_BONUS
+    amount-per-rank: 1.1
+conditions:
+  - type: chance
+    value: 0.3

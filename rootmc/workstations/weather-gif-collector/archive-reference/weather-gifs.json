@@ -1,0 +1,52 @@
+{
+  "lastHourKey": "2026-08-13T21",
+  "lastDay": "2026-08-13",
+  "lastAt": 1786655423949,
+  "lastReason": "force",
+  "lastStats": {
+    "updated": 635,
+    "unchanged": 30,
+    "failed": 155,
+    "skippedLocation": 0,
+    "pages": 262,
+    "gifs": 820
+  },
+  "posting": 1786661948286,
+  "disabledLocations": [
+    "alaska",
+    "canada",
+    "caribbean",
+    "central-alaska",
+    "central-america",
+    "conus",
+    "east-us",
+    "full-disk",
+    "great-lakes",
+    "gulf",
+    "gulf-of-alaska",
+    "mexico",
+    "north-america",
+    "northeast-us",
+    "northern-south-america",
+    "other",
+    "pacific-northwest",
+    "pacific-southwest",
+    "puerto-rico",
+    "south-pacific",
+    "southeast-alaska",
+    "southeast-us",
+    "southern-mississippi",
+    "southern-rockies",
+    "southern-south-america",
+    "tropical-atlantic",
+    "tropical-south-pacific",
+    "upper-mississippi",
+    "west-us"
+  ],
+  "sessionStartedAt": 1786655167396,
+  "skippedProducts": [
+    "hfo_satellite_big_island",
+    "hfo_satellite_latest_big_island_of_hawaii_visible_image",
+    "hfo_satellite_latest_big_island_visible_image"
+  ]
+}

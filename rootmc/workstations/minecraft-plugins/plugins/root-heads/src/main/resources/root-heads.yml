@@ -1,0 +1,72 @@
+# Root-Heads — plugins/RootMC/root-heads.yml
+enabled: true
+
+# Direct player kills only. Spawners / environmental / cramming ignored.
+require-direct-player-kill: true
+deny-spawner: true
+deny-spawner-egg: true
+
+# Per-player cooldown for the same mob type (seconds).
+same-mob-cooldown-seconds: 300
+
+messages:
+  drop: "&6✦ &eYou collected a &f{head}&e!"
+  player-drop: "&6✦ &eYou collected &f{player}&e's head!"
+  reload: "&aRoot-Heads reloaded."
+  no-permission: "&cNo permission."
+  give-usage: "&eUsage: &f/rootheads give <player> <mob|player> [amount]"
+  give-ok: "&aGave &f{amount}x {mob}&a head to &f{player}&a."
+  unknown-mob: "&cUnknown mob. Configured: &f{mobs}"
+  player-not-found: "&cPlayer not found: &f{player}"
+  inspect-yes: "&aRoot-Heads item: &f{mob}"
+  inspect-no: "&eHold a Root-Heads item to inspect."
+  disabled: "&cRoot-Heads is disabled."
+
+# Launch set — cosmetic only. chance = 0.0–1.0 base; looting adds bonus per level.
+mobs:
+  zombie:
+    enabled: true
+    display-name: "&2Zombie Head"
+    material: ZOMBIE_HEAD
+    chance: 0.02
+    looting-bonus: 0.005
+  skeleton:
+    enabled: true
+    display-name: "&7Skeleton Skull"
+    material: SKELETON_SKULL
+    chance: 0.02
+    looting-bonus: 0.005
+  creeper:
+    enabled: true
+    display-name: "&aCreeper Head"
+    material: CREEPER_HEAD
+    chance: 0.015
+    looting-bonus: 0.004
+  enderman:
+    enabled: true
+    display-name: "&5Enderman Head"
+    material: PLAYER_HEAD
+    # Public Minecraft texture payload (skin URL wrapped).
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2E1OWJiMGE3YTMyOTY1YjQwYWRhNDNlZmJlZjExYjBhZjUxMWIyMjgxNDYyYzJhNDA5MDQyMDIzMmJhODgifX19"
+    chance: 0.012
+    looting-bonus: 0.003
+  blaze:
+    enabled: true
+    display-name: "&6Blaze Head"
+    material: PLAYER_HEAD
+    texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjc4ZWYyZTRjZjJjNDFhMmQxNGJmZGU3YjBkYmI1MzEwOTk2NjJjNWJmNGIyNTNjMzU2YzUwNDY5YTk1ZWE0NSJ9fX0="
+    chance: 0.015
+    looting-bonus: 0.004
+
+# Player heads — on by default (full settings). Genuine PvP only.
+player-heads:
+  enabled: true
+  require-pvp: true
+  # Same killer→victim pair cooldown (seconds). 86400 = 24h.
+  same-pair-cooldown-seconds: 86400
+  chance: 0.05
+  looting-bonus: 0.0
+  display-name: "&c{player}'s Head"
+  lore:
+    - "&7Root-Heads collectible"
+    - "&8PvP drop"

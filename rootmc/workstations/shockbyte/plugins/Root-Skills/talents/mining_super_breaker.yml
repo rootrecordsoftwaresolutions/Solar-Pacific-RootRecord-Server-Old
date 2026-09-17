@@ -1,0 +1,21 @@
+id: mining_super_breaker
+display-name: Super Breaker
+description: Instantly break mineable blocks for a short duration.
+skill: mining
+unlock-level: 50
+max-rank: 1
+mana-cost: 15
+cooldown-seconds: 240
+duration-seconds: 15
+triggers:
+  - on_ability_activate
+effects:
+  - id: SUPER_BREAKER
+  - id: MESSAGE
+    text: '&6Super Breaker activated!'
+  - id: SOUND
+    sound: ENTITY_PLAYER_LEVELUP
+  - id: PARTICLE
+    particle: CRIT
+    count: 30
+conditions: []

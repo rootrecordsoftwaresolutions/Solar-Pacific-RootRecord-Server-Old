@@ -1,0 +1,97 @@
+# Root-Skills — primary config
+
+# MySQL: leave host blank (or localhost) to use shared plugins/RootMC/database.yml.
+# Only set mysql.host when Skills must use a different endpoint than the suite.
+mysql:
+  host: ''
+  port: 3306
+  user: ''
+  password: ''
+  database: ''
+  pool:
+    maximum-pool-size: 10
+    minimum-idle: 2
+    connection-timeout-ms: 10000
+    idle-timeout-ms: 600000
+    max-lifetime-ms: 1800000
+
+table-prefix: root_skills_
+
+# Retro exponential curve: xpToNext(level) = multiplier * level^exponent + base
+# When cumulative is true, total XP to reach `level` is the sum of xpToNext(0)..xpToNext(level-1).
+# PROP-01 (2026-08-01): retuned so early levels are cheap and late levels bite.
+# Approx xpToNext: L1≈500 · L25≈3.5k · L50≈16k · L100≈80k (was ~2800 flat → ~4310).
+formula:
+  type: RETRO_EXPONENTIAL
+  multiplier: 1.6
+  exponent: 2.35
+  base: 500
+  cumulative: true
+  global-xp-multiplier: 0.42
+
+prestige-threshold: 1000
+
+features:
+  talents: true
+  mana: true
+  classes: true
+  prestige: true
+  boosters: true
+  parties: true
+
+mana:
+  max: 100
+  regen-per-second: 1.0
+
+talents:
+  shift-f-loadout: true
+  cancel-swap-on-loadout: true
+
+prestige:
+  buff-per-prestige: 0.05
+
+party:
+  xp-share: 0.25
+  share-radius: 50.0
+
+# Anti-farm / exploit toggles (aligned with mcMMO-style exploit fixes)
+anti-farm:
+  eggs-multiplier: 0.0
+  mobspawners-multiplier: 0.0
+  nether-portal-multiplier: 0.0
+  breeding-multiplier: 1.0
+  prevent-afk-fishing: true
+  prevent-place-and-break: true
+  prevent-enderman-farm: true
+  prevent-piston-exploit: true
+  prevent-tree-feller-abuse: true
+  prevent-blast-mining-abuse: true
+  prevent-alchemy-exploit: true
+  prevent-taming-exploit: true
+  prevent-acrobatics-afk: true
+  prevent-fishing-treasure-farm: true
+  track-recent-blocks: true
+  recent-block-ttl-seconds: 30
+
+skill-multipliers:
+  mining: 0.48
+  woodcutting: 0.6
+  herbalism: 0.5
+  excavation: 0.55
+  fishing: 0.65
+  repair: 0.65
+  salvage: 0.65
+  smelting: 0.65
+  alchemy: 0.6
+  taming: 0.65
+  acrobatics: 0.6
+  unarmed: 0.7
+  swords: 0.72
+  axes: 0.72
+  archery: 0.72
+  crossbows: 0.72
+  tridents: 0.72
+  maces: 0.7
+  spears: 0.7
+  defense: 1.0
+  elytra: 1.0

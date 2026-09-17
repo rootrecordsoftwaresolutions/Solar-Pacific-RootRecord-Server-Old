@@ -1,0 +1,404 @@
+name: Root-Essentials
+version: '${version}'
+main: com.rootrecord.minecraft.rootessentials.RootEssentialsPlugin
+api-version: '26.1'
+description: RootMC in-house EssentialsX replacement (player QoL commands)
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Economy, Root-Times, Root-Claims, Root-Perms, RootMC, Vault, Towny, TownyChat, PlaceholderAPI]
+loadafter: [PlaceholderAPI, Root-Economy]
+commands:
+  spawn:
+    description: Teleport to server spawn, or /spawn <player|area> for an area spawn
+  rtp:
+    description: Random wilderness teleport (free in starter grace; paid by rank after)
+  sethome:
+    description: Set a home
+  home:
+    description: Teleport home
+  delhome:
+    description: Delete a home
+  renamehome:
+    description: Rename a home
+  homes:
+    description: List your homes
+  tpa:
+    description: Request teleport to player
+  tpaccept:
+    description: Accept teleport request
+  tpdeny:
+    description: Deny teleport request
+  tpahere:
+    description: Request player teleport to you
+  msg:
+    description: Private message
+  reply:
+    description: Reply to last message
+    aliases: [r]
+  mail:
+    description: Read or send mail
+  me:
+    description: Emote action in chat
+  ignore:
+    description: Ignore a player
+  unignore:
+    description: Stop ignoring a player
+  kit:
+    description: Claim a kit
+  worth:
+    description: Item worth lookup
+  help:
+    description: Help pointer
+  list:
+    description: Online player list
+  motd:
+    description: Message of the day
+  rules:
+    description: Server rules summary
+  compass:
+    description: Show facing direction
+  depth:
+    description: Show Y level
+  getpos:
+    description: Show coordinates
+  near:
+    description: Nearby players
+  afk:
+    description: Toggle AFK
+  nick:
+    description: Set nickname
+  hat:
+    description: Wear held item as hat
+  warp:
+    description: Teleport to warp or create one for a fee
+    usage: /<command> <name> | create <name>
+  warps:
+    description: List warps
+  survey:
+    description: Hire a surveyor to scan the chunk you stand in (one-time report)
+    usage: /<command> [confirm|cancel]
+  explode:
+    description: Self-destruct while wearing a TNT chestplate (keeps inventory, wipes wallet, hurts nearby)
+    usage: /<command> [confirm|cancel]
+  feed:
+    description: Restore health and hunger (15 G -> Server Reserve)
+  heal:
+    description: Restore health and hunger (15 G -> Server Reserve)
+  repair:
+    description: Repair held item (1000 G -> Server Reserve; /repair all = 1000 G per item)
+  top:
+    description: Teleport to highest block (10 G -> Server Reserve)
+  clear:
+    description: Clear inventory
+    aliases: [clearinventory]
+  trash:
+    description: Open trash inventory
+    aliases: [disposal]
+  suicide:
+    description: Kill yourself
+    aliases: [kill]
+  seen:
+    description: Last seen player
+  workbench:
+    description: Open crafting table
+    aliases: [craft]
+  tpauto:
+    description: Auto-accept teleport requests
+  show:
+    description: Show held item in chat
+    aliases: [showhand]
+  rootspawn:
+    description: Spawn area mapping and protection tools
+    usage: /rootspawn map | import | build | stop | reload
+  banner:
+    description: Quote and buy letter, number, symbol, or blank color banners
+    usage: /<command> <text|confirm|cancel|colors|prices|help>
+    aliases: [banners, rootbanner]
+  potions:
+    description: Search how to brew potions
+    usage: /<command> [list|search|reload] [query|page]
+    aliases: [rootpotions, potionguide]
+permissions:
+  rootspawn.build:
+    description: Map and refine spawn wall areas
+    default: op
+  rootspawn.bypass:
+    description: Unused — spawn build/interact is operators-only
+    default: false
+  rootbanner.use:
+    description: Use /banner
+    default: true
+  rootbanner.reload:
+    description: Reload root-banner.yml
+    default: op
+  rootbanner.free:
+    description: Receive banners without paying Gold
+    default: op
+  rootpotions.use:
+    description: Use /potions
+    default: true
+  rootpotions.reload:
+    description: Reload root-potions.yml
+    default: op
+  rootessentials.wilderness-fee.bypass:
+    description: Bypass wilderness destroy fees
+    default: op
+  rootessentials.spawn:
+    description: Use /spawn
+    default: true
+  essentials.spawn:
+    description: EssentialsX alias for /spawn
+    default: true
+  rootessentials.rtp:
+    description: Use /rtp (free in starter grace; Gold fee by rank after)
+    default: true
+  rootessentials.home:
+    description: Use /home
+    default: true
+  essentials.home:
+    description: EssentialsX alias for /home
+    default: true
+  rootessentials.sethome:
+    description: Use /sethome
+    default: true
+  essentials.sethome:
+    description: EssentialsX alias for /sethome
+    default: true
+  rootessentials.delhome:
+    description: Use /delhome
+    default: true
+  essentials.delhome:
+    description: EssentialsX alias for /delhome
+    default: true
+  rootessentials.renamehome:
+    description: Use /renamehome
+    default: true
+  essentials.renamehome:
+    description: EssentialsX alias for /renamehome
+    default: true
+  rootessentials.homes:
+    description: Use /homes
+    default: true
+  essentials.homes:
+    description: EssentialsX alias for /homes
+    default: true
+  rootessentials.depth:
+    description: Use /depth
+    default: true
+  essentials.depth:
+    description: EssentialsX alias for /depth
+    default: true
+  rootessentials.compass:
+    description: Use /compass
+    default: true
+  essentials.compass:
+    description: EssentialsX alias for /compass
+    default: true
+  rootessentials.getpos:
+    description: Use /getpos
+    default: true
+  essentials.getpos:
+    description: EssentialsX alias for /getpos
+    default: true
+  rootessentials.worth:
+    description: Use /worth
+    default: true
+  essentials.worth:
+    description: EssentialsX alias for /worth
+    default: true
+  rootessentials.show:
+    description: Use /show
+    default: true
+  rootessentials.survey:
+    description: Pay to survey the chunk you stand in
+    default: true
+  rootessentials.explode:
+    description: Use /explode (requires TNT chestplate; costs full wallet)
+    default: true
+  rootessentials.top:
+    description: Pay to teleport to the surface
+    default: true
+  essentials.top:
+    description: EssentialsX alias for /top
+    default: true
+  rootessentials.nick:
+    description: Set a nickname (fee → Server Reserve)
+    default: true
+  essentials.nick:
+    description: EssentialsX alias for /nick
+    default: true
+  rootessentials.hat:
+    description: Wear held item as hat (fee → Server Reserve)
+    default: true
+  essentials.hat:
+    description: EssentialsX alias for /hat
+    default: true
+  # Player QoL — restabilize defaults (Paper OP-default otherwise)
+  rootessentials.msg:
+    description: Use /msg
+    default: true
+  essentials.msg:
+    description: EssentialsX alias for /msg
+    default: true
+  rootessentials.reply:
+    description: Use /reply
+    default: true
+  essentials.reply:
+    description: EssentialsX alias for /reply
+    default: true
+  rootessentials.mail:
+    description: Use /mail
+    default: true
+  essentials.mail:
+    description: EssentialsX alias for /mail
+    default: true
+  rootessentials.me:
+    description: Use /me
+    default: true
+  essentials.me:
+    description: EssentialsX alias for /me
+    default: true
+  rootessentials.ignore:
+    description: Use /ignore
+    default: true
+  essentials.ignore:
+    description: EssentialsX alias for /ignore
+    default: true
+  rootessentials.unignore:
+    description: Use /unignore
+    default: true
+  essentials.unignore:
+    description: EssentialsX alias for /unignore
+    default: true
+  rootessentials.tpa:
+    description: Use /tpa
+    default: true
+  essentials.tpa:
+    description: EssentialsX alias for /tpa
+    default: true
+  rootessentials.tpaccept:
+    description: Use /tpaccept
+    default: true
+  essentials.tpaccept:
+    description: EssentialsX alias for /tpaccept
+    default: true
+  rootessentials.tpdeny:
+    description: Use /tpdeny
+    default: true
+  essentials.tpdeny:
+    description: EssentialsX alias for /tpdeny
+    default: true
+  rootessentials.tpahere:
+    description: Use /tpahere
+    default: true
+  essentials.tpahere:
+    description: EssentialsX alias for /tpahere
+    default: true
+  rootessentials.tpauto:
+    description: Use /tpauto
+    default: true
+  essentials.tpauto:
+    description: EssentialsX alias for /tpauto
+    default: true
+  rootessentials.warp:
+    description: Use /warp
+    default: true
+  essentials.warp:
+    description: EssentialsX alias for /warp
+    default: true
+  rootessentials.warps:
+    description: Use /warps
+    default: true
+  essentials.warps:
+    description: EssentialsX alias for /warps
+    default: true
+  rootessentials.kit:
+    description: Use /kit
+    default: true
+  essentials.kit:
+    description: EssentialsX alias for /kit
+    default: true
+  rootessentials.help:
+    description: Use /help
+    default: true
+  essentials.help:
+    description: EssentialsX alias for /help
+    default: true
+  rootessentials.list:
+    description: Use /list
+    default: true
+  essentials.list:
+    description: EssentialsX alias for /list
+    default: true
+  rootessentials.motd:
+    description: Use /motd
+    default: true
+  essentials.motd:
+    description: EssentialsX alias for /motd
+    default: true
+  rootessentials.rules:
+    description: Use /rules
+    default: true
+  essentials.rules:
+    description: EssentialsX alias for /rules
+    default: true
+  rootessentials.near:
+    description: Use /near
+    default: true
+  essentials.near:
+    description: EssentialsX alias for /near
+    default: true
+  rootessentials.feed:
+    description: Use /feed
+    default: true
+  essentials.feed:
+    description: EssentialsX alias for /feed
+    default: true
+  rootessentials.heal:
+    description: Use /heal
+    default: true
+  essentials.heal:
+    description: EssentialsX alias for /heal
+    default: true
+  rootessentials.repair:
+    description: Use /repair
+    default: true
+  essentials.repair:
+    description: EssentialsX alias for /repair
+    default: true
+  rootessentials.clear:
+    description: Use /clear
+    default: true
+  essentials.clear:
+    description: EssentialsX alias for /clear
+    default: true
+  rootessentials.trash:
+    description: Use /trash
+    default: true
+  essentials.trash:
+    description: EssentialsX alias for /trash
+    default: true
+  rootessentials.suicide:
+    description: Use /suicide
+    default: true
+  essentials.suicide:
+    description: EssentialsX alias for /suicide
+    default: true
+  rootessentials.seen:
+    description: Use /seen
+    default: true
+  essentials.seen:
+    description: EssentialsX alias for /seen
+    default: true
+  rootessentials.workbench:
+    description: Use /workbench
+    default: true
+  essentials.workbench:
+    description: EssentialsX alias for /workbench
+    default: true
+  rootessentials.afk:
+    description: Use /afk when Root-Times is absent
+    default: true
+  essentials.afk:
+    description: EssentialsX alias for /afk
+    default: true

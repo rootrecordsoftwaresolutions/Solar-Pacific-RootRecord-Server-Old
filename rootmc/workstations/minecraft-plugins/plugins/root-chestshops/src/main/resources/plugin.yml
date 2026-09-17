@@ -1,0 +1,34 @@
+name: Root-ChestShops
+version: '${version}'
+main: com.rootrecord.minecraft.rootmcshops.RootMcShopsPlugin
+api-version: '26.1'
+description: RootMC chest shops + optional virtual storage marketplace
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Economy, RootMC, Vault, Towny, Root-Claims]
+depend: [Root-Economy]
+commands:
+  buy:
+    description: Buy from the cheapest in-stock player chest shop
+    usage: /buy <item> [amount] | /buy confirm <shop-id> <amount> | /buy cancel
+  sell:
+    description: Sell to the highest-paying player buy shop
+    usage: /sell <item|all> [amount] | /sell confirm <shop-id> <amount> | /sell confirmall | /sell cancel
+  shop:
+    description: Create and manage player chest shops
+    usage: /shop <create [price]|stock|editprice|editqty|edittype|remove|cancel|reload|purge|avg>
+    aliases: [rootshops, rshops]
+  item:
+    description: Virtual My Storage — deposit, withdraw, list without a chest
+    usage: /item | /item deposit [hand|all] | /item withdraw <item> [qty] | /item listings
+    aliases: [storage, mystorage]
+permissions:
+  rootshops.create:
+    description: Create a RootMC shop
+    default: true
+  rootshops.virtual:
+    description: Use virtual storage and chestless listings
+    default: true
+  rootshops.admin:
+    description: Admin shop commands
+    default: op

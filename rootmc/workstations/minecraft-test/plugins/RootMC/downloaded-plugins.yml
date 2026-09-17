@@ -1,0 +1,9 @@
+root-chamber:
+  version: 1.8.100
+  filename: root-chamber-1.8.100.jar
+  at: 1787199358241
+root-ranks:
+  version: 1.8.100
+  filename: root-ranks-1.8.100.jar
+  at: 1787199358522
+pending-restart: false

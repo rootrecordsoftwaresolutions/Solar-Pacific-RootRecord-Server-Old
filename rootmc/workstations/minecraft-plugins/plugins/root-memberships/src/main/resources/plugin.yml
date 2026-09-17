@@ -1,0 +1,34 @@
+name: Root-Memberships
+version: '${version}'
+main: com.rootrecord.minecraft.rootmemberships.RootMembershipsPlugin
+api-version: '26.1'
+description: Configurable cloud membership → permission group sync (Pro badge)
+author: Root Record
+website: https://rootmc.net
+depend: [Root-Core]
+softdepend: [RootMC, Root-Perms, Vault]
+commands:
+  memberships:
+    description: Membership sync status and reload
+    usage: /memberships [status|reload]
+    permission: rootmemberships.admin
+  pro:
+    description: Pro membership perks, features, and checkout
+    usage: /pro
+    permission: rootmemberships.pro
+  donor:
+    description: Donor / Pro / Lifetime perks, features, and checkout
+    usage: /donor
+    permission: rootmemberships.pro
+    aliases: [donate, support]
+  lifetime:
+    description: Lifetime Pro perks, features, and checkout
+    usage: /lifetime
+    permission: rootmemberships.pro
+permissions:
+  rootmemberships.admin:
+    description: Reload memberships config and view sync status
+    default: op
+  rootmemberships.pro:
+    description: View donor / Pro / Lifetime perks and checkout links
+    default: true

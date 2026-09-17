@@ -1,0 +1,20 @@
+# RootMC Shops — chest-based player shops
+# File: plugins/RootMC/rootmc-shops.yml
+
+economy:
+  max-price-percent-over-avg: 10
+
+messages:
+  prefix: "&8[&2RootMC Shops&8]&r "
+  buy-hint: "&7You buy from &fplayer chest shops&7 at the &flowest in-stock price&7 — RootMC has &cno server shop&7."
+  buy-no-shops: "&eNo player chest shops are selling &f{item}&e in stock. There is no server shop — use `/buy` to find the cheapest chest listing."
+  buy-quote-note: "&7Quote — lowest in-stock &fchest shop&7 (not the server):"
+  buy-insufficient: "&cInsufficient gold. Need &f{total}&c G (balance: &f{balance}&c G)."
+  buy-stock-gone: "&eThat chest shop no longer has &f{item}&e in stock. Try `/buy {item}` again."
+  buy-cancelled: "&7Purchase cancelled."
+  shop-created: "&aShop created — &f{item}&a for &f{price}&a G."
+  shop-removed: "&aShop removed."
+  price-too-high: "&cPrice &f{price}&c exceeds cap &f{max}&c (avg &f{avg}&c)."
+  buy-success: "&aPurchased &f{qty}x {item}&a for &f{total}&a G from &f{seller}&a's chest shop."
+  buy-fail: "&cCould not buy &f{item}&c."
+  not-looking-at-chest: "&eLook at a chest while holding the item to sell."

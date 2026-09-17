@@ -1,0 +1,65 @@
+# Root-Referrals — plugins/RootMC/root-referrals.yml
+
+code:
+  length: 6
+
+gates:
+  playtime-seconds: 10800
+  min-active-days: 0
+  claim-within-hours: 48
+  require-referrer-linked: true
+
+network:
+  max-depth: 1
+
+rewards:
+  enabled: true
+  qualify-referrer-g: 75
+  qualify-recruit-g: 0
+  lifetime-cap-g: 2000
+
+milestones:
+  - qualified: 5
+    reward-g: 50
+  - qualified: 15
+    reward-g: 100
+  - qualified: 30
+    reward-g: 200
+
+abuse:
+  soft-ip: true
+
+messages:
+  prefix: ""
+  code: "&7Your referral code: &f{code}"
+  code-created: "&aReferral code created: &f{code}"
+  claim-success: "&aReferral claimed. Play &f{hours}&a more to qualify your referrer."
+  claim-self: "&cYou cannot use your own code."
+  claim-already: "&cYou already claimed a referral."
+  claim-unknown: "&cUnknown referral code."
+  claim-window: "&cReferral claims must be within &f{hours}&c hours of first join."
+  claim-not-linked: "&cLink Discord first: &f/discord"
+  info-header: "&6Referrals &8| &f{player}"
+  info-code: "&7Code: &f{code}"
+  info-qualified: "&7Qualified recruits: &f{qualified}"
+  info-earned: "&7Lifetime earned: &f{earned} G"
+  info-pending: "&7Pending recruits: &f{pending}"
+  info-none: "&7No referral profile yet. Use &f/root code&7."
+  tree-header: "&6Your recruits &8| &7depth {depth}"
+  tree-line: "&7- &f{player} &8({status})"
+  tree-empty: "&7No recruits yet."
+  top-header: "&6Top referrers"
+  top-line: "&7#{rank} &f{player} &8| &f{qualified}&7 qualified | &f{earned} G"
+  top-empty: "&7No qualified referrers yet."
+  qualified-referrer: "&aRecruit &f{player}&a qualified | you earned &f{amount} G"
+  qualified-recruit: "&aYou qualified referral from &f{referrer}&a."
+  milestone: "&6Milestone &f{count}&6 qualified | +&f{amount} G"
+  no-treasury: "&cReward could not be paid (treasury unavailable)."
+  no-permission: "&cNo permission."
+  players-only: "&cPlayers only."
+  usage-claim: "&eUsage: &f/root claim <code>"
+  admin-reloaded: "&aRoot-Referrals reloaded."
+  admin-inspect: "&7{player} code=&f{code}&7 qualified=&f{qualified}&7 earned=&f{earned} G pending=&f{pending}"
+  admin-unlinked: "&7Unlinked recruit edge for &f{player}"
+  admin-purged: "&7Purged referral data for &f{player}"
+  admin-qualified: "&7Force-qualified edge for &f{player}"

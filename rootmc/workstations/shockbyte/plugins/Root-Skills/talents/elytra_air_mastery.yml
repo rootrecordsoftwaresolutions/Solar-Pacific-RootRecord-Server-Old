@@ -1,0 +1,17 @@
+id: elytra_air_mastery
+display-name: Air Mastery
+description: Bonus Elytra XP while gliding.
+skill: elytra
+unlock-level: 25
+max-rank: 5
+mana-cost: 0
+cooldown-seconds: 0
+duration-seconds: 0
+triggers:
+  - on_elytra_boost
+effects:
+  - id: XP_BONUS
+    multiplier: 1.25
+conditions:
+  - type: chance
+    value: 0.5

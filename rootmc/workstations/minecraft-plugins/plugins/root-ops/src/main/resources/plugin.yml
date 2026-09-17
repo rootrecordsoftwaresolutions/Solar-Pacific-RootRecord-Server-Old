@@ -1,0 +1,157 @@
+name: Root-Ops
+version: '${version}'
+main: com.rootrecord.minecraft.rootops.RootOpsPlugin
+api-version: '26.1'
+description: RootMC operations � admin, restart, announcer, mapper (BlueMap-R2-Fix is a STARTUP companion jar)
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Essentials, Root-Economy, Root-Claims, Root-ChestShops, Vault, LuckPerms, CoreProtect, BlueMap, PlaceholderAPI, Towny]
+loadafter: [Root-Core, Root-Essentials]
+commands:
+  report:
+    description: Report a player (includes last 30 min chat, commands, CoreProtect)
+    usage: /report <player> [reason]
+  kick:
+    description: Kick player
+  ban:
+    description: Ban player (IP ban + confiscate value to Server Reserve)
+  tempban:
+    description: Temporarily ban player (IP ban + confiscate value to Server Reserve)
+  unban:
+    description: Unban player
+  mute:
+    description: Mute player
+  unmute:
+    description: Unmute player
+  tpoffline:
+    description: Teleport to online player by name
+  vanish:
+    description: Toggle vanish
+  socialspy:
+    description: Toggle social spy
+  invsee:
+    description: Open player inventory
+  echest:
+    description: Open your ender chest (or another player's with staff permission)
+  enderchest:
+    description: Open your ender chest (or another player's with staff permission)
+    aliases: [ec]
+  setspawn:
+    description: Set server spawn
+  tppos:
+    description: Teleport to coordinates
+  sudo:
+    description: Run command as player
+  give:
+    description: Give items to player
+  speed:
+    description: Set walk or fly speed
+  realname:
+    description: Resolve nickname to username
+  whois:
+    description: Player information lookup
+  recipe:
+    description: Lookup item recipe
+  skull:
+    description: Get player head
+  lightning:
+    description: Strike lightning
+  ext:
+    description: Extinguish fire
+    aliases: [extinguish]
+  mutechat:
+    description: Mute global chat
+  unmutechat:
+    description: Unmute global chat
+  tpo:
+    description: Force teleport to player
+  tpohere:
+    description: Force teleport player to you
+  tpall:
+    description: Teleport all players to you
+  fly:
+    description: Toggle flight
+  god:
+    description: Toggle god mode
+  gamemode:
+    description: Change gamemode (server console only)
+    aliases: [gm]
+  gms:
+    description: Survival mode
+  gmc:
+    description: Creative mode
+  gma:
+    description: Adventure mode
+  gmsp:
+    description: Spectator mode
+  broadcast:
+    description: Broadcast message
+  timeset:
+    description: Set world time (staff)
+    usage: /timeset [ticks]
+    permission: rootadmin.time
+  day:
+    description: Set time to day
+  night:
+    description: Set time to night
+  weather:
+    description: Set weather
+  remove:
+    description: Remove items from player
+  burn:
+    description: Ignite player
+  world:
+    description: Teleport to world spawn
+  setwarp:
+    description: Create warp
+  delwarp:
+    description: Delete warp
+  item:
+    description: Give items (alias)
+  worldborder:
+    description: Set or reapply world border (±radius in root-admin.yml)
+    usage: /<command> [set] <radius> | get
+    aliases: [wb]
+  rootrestart:
+    description: Graceful server restart with countdown
+    usage: /rootrestart [cancel]
+    aliases: [rrrestart]
+  rootstop:
+    description: Graceful stop for update with countdown
+    usage: /rootstop [cancel]
+    aliases: [rrstop]
+  rootannouncer:
+    description: RootMC announcer admin
+    usage: /<command> reload|list|now [index]
+    aliases: [rannounce]
+  announcer:
+    description: Toggle RootMC rotating announcements for yourself
+    usage: /<command> [on|off|status]
+    aliases: [announcements, toggleannouncer]
+  mapper:
+    description: Map polygon areas for RootMC features
+    usage: /mapper list | start <area> | refine <area> | lava <area> | create <name> [waypoint|refine|lava] | stop | reload
+    aliases: [rootmapper]
+permissions:
+  rootadmin.time:
+    description: Set world time via /timeset, /day, /night
+    default: op
+  rootrestart.admin:
+    description: Start a manual restart or stop-for-update countdown
+    default: op
+  rootrestart.cancel:
+    description: Cancel a pending restart or stop countdown
+    default: op
+  rootannouncer.toggle:
+    description: Toggle whether you receive RootMC announcements
+    default: true
+  rootannouncer.reload:
+    description: Reload root-announcer.yml
+    default: op
+  rootannouncer.now:
+    description: Broadcast a message immediately
+    default: op
+  rootmapper.admin:
+    description: Use all /mapper commands
+    default: op
+

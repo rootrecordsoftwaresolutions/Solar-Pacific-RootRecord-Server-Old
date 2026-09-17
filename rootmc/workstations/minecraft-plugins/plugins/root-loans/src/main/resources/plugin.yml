@@ -1,0 +1,38 @@
+name: Root-Loans
+version: '${version}'
+main: com.rootrecord.minecraft.rootloans.RootLoansPlugin
+api-version: '26.1'
+description: RootMC personal and town loans from the Server Reserve.
+author: Root Record
+website: https://rootmc.net
+softdepend: [Vault, LuckPerms, Towny]
+depend: [Root-Essentials]
+loadafter: [Root-Essentials, LuckPerms, Towny]
+commands:
+  loan:
+    description: Borrow, view, or repay a personal loan
+    usage: /<command> <take|info|repay|list> [amount]
+  townloan:
+    description: Mayor — borrow from Server Reserve into town bank, or repay
+    usage: /<command> <take|repay|info|list> [amount]
+    aliases: [tloan]
+  rootloans:
+    description: Admin reload for Root-Loans
+    usage: /<command> reload
+    permission: rootloans.reload
+permissions:
+  rootloans.use:
+    description: Use /loan take, info, and repay
+    default: true
+  rootloans.town.use:
+    description: Mayor use /townloan take, repay, and info
+    default: true
+  rootloans.list:
+    description: View all active personal loans
+    default: op
+  rootloans.town.list:
+    description: View all active town loans
+    default: op
+  rootloans.reload:
+    description: Reload root-loans.yml
+    default: op

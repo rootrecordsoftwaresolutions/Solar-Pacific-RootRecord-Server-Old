@@ -1,0 +1,398 @@
+# RootMC LuckPerms setup — paste into server console (one line at a time or //lp bulk)
+#
+# Ranks (3 tracks + weights for chat prefix):
+#   player:  default → wanderer → settler → pioneer → citizen → veteran → elite → champion
+#   donor:   default → supporter → patron → pro → benefactor → lifetime → founder
+#   staff:   helper → moderator → admin → leadadmin → developer → owner
+#
+# Billing sync (unchanged): pro_unlocked → pro | life_member → lifetime
+# NO "member" group. Staff = LuckPerms only — never ops.json / vanilla OP.
+# Run after: LuckPerms MySQL connected, full server restart (no /reload)
+# Verify: /lp listgroups
+
+# ── If you already created "member" from an old script, clean up first ──
+# lp group pro parent remove member
+# lp group member parent remove default
+# lp track player remove member
+# lp groupdelete member
+
+# ── Create groups ────────────────────────────────────────────────────
+lp creategroup wanderer
+lp creategroup settler
+lp creategroup pioneer
+lp creategroup citizen
+lp creategroup veteran
+lp creategroup elite
+lp creategroup champion
+lp creategroup supporter
+lp creategroup patron
+lp creategroup pro
+lp creategroup benefactor
+lp creategroup lifetime
+lp creategroup founder
+lp creategroup helper
+lp creategroup moderator
+lp creategroup admin
+lp creategroup leadadmin
+lp creategroup developer
+lp creategroup owner
+
+# ── Inheritance ──────────────────────────────────────────────────────
+lp group wanderer parent add default
+lp group settler parent add wanderer
+lp group pioneer parent add settler
+lp group citizen parent add pioneer
+lp group veteran parent add citizen
+lp group elite parent add veteran
+lp group champion parent add elite
+
+lp group supporter parent add default
+lp group patron parent add supporter
+lp group pro parent add default
+lp group benefactor parent add pro
+lp group lifetime parent add benefactor
+lp group founder parent add lifetime
+
+lp group helper parent add default
+lp group moderator parent add helper
+lp group admin parent add moderator
+lp group leadadmin parent add admin
+lp group developer parent add leadadmin
+lp group owner parent add developer
+
+# ── Weights (highest prefix wins in chat) ─────────────────────────────
+lp group default setweight 10
+lp group wanderer setweight 12
+lp group settler setweight 14
+lp group pioneer setweight 16
+lp group citizen setweight 18
+lp group veteran setweight 20
+lp group elite setweight 22
+lp group champion setweight 24
+lp group supporter setweight 35
+lp group patron setweight 38
+lp group pro setweight 40
+lp group benefactor setweight 45
+lp group lifetime setweight 50
+lp group founder setweight 55
+lp group helper setweight 80
+lp group moderator setweight 85
+lp group admin setweight 100
+lp group leadadmin setweight 105
+lp group developer setweight 110
+lp group owner setweight 120
+
+# ── Display names ────────────────────────────────────────────────────
+lp group default setdisplayname Explorer
+lp group wanderer setdisplayname Wanderer
+lp group settler setdisplayname Settler
+lp group pioneer setdisplayname Pioneer
+lp group citizen setdisplayname Citizen
+lp group veteran setdisplayname Veteran
+lp group elite setdisplayname Elite
+lp group champion setdisplayname Champion
+lp group supporter setdisplayname Supporter
+lp group patron setdisplayname Patron
+lp group pro setdisplayname Pro
+lp group benefactor setdisplayname Benefactor
+lp group lifetime setdisplayname Lifetime
+lp group founder setdisplayname Founder
+lp group helper setdisplayname Helper
+lp group moderator setdisplayname Moderator
+lp group admin setdisplayname Admin
+lp group leadadmin setdisplayname Lead Admin
+lp group developer setdisplayname Developer
+lp group owner setdisplayname Owner
+
+# ── Chat prefixes (Towny ChatConfig %rootranks_prefix%%rootranks_badge%) ──
+# Player track always shows; staff/donor badges append via Root-Ranks PAPI.
+lp group default meta setprefix 10 "&8[&7Explorer&8]&r "
+lp group wanderer meta setprefix 12 "&8[&7Wanderer&8]&r "
+lp group settler meta setprefix 14 "&8[&aSettler&8]&r "
+lp group pioneer meta setprefix 16 "&8[&2Pioneer&8]&r "
+lp group citizen meta setprefix 18 "&8[&fCitizen&8]&r "
+lp group veteran meta setprefix 20 "&8[&8Veteran&8]&r "
+lp group elite meta setprefix 22 "&8[&dElite&8]&r "
+lp group champion meta setprefix 24 "&8[&5Champion&8]&r "
+lp group supporter meta setprefix 35 "&8[&eSupporter&8]&r "
+lp group patron meta setprefix 38 "&8[&bPatron&8]&r "
+lp group pro meta setprefix 40 "&8[&bPro&8]&r "
+lp group benefactor meta setprefix 45 "&8[&6Benefactor&8]&r "
+lp group lifetime meta setprefix 50 "&8[&6Lifetime&8]&r "
+lp group founder meta setprefix 55 "&8[&c&lFounder&8]&r "
+lp group helper meta setprefix 80 "&8[&aHelper&8]&r "
+lp group moderator meta setprefix 85 "&8[&9Mod&8]&r "
+lp group admin meta setprefix 100 ""
+lp group leadadmin meta setprefix 105 "&8[&6Lead Admin&8]&r "
+lp group developer meta setprefix 110 "&8[&3Dev&8]&r "
+lp group owner meta setprefix 120 "&8[&4Owner&8]&r "
+
+# ── Promotion tracks ─────────────────────────────────────────────────
+lp createtrack player
+lp track player append default
+lp track player append wanderer
+lp track player append settler
+lp track player append pioneer
+lp track player append citizen
+lp track player append veteran
+lp track player append elite
+lp track player append champion
+
+lp createtrack donor
+lp track donor append default
+lp track donor append supporter
+lp track donor append patron
+lp track donor append pro
+lp track donor append benefactor
+lp track donor append lifetime
+lp track donor append founder
+
+lp createtrack staff
+lp track staff append helper
+lp track staff append moderator
+lp track staff append admin
+lp track staff append leadadmin
+lp track staff append developer
+lp track staff append owner
+
+# ── DEFAULT — all players ────────────────────────────────────────────
+lp group default permission set essentials.spawn true
+lp group default permission set essentials.help true
+lp group default permission set essentials.list true
+lp group default permission set essentials.motd true
+lp group default permission set essentials.rules true
+lp group default permission set essentials.ping true
+lp group default permission set essentials.compass true
+lp group default permission set essentials.depth true
+lp group default permission set essentials.getpos true
+lp group default permission set essentials.worth true
+lp group default permission set essentials.sell true
+lp group default permission set essentials.mint true
+lp group default permission set essentials.balance true
+lp group default permission set essentials.pay true
+lp group default permission set essentials.paytoggle true
+lp group default permission set essentials.balancetop true
+lp group default permission set essentials.baltop true
+lp group default permission set essentials.reserve true
+lp group default permission set essentials.homes true
+lp group default permission set essentials.me true
+lp group default permission set essentials.ignore true
+lp group default permission set essentials.recipe true
+lp group default permission set essentials.skull true
+lp group default permission set essentials.tpauto true
+lp group default permission set essentials.ptime true
+lp group default permission set rootessentials.sell true
+lp group default permission set rootessentials.balance true
+lp group default permission set rootessentials.pay true
+lp group default permission set rootessentials.spawn true
+lp group default permission set essentials.kit true
+lp group default permission set essentials.kit.starter true
+lp group default permission set essentials.msg true
+lp group default permission set essentials.reply true
+lp group default permission set essentials.r true
+lp group default permission set essentials.mail true
+lp group default permission set essentials.mail.send true
+
+lp group default permission set essentials.home true
+lp group default permission set essentials.sethome true
+lp group default permission set essentials.delhome true
+lp group default permission set rootessentials.home true
+lp group default permission set essentials.renamehome true
+lp group default permission set essentials.sethome.multiple true
+lp group default permission set essentials.sethome.multiple.default true
+lp group default permission set essentials.tpa true
+lp group default permission set essentials.tpaccept true
+lp group default permission set essentials.tpdeny true
+lp group default permission set essentials.tpahere true
+lp group default permission set essentials.back true
+lp group default permission set essentials.back.ondeath true
+lp group default permission set essentials.near true
+lp group default permission set essentials.afk true
+lp group default permission set essentials.warp true
+lp group default permission set essentials.warps true
+lp group default permission set essentials.top true
+lp group default permission set rootessentials.top true
+# No free heal/feed/repair, portable stations, or combat shortcuts — staff use admin.*
+lp group default permission set essentials.feed false
+lp group default permission set essentials.heal false
+lp group default permission set essentials.repair false
+lp group default permission set essentials.more false
+lp group default permission set essentials.workbench false
+lp group default permission set essentials.extinguish false
+lp group default permission set essentials.suicide true
+lp group default permission set essentials.disposal true
+lp group default permission set essentials.clearinventory true
+lp group default permission set essentials.seen true
+lp group default permission set rootessentials.mint true
+lp group default permission set rootessentials.homes true
+lp group default permission set rootessentials.paytoggle true
+lp group default permission set rootessentials.baltop true
+lp group default permission set rootessentials.reserve true
+lp group default permission set rootessentials.survey true
+
+lp group default permission set roothelp.rules true
+lp group default permission set roothelp.commands true
+lp group default permission set roothelp.discord true
+lp group default permission set roothelp.map true
+lp group default permission set rootstat.link true
+lp group default permission set rootstat.status true
+lp group default permission set rootmc.waypoint true
+lp group default permission set rootmc.note true
+lp group default permission set rootmc.vault true
+lp group default permission set rootshops.create true
+lp group default permission set rootrewards.use true
+lp group default permission set rootrewards.vote true
+lp group default permission set rootadmin.report true
+
+lp group default permission set mcmmo.commands.mcstats true
+lp group default permission set mcmmo.commands.mctop true
+lp group default permission set mcmmo.commands.inspect true
+lp group default permission set mcmmo.commands.party true
+lp group default permission set mcmmo.skills.repair true
+lp group default permission set mcmmo.skills.salvage true
+
+# ── SUPPORTER / PATRON — lower donor tiers (cosmetic / convenience) ──
+lp group supporter permission set essentials.joinmessage true
+lp group patron permission set essentials.chat.color true
+lp group patron permission set essentials.chat.format true
+
+# ── PRO — monthly donor (billing sync: pro_unlocked → pro) ───────────
+lp group pro permission set essentials.chat.color true
+lp group pro permission set essentials.chat.format true
+lp group pro permission set essentials.nick true
+lp group pro permission set essentials.nick.color true
+lp group pro permission set essentials.hat true
+lp group pro permission set essentials.sethome.multiple.pro true
+lp group pro permission set essentials.joinmessage true
+lp group pro permission set essentials.signs.use.color true
+
+# ── BENEFACTOR / LIFETIME — top donor tiers ──────────────────────────
+lp group benefactor permission set essentials.chat.rgb true
+lp group lifetime permission set essentials.sethome.multiple.lifetime true
+lp group lifetime permission set essentials.chat.rgb true
+
+# ── MODERATOR — junior staff (inherits helper; admin inherits this) ──
+lp group moderator permission set rootadmin.kick true
+lp group moderator permission set rootadmin.mute true
+lp group moderator permission set rootadmin.unmute true
+lp group moderator permission set rootadmin.tempban true
+lp group moderator permission set rootadmin.tphere true
+lp group moderator permission set rootadmin.vanish true
+lp group moderator permission set rootadmin.vanish.see true
+lp group moderator permission set rootadmin.socialspy true
+lp group moderator permission set rootadmin.reports.notify true
+lp group moderator permission set rootadmin.realname true
+lp group moderator permission set essentials.kick true
+lp group moderator permission set essentials.mute true
+lp group moderator permission set essentials.unmute true
+lp group moderator permission set essentials.tempban true
+lp group moderator permission set essentials.tphere true
+lp group moderator permission set essentials.vanish true
+lp group moderator permission set essentials.vanish.see true
+lp group moderator permission set essentials.socialspy true
+lp group moderator permission set essentials.realname true
+# Force /tp removed — staff use /tpa like players. Live cleanup if already granted:
+# lp group moderator permission unset rootadmin.tp
+# lp group moderator permission unset essentials.tp
+
+# ── ADMIN — senior staff (LuckPerms only; never ops.json / never OP) ─
+# Economy: eco + baltop only. No give/sudo/world/time/weather/tpall/worldborder/etc.
+# Kick/mute/vanish live on moderator — inherited here. No force /tp.
+lp group admin permission set rootadmin.ban true
+lp group admin permission set rootadmin.unban true
+lp group admin permission set rootadmin.tempban.exempt true
+lp group admin permission set rootadmin.ban.notify true
+lp group admin permission set rootadmin.tpoffline true
+lp group admin permission set rootadmin.invsee true
+lp group admin permission set rootadmin.enderchest.open true
+lp group admin permission set rootadmin.feed.others true
+lp group admin permission set rootadmin.heal.others true
+lp group admin permission set rootadmin.broadcast true
+lp group admin permission set rootadmin.fly false
+lp group admin permission set rootadmin.fly.others false
+lp group admin permission set rootadmin.gamemode false
+lp group admin permission set rootadmin.gamemode.survival true
+lp group admin permission set rootadmin.gamemode.spectator true
+lp group admin permission set rootadmin.gamemode.creative false
+lp group admin permission set rootadmin.gamemode.adventure false
+lp group admin permission set rootadmin.gamemode.others false
+lp group admin permission set rootadmin.god false
+lp group admin permission set rootadmin.eco true
+lp group admin permission set rootadmin.balancetop true
+lp group admin permission set rootadmin.whois true
+lp group admin permission set rootadmin.whois.ip true
+lp group admin permission set rootadmin.mutechat true
+lp group admin permission set rootadmin.mutechat.exempt true
+lp group admin permission set rootadmin.reports.notify true
+lp group admin permission set rootadmin.rails.bypass true
+lp group admin permission set rootadmin.realname true
+
+lp group admin permission set rootrestart.admin true
+lp group admin permission set rootrestart.cancel true
+lp group owner permission set rootrestart.admin true
+lp group owner permission set rootrestart.cancel true
+
+lp group admin permission set essentials.ban true
+lp group admin permission set essentials.unban true
+lp group admin permission set essentials.tempban.exempt true
+lp group admin permission set essentials.ban.notify true
+lp group admin permission set essentials.tpoffline true
+lp group admin permission set essentials.invsee true
+lp group admin permission set essentials.enderchest.open true
+lp group admin permission set essentials.feed.others true
+lp group admin permission set essentials.heal.others true
+lp group admin permission set essentials.broadcast true
+lp group admin permission set essentials.fly false
+lp group admin permission set essentials.fly.others false
+lp group admin permission set essentials.gamemode false
+lp group admin permission set essentials.gamemode.survival true
+lp group admin permission set essentials.gamemode.spectator true
+lp group admin permission set essentials.gamemode.creative false
+lp group admin permission set essentials.gamemode.adventure false
+lp group admin permission set rootessentials.gamemode false
+lp group admin permission set rootessentials.gamemode.survival true
+lp group admin permission set rootessentials.gamemode.spectator true
+lp group admin permission set rootessentials.gamemode.creative false
+lp group admin permission set rootessentials.gamemode.adventure false
+lp group admin permission set essentials.gamemode.others false
+lp group admin permission set rootessentials.gamemode.others false
+lp group admin permission set essentials.god false
+lp group admin permission set essentials.eco true
+lp group admin permission set essentials.balancetop true
+lp group admin permission set essentials.whois true
+lp group admin permission set essentials.whois.ip true
+lp group admin permission set essentials.mutechat true
+lp group admin permission set essentials.mutechat.exempt true
+lp group admin permission set essentials.realname true
+
+lp group admin permission set towny.command.towny.top true
+lp group admin permission set towny.command.towny.prices true
+lp group admin permission set towny.admin.jail true
+lp group admin permission set towny.town.resident.jail true
+
+lp group admin permission set rootshops.admin true
+lp group admin permission set rootessentials.grant true
+lp group admin permission set rootmc.grant true
+lp group admin permission set luckperms.autoop false
+
+lp group admin permission set essentials.realname true
+
+# ── DEVELOPER / OWNER — inherit admin; creative for dev work ─────────
+lp group developer permission set rootadmin.gamemode.creative true
+lp group developer permission set essentials.gamemode.creative true
+lp group developer permission set rootessentials.gamemode.creative true
+lp group owner permission set rootspawn.chamber.bypass true
+
+# ── Assign staff (repeat per person; do NOT add to ops.json) ─────────
+# lp user <name> parent add moderator
+# lp user <name> parent add admin
+# lp user <name> parent add owner
+
+# ── Donor / player ranks (manual or billing sync) ────────────────────
+# lp user <name> parent add pro
+# lp user <name> parent add lifetime
+# lp user <name> promote donor
+# lp user <name> promote player
+# lp user <name> promote staff
+
+lp sync

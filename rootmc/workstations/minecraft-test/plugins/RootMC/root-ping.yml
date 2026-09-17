@@ -1,0 +1,18 @@
+# Root-Ping — plugins/RootMC/root-ping.yml
+enabled: true
+
+# Minutes between automatic samples while a player is online (first sample after this delay).
+interval-minutes: 5
+
+# Optional override; blank → cloud.yml server-id via Root-Core.
+server-id: ""
+
+# Optional host label for comparisons (claims | towny | local | blank = auto).
+host-label: ""
+
+messages:
+  prefix: ""
+  ping-line: "&7Ping: &f{ping}ms"
+  server-line: "&7Server: &f{tps} TPS &8· &f{mspt} MSPT &8· &f{online}/{max} &8· &7heap &f{heap}%"
+  disabled: "&cRoot-Ping is disabled."
+  no-permission: "&cNo permission."

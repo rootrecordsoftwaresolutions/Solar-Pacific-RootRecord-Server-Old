@@ -1,0 +1,82 @@
+# Root-Appreciation — plugins/RootMC/root-appreciation.yml
+
+enabled: true
+
+token:
+  # Base item (sunflower). Display name / lore / PDC mark it as an Appreciation Token.
+  material: SUNFLOWER
+  display-name: "&6Appreciation Token"
+  lore:
+    - "&7A token of appreciation from RootMC."
+    - "&7Earned from &f/vote&7 (1 per site) and &f/bonus&7."
+    - "&eRight-click&7 to redeem for &fone random reward&7."
+    - "&8Full vote info: &f/vote"
+    - "&8Odds + tutorial: &frootmc.net/thanks"
+    - "&8Need &f1 empty inventory slot&8 (offhand counts)."
+
+bonus:
+  enabled: true
+  # Hours after last claim before streak is considered missed (resets to day 1).
+  miss-after-hours: 48
+  # Minimum hours between claims (anti-spam / once per day).
+  cooldown-hours: 20
+  # Day index 1..N → tokens + gold. Days beyond the list use the last row.
+  days:
+    - tokens: 1
+      gold: 5.0
+    - tokens: 2
+      gold: 10.0
+    - tokens: 3
+      gold: 15.0
+    - tokens: 4
+      gold: 20.0
+    - tokens: 5
+      gold: 25.0
+
+# Weighted catalog redeem (1 token = 1 roll). Right-click or /thanks redeem.
+redeem:
+  enabled: true
+
+motd:
+  # On join, remind if /bonus not claimed in the current cooldown window.
+  remind-if-bonus-available: true
+  delay-ticks: 40
+
+messages:
+  # Optional chat prefix (empty = none).
+  prefix: ""
+  players-only: "&cPlayers only."
+  disabled: "&eAppreciation Tokens are disabled."
+  no-permission: "&cNo permission."
+  thanks-header: "&6—— Appreciation Tokens ——"
+  thanks-global-issued: "&7Total Tokens issued (global): &f{count}"
+  thanks-global-redeemed: "&7Total Tokens redeemed (global): &f{count}"
+  thanks-you-issued: "&7Total Tokens issued (you): &f{count}"
+  thanks-you-redeemed: "&7Total Tokens redeemed (you): &f{count}"
+  thanks-supply: "&7Total Supply (global): &f{count}"
+  thanks-inventory: "&7Tokens in inventory: &f{count}"
+  thanks-vote: "&7Listing votes: &f{votes}&7 · tokens from votes: &f{tokens}&7 · full info: &f/vote"
+  thanks-shards: "&7Digital Vote Shards = listing vote count (same number). Physical /ec items unused."
+  thanks-streak: "&7Your daily streak: &f{streak}&7 · next /bonus: &f{next}"
+  thanks-usage: "&e/thanks &7| &e/thanks redeem [amount] &7| &e/bonus &7| &e/vote &7| right-click token"
+  bonus-disabled: "&eDaily /bonus is disabled."
+  bonus-too-soon: "&eYou already claimed recently. Try again in &f{hours}h&e."
+  bonus-success: "&aDay &f{day}&a streak! Received &f{tokens} Appreciation Token(s)&a and &f{gold} G&a."
+  bonus-db: "&cCould not save bonus — try again later."
+  give-usage: "&eUsage (console only): &f/thanks give <player> <amount>"
+  give-console-only: "&c/thanks give is console-only."
+  give-success: "&aGave &f{amount} Appreciation Token(s)&a to &f{player}&a."
+  give-received: "&aYou received &f{amount} Appreciation Token(s)&a."
+  redeem-usage: "&eUsage: &f/thanks redeem [amount]&e (default 1) -- or &fright-click&e a token"
+  redeem-none: "&eRedeem is disabled or the reward catalog failed to load."
+  redeem-need: "&eYou need &f{amount} Appreciation Token(s)&e in your inventory."
+  redeem-need-space: "&eNeed &f1 empty inventory slot&e (hotbar/backpack or offhand) before redeeming."
+  redeem-success: "&aYou redeemed an Appreciation Token and won &f{reward}&a!"
+  redeem-failed: "&cReward failed — your token was returned. Try again."
+  redeem-broadcast: "&6✦ &e{player} &7redeemed an Appreciation Token and won &f{reward}&7!"
+  motd-bonus: "&7Daily streak available — claim with &f/bonus&7!"
+  pending-delivered: "&aYou received &f{amount} Appreciation Token(s)&a from votes / offline rewards."
+  reload-done: "&aRoot-Appreciation reloaded."
+  inventory-full: "&eInventory full — Appreciation Tokens dropped at your feet."
+  invalid-amount: "&eEnter a whole number amount of at least 1."
+  player-not-found: "&ePlayer not found: &f{player}"

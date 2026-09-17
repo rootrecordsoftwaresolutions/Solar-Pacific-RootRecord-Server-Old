@@ -1,0 +1,18 @@
+id: woodcutting_tree_feller
+display-name: Tree Feller
+description: Fell connected logs for a short duration.
+skill: woodcutting
+unlock-level: 50
+max-rank: 1
+mana-cost: 15
+cooldown-seconds: 240
+duration-seconds: 15
+triggers:
+  - on_ability_activate
+effects:
+  - id: TREE_FELLER
+  - id: MESSAGE
+    text: '&aTree Feller activated!'
+  - id: SOUND
+    sound: ENTITY_PLAYER_LEVELUP
+conditions: []

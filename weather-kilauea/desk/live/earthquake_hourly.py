@@ -1,0 +1,1 @@
+../../../earthquake-hourly/scripts/earthquake_hourly.py

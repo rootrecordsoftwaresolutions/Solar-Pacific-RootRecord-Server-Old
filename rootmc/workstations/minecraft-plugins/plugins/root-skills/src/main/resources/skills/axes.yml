@@ -1,0 +1,12 @@
+id: axes
+display-name: Axes
+enabled: true
+max-level: 1000
+icon: DIAMOND_AXE
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 12
+  action: 5
+talents:
+  - axes_skull_splitter

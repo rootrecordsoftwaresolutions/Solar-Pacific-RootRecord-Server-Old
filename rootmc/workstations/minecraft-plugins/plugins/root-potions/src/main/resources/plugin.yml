@@ -1,0 +1,19 @@
+name: Root-Potions
+version: '${version}'
+main: com.rootrecord.minecraft.rootpotions.RootPotionsPlugin
+api-version: '26.1'
+description: RootMC potion brewing guide — /potions search
+author: Root Record
+website: https://rootmc.net/wiki/player/
+commands:
+  potions:
+    description: Search how to brew potions
+    usage: /<command> [list|search|reload] [query|page]
+    aliases: [rootpotions, potionguide]
+permissions:
+  rootpotions.use:
+    description: Use /potions
+    default: true
+  rootpotions.reload:
+    description: Reload root-potions.yml
+    default: op

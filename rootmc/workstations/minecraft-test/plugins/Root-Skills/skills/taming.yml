@@ -1,0 +1,12 @@
+id: taming
+display-name: Taming
+enabled: true
+max-level: 1000
+icon: BONE
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 10
+  action: 50
+talents:
+  - taming_call_of_the_wild

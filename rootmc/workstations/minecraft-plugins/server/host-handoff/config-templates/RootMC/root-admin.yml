@@ -1,0 +1,44 @@
+# Root-Admin — copy to plugins/RootMC/root-admin.yml (defaults also ship in root-admin jar)
+
+reports:
+  lookback-minutes: 30
+  cooldown-seconds: 120
+  notify-staff: true
+  save-files: true
+  discord-post: true
+
+world-border:
+  enabled: true
+  apply-on-start: true
+  center-x: 0
+  center-z: 0
+  radius: 500
+  warning-blocks: 32
+  warning-time-seconds: 15
+  damage-amount: 0
+  worlds:
+    - world
+    - world_nether
+    - world_the_end
+
+rails:
+  enabled: true
+  protect-unknown: true
+
+messages:
+  prefix: "&8[&cRoot Admin&8]&r "
+  no-permission: "&cYou do not have permission."
+  player-not-found: "&ePlayer not found: &f{player}"
+  players-only: "&cPlayers only."
+  invalid-number: "&eInvalid number."
+  report-submitted: "&aReport submitted against &f{player}&a. A staff ticket was opened in Discord."
+  report-cooldown: "&ePlease wait &f{seconds}s &ebefore reporting again."
+  report-self: "&cYou cannot report yourself."
+  report-usage: "&eUsage: /report <player> [reason]"
+  report-notify: "&c[Report &f{id}&c] &f{reporter} &7reported &f{player}&7: &f{reason}"
+  world-border-applied: "&aWorld border reapplied from config."
+  rails-deny: "&cThis rail was placed by &f{owner}&c."
+  rails-deny-request: "&7If it blocks your town, ask &f{owner} &7to remove it."
+  rails-deny-rules: "&7Removing another player's rails is against the rules."
+  rails-deny-admin: "&7Contact staff if you need help."
+  gamemode-denied: "&cThat gamemode is not allowed for your rank."

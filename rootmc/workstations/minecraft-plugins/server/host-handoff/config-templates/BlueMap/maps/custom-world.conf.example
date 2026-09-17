@@ -1,0 +1,40 @@
+## Copy to plugins/BlueMap/maps/<map-id>.conf on the host.
+## <map-id> = filename without .conf (used in /bluemap commands).
+
+# RootMC: single save folder `world/` (level-name). Cherry grove seed = overworld biomes, not a separate map.
+# Dimensions: world/dimensions/minecraft/{overworld,the_nether,the_end}
+
+world: "world"
+dimension: "minecraft:overworld"
+name: "RootMC — REPLACE_DISPLAY_NAME"
+sorting: 10
+
+start-pos: { x: 0, z: 0 }
+sky-color: "#7dabff"
+void-color: "#000000"
+sky-light: 1
+ambient-light: 0.1
+remove-caves-below-y: 55
+cave-detection-ocean-floor: -5
+cave-detection-uses-block-light: false
+min-inhabited-time: 0
+render-mask: [
+  {
+    min-x: -10000
+    max-x: 10000
+    min-z: -10000
+    max-z: 10000
+  }
+]
+render-edges: true
+edge-light-strength: 8
+enable-perspective-view: false
+enable-flat-view: true
+enable-free-flight-view: false
+enable-hires: true
+storage: "file"
+ignore-missing-light-data: false
+
+# World-border overlay: see ../world-border-overworld.snippet.conf
+
+marker-sets: {}

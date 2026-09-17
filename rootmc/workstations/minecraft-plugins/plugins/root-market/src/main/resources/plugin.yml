@@ -1,0 +1,21 @@
+name: Root-Market
+version: '${version}'
+main: com.rootrecord.minecraft.rootmarket.RootMarketPlugin
+api-version: '26.1'
+description: Browse player chest-shop listings — /market, /items, /shops
+author: Root Record
+website: https://rootmc.net
+depend: [Root-ChestShops]
+softdepend: [Root-Economy, RootMC]
+commands:
+  market:
+    description: Open the market browse GUI
+    usage: /market | /market <item|player>
+    aliases: [items]
+  shops:
+    description: Browse one player's sell listings
+    usage: /shops <player>
+permissions:
+  rootmarket.use:
+    description: Use /market /items /shops
+    default: true

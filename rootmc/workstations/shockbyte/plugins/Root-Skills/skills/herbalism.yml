@@ -1,0 +1,29 @@
+id: herbalism
+display-name: Herbalism
+enabled: true
+max-level: 1000
+icon: DIAMOND_HOE
+xp-sources:
+  block-break:
+    WHEAT: 50
+    CARROTS: 50
+    POTATOES: 50
+    BEETROOTS: 50
+    NETHER_WART: 50
+    COCOA: 40
+    SUGAR_CANE: 30
+    CACTUS: 30
+    MELON: 20
+    PUMPKIN: 20
+    BAMBOO: 10
+    SWEET_BERRY_BUSH: 15
+    KELP: 10
+    KELP_PLANT: 10
+    BROWN_MUSHROOM: 40
+    RED_MUSHROOM: 40
+  default-block: 20
+  combat-hit: 1
+  combat-kill: 10
+  action: 6
+talents:
+  - herbalism_green_thumb

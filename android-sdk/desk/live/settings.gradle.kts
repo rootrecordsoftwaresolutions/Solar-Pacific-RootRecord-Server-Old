@@ -1,0 +1,1 @@
+../../../ava-ops/android/settings.gradle.kts

@@ -1,0 +1,49 @@
+# Secrets and live state — never push
+.env
+.env.*
+!.env.example
+*.token
+*.pem
+*.p12
+*.jks
+*.keystore
+credentials.env
+credentials.env.*
+google-services.json
+
+# Nested git pointers (site remotes use GIT_DIR outside this tree)
+.git
+
+# Python / Node build
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.next/
+out/
+dist/
+build/
+.wrangler/
+.cache/
+*.egg-info/
+
+# Runtime stores (keep code; skip logs, DBs, media dumps)
+**/store/
+!**/store/.gitkeep
+logs/
+*.log
+*.jsonl
+*.db
+*.sqlite
+*.sqlite3
+
+# Local ML / TTS
+kokoro/store/
+**/venv/
+
+# Editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

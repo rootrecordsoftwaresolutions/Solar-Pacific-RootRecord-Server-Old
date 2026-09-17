@@ -1,0 +1,19 @@
+id: archery_skill_shot
+display-name: Skill Shot
+description: Chance for bonus arrow damage and XP on hit.
+skill: archery
+unlock-level: 25
+max-rank: 5
+mana-cost: 0
+cooldown-seconds: 0
+duration-seconds: 0
+triggers:
+  - on_entity_damage
+effects:
+  - id: DAMAGE_BONUS
+    amount-per-rank: 1.0
+  - id: XP_BONUS
+    multiplier: 1.1
+conditions:
+  - type: chance
+    value: 0.35

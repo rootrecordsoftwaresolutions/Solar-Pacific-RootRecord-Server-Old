@@ -1,0 +1,3 @@
+﻿Migration copy IN PROGRESS - do NOT wipe Windows yet.
+Started: 2026-08-01T19:56:07.1887711-10:00
+Watch: E:\windows backup\logs\migration-STATUS.txt

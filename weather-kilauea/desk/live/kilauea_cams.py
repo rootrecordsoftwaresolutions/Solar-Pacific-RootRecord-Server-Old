@@ -1,0 +1,1 @@
+../../../kilauea-cams/scripts/kilauea_cams.py

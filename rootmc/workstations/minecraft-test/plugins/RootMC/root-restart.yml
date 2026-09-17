@@ -1,0 +1,34 @@
+# Root Restart — plugins/RootMC/root-restart.yml
+# spigot.yml must use settings.restart-script: ./plugins/RootMC/restart-helper.sh
+# (auto-patched from ./start.sh on enable; restart-helper.sh is copied from this plugin)
+#
+# Shockbyte fallback: if the server still stops without coming back, add a matching
+# Panel → Tasks → Send Restart schedule (midnight HST). Check restart.log in server root.
+
+daily:
+  enabled: true
+  # Midnight HST (Pacific/Honolulu). Countdown starts 5 minutes before (23:55 HST).
+  zone: Pacific/Honolulu
+
+# Relay restart/stop countdown lines to Discord #ingame-chat (RootMC API).
+discord:
+  relay: true
+  startup-notify: true
+
+messages:
+  prefix: ''
+  countdown: '&eServer restarting in &f{time}&e.'
+  daily-countdown: '&eDaily restart in &f{time}&e.'
+  started-manual: '&7Manual restart started by &f{player}&7.'
+  cancelled: '&aCountdown cancelled.'
+  already-running: '&cA countdown is already running.'
+  restarting-now: '&c&lRestarting now!'
+  startup-complete: '&aServer is online — &fplay.rootmc.net'
+  # /rootstop — stop for panel update (no restart-helper)
+  stop-prefix: '&c[Update] &r'
+  stop-countdown: '&eServer stopping for an update in &f{time}&e.'
+  started-stop: '&7Stop for update started by &f{player}&7.'
+  stopping-now: '&c&lStopping for update!'
+  update-prefix: '&c[Plugins] &r'
+  update-countdown: '&ePlugin updates ready — restarting in &f{time}&e.'
+  started-update: '&7Plugin update restart started (&f{summary}&7).'

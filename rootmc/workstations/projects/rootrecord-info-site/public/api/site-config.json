@@ -1,0 +1,8 @@
+{
+  "apiBase": "https://rootrecord-api-account.rootrecord.workers.dev",
+  "stripePricingTableId": "prctbl_1TQJ0kIaRpbMiAovAUe3X3QJ",
+  "stripePublishableKey": "pk_live_51T3sezIaRpbMiAov6SUJgKLGR1igmRGOYg1rY1hKJPAWxLXDgJR7kRNSBSM8sJ2Wat1zuC56iE4TCTyPfqmEfTT600cR21LwYA",
+  "stripeCustomerPortalUrl": "https://billing.stripe.com/p/login/9B64gzaB73pb1wM7oH5gc00",
+  "websiteHostingPriceId": "price_1U6dvzIaRpbMiAovPQX32MpZ",
+  "websiteHostingMonthlyCents": 1000
+}

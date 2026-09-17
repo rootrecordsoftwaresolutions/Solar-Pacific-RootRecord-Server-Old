@@ -1,0 +1,5 @@
+# Essentials economy snippet — merge into config.yml on the host
+
+currency-symbol: 'G'
+newbie-kit: starter
+starting-balance: 0

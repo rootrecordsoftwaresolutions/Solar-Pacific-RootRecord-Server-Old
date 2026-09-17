@@ -1,0 +1,489 @@
+# Root-Try catalog — source of truth for in-game tries + Discord #tasks mirror.
+# host: both | towny | claims
+# match: command path prefixes (lowercase), any match completes the try
+# reward-g omitted → use root-try.yml reward-g (1)
+
+version: 5
+
+tries:
+  # ——— Economy ———
+  - id: eco.balance
+    title: Check your balance
+    hint: Run /balance or /bal
+    host: both
+    match: [/balance, /bal]
+  - id: eco.pay
+    title: Pay someone (or try /pay)
+    hint: Run /pay with a player and amount (or open usage)
+    host: both
+    match: [/pay]
+  - id: eco.paytoggle
+    title: Toggle incoming payments
+    hint: Run /paytoggle
+    host: both
+    match: [/paytoggle]
+  - id: eco.baltop
+    title: View balance leaderboard
+    hint: Run /baltop
+    host: both
+    match: [/baltop, /balancetop]
+  - id: eco.reserve
+    title: View Server Reserve
+    hint: Run /reserve
+    host: both
+    match: [/reserve]
+  - id: eco.totals
+    title: View economy list totals
+    hint: Run /totals
+    host: both
+    match: [/totals, /economylist]
+  - id: eco.economy
+    title: View economy overview
+    hint: Run /economy
+    host: both
+    match: [/economy]
+  - id: eco.tax
+    title: View live tax rate
+    hint: Run /tax
+    host: both
+    match: [/tax]
+  - id: eco.gold
+    title: View gold mining bonus
+    hint: Run /gold
+    host: both
+    match: [/gold, /goldbonus]
+  - id: eco.radar
+    title: Ore radar compass tape
+    hint: Run /radar
+    host: both
+    match: [/radar, /oreradar]
+  - id: gamble.hub
+    title: Open the gamble menu
+    hint: Run /gamble
+    host: both
+    match: [/gamble, /casino, /bets]
+  - id: gamble.roulette
+    title: Try roulette (or open usage)
+    hint: Run /roulette
+    host: both
+    match: [/roulette]
+  - id: gamble.hilo
+    title: Try HiLo (or open usage)
+    hint: Run /hilo
+    host: both
+    match: [/hilo]
+  - id: gamble.lotto
+    title: Buy a lotto ticket (or check pot)
+    hint: Run /lotto
+    host: both
+    match: [/lotto]
+  - id: gamble.coin
+    title: Coin flip Ava or a player (or open usage)
+    hint: Run /coin
+    host: both
+    match: [/coin]
+  - id: gamble.dice
+    title: Dice duel a player (or open usage)
+    hint: Run /dice
+    host: both
+    match: [/dice]
+  - id: eco.mint
+    title: Use the mint
+    hint: Run /mint (hand, all, or gold)
+    host: both
+    match: [/mint]
+
+  # ——— Homes & travel ———
+  - id: travel.spawn
+    title: Spawn
+    hint: Run /spawn
+    host: both
+    match: [/spawn]
+  - id: travel.rtp
+    title: Random teleport
+    hint: Run /rtp (free in grace; paid after)
+    host: both
+    match: [/rtp]
+  - id: travel.sethome
+    title: Set home
+    hint: Run /sethome
+    host: both
+    match: [/sethome]
+  - id: travel.home
+    title: Home
+    hint: Run /home
+    host: both
+    match: [/home]
+  - id: travel.homes
+    title: List your homes
+    hint: Run /homes
+    host: both
+    match: [/homes]
+  - id: travel.renamehome
+    title: Rename a home
+    hint: Run /renamehome
+    host: both
+    match: [/renamehome]
+  - id: travel.tpa
+    title: Request a teleport
+    hint: Run /tpa <player>
+    host: both
+    match: [/tpa]
+  - id: travel.tpahere
+    title: Request teleport here
+    hint: Run /tpahere <player>
+    host: both
+    match: [/tpahere]
+  - id: travel.tpaccept
+    title: Accept a teleport request
+    hint: Run /tpaccept when someone TPA's you
+    host: both
+    match: [/tpaccept]
+  - id: travel.tpdeny
+    title: Deny a teleport request
+    hint: Run /tpdeny
+    host: both
+    match: [/tpdeny]
+  - id: travel.tpauto
+    title: Toggle auto-accept TPA
+    hint: Run /tpauto
+    host: both
+    match: [/tpauto]
+  - id: travel.warp
+    title: Use a warp
+    hint: Run /warp or /warps
+    host: both
+    match: [/warp, /warps]
+  - id: travel.top
+    title: Teleport to surface
+    hint: Run /top (10 G)
+    host: both
+    match: [/top]
+
+  # ——— Chat & social ———
+  - id: chat.msg
+    title: Send a private message
+    hint: Run /msg <player> <text>
+    host: both
+    match: [/msg, /tell, /whisper, /w]
+  - id: chat.reply
+    title: Reply to a message
+    hint: Run /reply or /r
+    host: both
+    match: [/reply, /r]
+  - id: chat.mail
+    title: Use mail
+    hint: Run /mail
+    host: both
+    match: [/mail]
+  - id: chat.me
+    title: Emote in chat
+    hint: Run /me <action>
+    host: both
+    match: [/me]
+  - id: chat.ignore
+    title: Ignore a player
+    hint: Run /ignore <player>
+    host: both
+    match: [/ignore]
+  - id: chat.unignore
+    title: Unignore a player
+    hint: Run /unignore <player>
+    host: both
+    match: [/unignore]
+  - id: chat.show
+    title: Show held item in chat
+    hint: Run /show
+    host: both
+    match: [/show]
+
+  # ——— QoL ———
+  - id: qol.help
+    title: Open help
+    hint: Run /help
+    host: both
+    match: [/help]
+  - id: qol.kit
+    title: Claim a kit
+    hint: Run /kit
+    host: both
+    match: [/kit]
+  - id: qol.worth
+    title: Check item worth
+    hint: Run /worth
+    host: both
+    match: [/worth]
+  - id: qol.list
+    title: List online players
+    hint: Run /list
+    host: both
+    match: [/list]
+  - id: qol.motd
+    title: Read the MOTD
+    hint: Run /motd
+    host: both
+    match: [/motd]
+  - id: qol.rules
+    title: Read the rules
+    hint: Run /rules
+    host: both
+    match: [/rules]
+  - id: qol.ping
+    title: Check your ping
+    hint: Run /ping
+    host: both
+    match: [/ping]
+  - id: qol.compass
+    title: Check facing direction
+    hint: Run /compass
+    host: both
+    match: [/compass]
+  - id: qol.depth
+    title: Check Y level
+    hint: Run /depth
+    host: both
+    match: [/depth]
+  - id: qol.getpos
+    title: Check coordinates
+    hint: Run /getpos
+    host: both
+    match: [/getpos]
+  - id: qol.near
+    title: See nearby players
+    hint: Run /near
+    host: both
+    match: [/near]
+  - id: qol.afk
+    title: Toggle AFK
+    hint: Run /afk
+    host: both
+    match: [/afk]
+  - id: qol.nick
+    title: Set a nickname
+    hint: Run /nick
+    host: both
+    match: [/nick]
+  - id: qol.hat
+    title: Wear a hat
+    hint: Run /hat with an item in hand
+    host: both
+    match: [/hat]
+  - id: qol.survey
+    title: Survey a chunk
+    hint: Run /survey
+    host: both
+    match: [/survey]
+  - id: qol.feed
+    title: Heal and feed yourself
+    hint: Run /feed
+    host: both
+    match: [/feed]
+  - id: qol.heal
+    title: Heal and feed yourself
+    hint: Run /heal
+    host: both
+    match: [/heal]
+  - id: qol.repair
+    title: Repair held item
+    hint: Run /repair
+    host: both
+    match: [/repair]
+  - id: qol.clear
+    title: Clear inventory
+    hint: Run /clear (careful!)
+    host: both
+    match: [/clear]
+  - id: qol.trash
+    title: Open trash
+    hint: Run /trash
+    host: both
+    match: [/trash]
+  - id: qol.seen
+    title: Check last seen
+    hint: Run /seen <player>
+    host: both
+    match: [/seen]
+  - id: qol.workbench
+    title: Open workbench
+    hint: Run /workbench
+    host: both
+    match: [/workbench]
+  - id: qol.banner
+    title: Browse banners
+    hint: Run /banner
+    host: both
+    match: [/banner]
+  - id: qol.potions
+    title: Brewing guide
+    hint: Run /potions
+    host: both
+    match: [/potions]
+  - id: qol.info
+    title: Item world census
+    hint: Run /info
+    host: both
+    match: [/info, /iteminfo, /ii]
+
+  # ——— Shops ———
+  - id: shop.browse
+    title: Browse the market
+    hint: Run /market
+    host: both
+    match: [/market, /items]
+  - id: shop.shops
+    title: Browse a player's shops
+    hint: Run /shops <player>
+    host: both
+    match: [/shops]
+  - id: shop.buy
+    title: Buy from a shop
+    hint: Run /buy
+    host: both
+    match: [/buy]
+  - id: shop.sell
+    title: Sell to a shop
+    hint: Run /sell
+    host: both
+    match: [/sell]
+  - id: shop.manage
+    title: Open shop management
+    hint: Run /shop
+    host: both
+    match: [/shop]
+  - id: shop.create
+    title: Create a chest shop
+    hint: Run /shop create (follow prompts)
+    host: both
+    match: [/shop create]
+
+  # ——— Finance products ———
+  - id: finance.bonds
+    title: Open bonds
+    hint: Run /bonds
+    host: both
+    match: [/bonds]
+  - id: finance.loan
+    title: Open personal loans
+    hint: Run /loan
+    host: both
+    match: [/loan]
+
+  # ——— Play / community ———
+  - id: play.rank
+    title: View ranks
+    hint: Run /rank
+    host: both
+    match: [/rank]
+  - id: play.playtime
+    title: Check playtime
+    hint: Run /playtime
+    host: both
+    match: [/playtime]
+  - id: play.vote
+    title: Open vote links
+    hint: Run /vote
+    host: both
+    match: [/vote]
+  - id: play.cmds
+    title: Browse command list
+    hint: Run /cmds
+    host: both
+    match: [/cmds, /commands]
+  - id: play.discord
+    title: Get Discord invite
+    hint: Run /discord
+    host: both
+    match: [/discord]
+  - id: play.map
+    title: Open the live map
+    hint: Run /map
+    host: both
+    match: [/map]
+  - id: play.feedback
+    title: Send feedback
+    hint: Run /feedback
+    host: both
+    match: [/feedback]
+  - id: play.road
+    title: Check Root-Road status
+    hint: Run /road on the Claims host
+    host: claims
+    match: [/road]
+  - id: play.timezone
+    title: View peak hours in your timezone
+    hint: Run /timezone
+    host: both
+    match: [/timezone, /activity]
+  - id: play.try
+    title: Open Root-Try
+    hint: Run /try
+    host: both
+    match: [/try, /roottry, /tries]
+
+  # ——— RootMC sync ———
+  - id: rootmc.link
+    title: Start account link
+    hint: Run /link
+    host: both
+    match: [/link, /rootstat link]
+  - id: rootmc.waypoint
+    title: Save a waypoint
+    hint: Run /waypoint
+    host: both
+    match: [/waypoint]
+  - id: rootmc.note
+    title: Save a note
+    hint: Run /note
+    host: both
+    match: [/note]
+  - id: rootmc.vault
+    title: Open vault claims
+    hint: Run /vault
+    host: both
+    match: [/vault]
+  - id: rootmc.value
+    title: Value held items
+    hint: Run /value
+    host: both
+    match: [/value]
+  - id: rootmc.rootstat
+    title: Open RootMC status hub
+    hint: Run /rootstat
+    host: both
+    match: [/rootstat]
+
+  # ——— Claims host ———
+  - id: claims.claim
+    title: Use personal claims
+    hint: Run /claim on the Claims host
+    host: claims
+    match: [/claim]
+
+  # ——— Territories ———
+  - id: land.territories
+    title: Territory info
+    hint: Run /territories
+    host: both
+    match: [/territories]
+
+  # ——— Towny (resident only — join OR found) ———
+  - id: towny.join_or_create
+    title: Join or found a town
+    hint: Join a town (/t join …) or found one (/t new …). Either completes this try.
+    host: towny
+    match: [/t new, /town new, /towny new, /t join, /town join, /towny join, /t invite accept, /town invite accept]
+  - id: towny.spawn
+    title: Town spawn
+    hint: Run /t spawn (when you have a town)
+    host: towny
+    match: [/t spawn, /town spawn]
+  - id: towny.resident
+    title: View resident info
+    hint: Run /resident or /res
+    host: towny
+    match: [/resident, /res]
+  - id: towny.plot
+    title: View plot info
+    hint: Run /plot (resident view is enough)
+    host: towny
+    match: [/plot]

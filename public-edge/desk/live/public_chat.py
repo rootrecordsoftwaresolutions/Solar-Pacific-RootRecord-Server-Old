@@ -1,0 +1,1 @@
+../../../public-chat/scripts/public_chat.py

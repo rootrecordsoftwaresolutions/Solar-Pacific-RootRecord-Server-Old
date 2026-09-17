@@ -1,0 +1,15 @@
+id: repair_repair_mastery
+display-name: Repair Mastery
+description: Bonus repair XP at the anvil.
+skill: repair
+unlock-level: 25
+max-rank: 5
+mana-cost: 0
+cooldown-seconds: 0
+duration-seconds: 0
+triggers:
+  - on_repair
+effects:
+  - id: XP_BONUS
+    multiplier: 1.25
+conditions: []

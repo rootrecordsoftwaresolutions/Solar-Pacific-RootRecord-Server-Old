@@ -1,0 +1,23 @@
+[Unit]
+Description=FastFlowLM llama3.2:3b on the XDNA NPU
+Documentation=file:///home/rootrecord/.ollama/skills/host-metrics/SKILL.md
+After=network-online.target
+StartLimitBurst=2
+StartLimitIntervalSec=300
+ConditionPathExists=%h/.ollama/skills/state/store/ava-console-up
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rootrecord
+Environment=AVA_FLM_PMODE=default
+ExecStart=/home/rootrecord/.local/opt/fastflowlm/flm serve llama3.2:3b --pmode default --host 127.0.0.1 --port 52625
+StandardOutput=append:/home/rootrecord/.ollama/skills/logs/store/flm.log
+StandardError=append:/home/rootrecord/.ollama/skills/logs/store/flm.log
+Restart=on-failure
+RestartSec=45
+OOMPolicy=stop
+LimitMEMLOCK=infinity
+TimeoutStartSec=240
+
+[Install]
+WantedBy=default.target

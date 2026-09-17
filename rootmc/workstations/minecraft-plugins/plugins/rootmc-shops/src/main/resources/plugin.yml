@@ -1,0 +1,35 @@
+name: RootMC-Shops
+version: '${version}'
+main: com.rootrecord.minecraft.rootmcshops.RootMcShopsPlugin
+api-version: '26.1'
+description: RootMC chest shops with dynamic price caps, /buy, and /sell
+author: Root Record
+website: https://rootmc.net
+softdepend: [RootMC, Vault, Root-Essentials, Root-Bonds]
+commands:
+  buy:
+    description: Buy from the cheapest in-stock player chest shop
+    usage: /buy <item> [amount] | /buy confirm <shop-id> <amount> | /buy cancel
+  sell:
+    description: Sell to the highest-paying player buy shop
+    usage: /sell <item|all> [amount] | /sell confirm <shop-id> <amount> | /sell confirmall | /sell cancel
+  shop:
+    description: Create and manage player chest shops
+    usage: /shop <create [price]|stock|editprice|editqty|edittype|remove|cancel|reload|purge|avg>
+    aliases: [rootshops, rshops]
+  shops:
+    description: Browse all items a player has for sale
+    usage: /shops <player> | /shop for create/manage
+  items:
+    description: Open your shops browse GUI
+    usage: /items [player]
+  market:
+    description: Open the shops browse GUI
+    usage: /market [player]
+permissions:
+  rootshops.create:
+    description: Create a RootMC shop
+    default: true
+  rootshops.admin:
+    description: Admin shop commands (/shop editprice, remove, reload)
+    default: false

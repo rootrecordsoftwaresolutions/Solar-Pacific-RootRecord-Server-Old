@@ -1,0 +1,9 @@
+name = "rootrecord-ava"
+account_id = "2b317e91da019f4fdb854e3b8e26fa94"
+main = "src/worker.js"
+compatibility_date = "2026-08-05"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "none"

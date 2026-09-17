@@ -1,0 +1,28 @@
+# RootMC Towny chat formats — merge into plugins/Towny/settings/ChatConfig.yml
+# (channel_formats, tag_formats, colour sections). Reload: /towny reload
+
+channel_formats:
+  global: '&8▎ &r{channelTag}&8│{townytagoverride}&r%rootranks_prefix%%rootranks_badge%{townycolor}{modplayername}&8 &7»&r{msgcolour} {msg}'
+  town: '&8▎ &r{channelTag}&8│&r%rootranks_prefix%%rootranks_badge%{townycolor}{modplayername}&8 &7»&r{msgcolour} {msg}'
+  nation: '&8▎ &r{channelTag}&8│{towntagoverride}&r%rootranks_prefix%%rootranks_badge%{townycolor}{modplayername}&8 &7»&r{msgcolour} {msg}'
+  alliance: '&8▎ &r{channelTag}&8│{towntagoverride}&r%rootranks_prefix%%rootranks_badge%{townycolor}{modplayername}&8 &7»&r{msgcolour} {msg}'
+  default: '&8▎ &r{channelTag}&8│&r%rootranks_prefix%%rootranks_badge%{modplayername}&8 &7»&r{msgcolour} {msg}'
+
+tag_formats:
+  world: ''
+  town: '&2%s&8 '
+  nation: '&6%s&8 '
+  both: '&6%n&8&7·&2%t&8 '
+
+colour:
+  king: '&6'
+  mayor: '&b'
+  resident: '&f'
+  nomad: '&f'
+
+modify_chat:
+  listener_priority: normal
+  enable: 'true'
+  per_world: 'false'
+  alone_message: 'false'
+  alone_message_string: No one in range can hear you or you are alone in this channel.

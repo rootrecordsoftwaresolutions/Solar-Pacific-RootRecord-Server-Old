@@ -1,0 +1,242 @@
+﻿Using Gradle JVM JAVA_HOME=C:\\Program Files\\Microsoft\\jdk-17.0.19.10-hotspot
+> Task :plugins:root-bluemap-r2-fix:processResources UP-TO-DATE
+> Task :plugins:root-core:processResources UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:processTestResources NO-SOURCE
+> Task :plugins:root-claims:processResources UP-TO-DATE
+> Task :plugins:root-core:processTestResources NO-SOURCE
+> Task :plugins:root-iteminfo:processResources UP-TO-DATE
+> Task :plugins:root-iteminfo:processTestResources NO-SOURCE
+> Task :plugins:root-ops:processResources UP-TO-DATE
+> Task :plugins:root-ops:processTestResources NO-SOURCE
+> Task :plugins:root-territories:processResources UP-TO-DATE
+> Task :plugins:root-territories:processTestResources NO-SOURCE
+> Task :plugins:root-claims:processTestResources NO-SOURCE
+> Task :plugins:root-times:processResources
+> Task :plugins:root-times:processTestResources NO-SOURCE
+> Task :plugins:rootrecord-common:compileJava UP-TO-DATE
+> Task :plugins:rootrecord-common:processResources UP-TO-DATE
+> Task :plugins:rootrecord-common:classes UP-TO-DATE
+> Task :plugins:rootrecord-common:jar UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:compileJava UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:classes UP-TO-DATE
+> Task :plugins:root-core:compileJava UP-TO-DATE
+> Task :plugins:root-core:classes UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:jar UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:assemble UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:compileTestJava NO-SOURCE
+> Task :plugins:root-bluemap-r2-fix:testClasses UP-TO-DATE
+> Task :plugins:root-play:processResources
+> Task :plugins:root-bluemap-r2-fix:test NO-SOURCE
+> Task :plugins:root-bluemap-r2-fix:check UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:copyPluginJar UP-TO-DATE
+> Task :plugins:root-core:jar UP-TO-DATE
+> Task :plugins:root-core:assemble UP-TO-DATE
+> Task :plugins:root-core:compileTestJava NO-SOURCE
+> Task :plugins:root-core:testClasses UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:copyPluginJarToHostHandoff UP-TO-DATE
+> Task :plugins:root-core:test NO-SOURCE
+> Task :plugins:root-core:check UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:copyPluginJarToLiveServer UP-TO-DATE
+> Task :plugins:root-core:copyPluginJar UP-TO-DATE
+> Task :plugins:rootmc:processResources
+> Task :plugins:root-bluemap-r2-fix:copyPluginJarToWorkspaceHandoff UP-TO-DATE
+> Task :plugins:root-core:copyPluginJarToHostHandoff UP-TO-DATE
+> Task :plugins:root-claims:compileJava UP-TO-DATE
+> Task :plugins:root-core:copyPluginJarToLiveServer UP-TO-DATE
+> Task :plugins:root-iteminfo:compileJava UP-TO-DATE
+> Task :plugins:root-claims:classes UP-TO-DATE
+> Task :plugins:root-iteminfo:classes UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:deployToServer UP-TO-DATE
+> Task :plugins:root-bluemap-r2-fix:build UP-TO-DATE
+> Task :plugins:root-play:processTestResources NO-SOURCE
+> Task :plugins:root-iteminfo:jar UP-TO-DATE
+> Task :plugins:root-claims:jar UP-TO-DATE
+> Task :plugins:root-core:copyPluginJarToWorkspaceHandoff UP-TO-DATE
+> Task :plugins:root-claims:assemble UP-TO-DATE
+> Task :plugins:root-iteminfo:assemble UP-TO-DATE
+> Task :plugins:root-claims:compileTestJava NO-SOURCE
+> Task :plugins:root-claims:testClasses UP-TO-DATE
+> Task :plugins:root-iteminfo:compileTestJava NO-SOURCE
+> Task :plugins:root-core:deployToServer UP-TO-DATE
+> Task :plugins:root-iteminfo:testClasses UP-TO-DATE
+> Task :plugins:root-core:build UP-TO-DATE
+> Task :plugins:root-claims:test NO-SOURCE
+> Task :plugins:root-claims:check UP-TO-DATE
+> Task :plugins:root-iteminfo:test NO-SOURCE
+> Task :plugins:root-iteminfo:check UP-TO-DATE
+> Task :plugins:root-claims:copyPluginJar UP-TO-DATE
+> Task :plugins:root-iteminfo:copyPluginJarToHostHandoff UP-TO-DATE
+> Task :plugins:root-territories:compileJava UP-TO-DATE
+> Task :plugins:root-territories:classes UP-TO-DATE
+> Task :plugins:root-claims:copyPluginJarToLiveServer UP-TO-DATE
+> Task :plugins:root-iteminfo:copyPluginJar UP-TO-DATE
+> Task :plugins:root-claims:copyPluginJarToHostHandoff UP-TO-DATE
+> Task :plugins:root-territories:jar UP-TO-DATE
+> Task :plugins:root-territories:assemble UP-TO-DATE
+> Task :plugins:root-territories:compileTestJava NO-SOURCE
+> Task :plugins:root-territories:testClasses UP-TO-DATE
+> Task :plugins:root-territories:test NO-SOURCE
+> Task :plugins:root-territories:check UP-TO-DATE
+> Task :plugins:root-claims:deployToServer UP-TO-DATE
+> Task :plugins:root-iteminfo:copyPluginJarToLiveServer UP-TO-DATE
+> Task :plugins:root-essentials:processResources
+> Task :plugins:root-essentials:processTestResources NO-SOURCE
+> Task :plugins:root-territories:copyPluginJar UP-TO-DATE
+> Task :plugins:root-claims:copyPluginJarToWorkspaceHandoff UP-TO-DATE
+> Task :plugins:root-iteminfo:deployToServer UP-TO-DATE
+> Task :plugins:root-claims:build UP-TO-DATE
+> Task :plugins:root-territories:copyPluginJarToHostHandoff UP-TO-DATE
+> Task :plugins:root-iteminfo:copyPluginJarToWorkspaceHandoff UP-TO-DATE
+> Task :plugins:root-iteminfo:build UP-TO-DATE
+> Task :plugins:root-territories:deployToServer UP-TO-DATE
+> Task :plugins:root-territories:copyPluginJarToLiveServer UP-TO-DATE
+> Task :plugins:root-territories:copyPluginJarToWorkspaceHandoff UP-TO-DATE
+> Task :plugins:root-territories:build UP-TO-DATE
+
+> Task :plugins:root-times:compileJava
+.\build-with-server-jdk.bat : D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\root-times\src\main\java\com\rootrecord\minecraft\roottimes\world\WorldTimeSync.java:34: 
+warning: [removal] DO_DAYLIGHT_CYCLE in GameRule has been deprecated and marked for removal
+At C:\Users\store\AppData\Local\Temp\ps-script-d9c90364-4454-4dc8-937b-3eeb38265f94.ps1:80 char:53
++ ... g\Minecraft"; .\build-with-server-jdk.bat publishPlugins 2>&1 | Tee-O ...
++                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (D:\RootMC Works...ked for removal:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+            world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+                                      ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\root-times\src\main\java\com\rootrecord\minecraft\roottimes\world\WorldTimeSync.java:35: 
+warning: [removal] PLAYERS_SLEEPING_PERCENTAGE in GameRule has been deprecated and marked for removal
+            world.setGameRule(GameRule.PLAYERS_SLEEPING_PERCENTAGE, 101);
+                                      ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\root-times\src\main\java\com\rootrecord\minecraft\roottimes\world\WorldTimeSync.java:88: 
+warning: [removal] DO_DAYLIGHT_CYCLE in GameRule has been deprecated and marked for removal
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+                                  ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\root-times\src\main\java\com\rootrecord\minecraft\roottimes\world\WorldTimeSync.java:89: 
+warning: [removal] PLAYERS_SLEEPING_PERCENTAGE in GameRule has been deprecated and marked for removal
+        world.setGameRule(GameRule.PLAYERS_SLEEPING_PERCENTAGE, 101);
+                                  ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\root-times\src\main\java\com\rootrecord\minecraft\roottimes\world\WorldTimeSync.java:96: 
+warning: [removal] RANDOM_TICK_SPEED in GameRule has been deprecated and marked for removal
+        world.setGameRule(GameRule.RANDOM_TICK_SPEED, active ? McDayClock.randomTickSpeed() : 0);
+                                  ^
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+5 warnings
+
+> Task :plugins:root-times:classes
+
+> Task :plugins:rootmc:compileJava FAILED
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootmc\RootMcPlugin.java:552: warning: 
+[dep-ann] deprecated item is not annotated with @Deprecated
+    public void requestEconomySync() {
+                ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\cloud\CloudApiClient.java:485: 
+warning: [dep-ann] deprecated item is not annotated with @Deprecated
+    public int syncMcmmo(List<McMMOPlayerSnapshot> players) throws IOException, InterruptedException {
+               ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\mysql\RootShopsStore.java:189: 
+warning: [dep-ann] deprecated item is not annotated with @Deprecated
+    public void replaceSnapshot(EconomySnapshot snapshot) throws SQLException {
+                ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\sync\McDayWorldSync.java:32: 
+warning: [removal] DO_DAYLIGHT_CYCLE in GameRule has been deprecated and marked for removal
+            world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+                                      ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\sync\McDayWorldSync.java:33: 
+warning: [removal] PLAYERS_SLEEPING_PERCENTAGE in GameRule has been deprecated and marked for removal
+            world.setGameRule(GameRule.PLAYERS_SLEEPING_PERCENTAGE, 101);
+                                      ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\sync\McDayWorldSync.java:89: 
+warning: [removal] DO_DAYLIGHT_CYCLE in GameRule has been deprecated and marked for removal
+        world.setGameRule(GameRule.DO_DAYLIGHT_CYCLE, false);
+                                  ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\sync\McDayWorldSync.java:90: 
+warning: [removal] PLAYERS_SLEEPING_PERCENTAGE in GameRule has been deprecated and marked for removal
+        world.setGameRule(GameRule.PLAYERS_SLEEPING_PERCENTAGE, 101);
+                                  ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\sync\McDayGrowthRules.java:44: 
+warning: [removal] RANDOM_TICK_SPEED in GameRule has been deprecated and marked for removal
+        world.setGameRule(GameRule.RANDOM_TICK_SPEED, active ? McDayClock.randomTickSpeed() : 0);
+                                  ^
+D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootstat\RootStatExpansion.java:146: error: 
+cannot find symbol
+                var row = bridge.playtime().findByUsername(username);
+                                           ^
+  symbol:   method findByUsername(String)
+  location: class PlayerPlaytimeStore
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+1 error
+8 warnings
+
+> Task :pruneObsoletePluginJars
+
+> Task :pruneAllStalePluginJars
+Pruned stale jar: root-essentials-1.6.1.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\out
+Pruned stale jar: root-essentials-1.6.1.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\host-handoff\plugins
+Pruned stale jar: root-essentials-1.6.1.jar from D:\Gen1\plugins
+Pruned stale jar: root-essentials-1.6.1.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\plugins
+Pruned stale jar: root-essentials-1.6.1.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\public\plugins
+Pruned stale jar: root-essentials-1.6.1.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\build\plugins
+Pruned stale jar: root-play-1.0.0.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\out
+Pruned stale jar: root-play-1.0.0.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\host-handoff\plugins
+Pruned stale jar: root-play-1.0.0.jar from D:\Gen1\plugins
+Pruned stale jar: root-play-1.0.0.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\plugins
+Pruned stale jar: root-play-1.0.0.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\public\plugins
+Pruned stale jar: root-play-1.0.0.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\build\plugins
+Pruned stale jar: root-times-1.1.1.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\out
+Pruned stale jar: root-times-1.1.1.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\host-handoff\plugins
+Pruned stale jar: root-times-1.1.1.jar from D:\Gen1\plugins
+Pruned stale jar: root-times-1.1.1.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\plugins
+Pruned stale jar: root-times-1.1.1.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\public\plugins
+Pruned stale jar: root-times-1.1.1.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\build\plugins
+Pruned stale jar: rootmc-1.3.88.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\out
+Pruned stale jar: rootmc-1.3.88.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\host-handoff\plugins
+Pruned stale jar: rootmc-1.3.88.jar from D:\Gen1\plugins
+Pruned stale jar: rootmc-1.3.88.jar from D:\.1 Work Stations\RootMC\Plugin Building\Minecraft\server\plugins
+Pruned stale jar: rootmc-1.3.88.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\public\plugins
+Pruned stale jar: rootmc-1.3.88.jar from D:\.1 Work Stations\RootMC\Web Files\rootmc-web\build\plugins
+
+> Task :plugins:root-times:jar
+
+[Incubating] Problems report is available at: file:///D:/RootMC%20Workspace/Plugin%20Building/Minecraft/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':plugins:rootmc:compileJava'.
+> Compilation failed; see the compiler output below.
+  D:\.1 Work Stations\RootMC\Plugin 
+Building\Minecraft\plugins\rootmc\src\main\java\com\rootrecord\minecraft\rootmc\RootMcPlugin.java:552: warning: 
+[dep-ann] deprecated item is not annotated with @Deprecated
+      public void requestEconomySync() {
+                  ^
+  1 error
+  8 warnings
+
+* Try:
+> Run with --scan to get full insights.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 6s
+53 actionable tasks: 9 executed, 44 up-to-date

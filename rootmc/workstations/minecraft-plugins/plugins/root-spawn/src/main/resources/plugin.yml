@@ -1,0 +1,21 @@
+name: Root-Spawn
+version: '${version}'
+main: com.rootrecord.minecraft.rootspawn.RootSpawnPlugin
+api-version: '26.1'
+description: RootMC spawn safe zone — wall boundary, protection, and mapping tools
+author: Root Record
+website: https://rootmc.net
+commands:
+  rootspawn:
+    description: Spawn area mapping and protection tools
+    usage: /rootspawn map | import | build [chamber|well] | lava | stop | reload
+permissions:
+  rootspawn.build:
+    description: Map and refine spawn, chamber, well, and lava areas
+    default: op
+  rootspawn.bypass:
+    description: Build and break inside the spawn no-build zone (group.admin also bypasses)
+    default: op
+  rootspawn.chamber.bypass:
+    description: Ignore chamber 24h cooldown (testing)
+    default: op

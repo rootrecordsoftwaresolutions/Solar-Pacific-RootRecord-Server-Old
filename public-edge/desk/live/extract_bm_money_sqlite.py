@@ -1,0 +1,1 @@
+../../../finance-desk/scripts/extract_bm_money_sqlite.py

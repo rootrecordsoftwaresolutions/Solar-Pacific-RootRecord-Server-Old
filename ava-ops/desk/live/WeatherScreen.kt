@@ -1,0 +1,1 @@
+../../android/app/src/main/java/com/rootrecord/avaops/ui/screens/WeatherScreen.kt

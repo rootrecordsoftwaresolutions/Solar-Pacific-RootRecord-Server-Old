@@ -1,0 +1,1 @@
+../../../discord/scripts/discord_chat.py

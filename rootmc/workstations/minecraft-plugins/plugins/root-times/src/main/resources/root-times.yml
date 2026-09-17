@@ -1,0 +1,65 @@
+# Root-Times — plugins/RootMC/root-times.yml
+# MySQL: plugins/RootMC/database.yml (via Root-Core)
+
+minecraft-day:
+  enabled: true
+  timezone: "UTC"
+  length-minutes: 20
+  midday-minute: 0
+  midnight-minute: 15
+  # 0 = absolute network days. auto = persist local day 0 in mc-day-epoch.txt (new worlds).
+  day-id-base: auto
+  world: ""
+
+harvest:
+  playtime: true
+  activity: true
+  flush-interval-seconds: 60
+  default-timezone-key: utc_plus_0
+
+# Per-host scope for Official sync + /playtime breakdown. Total (*) = towny + claims.
+playtime:
+  server-bucket: ""
+  server-id: ""
+
+ip-lookup:
+  enabled: true
+  url-template: "http://ip-api.com/json/{ip}?fields=status,offset,timezone"
+  cache-hours: 24
+
+afk:
+  enabled: true
+  after-seconds: 300
+  exclude-from-playtime: true
+  exclude-from-activity: true
+  broadcast: true
+
+welcome:
+  enabled: true
+  delay-ticks: 40
+  line-playtime: "&7Total Playtime: &f{playtime} &7- Your Current Time: &f{time} {timezone}"
+  line-mc-day: "&7Minecraft day &f#{worldDay} &7- Ingame time: &f{todTicks} &7({phase})"
+
+web:
+  enabled: true
+  host: "127.0.0.1"
+  port: 8765
+  token: ""
+
+cloud-status:
+  enabled: false
+  interval-seconds: 5
+
+# Live status → host MySQL (Hyperdrive syncs to Cloudflare LIVE_DB). No HTTPS.
+mysql-status:
+  enabled: true
+  interval-seconds: 5
+
+# Resolved as {table-prefix} + name → e.g. root_playtime
+tables:
+  playtime: playtime
+  playtime-monthly: playtime_monthly
+  activity-timezone: activity_timezone
+  activity-hourly: activity_hourly
+  afk-sessions: times_afk_sessions
+  times-status: times_status

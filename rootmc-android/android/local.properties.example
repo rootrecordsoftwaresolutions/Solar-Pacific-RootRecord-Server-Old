@@ -1,0 +1,15 @@
+## Copy to `local.properties` (gitignored). Example:
+# sdk.dir=/home/rootrecord/.ollama/skills/android-sdk/sdk
+#
+# Gradle must run on JDK 17 (not JDK 25). bump-and-build-release.bat auto-finds JDK 17;
+# for manual gradlew runs, set JAVA_HOME to JDK 17 first.
+#
+# RootMC Play upload key (same keystore as BlockNotes until a dedicated rootmc-upload.jks exists):
+# RELEASE_STORE_FILE=keystore/blocknotes-upload.jks
+# RELEASE_KEY_ALIAS=blocknotes-upload
+# RELEASE_STORE_PASSWORD=your-keystore-password
+# RELEASE_KEY_PASSWORD=your-keystore-password
+#
+# ADMOB_APPLICATION_ID=ca-app-pub-8245496571119619~4685237071
+# ADMOB_BANNER_AD_UNIT_ID=ca-app-pub-8245496571119619/2059073739
+# ADMOB_INTERSTITIAL_AD_UNIT_ID=ca-app-pub-8245496571119619/8432910391

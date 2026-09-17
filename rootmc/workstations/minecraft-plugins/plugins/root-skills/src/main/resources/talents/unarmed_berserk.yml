@@ -1,0 +1,19 @@
+id: unarmed_berserk
+display-name: Berserk
+description: Burst unarmed damage.
+skill: unarmed
+unlock-level: 50
+max-rank: 1
+mana-cost: 12
+cooldown-seconds: 180
+duration-seconds: 10
+triggers:
+  - on_ability_activate
+effects:
+  - id: DAMAGE_BONUS
+    amount: 2.0
+  - id: MESSAGE
+    text: '&cBerserk!'
+  - id: SOUND
+    sound: ENTITY_PLAYER_ATTACK_STRONG
+conditions: []

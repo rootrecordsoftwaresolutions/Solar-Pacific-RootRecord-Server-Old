@@ -1,0 +1,27 @@
+name: Root-Territories
+version: '${version}'
+main: com.rootrecord.minecraft.rootterritories.RootTerritoriesPlugin
+api-version: '26.1'
+description: RootMC nation territory influence — enter/exit messages and BlueMap shapes.
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Claims, Towny, BlueMap, Vault, Root-Essentials]
+loadafter: [Root-Claims, Towny, BlueMap, Root-Essentials]
+commands:
+  territories:
+    description: Territory border info and notification settings
+    usage: /<command> [info|notifications]
+    aliases: [territory, border]
+  nationfounding:
+    description: Multi-town nation founding proposals and agreements
+    usage: /<command> propose|agree|status|cancel
+    aliases: [nfounding, nationpropose]
+  rootterritories:
+    description: Reload territory zones and BlueMap markers
+    usage: /<command> reload
+    aliases: [rootterritory, rterritories]
+    permission: rootterritories.reload
+permissions:
+  rootterritories.reload:
+    description: Reload root-territories.yml and rebuild zones
+    default: op

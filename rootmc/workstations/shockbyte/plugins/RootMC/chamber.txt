@@ -1,0 +1,7 @@
+# RootMC basement chamber perimeter
+# Format: index,world,x,z
+# Vertical span: basement y=-60 .. 0
+world=world
+---
+1,world,-16,15
+2,world,14,-15

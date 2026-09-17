@@ -1,0 +1,115 @@
+name: Root-Play
+version: '${version}'
+main: com.rootrecord.minecraft.rootplay.RootPlayPlugin
+api-version: '26.1'
+description: RootMC play progression — ranks, rewards, and help
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Economy, Root-Essentials, Root-Perms, Root-Appreciation, Vault, Root-Claims, RootMC, Root-Haste, PlaceholderAPI, NuVotifier, VotifierPlus]
+loadafter: [Root-Core, Root-Economy, Root-Essentials, Root-Perms]
+commands:
+  rank:
+    description: View or buy your player rank
+    usage: /<command> [list|buy|info]
+    aliases: [ranks, rankup]
+  rootranks:
+    description: Admin reload for Root-Ranks
+    usage: /<command> reload
+    permission: rootranks.reload
+  playtime:
+    description: Your playtime, milestones, and leaderboard
+    usage: /<command> [player|top]
+    aliases: [playtimerewards, playrewards, rewards]
+  vote:
+    description: Vote links, Appreciation Tokens, Vote Shards, Council power, and ½ tax perk
+    usage: /<command>
+    aliases: [votes]
+  proposal:
+    description: Submit a Council proposal (64 G → Server Reserve; Ava drafts)
+    usage: /<command> <message>
+    aliases: [proposals]
+  rootrewards:
+    description: Admin reload for Root-Rewards
+    usage: /<command> reload
+    permission: rootrewards.reload
+  rules:
+    description: Show RootMC server rules
+    usage: /<command>
+  cmds:
+    description: Paginated list of in-game commands
+    usage: /<command> [page|next|prev]
+    aliases: [commands]
+  discord:
+    description: RootMC Discord invite and link your game + Discord profile
+    usage: /<command>
+  map:
+    description: Open the RootMC BlueMap in your browser
+    usage: /<command>
+  feedback:
+    description: Send feedback to staff
+    usage: /<command> <message>
+  eating:
+    description: Broadcast that you are eating something
+    usage: /<command> <message>
+  offer:
+    description: Offer 8 stacks of bread for an Ava Potion
+    usage: /<command> bread
+  cmdtest:
+    description: Command onboarding — test commands, earn up to 1000 G, stop reminders
+    usage: /<command> [list|try <key>|report <key> [note]]
+    aliases: [testcmds, commandtest]
+permissions:
+  rootranks.use:
+    description: View and purchase player ranks
+    default: true
+  rootranks.buy:
+    description: Purchase the next player rank
+    default: true
+  rootranks.reload:
+    description: Reload root-ranks.yml
+    default: op
+  rootranks.bypass:
+    description: Deprecated — /rank buy always charges Gold (kept for compat, unused)
+    default: false
+  rootrewards.use:
+    description: View your playtime and receive milestone rewards
+    default: true
+  rootrewards.playtime.others:
+    description: View another player's playtime with /playtime <name>
+    default: true
+  rootrewards.playtime.top:
+    description: View the playtime leaderboard
+    default: true
+  rootrewards.vote:
+    description: Receive vote gold
+    default: true
+  rootrewards.reload:
+    description: Reload root-rewards.yml
+    default: op
+  roothelp.rules:
+    description: Use /rules
+    default: true
+  roothelp.commands:
+    description: Use /cmds and /commands
+    default: true
+  roothelp.discord:
+    description: Use /discord
+    default: true
+  roothelp.map:
+    description: Use /map
+    default: true
+  roothelp.feedback:
+    description: Use /feedback
+    default: true
+  roothelp.feedback.anywhere:
+    description: Send /feedback outside your claim or territory
+    default: op
+  roothelp.eating:
+    description: Use /eating
+    default: true
+  roothelp.offer:
+    description: Use /offer bread
+    default: true
+  roothelp.cmdtest:
+    description: Use /cmdtest command onboarding
+    default: true

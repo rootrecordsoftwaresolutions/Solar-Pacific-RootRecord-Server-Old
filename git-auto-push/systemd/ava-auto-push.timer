@@ -1,0 +1,11 @@
+[Unit]
+Description=Ava GitHub auto-push every 15 minutes while the console is up
+
+[Timer]
+OnBootSec=3min
+OnUnitActiveSec=15min
+Persistent=true
+Unit=ava-auto-push.service
+
+[Install]
+WantedBy=timers.target

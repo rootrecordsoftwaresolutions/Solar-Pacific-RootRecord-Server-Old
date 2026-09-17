@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact – Nibble Food Exchange | Big Island Hawaii</title>
+  <meta name="description" content="Contact Marvin Franklin and the Nibble community food exchange on the Big Island of Hawaii. Call, text, or send a message.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍃</text></svg>">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">N</div>
+        <div class="logo-text">
+          Nibble
+          <span>SHARE LOCAL MEALS</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="locations.html">Locations</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="tel:+13177215017" class="nav-cta">Call 317-721-5017</a></li>
+        </ul>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Drop Us a Line</h1>
+      <p>Questions about locations, wanting to start a new drop point, or just need help finding food? Reach out anytime.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact info -->
+        <div class="contact-info">
+          <div>
+            <h2>Get in touch</h2>
+            <p>Marvin is the main point of contact for Nibble. He answers calls and messages and helps coordinate the exchange across the island.</p>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div>
+              <strong>Phone / Text</strong><br>
+              <a href="tel:+13177215017" style="font-size: 1.2rem; font-weight: 600;">317-721-5017</a>
+              <p class="mb-0" style="font-size: 0.9rem; margin-top: 0.25rem;">Best way to reach Marvin quickly</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">📍</div>
+            <div>
+              <strong>Service Area</strong><br>
+              Big Island of Hawaiʻi<br>
+              <span style="color: var(--text-muted); font-size: 0.95rem;">Mountain View • Keaau • Pahoa • surrounding areas</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">👤</div>
+            <div>
+              <strong>Moderator</strong><br>
+              Marvin Franklin<br>
+              <span style="color: var(--text-muted); font-size: 0.95rem;">Community Food Exchange</span>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">🔋</div>
+            <div>
+              <strong>Sponsor</strong><br>
+              Battery Bill Hawaii<br>
+              <span style="color: var(--text-muted); font-size: 0.95rem;">Supporting the mission so no good food goes to waste</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div>
+          <div class="card" style="padding: 2rem;">
+            <h3 class="mb-2">Send a message</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">For the fastest response, call or text. You can also use this form (it will open your email app).</p>
+
+            <!-- 
+              Pure static form using mailto.
+              For a real backend form later, replace with Formspree or Cloudflare Workers.
+            -->
+            <form action="mailto:hello@nibble.love" method="get" enctype="text/plain">
+              <div class="form-group">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" required placeholder="First & last name">
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone (optional)</label>
+                <input type="tel" id="phone" name="phone" placeholder="So we can call you back">
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject" name="subject">
+                  <option value="General question">General question</option>
+                  <option value="Looking for food">Looking for food</option>
+                  <option value="Want to donate food">Want to donate food</option>
+                  <option value="New location idea">New location idea</option>
+                  <option value="Volunteer / help">Volunteer / help</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="body" required placeholder="How can we help?"></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">Open Email to Send</button>
+            </form>
+
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem; margin-bottom: 0;">
+              This opens your email app with the message pre-filled. Prefer not to use email? Just call or text <strong>317-721-5017</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container text-center">
+      <h2>Prefer to talk story?</h2>
+      <p class="lead mb-3">A quick call is often the easiest way to get current info on what’s available or where to drop food.</p>
+      <a href="tel:+13177215017" class="btn btn-accent">Call or Text 317-721-5017</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-mark">N</div>
+            <div class="logo-text">
+              Nibble
+              <span style="color: rgba(255,255,255,0.6);">SHARE LOCAL MEALS</span>
+            </div>
+          </a>
+          <p>Community food exchange on the Big Island of Hawaiʻi. Give food or get food — reduce waste and support your neighbors.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="locations.html">Locations</a></li>
+            <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="about.html">About & Sponsor</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li><a href="tel:+13177215017">317-721-5017</a></li>
+            <li>Managed by Marvin Franklin</li>
+            <li>Big Island, Hawaiʻi</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 Nibble Community Food Exchange. All rights reserved.</div>
+        <div>Made with aloha for the Big Island.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

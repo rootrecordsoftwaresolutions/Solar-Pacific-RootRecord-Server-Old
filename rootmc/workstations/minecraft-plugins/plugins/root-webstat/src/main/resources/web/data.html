@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dataset · Webstat · RootMC</title>
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="icon" href="https://rootmc.net/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://rootmc.net/styles/rootmc.css?v=20260819ivy">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="webstat-page">
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="https://rootmc.net/">
+        <span class="rmc-brand-mark" aria-hidden="true">◈</span>
+        RootMC
+        <span class="rmc-brand-tag">Network</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main" data-site-nav="player" data-site-nav-current="data"></nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container webstat-main">
+    <p class="webstat-back"><a href="/">← All datasets</a></p>
+    <p class="rmc-eyebrow">Root-Webstat dataset</p>
+    <h1 class="webstat-title" id="title">Dataset</h1>
+    <p class="webstat-meta" id="meta">Loading…</p>
+    <section class="webstat-card" id="summary"></section>
+    <section class="webstat-card webstat-table-wrap">
+      <h2>Rows</h2>
+      <div id="rows"></div>
+    </section>
+  </main>
+
+  <footer class="webstat-footer container">
+    <p>
+      JSON:
+      <a id="api-link" href="/api/data/index.json">/api/data/…</a>
+      · <a href="/">catalog</a>
+    </p>
+  </footer>
+
+  <script src="https://rootmc.net/scripts/site-nav.js?v=20260726webstat" defer></script>
+  <script src="/data.js"></script>
+</body>
+</html>

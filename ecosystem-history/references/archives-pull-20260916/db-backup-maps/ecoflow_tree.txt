@@ -1,0 +1,45 @@
+# TREE: /home/ava-core/Database/ecoflow
+# Generated: 2026-08-24 04:12:26 UTC
+
+[DIR] ecoflow
+    /home/ava-core/Database/ecoflow
+├── [DIR ] certs
+│       /home/ava-core/Database/ecoflow/certs
+├── [DIR ] devices
+│       /home/ava-core/Database/ecoflow/devices
+│   └── [FILE] list.json
+│           /home/ava-core/Database/ecoflow/devices/list.json
+├── [DIR ] history
+│       /home/ava-core/Database/ecoflow/history
+│   ├── [FILE] R331ZAB5SG6S2858-minutes.jsonl
+│   │       /home/ava-core/Database/ecoflow/history/R331ZAB5SG6S2858-minutes.jsonl
+│   ├── [FILE] R331ZAB5SG6S2858.jsonl
+│   │       /home/ava-core/Database/ecoflow/history/R331ZAB5SG6S2858.jsonl
+│   ├── [FILE] R621ZA16XH6K1155-minutes.jsonl
+│   │       /home/ava-core/Database/ecoflow/history/R621ZA16XH6K1155-minutes.jsonl
+│   └── [FILE] R621ZA16XH6K1155.jsonl
+│           /home/ava-core/Database/ecoflow/history/R621ZA16XH6K1155.jsonl
+├── [DIR ] mqtt
+│       /home/ava-core/Database/ecoflow/mqtt
+│   └── [FILE] certification.json
+│           /home/ava-core/Database/ecoflow/mqtt/certification.json
+├── [DIR ] quota
+│       /home/ava-core/Database/ecoflow/quota
+│   ├── [FILE] R331ZAB5SG6S2858.json
+│   │       /home/ava-core/Database/ecoflow/quota/R331ZAB5SG6S2858.json
+│   └── [FILE] R621ZA16XH6K1155.json
+│           /home/ava-core/Database/ecoflow/quota/R621ZA16XH6K1155.json
+├── [FILE] ecoflow-data-enhanced.db
+│       /home/ava-core/Database/ecoflow/ecoflow-data-enhanced.db
+├── [FILE] ecoflow-data.db
+│       /home/ava-core/Database/ecoflow/ecoflow-data.db
+├── [FILE] ecoflow-enhanced-log.txt
+│       /home/ava-core/Database/ecoflow/ecoflow-enhanced-log.txt
+├── [FILE] ecoflow.txt
+│       /home/ava-core/Database/ecoflow/ecoflow.txt
+├── [FILE] ecoflow_tree.txt
+│       /home/ava-core/Database/ecoflow/ecoflow_tree.txt
+└── [FILE] README.txt
+        /home/ava-core/Database/ecoflow/README.txt
+
+# Total entries: 19

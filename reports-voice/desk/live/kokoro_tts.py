@@ -1,0 +1,1 @@
+../../../kokoro/scripts/kokoro_tts.py

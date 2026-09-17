@@ -1,0 +1,2659 @@
+﻿[
+    {
+        "path":  ".credentials",
+        "kind":  "dir",
+        "files_here":  10,
+        "size_MB":  0.15,
+        "depth":  0
+    },
+    {
+        "path":  ".credentials\\.env",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.03,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\solana.env",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\wallet-scan-20260729-230315.csv",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\wallet-scan-20260729-230315.json",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\_conflicts.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\_inventory-targeted.csv",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\_inventory.csv",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\_key-meanings.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\_keys.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  1
+    },
+    {
+        "path":  ".credentials\\_sources.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  1
+    },
+    {
+        "path":  "Minecraft-Marketing",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0.01,
+        "depth":  0
+    },
+    {
+        "path":  "Minecraft-Marketing\\.git",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy",
+        "kind":  "dir",
+        "files_here":  15,
+        "size_MB":  0.03,
+        "depth":  1
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\build-showcases.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\curseforge-findmcserver.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\descriptions.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\discord-ads.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\events-and-referrals.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\faq-and-rules-snippet.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\master-fields.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\motd-and-ingame.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\planet-minecraft.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\reddit.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\seo-and-meta.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\server-listings.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\social-media.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\tags-and-categories.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\copy\\youtube-twitch.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\templates",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "Minecraft-Marketing\\templates\\server-profile.example.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "Minecraft-Marketing\\.gitignore",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "Minecraft-Marketing\\CONTRIBUTING.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "Minecraft-Marketing\\LICENSE",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "Minecraft-Marketing\\MARKETING-DEPLOYMENT.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  1
+    },
+    {
+        "path":  "Minecraft-Marketing\\README.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC",
+        "kind":  "dir",
+        "files_here":  7,
+        "size_MB":  0.07,
+        "depth":  0
+    },
+    {
+        "path":  "RootMC\\.cursor",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\.cursor\\plans",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\.cursor\\rules",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs",
+        "kind":  "dir",
+        "files_here":  31,
+        "size_MB":  0.51,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Change Logs\\discord-migrate-api-references",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\discord-migrate-automated-reports",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\discord-migrate-crons-automation",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\discord-migrate-discord-ids",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\discord-migrate-ingame-feedback",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\discord-migrate-plugin-sales",
+        "kind":  "dir",
+        "files_here":  7,
+        "size_MB":  0.03,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\plugins",
+        "kind":  "dir",
+        "files_here":  30,
+        "size_MB":  0.05,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\android-build-20260730.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\build-root-discord-slack.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\claims-boot-2026-08-01.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.1,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\COMMAND-TEST-2026-07-02.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\CONSTITUTION-2026-07-02.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\DEPLOY-2026-07-02.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\deploy-api-20260722.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.04,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\deploy-api-20260730.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.04,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\deploy-app-20260730.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\deploy-web-20260722.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\deploy-web-20260730.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\Dev Device Root Report 07-25-2026.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\discord-official-listing-copy-20260722.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\DISCORD-UPDATES-2026-07-02.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\ECONOMY-MONEY-FLOW-REFERENCE.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.03,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\Launch Ready Report Local Testing 07-25-2026.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\OPS-REPORT-2026-07-02.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\Post-Upgrade Test Server Report 07-25-2026.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\Pre-Run Report Local Testing 07-25-2026.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\publish-github-root-gamble-20260730.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\publishPlugins-20260722.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.04,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\publishPlugins-20260729-1912.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.05,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\publishPlugins-20260730.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.05,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\README.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\Root Report 07-25-2026.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.03,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\root-discord-to-root-core-plan.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\root-skills-plan.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\SERVER-CHANGELOG.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\setup-slack-20260730.log",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\Synopsis Comparison Shockbyte vs Local DEV 07-25-2026.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Change Logs\\Towny 3rd-Party Add Report 07-25-2026.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\docs",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.09,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\docs\\appreciation-token-redemption-odds.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.03,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\docs\\minecraft-26.2-spawn-eggs-power-ranking.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.06,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo",
+        "kind":  "dir",
+        "files_here":  9,
+        "size_MB":  0.02,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\.emergent",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\.git",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\android",
+        "kind":  "dir",
+        "files_here":  13,
+        "size_MB":  0.44,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\android\\.kotlin",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\android\\app",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\android\\gradle",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\android\\keystore",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\android\\scripts",
+        "kind":  "dir",
+        "files_here":  4,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\android\\store-assets",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0.83,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\api",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\api\\rootmc-api",
+        "kind":  "dir",
+        "files_here":  8,
+        "size_MB":  0.07,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\api\\rootmc-realm-api",
+        "kind":  "dir",
+        "files_here":  7,
+        "size_MB":  0.07,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\api\\rootrecord-api-account",
+        "kind":  "dir",
+        "files_here":  11,
+        "size_MB":  0.12,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\api\\shared",
+        "kind":  "dir",
+        "files_here":  17,
+        "size_MB":  0.1,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\backend",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\backend\\routers",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\backend\\tests",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\docs",
+        "kind":  "dir",
+        "files_here":  8,
+        "size_MB":  0.03,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\frontend",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\frontend\\public",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\frontend\\src",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\memory",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\scripts",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\test_reports",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0.02,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\test_reports\\pytest",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\web",
+        "kind":  "dir",
+        "files_here":  4,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\web\\functions",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\web\\public",
+        "kind":  "dir",
+        "files_here":  10,
+        "size_MB":  0.11,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\web\\scripts",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\.env.example",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\.gitconfig",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\.gitignore",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\AGENTS.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\design_guidelines.json",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\ECOSYSTEM.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\EMERGENT-READ-THIS.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\PROMPT.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\emergent-repo\\README.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0.46,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-activity",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-admin",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-announcer",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-appreciation",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-banner",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-bluemap-r2-fix",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-bonds",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-chamber",
+        "kind":  "dir",
+        "files_here":  7,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-chestshops",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-claims",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-core",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-discord",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-economy",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-essentials",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-gamble",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-haste",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-iteminfo",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-loans",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-mapper",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-market",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-memberships",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-ops",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-perms",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-ping",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-play",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-potions",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-ranks",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-referrals",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-restart",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-rewards",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-spawn",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-territories",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-times",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-try",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-upkeep",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\root-webstat",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\roothelp",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\rootmc",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\rootmc-official",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\rootmc-shops",
+        "kind":  "dir",
+        "files_here":  7,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\staging\\rootrecord-common",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\push-log.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.44,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\release-log.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\github-plugin-repos\\REPO-INDEX.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Marketing",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0.03,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Marketing\\.git",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Marketing\\copy",
+        "kind":  "dir",
+        "files_here":  15,
+        "size_MB":  0.05,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Marketing\\copy\\listings",
+        "kind":  "dir",
+        "files_here":  9,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Marketing\\templates",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Marketing\\.gitignore",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Marketing\\LICENSE",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Marketing\\README.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Marketing\\Reddit Communities.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Marketing\\ROOTMC-MARKETING-DEPLOYMENT.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Mobile App Files",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android",
+        "kind":  "dir",
+        "files_here":  14,
+        "size_MB":  0.44,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\.gradle",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\.kotlin",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\app",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\builds",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  16.64,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\gradle",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\keystore",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\scripts",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.02,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Mobile App Files\\rootmc-android\\store-assets",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0.83,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\playit",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\playit\\README.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\playit\\rootmc-dev-address.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Plugin Building",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft",
+        "kind":  "dir",
+        "files_here":  33,
+        "size_MB":  0.36,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\.gradle",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\build",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\docs",
+        "kind":  "dir",
+        "files_here":  4,
+        "size_MB":  0.03,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\gradle",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\halted-development",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\out",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\plugin-template",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\plugins",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\resource-packs",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\scripts",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\server",
+        "kind":  "dir",
+        "files_here":  25,
+        "size_MB":  67.58,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Plugin Building\\Minecraft\\_local",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts",
+        "kind":  "dir",
+        "files_here":  60,
+        "size_MB":  0.27,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\scripts\\dev-workstation",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0.02,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\lib",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge",
+        "kind":  "dir",
+        "files_here":  27,
+        "size_MB":  0.12,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\cache",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\cloudflared",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\gateway",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\lib",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\logs",
+        "kind":  "dir",
+        "files_here":  25,
+        "size_MB":  0.07,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\mysql",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\persist",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\local-edge\\state",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\root-core-node",
+        "kind":  "dir",
+        "files_here":  12,
+        "size_MB":  0.12,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\root-core-node\\bin",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\root-core-node\\obj",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\scripts\\vote-sites-tool",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\audit-claim-grant-gap.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\audit-note-burn-candidates.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\audit-treasury-buckets.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\audit-treasury-founding.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\audit-treasury-grants.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\audit-treasury-mtd.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\backfill-discord-grant-ledger.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\backfill-jul1-vote-ledger.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\burn-player-wallets.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\check-reserve-api.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\cleanup-c-drive.bat",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\cleanup-c-drive.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\dev-workstation-startup.bat",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\dev-workstation-startup.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\discord-post.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\export-emergent-repo.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\fix-github-repo-descriptions.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\insert-economy-note-burns.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\install-dev-workstation.bat",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\issue-dividend-debt-repayment.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\issue-over-issue-shortfall-repayment.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\load-rootmc-env.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\mark-map-return-preclaimed.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\merge-luckperms-into-rootperms.mjs",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\Move-TestServerToDesktop.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\normalize-listing-vote-services.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\normalize-treasury-ledger.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\open-vote-sites.bat",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\place-spawn-holograms.mjs",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\publish-plugin-github-repos.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.03,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\query-donations.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\rebalance-treasury-ledger.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\reconcile-treasury-ledger.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\restore-player-inventories.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\resync-listing-votes-d1.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\root-audit-world-refs.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\root-inspect-world-rows.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\setup-slack-feedback.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\setup-slack-server-logs.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\setup-slack-server-reports.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\setup-slack-subdomain.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\sync-claim-bonus-grants.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-audit-world-refs.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-debug-moreni.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-finish-world-rename.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-fresh-world-reset.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-inspect-spawns.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-patch-all-world-refs.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-patch-spawn-world.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-rename-world-to-archive.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\towny-unclaim-refund-mayors.ps1",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_audit-ledger-hst-months.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_audit-ledger-months.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_audit-voting-all.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_audit-voting-extra.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_check-towns-votes.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_d1-normalize-listing-votes.sql",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_d1-resync-listing-votes.sql",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.06,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_d1-sync-jul1-vote-backfill.sql",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\scripts\\_query-d1-ledger.py",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Server Handoffs",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\1. RootMC - Claims",
+        "kind":  "dir",
+        "files_here":  11,
+        "size_MB":  58.9,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\1. RootMC - Claims\\config",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\1. RootMC - Claims\\plugins",
+        "kind":  "dir",
+        "files_here":  28,
+        "size_MB":  71.55,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\2. RootMC - Towny",
+        "kind":  "dir",
+        "files_here":  14,
+        "size_MB":  58.9,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\2. RootMC - Towny\\config",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\2. RootMC - Towny\\plugins",
+        "kind":  "dir",
+        "files_here":  37,
+        "size_MB":  99.85,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\3. RootMC - Test Server",
+        "kind":  "dir",
+        "files_here":  23,
+        "size_MB":  58.9,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\3. RootMC - Test Server\\config",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\3. RootMC - Test Server\\plugins",
+        "kind":  "dir",
+        "files_here":  39,
+        "size_MB":  100.14,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  13.19,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\appearance",
+        "kind":  "dir",
+        "files_here":  13,
+        "size_MB":  4.65,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\data",
+        "kind":  "dir",
+        "files_here":  33,
+        "size_MB":  0.11,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\docs",
+        "kind":  "dir",
+        "files_here":  10,
+        "size_MB":  0.06,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\dream-pack",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\emojis",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\media",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\notes",
+        "kind":  "dir",
+        "files_here":  4,
+        "size_MB":  0.04,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\plans",
+        "kind":  "dir",
+        "files_here":  12,
+        "size_MB":  0.03,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\runtime",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\scripts",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy\\uploads",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  22.85,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\Ava Ivy - runtime (rootmc-ava).lnk",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Server Handoffs\\LIVE-D1-CUTOVER-HANDOFF.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Server Live Backups",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Web Files\\halted-development",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\halted-development\\rootmc-api-g2",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.09,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api",
+        "kind":  "dir",
+        "files_here":  17,
+        "size_MB":  0.25,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api\\.wrangler",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api\\migrations",
+        "kind":  "dir",
+        "files_here":  14,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api\\migrations-live",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api\\migrations-webstat",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api\\scripts",
+        "kind":  "dir",
+        "files_here":  11,
+        "size_MB":  0.07,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api\\src",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api-g2",
+        "kind":  "dir",
+        "files_here":  5,
+        "size_MB":  0.09,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api-g2\\.wrangler",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api-g2\\g2-migrations",
+        "kind":  "dir",
+        "files_here":  11,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api-g2\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api-g2\\scripts",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-api-g2\\src",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-app",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.66,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-app\\.wrangler",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-app\\build",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-app\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-app\\public",
+        "kind":  "dir",
+        "files_here":  4,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-app\\src",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-ava",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.07,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-ava\\assets",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  2.42,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-ava\\docs",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.02,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-ava\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-ava\\scripts",
+        "kind":  "dir",
+        "files_here":  44,
+        "size_MB":  0.12,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-ava\\src",
+        "kind":  "dir",
+        "files_here":  73,
+        "size_MB":  0.5,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-minecraft-map",
+        "kind":  "dir",
+        "files_here":  4,
+        "size_MB":  0.05,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-minecraft-map\\.wrangler",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-minecraft-map\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-minecraft-map\\src",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-realm-api",
+        "kind":  "dir",
+        "files_here":  7,
+        "size_MB":  0.07,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-realm-api\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-realm-api\\reference",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.08,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-realm-api\\scripts",
+        "kind":  "dir",
+        "files_here":  51,
+        "size_MB":  0.29,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-realm-api\\src",
+        "kind":  "dir",
+        "files_here":  144,
+        "size_MB":  1.55,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-sexi",
+        "kind":  "dir",
+        "files_here":  6,
+        "size_MB":  0.01,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-sexi\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-sexi\\scripts",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-sexi\\src",
+        "kind":  "dir",
+        "files_here":  14,
+        "size_MB":  0.06,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-web",
+        "kind":  "dir",
+        "files_here":  9,
+        "size_MB":  0.04,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-web\\.wrangler",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-web\\build",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-web\\functions",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-web\\public",
+        "kind":  "dir",
+        "files_here":  10,
+        "size_MB":  0.13,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-web\\scripts",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0.01,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-webstat-proxy",
+        "kind":  "dir",
+        "files_here":  3,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-webstat-proxy\\.wrangler",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootmc-webstat-proxy\\src",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootrecord-api-account",
+        "kind":  "dir",
+        "files_here":  11,
+        "size_MB":  0.12,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootrecord-api-account\\migrations",
+        "kind":  "dir",
+        "files_here":  163,
+        "size_MB":  0.2,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootrecord-api-account\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootrecord-api-account\\scripts",
+        "kind":  "dir",
+        "files_here":  37,
+        "size_MB":  0.41,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\rootrecord-api-account\\src",
+        "kind":  "dir",
+        "files_here":  76,
+        "size_MB":  0.99,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\Web Files\\shared",
+        "kind":  "dir",
+        "files_here":  19,
+        "size_MB":  0.14,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\Web Files\\shared\\node_modules",
+        "kind":  "dir-skipped",
+        "note":  "excluded from deep count"
+    },
+    {
+        "path":  "RootMC\\Web Files\\_deploy-logs",
+        "kind":  "dir",
+        "files_here":  8,
+        "size_MB":  0.08,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src",
+        "kind":  "dir",
+        "files_here":  7,
+        "size_MB":  0.76,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\com",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\com\\palmergames",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\database_migration",
+        "kind":  "dir",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\lang",
+        "kind":  "dir",
+        "files_here":  44,
+        "size_MB":  4.62,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\META-INF",
+        "kind":  "dir",
+        "files_here":  2,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\META-INF\\maven",
+        "kind":  "dir",
+        "files_here":  0,
+        "size_MB":  0,
+        "depth":  3
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\ChangeLog.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.68,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\config-migration.json",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.03,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\global.yml",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\plugin.yml",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.04,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\README - Translations.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\townyperms.yml",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\_tmp_towny_src\\version.properties",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  2
+    },
+    {
+        "path":  "RootMC\\.env",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Current history.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\daily-report-sample.json",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.01,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\finish-root-haste-rename.bat",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\GEN-1-GEN-2.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\Pre-Current history.txt",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0.02,
+        "depth":  1
+    },
+    {
+        "path":  "RootMC\\WORKSPACE.md",
+        "kind":  "file",
+        "files_here":  1,
+        "size_MB":  0,
+        "depth":  1
+    }
+]

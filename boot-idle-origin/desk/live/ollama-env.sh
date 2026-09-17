@@ -1,0 +1,1 @@
+../../../ollama-env/scripts/ollama-env.sh

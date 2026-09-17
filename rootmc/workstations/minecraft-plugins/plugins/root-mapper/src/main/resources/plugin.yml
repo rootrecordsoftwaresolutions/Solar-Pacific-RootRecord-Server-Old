@@ -1,0 +1,16 @@
+name: Root-Mapper
+version: '${version}'
+main: com.rootrecord.minecraft.rootmapper.RootMapperPlugin
+api-version: '26.1'
+description: RootMC area mapper — polygon waypoints, boundary refine, lava pairs
+author: Root Record
+website: https://rootmc.net
+commands:
+  mapper:
+    description: Map polygon areas for RootMC features
+    usage: /mapper list | start <area> | refine <area> | lava <area> | create <name> [waypoint|refine|lava] | stop | reload
+    aliases: [rootmapper]
+permissions:
+  rootmapper.admin:
+    description: Use all /mapper commands
+    default: op

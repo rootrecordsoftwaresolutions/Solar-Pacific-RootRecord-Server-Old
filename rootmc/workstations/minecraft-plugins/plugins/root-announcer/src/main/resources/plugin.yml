@@ -1,0 +1,26 @@
+name: Root-Announcer
+version: '${version}'
+main: com.rootrecord.minecraft.rootannouncer.RootAnnouncerPlugin
+api-version: '26.1'
+description: RootMC rotating server announcements
+author: Root Record
+website: https://rootmc.net
+commands:
+  rootannouncer:
+    description: RootMC announcer admin
+    usage: /<command> reload|list|now [index]
+    aliases: [rannounce]
+  announcer:
+    description: Toggle RootMC rotating announcements for yourself
+    usage: /<command> [on|off|status]
+    aliases: [announcements, toggleannouncer]
+permissions:
+  rootannouncer.toggle:
+    description: Toggle whether you receive RootMC announcements
+    default: true
+  rootannouncer.reload:
+    description: Reload root-announcer.yml
+    default: op
+  rootannouncer.now:
+    description: Broadcast a message immediately
+    default: op

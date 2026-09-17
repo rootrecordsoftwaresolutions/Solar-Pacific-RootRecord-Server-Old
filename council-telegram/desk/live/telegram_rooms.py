@@ -1,0 +1,1 @@
+../../../telegram/scripts/telegram_rooms.py

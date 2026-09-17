@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_bg">#FF12100E</color>
+    <color name="ic_launcher_lava">#FFFF6B35</color>
+    <color name="ic_launcher_lava_dark">#FFE84830</color>
+</resources>

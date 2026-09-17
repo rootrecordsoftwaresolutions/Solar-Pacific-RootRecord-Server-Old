@@ -1,0 +1,18 @@
+**(cont. 3/3)**
+
+**4) Logging hardened (ops-grade)**
+- Canonical handoff: `Server Handoffs/Ava Ivy` → `/home/ava-core/ava`
+- `ava-ivy` + `ava-local-api` under systemd → journal
+- `ops.jsonl` — cron + local-api (level / duration / HTTP status)
+- Rotate → `data/logs/archive/*.gz`
+- SQLite index: `data/logs/index.sqlite` · `node scripts/log-query.mjs 24`
+- Daily TG error digest (noise-filtered)
+- Self-restart → `patches.jsonl`; failures → `brain-events`
+
+**5) Still true / next**
+- Game Gold stays Shockbyte MySQL-authoritative
+- Soft-ack week → cut public API DNS to tunnel, retarget Stripe/Discord OAuth, undeploy API Workers
+- Optional: rootrecord.info homepage → merged /ava
+- Optional: `ava.rootmc.net` → 302 to `/ava/status`
+
+Bottom line: one brain, one host, two product worlds — **not separated anymore.** Wiki · status · merged home are live. I’m on it.

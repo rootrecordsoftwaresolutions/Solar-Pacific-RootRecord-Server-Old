@@ -1,0 +1,36 @@
+# Root-Webstat — singular RootMC primary (replaces Towny; no Towny data)
+enabled: true
+
+features:
+  http-site: true
+  stats-api: true
+  data-api: true
+  health-api: true
+  stats-day-recompute: true
+  cloud-push: false
+  logs-page: true
+  logs-tail: true
+  logs-download: true
+
+web:
+  bind: "0.0.0.0"
+  port: 8765
+  public-url: "https://test.rootmc.net"
+  token: ""
+
+stats:
+  day-world: ""
+  on-vanilla-day: true
+  refresh-seconds: 60
+  economy-table-prefix: ""
+  include-zero-balances: false
+
+cloud:
+  push-enabled: false
+  push-interval-seconds: 0
+
+logs:
+  max-tail-lines: 800
+  max-download-bytes: 4194304
+
+server-name: "Age Of Ava Begins"

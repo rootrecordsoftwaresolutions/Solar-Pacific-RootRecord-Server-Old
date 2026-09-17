@@ -1,0 +1,60 @@
+# Root-Market — plugins/RootMC/root-market.yml
+
+# Category browse + BUY/SELL lore from live player chest shops (not a server NPC shop)
+browse:
+  categories: true
+  # Include items that only have BUY shops (you can /sell to them) in category lists
+  show-buy-only-items: true
+  # Merge chestless virtual listings into /market quotes and item pages
+  include-virtual: true
+
+# Trending Items panel (spyglass) — MC-Complex style
+# Sell multi = best active buy-shop payout vs baseline (what /sell pays)
+# Buy multi  = cheapest in-stock sell listing vs baseline (hub prices)
+trending:
+  enabled: true
+  top-n: 5
+  min-shops: 1
+  # sell | buy | both
+  mode: sell
+  # worth = Root-Economy worth.yml (fallback: opposite-side median, then peer median)
+  # median-peer = median of same-side listing prices for that item
+  baseline: worth
+  skip-without-baseline: false
+
+messages:
+  prefix: ""
+  need-chestshops: "&cMarket needs &fRoot-ChestShops&c — tell staff."
+  usage-shops: "&eUsage: &f/shops <player>&e — or open the market: &f/market"
+  usage-market: "&7/market &8— &7browse player shops&8 · &7/market <item>&8 · &7/market <player>&8 · &7/shops <player>"
+  player-not-found: "&eNo shop owner found matching &f{player}&e."
+  player-empty: "&e&f{player}&e has no items listed for sale."
+  item-empty: "&eNo sell shops (chest or virtual) for &f{item}&e right now."
+  item-buy-only: "&eNo sell shops for &f{item}&e — best /sell payout is &f{price} G&e. Use &f/sell {item}&e."
+  hub-empty: "&eNo player shops listed right now."
+  category-empty: "&eNo player shops in &f{category}&e right now."
+  categories-title: "Market"
+  category-hint: "Click to browse player shops"
+  hub-title: "Market → {category} ({page}/{pages})"
+  hub-prev: "Previous page"
+  hub-next: "Next page"
+  hub-back-categories: "Back to categories"
+  hub-info: "Click an item to see sellers"
+  hub-hint: "Prices from player chest + virtual shops · /item · /sell · /buy"
+  trending-title: "Trending Items"
+  trending-sell-high: "▲ Highest Sell Multi (Top 5)"
+  trending-sell-low: "▼ Lowest Sell Multi (Top 5)"
+  trending-buy-high: "▲ Highest Buy Multi (Top 5)"
+  trending-buy-low: "▼ Lowest Buy Multi (Top 5)"
+  trending-empty: "No active buy shops to rank yet — place BUY signs."
+  item-title: "{item} ({page}/{pages})"
+  item-prev: "Previous page"
+  item-next: "Next page"
+  item-back: "Back to market"
+  item-info: "{count} listing(s) · cheapest {price} G"
+  item-hint: "Click a listing to buy · Virtual → My Storage (/item)"
+  player-title: "{player}'s shops ({page}/{pages})"
+  player-prev: "Previous page"
+  player-next: "Next page"
+  player-info: "{count} listing(s) for sale"
+  player-hint: "Click a listing to buy."

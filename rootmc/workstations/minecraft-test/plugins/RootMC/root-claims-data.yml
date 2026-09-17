@@ -1,0 +1,45 @@
+schema-version: 1
+claims:
+  d29ybGQ6NDg6NzA6MTky:
+    world: world
+    x: 48
+    y: 70
+    z: 192
+    radius-blocks: 16
+    parent-key: ''
+    owner: 78c3de61-0fd6-4800-9eda-cc178eaae34b
+    owner-name: Ava_Ivy
+    display-name: Ava
+    created-at: 1787199309519
+    paid-gold: 0.0
+    settings:
+      mobs: false
+      public-spawn: true
+    spawn:
+      x: 48.0
+      y: 70.0
+      z: 192.0
+      yaw: 0.0
+      pitch: 0.0
+history:
+  '1':
+    created-at: 1787199309522
+    action: area_grant
+    status: ok
+    amount-g: 0.0
+    owner-claim-count-before: 0
+    owner-claim-count-after: 1
+    details: name=Ava,public=true,free=true
+    claim:
+      world: world
+      x: 48
+      y: 70
+      z: 192
+      radius-blocks: 16
+      parent-key: ''
+      owner:
+        uuid: 78c3de61-0fd6-4800-9eda-cc178eaae34b
+        name: Ava_Ivy
+      paid-gold: 0.0
+meta:
+  next-history-id: 2

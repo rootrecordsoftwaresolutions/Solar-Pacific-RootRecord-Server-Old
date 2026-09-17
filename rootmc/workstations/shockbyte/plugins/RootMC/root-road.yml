@@ -1,0 +1,42 @@
+enabled: false
+
+# Guided first-join tutorial is off - players get tips from root-essentials new-player.welcome instead.
+restart-incomplete-on-quit: true
+
+loan:
+  amount-g: 100.0
+
+unsafe-warn:
+  enabled: true
+  # Action-bar reminder while the road is active and the player is not inside a claim.
+  interval-seconds: 12
+
+messages:
+  prefix: "&6[Road] &r"
+  welcome:
+    - ""
+    - "&6&lWelcome to {server}, {player}."
+    - "&7This short road gets you to a &asafe claim&7 fast."
+    - "&eThe wilderness is dangerous&7 - mobs, grief, and valued blocks can cost you Gold."
+    - "&7Stay with the steps until you have your own claim."
+    - ""
+  wild-danger:
+    - "&cWilderness danger: &7you are unprotected until you claim land."
+    - "&7Do not dig high-value blocks in the wild without knowing the fees."
+    - "&7Next: find a spot with &f/rtp&7."
+  step-rtp: "&eStep 1/3 - Find land: &f/rtp &7(random wilderness teleport)."
+  step-loan: "&eStep 2/3 - Fund yourself: &f/loan take 100 &7(100 G from the Server Reserve)."
+  step-claim: "&eStep 3/3 - Make a safe home: &f/c &7then click &a[Confirm]&7 (uses your loan Gold)."
+  step-done:
+    - "&aRoad complete. &7You have a claim - that is your safe ground."
+    - "&7Deposit extras with &f/c bank deposit&7, add friends with &f/c add <player>&7."
+  progress-rtp: "&aGood - you left spawn. Next: &f/loan take 100&7."
+  progress-loan: "&aLoan received. Next: &f/c &7then click &a[Confirm]&7 to claim."
+  progress-claim: "&aClaim placed. You finished the Root-Road."
+  unsafe-warn: "&cYou are not in a safe claim. &7Finish the road - &f/rtp&7, &f/loan take 100&7, then &f/c &7+ &a[Confirm]&7."
+  status-complete: "&aYour Root-Road is complete."
+  status-active: "&7Road step: &f{step}&7. Quit before finishing and it restarts next join."
+  status-idle: "&7No active Root-Road session."
+  reloaded: "&aRoot-Road reloaded."
+  players-only: "&cPlayers only."
+  no-permission: "&cYou do not have permission."

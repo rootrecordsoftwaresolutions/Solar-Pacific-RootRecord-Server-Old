@@ -1,0 +1,20 @@
+﻿Generated 2026-08-02T12:10:40.3725611-10:00
+Source D:\.1 Work Stations -> E:\.1 Work Stations (copy, never move)
+
+.credentials\.env	bytes=29009	onE=True
+.credentials\solana.env	bytes=13211	onE=True
+RootMC\.env	bytes=15200	onE=True
+RootMC\emergent-repo\.env.example	bytes=499	onE=True
+RootMC\emergent-repo\frontend\.env.example	bytes=315	onE=True
+RootMC\Plugin Building\Minecraft\.env	bytes=3630	onE=True
+RootMC\scripts\local-edge\state\mysql-bootstrap.env	bytes=278	onE=True
+RootMC\Server Handoffs\1. RootMC - Claims\plugins\RootMC\r2.env	bytes=228	onE=True
+RootMC\Server Handoffs\2. RootMC - Towny\plugins\RootMC\r2.env	bytes=228	onE=True
+RootMC\Server Handoffs\3. RootMC - Test Server\plugins\RootMC\.dev-server-identity.env	bytes=266	onE=True
+RootMC\Server Live Backups\1. RootMC - Claims\plugins\RootMC\r2.env	bytes=228	onE=True
+RootMC\Server Live Backups\2. RootMC - Towny\plugins\RootMC\r2.env	bytes=228	onE=True
+RootMC\Server Live Backups\2. RootMC - Towny\pregen3backup\.env	bytes=3427	onE=True
+RootMC\Server Live Backups\2. RootMC - Towny\pregen3backup\_copy.env	bytes=3427	onE=True
+RootMC\Server Live Backups\2. RootMC - Towny\pregen3backup\plugins\Root-BlueMap-R2-Fix\r2.env	bytes=228	onE=True
+RootMC\Server Live Backups\3. RootMC - Test Server\plugins\RootMC\.dev-server-identity.env	bytes=266	onE=True
+RootMC\Web Files\rootmc-app\.env.example	bytes=315	onE=True

@@ -1,0 +1,23 @@
+name: Root-ItemInfo
+version: '${version}'
+main: com.rootrecord.minecraft.rootiteminfo.RootItemInfoPlugin
+api-version: '26.1'
+description: World item census — /info totals, average value, and resource page sync
+author: Root Record
+website: https://rootmc.net/resources/
+softdepend: [Root-Core, RootMC, Root-Essentials, Root-ChestShops, RootMC-Shops, Vault]
+commands:
+  info:
+    description: Show world total count, average value, and item id
+    usage: /<command> [item|hand|gold|top|reload]
+    aliases: [iteminfo, ii]
+permissions:
+  rootiteminfo.use:
+    description: Use /info
+    default: true
+  rootiteminfo.reload:
+    description: Reload root-iteminfo and force a census rescan
+    default: op
+  rootiteminfo.admin:
+    description: View top lists and force scans
+    default: op

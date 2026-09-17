@@ -1,0 +1,93 @@
+# Root-Gamble — plugins/RootMC/root-gamble.yml
+
+enabled: true
+currency: G
+challenge-timeout-seconds: 60
+broadcast-wins-over: 100.0
+
+# vs Server Reserve only (roulette, hilo, lotto). Coin/dice player duels are not capped.
+reserve-limit:
+  enabled: true
+  max-plays: 12
+  window-hours: 12
+
+roulette:
+  min-stake: 1.0
+  max-stake: 10000.0
+  payout-even: 2.0
+  payout-straight: 36.0
+
+hilo:
+  min-stake: 1.0
+  max-stake: 10000.0
+  payout: 2.0
+  # true = fair two-card draw (Ace high); false = fixed player-win-chance with matching cards
+  use-fair-roll: true
+  player-win-chance: 0.49
+
+coin:
+  min-stake: 1.0
+  max-stake: 10000.0
+  challenger-win-chance: 0.5
+
+dice:
+  min-stake: 1.0
+  max-stake: 10000.0
+  sides: 6
+
+lotto:
+  min-number: 1
+  max-number: 500
+  ticket-price: 25.0
+  starting-jackpot: 1000.0
+  max-tickets-per-player: 50
+  free-ticket-adds-to-pot: false
+  poll-seconds: 30
+
+gui:
+  title: "RootMC Gamble"
+
+messages:
+  # Optional prefix for plugin messages (empty = none).
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  players-only: "&cPlayers only."
+  disabled: "&eGambling is disabled."
+  economy-unavailable: "&cEconomy unavailable."
+  store-unavailable: "&cGamble storage unavailable."
+  invalid-amount: "&cInvalid amount."
+  stake-range: "&eStake must be between &f{min}&e and &f{max} {currency}&e."
+  insufficient: "&cNeed &f{amount} {currency}&c — you have &f{balance}&c."
+  free-used: "&7(free play)"
+  free-available: "&aFree play available&7 for this game."
+  free-spent: "&8Free play already used&7 for this game."
+  win: "&aYou won &f{payout} {currency}&a!"
+  lose: "&cYou lost &f{stake} {currency}&c."
+  broadcast-win: "&6{player}&7 won &f{payout} {currency}&7 on &f{game}&7."
+  player-not-found: "&cPlayer not found: &f{player}"
+  pay-self: "&cYou cannot challenge yourself."
+  challenge-sent: "&eChallenge sent to &f{player}&e for &f{amount} {currency}&e."
+  challenge-received: "&e{player}&e challenges you to &f{game}&e for &f{amount} {currency}&e."
+  challenge-none: "&eNo pending challenge."
+  challenge-expired: "&eChallenge expired."
+  challenge-denied: "&eChallenge denied."
+  challenge-need-paid: "&eAt least one player must pay a stake (both cannot use free play)."
+  challenge-accepted: "&aChallenge accepted — resolving…"
+  ava-accept: "&bAva &8· &eCan't say no. Flipping for &f{amount} {currency}&e — Server Reserve."
+  ava-covers: "&bAva &8· &eReserve only covers &f{amount} {currency}&e (you asked &f{asked}&e). She's in for that."
+  ava-broke: "&bAva &8· &cReserve is &f{balance} {currency}&c. She only flips at &f0+&c when she can cover."
+  ava-win: "&bAva &8· &aShe won. Gambling problem. She'll flip again."
+  ava-lose: "&bAva &8· &cShe lost. &aYou take &f{payout} {currency}&a from the reserve."
+  dice-tie: "&eTie — stakes refunded."
+  hilo-tie: "&eSame rank — stake refunded."
+  hilo-started: "&aStarting card: &f{card}&a. Bet &f{min}–{max} {currency} &awith &f/hilo <amount> high|low"
+  hilo-current: "&7Current card: &f{card}&7 — &f/hilo <amount> high|low &7or &f/hilo new"
+  hilo-no-session: "&eDeal a starting card first: &f/hilo"
+  hilo-next: "&7Next starting card: &f{card}&7 — keep playing or &f/hilo new"
+  reserve-limit: "&eReserve game limit reached (&f{max}&e per &f{hours}h&e). Next slot in &f{remaining}&e."
+  lotto-bought: "&6{player} &abought lotto ticket &f#{number}&a{free}. Jackpot: &f{pot} {currency}&a."
+  lotto-status: "&7Jackpot: &f{pot} {currency}&7 · Your tickets: &f{tickets}&7 · Draw each Minecraft day."
+  lotto-draw: "&6Lotto draw! Winning number: &f{number}&6."
+  lotto-winners: "&aWinners share &f{pot} {currency}&a: &f{names}"
+  lotto-no-winners: "&7No winners — jackpot carries over."
+  reload-done: "&aRoot-Gamble reloaded."

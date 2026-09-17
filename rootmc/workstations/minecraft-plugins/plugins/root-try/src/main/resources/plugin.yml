@@ -1,0 +1,21 @@
+name: Root-Try
+version: '${version}'
+main: com.rootrecord.minecraft.roottry.RootTryPlugin
+api-version: '26.1'
+description: Try these commands — rewarded feature tryouts (1 G per try from Server Reserve)
+author: Root Record
+website: https://rootmc.net/plugins/
+depend: [Root-Core]
+softdepend: [Root-Essentials, Root-Play, Root-Times, RootMC, Root-Claims, Root-Territories, Root-ItemInfo, Vault, Towny]
+commands:
+  try:
+    description: Try these commands — list, next try, progress
+    usage: /<command> [list|next|info|progress|reload|skip|forcecomplete]
+    aliases: [roottry, tries]
+permissions:
+  roottry.use:
+    description: Use /try as a player
+    default: true
+  roottry.admin:
+    description: Reload, skip, and force-complete tries
+    default: op

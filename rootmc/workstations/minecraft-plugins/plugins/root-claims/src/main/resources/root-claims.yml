@@ -1,0 +1,248 @@
+enabled: true
+
+# ─── All gameplay metrics live here (edit + /c reload or restart) ───
+limits:
+  max-areas-per-player: 3
+  max-level-per-area: 10
+  # Slot 2+ requires that many prior areas at max level (set false to allow any order).
+  require-prior-areas-at-max: true
+
+anchors:
+  radius-blocks: 16
+  # Expansion anchors must be near the rim; placement always snaps exactly onto that edge.
+  edge-tolerance-blocks: 3
+  # Members may build/ally; only the area owner expands (raises level).
+  allow-trusted-expansion: false
+
+# Unclaimed wilderness band past the claim edge. Still wilderness (no build protection).
+# Strangers cannot claim into this band. Owner + members are allied: they may skip
+# wilderness destroy fees and do not trigger satellite alerts.
+# Overlapping territories split 50/50 (nearest claim center). Y < 0 is never territory.
+territory:
+  buffer-blocks: 48
+  satellite-alerts:
+    enabled: true
+    cooldown-seconds: 60
+
+# Claims and territories apply at this Y and above. Below is free-reign mining rights.
+mining:
+  floor-y: 0
+
+# Ava homestead is the public visit spawn (/c spawn Ava_Ivy).
+spawn:
+  ava-uuid: 78c3de61-0fd6-4800-9eda-cc178eaae34b
+  ava-name: Ava_Ivy
+  area-name: Ava
+  auto-grant: true
+  auto-public: true
+
+economy:
+  enabled: true
+  # Founding costs for area slots 1 / 2 / 3… (wallet). Length can be any size ≤ max-areas.
+  # Slot 1 = first claim (75 G). Expansions still charge the area bank. Slots 2+ stay paid.
+  first-claim-price-g: 75.0
+  area-prices-g: [75.0, 1000.0, 10000.0]
+  # First-area bank seed from founding fee (capped at slot-1 price).
+  first-claim-bank-seed-g: 25.0
+  first-area-bank-seed-g: 25.0
+  # Explicit expansion ladder (G): index 0 = level 1→2, 1 = 2→3, … If non-empty, overrides formula.
+  # Example for 9 expansions to reach level 10:
+  # expansion-prices-g: [75, 112.5, 168.75, 253.125, 379.688, 569.531, 854.297, 1281.445, 1922.168]
+  expansion-prices-g: []
+  # Used when expansion-prices-g is empty: price = base × multiplier^(currentLevel-1)
+  expansion-base-price-g: 75.0
+  expansion-multiplier: 1.5
+  unclaim-refund-percent: 50.0
+  treasury-channel: "service-fee:claim"
+
+timings:
+  confirm-ttl-seconds: 30
+  spawn-cooldown-seconds: 3
+
+protection:
+  protect-containers: true
+  protect-doors-buttons-and-redstone: true
+  protect-entities: true
+  protect-fire: true
+  protect-explosions: true
+  creeper-regeneration:
+    enabled: true
+    delay-seconds: 30
+  protect-pistons: true
+  protect-buckets: true
+
+outline:
+  enabled: true
+  refresh-ticks: 40
+  max-distance-blocks: 160
+  points-per-circle: 64
+  particle-size: 1.15
+  contour-step: 2
+  particle-spacing: 1.25
+
+bluemap:
+  enabled: true
+  set-label: "Claims"
+  shape-y: 64
+  contour-step: 3
+  line-width: 2
+  fill-alpha: 0.28
+  territory-enabled: true
+  territory-fill-alpha: 0.12
+  territory-line-width: 1
+
+notifications:
+  enabled: true
+
+messages:
+  prefix: ""
+  towny-redirect: "&eThis server uses Claims, not Towny. Use &f/c &eor &f/claims&e. Return to Towny: &f/goto towny&e, &f/town&e, &f/towns&e, or &f/t towny&e."
+  disabled: "&cClaims are not enabled yet."
+  players-only: "&cPlayers only."
+  console-help: "&7Console: &f/c status&7 · &f/c reload&7 · &f/c grant <player> [public]&7 · &f/c add <owner> <player>"
+  console-trust-usage: "&eUsage: &f/c add <owner> <player>&e or &f/c untrust <owner> <player>"
+  grant-usage: "&eUsage: &f/c grant <player> [public]"
+  grant-unknown: "&eCould not find player &f{player}&e."
+  grant-ok: "&aGranted &f{area}&a to &f{owner}&a at &f{x}, {y}, {z}&a. Public: &f{public}&a."
+  grant-already: "&e{owner} already has an area."
+  grant-failed: "&cGrant failed: &f{status}&c."
+  no-permission: "&cYou do not have permission."
+  no-economy: "&cEconomy is not ready. Try again later."
+  cannot-afford: "&ePrice: &f{price} G&e. Your wallet does not have enough Gold."
+  confirm-area-found: "&eConfirm founding area &f{name}&e for &f{price} G&e from your wallet. Expires in &f{seconds}s&e."
+  confirm-area-found-free: "&eConfirm founding free area &f{name}&e (expansions still cost Gold from the area bank). Expires in &f{seconds}s&e."
+  confirm-claim: "&eConfirm founding a new area here for &f{price} G&e. Expires in &f{seconds}s&e."
+  confirm-claim-expansion: "&eConfirm expansion for &f{price} G&e from the area bank. Anchor snaps to the rim. Expires in &f{seconds}s&e."
+  confirm-unclaim: "&eConfirm removing this circle from &f{owner}&e's area. Refund: &f{refund} G&e ({refund_pct}%). Expires in &f{seconds}s&e."
+  confirm-unclaim-all: "&eConfirm removing all &f{count}&e circle(s). Land refund: &f{refund} G&e ({refund_pct}%). Area banks return: &f{bank} G&e. Expires in &f{seconds}s&e."
+  confirm-trust: "&eConfirm adding &f{player}&e as a member of &f{owner}&e's area. Expires in &f{seconds}s&e."
+  confirm-untrust: "&eConfirm removing &f{player}&e from &f{owner}&e's area. Expires in &f{seconds}s&e."
+  confirm-none: "&eNo claim action is waiting for confirmation."
+  confirm-expired: "&eThat claim confirmation expired. Run the command again."
+  confirm-moved: "&eYou moved. Run the claim command again from the block you want to affect."
+  confirm-cancelled: "&7Cancelled pending claim action."
+  claim-spawn-none: "&eYou do not have an area spawn yet. Found an area with &f/c new&e."
+  claim-spawn-cooldown: "&eSpawn is cooling down. Try again in &f{seconds}s&e."
+  claim-spawn-missing-world: "&cThat area world is not loaded."
+  claim-spawn-success: "&aTeleported to your area spawn."
+  claim-spawn-success-other: "&aTeleported to &f{owner}&a's area spawn."
+  claim-spawn-player-unknown: "&eCould not find player or area &f{player}&e."
+  claim-spawn-player-none: "&e{player} &edoes not have an area yet."
+  claim-spawn-private: "&e{owner}&e's area spawn is private. They can open it in &f/c &esettings."
+  claim-spawn-area-unknown: "&e{player} &edoes not have an area named &f{area}&e."
+  claim-spawn-set: "&aArea spawn set here for &f{owner}&a."
+  claim-spawn-outside: "&eStand inside your area to set spawn."
+  settings-no-claim: "&eStand in your area (or right-click an area in &f/c&e) to open settings."
+  set-usage: "&eUsage: &f/c set spawn"
+  claim-respawn-success: "&aYou respawned at your area spawn."
+  claim-enter: "&6Entering &f{owner}&6's area."
+  claim-leave: "&7Leaving &f{owner}&7's area."
+  territory-enter: "&6Entering &f{owner}&6's territory &8- &eFees Apply"
+  territory-leave: "&7Leaving &f{owner}&7's territory."
+  underworld-enter: "&7Mining rights · below Y 0 is free reign (no claims)."
+  wild-enter: "&dEntering Ava's wilderness &8· &eGuardian watch &8- &f1 G/block &7→ reserve"
+  area-created: "&aArea &f{area}&a founded for &f{owner}&a."
+  area-created-paid: "&aArea &f{area}&a founded for &f{owner}&a. Paid: &f{price} G&a."
+  claim-created: "&aArea expanded for &f{owner}&a (level &f{level}&a)."
+  claim-created-paid: "&aArea expanded for &f{owner}&a (level &f{level}&a). Paid: &f{price} G&a from area bank."
+  claim-map-link: "&7See it on BlueMap (&f{x}&7, &f{y}&7, &f{z}&7):"
+  claim-already-owned: "&eThis spot is already inside &f{owner}&e's claim."
+  claim-overlaps-other: "&eThat anchor would overlap &f{owner}&e's claim."
+  claim-foreign-territory: "&eThat spot is inside &f{owner}&e's territory (+{buffer} blocks past their claim). Ask them to &f/c add&e you, or claim farther away."
+  claim-below-mining-floor: "&eMining rights · claims only exist at &fY 0 and above&e. Come up to the surface to /c new or expand."
+  claim-needs-edge: "&eStand on the rim of one of your areas to expand. Expansions snap to that edge (within &f{tolerance}&e blocks)."
+  claim-needs-area: "&eFound an area first with &f/c new&e before expanding."
+  claim-bank-cannot-afford: "&eExpansion price: &f{price} G&e. Deposit to the area bank with &f/c deposit all&e or &f/c deposit <amount>&e."
+  claim-bank-charge-failed: "&cCould not charge the area bank. Try again later."
+  claim-limit: "&eClaim limit reached: &f{count}/{limit}&e."
+  area-limit: "&eArea limit reached: &f{count}/{limit}&e."
+  area-locked: "&eMax out an area to level &f{max}&e before founding another. You have &f{have}&e / &f{need}&e at max level."
+  area-level-max: "&eThis area is already level &f{level}/{max}&e."
+  area-name-taken: "&eYou already have an area with that name."
+  unclaim-success: "&aRemoved this claim circle."
+  unclaim-has-children: "&eUnclaim outer expansions first. This circle still has attached expansions."
+  unclaim-refund: "&aRefunded &f{amount} G&a to your wallet."
+  unclaim-bank-refund: "&aRefunded &f{amount} G&a to the area bank."
+  unclaim-all-success: "&aRemoved all &f{count}&a of your claim circles."
+  unclaim-all-land-refund: "&aLand refund: &f{amount} G&a ({refund_pct}%)."
+  unclaim-all-bank-return: "&aReturned &f{amount} G&a from area banks to your wallet."
+  unclaim-all-refund-failed: "&eClaims were removed, but the land refund could not be paid from the Server Reserve. Contact staff."
+  unclaim-none: "&eThis spot is not claimed."
+  not-owner: "&eOnly &f{owner}&e or staff can manage this area."
+  trusted: "&aAdded &f{player}&a as a member of this area."
+  untrusted: "&aRemoved &f{player}&a from this area."
+  trust-usage: "&eUsage: &f/c add <player>&e or &f/c untrust <player>"
+  toggle-usage: "&eUsage: &f/c toggle mobs <on|off>&e or &f/c toggle spawn <on|off>"
+  toggle-mobs-on: "&aHostile mobs are now allowed in this claim."
+  toggle-mobs-off: "&aHostile mobs are now blocked in this claim (despawned &f{count}&a). &7Territory (+{buffer}) still spawns hostiles. Hostiles that walk into the claim despawn. Creeper block damage is always protected."
+  toggle-spawn-public: "&aArea spawn is now &fpublic&a. Others can use &f/spawn <your name>&a."
+  toggle-spawn-private: "&aArea spawn is now &fprivate&a. Only you and members can use it."
+  bank-no-claim: "&eYou do not own an area bank yet."
+  bank-usage: "&eUsage: &f/c bank&e · &f/c deposit <amount|all>&e · &f/c withdraw <amount|all>&e · &f/c bank deposit|withdraw <amount|all>"
+  bank-info: "&7{claim} bank: &f{balance} G&7. Next expansion: &f{price} G&7. First plot is tax-free; expansions use reserve tax. Deposit with &f/c deposit <amount|all>&7 · withdraw with &f/c withdraw <amount|all>&7."
+  bank-cannot-afford: "&eYour wallet does not have &f{amount} G&e for that deposit."
+  bank-cannot-withdraw: "&eThis area bank does not have &f{amount} G&e to withdraw."
+  bank-deposit-empty: "&eYour wallet is empty — nothing to deposit."
+  bank-withdraw-empty: "&eThis area bank is empty — nothing to withdraw."
+  bank-deposit-failed: "&cArea bank deposit failed. Try again later."
+  bank-withdraw-failed: "&cArea bank withdraw failed. Try again later."
+  bank-deposit-success: "&aDeposited &f{amount} G&a to this area bank. Balance: &f{balance} G&a."
+  bank-withdraw-success: "&aWithdrew &f{amount} G&a from this area bank to your wallet. Balance: &f{balance} G&a."
+  bank-owner-deposit: "&aArea bank deposit: &f+{amount} G&a from &f{player}&a. Balance: &f{balance} G&a."
+  territory-fee-received: "&aTerritory fee: &f+{amount} G&a (75% bank) from &f{player}&a. Area bank: &f{balance} G&a."
+  territory-satellite-alert: "&7Satellite imagery shows &f{player} &7is stealing resources in your claim territory."
+  info-wild: "&bAva's wilderness&7. She is the guardian watch: &f1 G&7/block → Server Reserve (minute recap if you pay). &f/c claim &7or get trusted. Mining rights: Y < 0 is free (no claims)."
+  info-territory: "&6Territory of &f{owner}&7. Outsiders: &f1 G&7/block (&f75%&7 claim bank / &f25%&7 server). Owner/members exempt. Buffer: &f{buffer}&7. Mining rights: Y < 0 is free."
+  info-claimed: "&7Area &f{area}&7 (Lv &f{level}/{max}&7) by &f{owner}&7. Radius: &f{radius}&7. Territory: &f+{buffer}&7. Bank: &f{bank} G&7. Mobs: &f{mobs}&7. Spawn: &f{spawn}&7. Members: &f{trusted}&7. Mining rights: Y < 0 is free reign (no claims)."
+  info-underworld: "&7Mining rights · below Y 0 is free reign. No claims or territories apply underground."
+  list-empty: "&7You do not have any areas yet. Stand where you want to start and run &f/c new&7."
+  list-header: "&6Your areas &7({count}):"
+  list-line: "&7- &f{area} &8Lv &f{level}/{max} &8@ &f{world} &f{x}, {y}, {z} &8bank=&f{bank} G"
+  next-price: "&7Next price: &f{price} G&7."
+  lines-on: "&aClaim influence lines on. &7Use &f/c lines &7again to hide them."
+  lines-off: "&7Claim influence lines off."
+  denied: "&eThis land is claimed by &f{owner}&e."
+  chest-outside: "&eStand inside a claim to open its community chest."
+  chest-denied: "&eOnly &f{owner}&e, members, or staff can open this claim chest."
+  chest-opened: "&aOpened &f{owner}&a's community chest."
+  chest-returned: "&aReturned &f{count}&a stack(s) from the claim community chest."
+  scanchests-usage: "&eUsage: &f/scanchests <item|hand>&e · &f/scanchests confirm [amount]&e · &f/scanchests cancel"
+  scanchests-unavailable: "&cClaim chests are unavailable."
+  scanchests-unknown: "&cUnknown item: &f{query}"
+  scanchests-none: "&7No &f{item}&7 in your claim chests ({count})."
+  scanchests-found: "&6Found &f{count} &6× &f{item}&6 in your claim chests."
+  scanchests-amount-hint: "&7Or withdraw a partial amount: &f/scanchests confirm <1-{count}>"
+  scanchests-cancelled: "&7Chest withdraw cancelled."
+  scanchests-no-pending: "&eNo pending /scanchests withdraw. Run &f/scanchests <item>&e first."
+  scanchests-expired: "&eThat withdraw offer expired. Run &f/scanchests <item>&e again."
+  scanchests-bad-amount: "&cInvalid amount."
+  scanchests-withdrawn: "&aWithdrew &f{count} &a× &f{item}&a from your claim chests."
+  reloaded: "&aRootClaims reloaded."
+  help:
+    - "&6RootClaims &7(/c, /claim, /claims)"
+    - "&f/c &7- open claims dashboard"
+    - "&f/c new [name] &7- found a new area (prices in root-claims.yml economy.area-prices-g)"
+    - "&f/c claim &7- expand the area you are on (rim snap; paid from area bank)"
+    - "&7Confirmations use clickable &a[Confirm]&7 / &c[Cancel]&7 buttons"
+    - "&f/c chest &7- open the claim community chest (owner + members)"
+    - "&f/scanchests <item> &7- count item in your claim chests, then withdraw"
+    - "&f/spawn &7- server spawn · &f/spawn <player|area> [area] &7- visit an area spawn"
+    - "&f/c set spawn &7- set this area's spawn (must be inside)"
+    - "&f/c bank &7- view the area bank used for expansions"
+    - "&f/c deposit <amount|all> &7- fund your area bank from wallet"
+    - "&f/c withdraw <amount|all> &7- move Gold from the area bank to your wallet"
+    - "&f/c bank deposit <amount|all> &7- same as /c deposit"
+    - "&f/c bank withdraw <amount|all> &7- same as /c withdraw"
+    - "&f/c info &7- inspect this claim area"
+    - "&f/c unclaim &7- remove this circle (outer expansions first)"
+    - "&f/c unclaim all &7- remove every area you own (configurable land refund + bank return)"
+    - "&f/c add <player> &7- add a member (same as trust/friend)"
+    - "&f/c untrust <player> &7- remove a member"
+    - "&f/c toggle mobs <on|off> &7- allow or block hostile mobs"
+    - "&f/c toggle spawn <on|off> &7- public/private visitor spawn"
+    - "&f/c list &7- list your areas"
+    - "&f/c lines &7- toggle outer claim perimeter"
+    - "&7Areas: max &f3&7, each level &f1-10&7. Territory: &f{buffer} blocks &7past each edge."
+    - "&7Mining rights: Y < 0 is free reign (no claims). Ava's wilderness: 1G/block → reserve (minute recap)."
+    - "&7Territory outsiders: 1G/block (75% claim bank / 25% server). Trusted members exempt."
+    - "&7Overlapping territories split 50/50 (nearest center). Claim with &f/c new&7 or get &f/c add&7."

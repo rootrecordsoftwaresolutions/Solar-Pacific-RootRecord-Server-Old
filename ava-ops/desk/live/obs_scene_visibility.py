@@ -1,0 +1,1 @@
+../../../obs-studio/scripts/obs_scene_visibility.py

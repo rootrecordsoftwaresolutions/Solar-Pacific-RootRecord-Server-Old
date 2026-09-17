@@ -1,0 +1,96 @@
+# Root-Bonds — plugins/RootMC/root-bonds.yml
+# MySQL: inherits from root-essentials.yml / rootmc.yml when host is blank.
+
+mysql:
+  enabled: true
+  host: ""
+  port: 3306
+  database: ""
+  username: ""
+  password: ""
+  table-prefix: "root_"
+  jdbc-params: "verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC"
+  # RootMC playtime table (last_login_at) — same source as Root-Upkeep
+  playtime-table: "playtime"
+
+bonds:
+  enabled: true
+  min-principal-g: 1.0
+  # Share of each reserve inflow paid to bond holders (pro-rata by outstanding principal).
+  # Eligible includes loan INTEREST (25% of interest → coupon pool). Loan PRINCIPAL repayments are excluded.
+  # Payouts pause automatically while the post-reset reserve ledger is below 0 G.
+  income-share: 0.25
+  # Bottom 5 rows of /bonds GUI — physical gold coupon chest (45 slots).
+  gold-chest-rows: 5
+  # One Minecraft day = 24000 world ticks (~30 min with minecraft-day.enabled). Coupon pool settles at each rollover.
+  mc-day-ticks: 24000
+  day-world: ""
+  # After downtime, only the last N MC days get real coupon payouts (~96 ≈ 2 real days). Older gaps are skip-marked.
+  catch-up-max-mc-days: 96
+  # Town/nation bank balances are auto-bonded (no paper note). Earnings deposit to the bank each MC day.
+  auto-bond-governments: true
+  sync-on-mc-day: true
+  sync-interval-minutes: 5
+  # Active holders: earnings auto-credit to wallet each MC day (registered note owner).
+  auto-pay-earnings-wallet: true
+  # After this many hours without login, bond notes are auto-redeemed and inactivity tax applies (28 days).
+  claim-expiry-hours: 672
+
+bonded-root:
+  cost-g: 1000.0
+  # Gen1 issues Bonded Roots, but they do not earn until imported on Gen2.
+  register-for-earnings: false
+
+# Inactive players/towns/nations earn no bond coupons (grace synced from root-upkeep.yml when present).
+activity:
+  grace-days: 7
+
+messages:
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  players-only: "&cPlayers only."
+  disabled: "&eBonds are not available right now."
+  create-menu-title: "&8Bonded notes"
+  create-amount-missing: "&eSelect an amount first."
+  create-usage: "&eUsage: &f/bonds create <amount>&e or &f/bond create root&7."
+  create-amount-invalid: "&eEnter a valid gold amount."
+  create-min: "&eMinimum is &f{min} G&e."
+  create-insufficient: "&cNeed &f{amount} G&c; you have &f{balance} G&c."
+  create-success: "&aBonded note issued: &f{amount} G &a→ Server Reserve."
+  create-root-success: "&aBonded Root created: &f{amount} G &aretired from circulation forever."
+  create-root-failed: "&cCould not create Bonded Root — try again or ask staff."
+  create-failed: "&cCould not issue — try again or ask staff."
+  menu-title: "&8Bond vault"
+  note-detail-title: "&8Bonded note"
+  about-title: "&6Bonded notes"
+  about-1: "&7Paper notes backed by Gold in the &fServer Reserve&7."
+  about-2: "&7Park wallet G safely — earn a share of reserve inflows."
+  about-3: "&7Keep notes in an &fempty ender chest&7."
+  about-4: "&7Earn &f25%&7 of each day's reserve inflows (share ∝ your notes)."
+  about-5: "&7Earnings auto-deposit to your &fwallet&7 each MC day."
+  about-6: "&7Hold the registered bonded note — pickup or right-click updates owner."
+  about-7: "&7After &f28 days&7 without login: notes redeemed, inactivity tax starts."
+  about-8: "&7Always redeemable to gold (Redeem + note in hand)."
+  about-9: "&7Live stats & charts: &frootmc.net/economy/bonds/"
+  create-about-1: "&7Wallet G → reserve; you get paper."
+  create-about-2: "&7No naming — just bonded notes."
+  create-about-3: "&7Redeem anytime at /bonds."
+  claim-forfeited: "&eLegacy unclaimed earnings &f{amount} G &eexpired — returned to reserve."
+  bond-inactivity-settlement: "&eInactive &f{days} days&e: bond note(s) redeemed (&f{principal} G&e). Inactivity tax now applies."
+  bond-earning-wallet: "&aBond earnings: &f+{amount} G &7→ wallet."
+  gov-bond-deposit-town: "&aServer Reserve bonds: &f{town}&a earned &f{amount} G&a — deposited to the town bank."
+  gov-bond-deposit-nation: "&aServer Reserve bonds: &f{nation}&a earned &f{amount} G&a — deposited to the nation bank."
+  gov-bond-away-town: "&aWhile you were away: &f{town}&a earned &f{amount} G&a in Server Reserve bond deposits (town bank)."
+  gov-bond-away-nation: "&aWhile you were away: &f{nation}&a earned &f{amount} G&a in Server Reserve bond deposits (nation bank)."
+  gov-town-title: "&8Town bonds"
+  gov-nation-title: "&8Nation bonds"
+  gov-about-1: "&7Town/nation bank balances can join the reserve bond pool."
+  gov-about-2: "&7No paper note — earnings deposit to the bank each MC day."
+  gov-about-3: "&7Mayors and nation leaders toggle this in /bonds."
+  gov-town-enabled: "&aTown &f{town}&a auto-bond enabled."
+  gov-town-disabled: "&7Town &f{town}&7 auto-bond disabled."
+  gov-nation-enabled: "&aNation &f{nation}&a auto-bond enabled."
+  gov-nation-disabled: "&7Nation &f{nation}&7 auto-bond disabled."
+  gov-not-leader: "&cOnly the town mayor or nation leader can change this."
+  gov-disabled-global: "&cGovernment auto-bonds are disabled server-wide."
+  tip-ender: "&7Tip: keep bonded notes in an &fempty ender chest&7."

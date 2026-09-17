@@ -1,0 +1,6 @@
+# Legacy — prefer plugins/RootMC/root-core.yml (server-name + product-key).
+# Kept only so older installs still work; Root-Core reads root-core.yml first.
+
+server-name: ""
+product-key: ""
+lease: {}

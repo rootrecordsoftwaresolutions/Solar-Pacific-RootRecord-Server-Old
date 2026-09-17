@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logs · Webstat · RootMC</title>
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="icon" href="https://rootmc.net/favicon.ico" sizes="any">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://rootmc.net/styles/rootmc.css?v=20260819ivy">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="webstat-page">
+  <header class="rmc-header">
+    <div class="container rmc-header-inner">
+      <a class="rmc-brand" href="https://rootmc.net/">
+        <span class="rmc-brand-mark" aria-hidden="true">◈</span>
+        RootMC
+        <span class="rmc-brand-tag">Network</span>
+      </a>
+      <nav class="rmc-nav" aria-label="Main" data-site-nav="player" data-site-nav-current="data"></nav>
+      <button class="rmc-nav-toggle" type="button" aria-label="Open menu" data-nav-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container webstat-main">
+    <p class="rmc-eyebrow"><a href="/" id="back-home">Webstat</a> · this host</p>
+    <h1 class="webstat-title" id="server-name">Server logs</h1>
+    <p class="webstat-meta" id="meta">Loading latest.log…</p>
+    <p class="webstat-actions">
+      <button type="button" class="webstat-btn" id="btn-refresh">Refresh</button>
+      <label class="webstat-auto"><input type="checkbox" id="auto-refresh" checked> Auto 10s</label>
+      <a class="webstat-btn webstat-btn-secondary" id="btn-download" href="#">Download recent</a>
+    </p>
+    <pre class="webstat-log" id="log" aria-live="polite"></pre>
+  </main>
+
+  <footer class="webstat-footer container">
+    <p>
+      <a href="/">Catalog</a> ·
+      <a href="/api/logs/tail.json" id="link-tail">tail.json</a> ·
+      <a href="/api/health">health</a>
+    </p>
+  </footer>
+
+  <script src="https://rootmc.net/scripts/site-nav.js?v=20260726webstat" defer></script>
+  <script src="/logs.js"></script>
+</body>
+</html>

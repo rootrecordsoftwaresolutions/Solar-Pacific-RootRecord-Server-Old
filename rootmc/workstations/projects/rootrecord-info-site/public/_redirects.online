@@ -1,0 +1,8 @@
+/blog https://avaivy.cloud/blog 302
+/blog/* https://avaivy.cloud/blog/:splat 302
+/services /products 302
+/ava https://avaivy.cloud/wiki 301
+/ava/* https://avaivy.cloud/wiki/:splat 301
+# UUID-Website vanity paths → sites shell
+/*-Website /sites/index.html 200
+/api/site-config /api/site-config 200

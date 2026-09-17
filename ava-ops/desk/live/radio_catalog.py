@@ -1,0 +1,1 @@
+../../../radio/scripts/radio_catalog.py

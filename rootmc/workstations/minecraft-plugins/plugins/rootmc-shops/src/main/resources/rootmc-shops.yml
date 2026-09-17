@@ -1,0 +1,189 @@
+# RootMC Shops — chest-based player shops
+
+# File: plugins/RootMC/rootmc-shops.yml
+
+
+
+economy:
+  # Cap unit price at avg × (1 + percent/100). 0 or negative = uncapped.
+  max-price-percent-over-avg: 10
+
+fees:
+  shop-stock: 5.0
+
+towny:
+  require-shop-plot: true
+  shop-plot-type-names:
+    - shop
+
+messages:
+
+  prefix: ""
+
+  buy-hint: "&7You buy from &fplayer chest shops&7 at the &flowest in-stock price&7 — RootMC has &cno server shop&7."
+
+  buy-no-shops: "&eNo player chest shops are selling &f{item}&e in stock. There is no server shop — use `/buy` to find the cheapest chest listing."
+
+  buy-own-only: "&eYou have stock listed for &f{item}&e, but you can't buy from your own shop. Ask another player to run `/buy {item}`, or right-click your sign to test stock."
+
+  buy-quote-note: "&7Quote — lowest in-stock &fchest shops&7 at the same price (split fairly; sign click = that shop only):"
+
+  buy-split-many: "&8  Buying &f{qty}x {item}&7 from &f{count}&7 players @ &f{price}&7 G ea"
+
+  buy-split-success-many: "&aPurchased &f{qty}x {item}&a for &f{total}&a G from &f{count}&a players."
+
+  buy-sellers-header: "&7Player shops selling this item (&flowest price first&7):"
+
+  buy-seller-line: "&8  &a{seller}&7 — &f{price}&7 G ea · &f{stock}&7 in stock · &f{item}"
+
+  buy-sellers-more: "&8  &7…and &f{count}&7 more listings."
+
+  buy-split-line: "&8  &f{qty}x {item}&7 from &a{seller}&7 @ &f{price}&7 G ea (&f{stock}&7 in stock)"
+
+  buy-split-success: "&aPurchased &f{qty}x {item}&a for &f{total}&a G (split: &f{sellers}&a)."
+
+  shop-quote-note: "&7Quote from &fthis chest shop&7:"
+
+  shop-stock-gone: "&eThis chest shop is out of &f{item}&e."
+
+  buy-insufficient: "&cInsufficient gold. Need &f{total}&c G (balance: &f{balance}&c G)."
+
+  buy-stock-gone: "&eThat chest shop no longer has &f{item}&e in stock. Try `/buy {item}` again."
+
+  buy-cancelled: "&7Purchase cancelled."
+
+  shop-created: "&aShop created — &f{qty}x {item}&a for &f{total}&a G total (&f{price}&a G each)."
+
+  shop-removed: "&aShop removed."
+
+  shop-price-updated: "&aShop price updated — &f{total}&a G total for &f{qty}x&a (&f{price}&a G each)."
+
+  price-too-high: "&cPrice &f{price}&c exceeds cap &f{max}&c (avg &f{avg}&c)."
+
+  buy-success: "&aPurchased &f{qty}x {item}&a for &f{total}&a G from &f{seller}&a's chest shop."
+
+  buy-own-shop: "&eYou can't buy from your own shop."
+
+  sale-notify: "&a{buyer} &7bought &f{qty}x {item}&7 from your shop — gross &f{gross}&7 G, tax &f{tax}&7 G, you received &f{net}&7 G."
+
+  buy-seller-log: "Shop sale: {buyer} bought {qty}x {item} from {seller} for {total} G"
+
+  sell-hint: "&7You sell to &fplayer buy shops&7 at the &fbest price&7 — use &f/shop edittype buy&7 to run a buy shop."
+
+  sell-quote-note: "&7Quote — sell to the &fbest buy shops&7 at the same price (split fairly; sign click = that shop only):"
+
+  sell-split-many: "&8  Selling &f{qty}x {item}&7 to &f{count}&7 players @ &f{price}&7 G ea"
+
+  sell-split-success-many: "&aSold &f{qty}x {item}&a — gross &f{gross}&a G, tax &f{tax}&a G, received &f{net}&a G from &f{count}&a players."
+
+  sell-no-shops: "&eNo player buy shops want &f{item}&e right now. Try &f/shop edittype buy&7 to create one."
+
+  sell-no-items: "&eYou don't have any &f{item}&e to sell."
+
+  sell-buyers-header: "&7Player buy shops (&fbest price first&7):"
+
+  sell-buyer-line: "&8  &a{buyer}&7 — &f{price}&7 G ea · wants &f{capacity}&7 · &f{item}"
+
+  sell-buyers-more: "&8  &7…and &f{count}&7 more buy listings."
+
+  sell-split-line: "&8  &f{qty}x {item}&7 to &a{buyer}&7 @ &f{price}&7 G ea (wants &f{capacity}&7)"
+
+  sell-split-success: "&aSold &f{qty}x {item}&a for &f{net}&a G net (split: &f{buyers}&a)."
+
+  sell-all-quote-header: "&7Quote — sell all to player buy shops (shops only):"
+
+  sell-all-quote-line: "&8  &f{qty}x {item}&7 -> &a{buyer}&7 @ &f{each}&7 G — gross &f{gross}&7, tax &f{tax}&7, net &f{net}&7 G"
+
+  sell-all-quote-total: "&7Quote total — gross &f{gross}&7 G, tax &f{tax}&7 G, net &f{net}&7 G"
+
+  sell-all-result-line: "&a  Sold &f{qty}x {item}&a to &f{buyer}&a — gross &f{gross}&a G, tax &f{tax}&a G, received &f{net}&a G"
+
+  sell-all-complete: "&a/sell all complete: &f{lines}&a line(s) sold (&f{skipped}&a skipped) — gross &f{gross}&a G, tax &f{tax}&a G, received &f{net}&a G"
+
+  sell-all-none: "&eNothing was sold. Buy shops may be full or buyers can't afford the quoted items."
+
+  shop-sell-quote-note: "&7Quote — sell to &fthis buy shop&7:"
+
+  sell-owner-broke: "&e{buyer}&e can't afford &f{total}&e G right now."
+
+  shop-buy-full: "&eThat buy shop can't take any more &f{item}&e."
+
+  sell-cancelled: "&7Sale cancelled."
+
+  sell-success: "&aSold &f{qty}x {item}&a to &f{buyer}&a's buy shop — gross &f{gross}&a G, tax &f{tax}&a G, received &f{net}&a G."
+
+  sell-own-shop: "&eYou can't sell to your own buy shop."
+
+  buy-notify: "&a{seller} &7sold &f{qty}x {item}&7 to your buy shop for &f{total}&7 G."
+
+  sell-buyer-log: "Buy shop: {seller} sold {qty}x {item} to {buyer} for {total} G"
+
+  edit-type-updated: "&aShop is now a &f{type}&a shop. {hint}"
+
+  edit-type-unchanged: "&7Shop is already a &f{type}&7 shop."
+
+  edit-type-buy-hint: "&7Leave empty chest space; players use /sell or right-click your sign."
+
+  edit-type-sell-hint: "&7Stock the chest; players use /buy or right-click your sign."
+
+  buy-fail: "&cCould not buy &f{item}&c."
+
+  forbidden-item: "&cForbidden Item"
+
+  create-hold-item: "&eHold the item you want to sell in your main hand, then run &f/shop create [price]&e while looking at a chest or barrel."
+
+  create-look-container: "&eLook at an empty chest or barrel within reach, then run &f/shop create [price]&e."
+
+  create-need-shop-plot: "&cShops can only be created on Towny &fshop&c plots (&f/town set plot shop&c)."
+
+  create-adjacent-chest: "&cCan't merge a shop into a chest that already holds items. Empty it first, or use a &fbarrel&c / &ftrapped chest&c beside other shops."
+  create-already-here: "&cThat block already has a shop."
+  create-already-part-of-shop: "&cThat chest is already part of a shop. For another listing beside it, use a &fbarrel&7 or &ftrapped chest&7 (they don't merge with chests)."
+
+  shop-break-hint: "&7The shop sign was removed — you can break the chest or barrel now."
+
+  create-need-sign-space: "&eClear the block on the &fside of the chest you're facing&e for the shop sign."
+
+  create-stock-hint: "&7Nothing taken from your hand — put stock in the chest after you set the price."
+
+  create-sign-failed: "&cCould not place shop sign."
+
+  create-chest-full: "&cChest is full — make room for stock first."
+
+  create-enter-price: "&7Selling &f{qty}x {item}&7 — type the &ftotal gold for one purchase&7 in chat (&fcancel&7 to abort)."
+
+  create-invalid-price: "&eEnter a valid price number (&f/shop create 1&e or type in chat after &f/shop create&e)."
+
+  create-cancelled: "&7Shop creation cancelled."
+
+  create-already-pending: "&eFinish entering a price or type &fcancel&e first."
+
+  edit-enter-price: "&7Type the &ftotal gold for one purchase&7 in chat (current: &f{total}&7 G for &f{qty}x {item}&7 · &f{price}&7 G ea, &fcancel&7 to abort)."
+
+  edit-enter-qty: "&7Type &fitems per purchase&7 in chat (current: &f{qty}&7, max 64, &fcancel&7 to abort)."
+
+  edit-invalid-qty: "&eEnter a whole number from &f1&7 to &f64&7 (or &fcancel&e)."
+
+  edit-qty-exceeds-stock: "&eQty cannot exceed current stock (&f{stock}&e in chest)."
+
+  shop-qty-updated: "&aShop quantity updated to &f{qty}&a per purchase."
+
+  edit-cancelled: "&7Shop edit cancelled."
+
+  stock-confirm-prompt: "&7This action will cost &f{fee} G &7to pay a merchant to stock your shops from your inventory."
+  stock-insufficient: "&cNeed &f{fee} G&c for the merchant; you have &f{balance} G&c."
+  stock-nothing: "&eNo matching items in your inventory for your sell shops (or chests are full)."
+  stock-cancelled: "&7Shop stocking cancelled."
+  stock-success: "&aMerchant stocked &f{shops}&a shop(s) with &f{items}&a item(s) (&f{fee} G&a fee)."
+
+  protect-deny: "&cThat chest shop belongs to &f{owner}&c."
+
+  shops-usage: "&eUsage: &f/{label} <player>&e — browse a player's listings. &7Open shops GUI: &f/items&7 or &f/market&7 · Manage shop: &f/shop"
+  shops-player-not-found: "&eNo shop owner found matching &f{player}&e."
+  shops-player-empty: "&e&f{player}&e has no items listed for sale."
+  shops-gui-title: "{player}'s shops ({page}/{pages})"
+  shops-gui-prev: "Previous page"
+  shops-gui-next: "Next page"
+  shops-gui-hint: "Browse only — use /buy or the shop sign to purchase."
+  shops-gui-coords: "&7{player} sells &f{item}&7 @ &f{price} G&7 — &f{world}&7 &f{x}&7, &f{y}&7, &f{z}"
+

@@ -1,0 +1,1 @@
+../../../../origin/tests/test_hazard_daily_paths.py

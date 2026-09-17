@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mc_stone">#1A1A1A</color>
+    <color name="mc_dirt">#3B2F2F</color>
+    <color name="mc_grass">#3D7A3D</color>
+    <color name="mc_emerald">#17DD62</color>
+    <!-- Matches load.jpg edges for seamless splash -->
+    <color name="splash_background">#0F1410</color>
+
+    <style name="Theme.RootMC" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@color/mc_stone</item>
+        <item name="android:navigationBarColor">@color/mc_stone</item>
+        <item name="android:windowBackground">@color/mc_stone</item>
+    </style>
+
+    <style name="Theme.RootMC.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/splash_background</item>
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="postSplashScreenTheme">@style/Theme.RootMC</item>
+    </style>
+</resources>

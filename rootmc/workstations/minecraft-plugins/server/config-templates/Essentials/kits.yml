@@ -1,0 +1,16 @@
+# EssentialsX kits — RootMC Day 1 starter
+
+kits:
+  starter:
+    delay: -1
+    items:
+      - ironpickaxe 1
+      - ironaxe 1
+      - ironshovel 1
+      - ironhoe 1
+      - iron_sword 1
+      - baked_potato 16
+
+# Grant on first join via Essentials config:
+#   newbie-kit: starter
+# Or `/kit starter` once per player (delay -1).

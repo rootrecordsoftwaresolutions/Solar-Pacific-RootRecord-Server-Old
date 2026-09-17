@@ -1,0 +1,13 @@
+# Desk — live-directories
+
+Generated 2026-09-17T01:41:43-10:00. This folder is the ops desk for the topic.
+
+Open **this skill directory**. `desk/src` and `desk/ops` map related files.
+Runners live in `~/.ollama/skills/<fn>/scripts/` (Ava-Core / Core Ops copies are shims).
+`DAILY.md` is the processed hybrid-style summary. `CURRENT.md` is the map.
+Facts from this desk. `.env` stays closed.
+
+| In this desk | Live path |
+| --- | --- |
+| `desk/live/incremental_fs_index.py` | `/home/rootrecord/.ollama/skills/fs-index/scripts/incremental_fs_index.py` |
+

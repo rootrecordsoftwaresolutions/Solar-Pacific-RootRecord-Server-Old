@@ -1,0 +1,6 @@
+# Towny global lang overrides for RootMC.
+# Copy to plugins/Towny/settings/lang/override/global.yml on the live server.
+
+# RootMC: Towny new-day ping is replaced by Root-Essentials economy heartbeat.
+msg_new_day: ''
+msg_new_day_tax: ''

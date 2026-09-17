@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Local Clock</title>
+<style>
+  body {
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+    background: transparent;
+    color: white;
+    font-family: monospace;
+    font-size: 48px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<script>
+  function update() {
+    const now = new Date();
+    // Customize the format here
+    const options = {
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', second: '2-digit',
+      hour12: false
+    };
+    document.body.innerText = now.toLocaleString(undefined, options);
+  }
+  setInterval(update, 1000);
+  update();
+</script>
+</body>
+</html>

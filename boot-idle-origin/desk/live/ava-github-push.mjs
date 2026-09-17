@@ -1,0 +1,1 @@
+../../../git-auto-push/scripts/ava-github-push.mjs

@@ -1,0 +1,110 @@
+# Root-Rewards — plugins/RootMC/root-rewards.yml
+# MySQL: plugins/RootMC/database.yml
+
+playtime:
+  check-interval-seconds: 60
+  top-limit: 10
+  # Global playtime (prefix + playtime), scope=*
+  use-rootmc-playtime: true
+  rootmc-playtime-table: playtime
+
+vote:
+  gold-min: 1
+  gold-max: 20
+  # Appreciation Tokens per confirmed vote (queued if offline; backfilled on join).
+  appreciation-tokens: 1
+  broadcast-every: 5
+  broadcast-enabled: true
+  # Every confirmed vote → Discord #ingame-chat (earned + all-time totals).
+  discord-relay: true
+  # Claims: show /vote listener online when Towny NuVotifier is the network ingest.
+  network-listener: false
+  # Towny: also queue the same G amount onto Claims treasury (pending transfer).
+  mirror-to-claims: false
+  mirror-claims-server-id: "4963895e-0964-48b8-81b7-1f40a966e8be"
+  reminder-enabled: true
+  reminder-interval-seconds: 3600
+  reminder-after-hours: 24
+  # 5 confirmed listing votes in the last 24h → half transaction tax + half death loss while the window holds.
+  perk-votes: 5
+  perk-window-hours: 24
+  # Cooldown display for /vote timers (listing sites still enforce their own gates + Votifier).
+  # reset: rolling = hours since last confirmed vote; daily = next calendar reset at `at` in `timezone`.
+  links:
+    # Official: once per calendar day (not rolling 24h). Common ops use midnight Eastern.
+    - name: "Minecraft-MP"
+      url: "https://minecraft-mp.com/server/359724/vote/"
+      reset: daily
+      at: "00:00"
+      timezone: "America/New_York"
+    # Official help: once per day; new day at midnight UTC.
+    - name: "MinecraftServers.org"
+      url: "https://minecraftservers.org/vote/689134"
+      reset: daily
+      at: "00:00"
+      timezone: "UTC"
+    # Staff FAQ: fixed daily reset at midnight UTC (GMT+0).
+    - name: "Minecraft Server List"
+      url: "https://minecraft-server-list.com/server/521165/vote/"
+      reset: daily
+      at: "00:00"
+      timezone: "UTC"
+    # Official: once every calendar day (not rolling 24h). Votifier names vary:
+    # "Minecraft.Buzz", "Minecraft Buzz", "MinecraftBuzz" — all map to minecraft.buzz.
+    # Site gate is UTC calendar day (not Eastern) — Eastern midnight made /vote show
+    # [Button] for hours while Buzz still said "already voted today".
+    - name: "Minecraft.Buzz"
+      url: "https://minecraft.buzz/vote/21857"
+      reset: daily
+      at: "00:00"
+      timezone: "UTC"
+    # No clear official fixed clock; treat as rolling 24h from last vote.
+    - name: "TopMinecraftServers"
+      url: "https://topminecraftservers.org/vote/43816"
+      reset: rolling
+      hours: 24
+    # No clear official fixed clock; treat as rolling 24h from last vote.
+    - name: "MineRank"
+      url: "https://www.minerank.com/rootmc-top-tier-economy-server/vote"
+      reset: rolling
+      hours: 24
+    # Official blog: once every 24 hours (rolling).
+    - name: "MinecraftList.org"
+      url: "https://minecraftlist.org/vote/34144"
+      reset: rolling
+      hours: 24
+    # Official vote FAQ: once each day; timer resets at 12:00 AM EST (was rolling 24h).
+    - name: "Planet Minecraft"
+      url: "https://www.planetminecraft.com/server/rootmc/vote/"
+      reset: daily
+      at: "00:00"
+      timezone: "America/New_York"
+
+messages:
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  economy-missing: "&cEconomy is unavailable — ask staff."
+  playtime-grant: "&aPlaytime reward: &f+{gold} G&a (&7{milestone}&a)."
+  playtime-next: "&7Next milestone: &f{gold} G&7 at &f{time}&7 playtime (&f{remaining}&7 left)."
+  playtime-max: "&aYou have claimed all playtime milestones. Thank you for playing!"
+  playtime-status: "&7Total playtime: &f{played}&7 · claimed through &f{tier_label}"
+  playtime-other-status: "&7{player}&7's total playtime: &f{played}&7 · claimed through &f{tier_label}"
+  playtime-server-line: "&7  {server}: &f{played}"
+  playtime-player-not-found: "&cNo playtime record for &f{player}&c."
+  playtime-top-header: "&6Top &f{limit} &6playtime"
+  playtime-top-row: "&7{rank}. &f{player} &8— &f{played}"
+  playtime-top-you: "&7Your rank: &f#{rank} &7· &f{played}"
+  playtime-top-empty: "&7No playtime records yet."
+  vote-grant: "&aThanks for voting on &f{service}&a! &f{gold} G &7+ &f1 Appreciation Token &7+ &f1 Vote Shard&7 from the Server Reserve. &f5 votes / 24h&7 = &f½ tax + ½ death loss&7."
+  vote-discord-broadcast: "&6{player} &7voted on &f{service}&7 — &f+{gold} G&7 · all-time &f{total_gold} G&7 from &f{total_votes} &7votes · {perk}"
+  vote-milestone-broadcast: "&6{player} &7just voted and has earned a all time total of &f{total_gold}g &7from voting. Thank you for using &f/vote &7— &f5 votes / 24h&7 = &f½ tax + ½ death loss&7."
+  vote-perk-unlock: "&6{player} &7unlocked &f½ tax + ½ death loss &7for &f{remaining}&7 (5 listing votes). Keep it going with &f/vote&7!"
+  vote-no-votifier: "&eVote listener is not active — staff must install NuVotifier/VotifierPlus."
+  vote-links-header: "&6Vote for RootMC &7(&f+{gold_min}-{gold_max} G&7 + &f1 Appreciation Token&7 + &f1 Vote Shard&7 per site — paid from Server Reserve when the listing confirms):"
+  vote-link-line: "&8  &b{name}&7  &a[Button]"
+  vote-reminder: "&7You have not voted in &f24+ hours&7 — run &f/vote &7for &f{gold_min}-{gold_max} G&7, tokens, shards, and &f5 votes / 24h → ½ tax + ½ death&7."
+  vote-governance-header: "&6— Governance voting power —"
+  vote-governance-share: "&7Your share of total power: &f{percent}% &7(Council of Voters)"
+  vote-governance-not-linked: "&7Governance polls: link Discord at &fhttps://rootmc.net/verify &7then run &f/vote &7again."
+  vote-governance-not-eligible: "&7Governance polls: need a linked account and &f≥1 hour &7playtime. Policy: &fhttps://rootmc.net/wiki/constitution/#governance-voting"
+  reload-done: "&aRoot-Rewards config reloaded."

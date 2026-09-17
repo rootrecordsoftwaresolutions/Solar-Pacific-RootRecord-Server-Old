@@ -1,0 +1,1 @@
+../../../rootmc-android/android/settings.gradle.kts

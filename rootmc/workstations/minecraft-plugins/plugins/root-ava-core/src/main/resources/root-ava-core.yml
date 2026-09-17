@@ -1,0 +1,123 @@
+# Root-Ava-Core — plugins/RootMC/root-ava-core.yml
+enabled: true
+
+messages:
+  prefix: "&bAva &8· "
+  status-line: "&7v{version} &8· &f{online} online &8· &f{tps} TPS &8· &aAva companion online"
+  disabled: "&cRoot-Ava-Core is disabled."
+  no-permission: "&cNo permission."
+  reloaded: "&aRoot-Ava-Core reloaded."
+
+# Phase 1+ — Paper Mannequin body (follow / hang / wander).
+presence:
+  enabled: false
+  invulnerable: true
+  stack: native-mannequin
+  display-name: "&bAva Ivy"
+  skin-name: Ava_Ivy
+  skin-uuid: 78c3de61-0fd6-4800-9eda-cc178eaae34b
+  skin-texture: "ewogICJ0aW1lc3RhbXAiIDogMTc4NjE4MTExNzUxNywKICAicHJvZmlsZUlkIiA6ICI3OGMzZGU2MTBmZDY0ODAwOWVkYWNjMTc4ZWFhZTM0YiIsCiAgInByb2ZpbGVOYW1lIiA6ICJBdmFfSXZ5IiwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzYyM2VmNDJkMzBjYmViZGQ2YmNlNjlmNDU5NTc3MWQ0MWZlNzRhN2QyOTgwMDgyZmFmZGM3OTI0NGVmMjM2OWYiCiAgICB9CiAgfQp9"
+  use-world-spawn: true
+  world: ""
+  x: 0.5
+  y: 64.0
+  z: 0.5
+  yaw: 0.0
+  wander:
+    enabled: true
+    radius: 12.0
+    interval-ticks: 40
+  follow:
+    distance: 2.5
+    max-distance: 48.0
+    interval-ticks: 10
+    teleport-if-far: true
+
+# Real Ava_Ivy player powers (not Mannequin).
+powers:
+  invulnerable: true
+  judgment-kill: true
+  god-gear: true
+  permanent-buffs: true
+  haste-amplifier: 2
+  speed-amplifier: 1
+  ava-uuid: 78c3de61-0fd6-4800-9eda-cc178eaae34b
+  ava-name: Ava_Ivy
+  never-kill-names:
+    - Alexrs94
+    - Melee__
+    - Melee
+  never-kill-uuids:
+    - 3e660994-b16c-4714-bc15-9081aa928729
+  territory-buffer-blocks: 48
+
+# Player hire — Gold. Testing: hour/sidekick/mine/teardown = 1G.
+# Claim/minedown: no base. 0.01 G/block, +0.01 per 100k blocks (200k → 0.02/block).
+hire:
+  enabled: true
+  sidekick-gold: 1
+  sidekick-gold-per-minute: 0
+  sidekick-max-minutes: 30
+  hour-minutes: 60
+  hour-gold: 1
+  mine-base-gold: 1
+  mine-gold-per-block: 0
+  teardown-base-gold: 1
+  teardown-gold-per-block: 0
+  chunk-base-gold: 0
+  chunk-gold-per-block: 0.01
+  chunk-max-volume: 500000
+  minedown-base-gold: 0
+  minedown-gold-per-block: 0.01
+  minedown-max-volume: 8000
+  minedown-size: 3
+  default-radius: 8
+  max-radius: 24
+  max-volume: 12000
+  # Dig pace hardcoded: random 0–8/sec, max 480/min.
+  blocks-per-tick: 8
+  tick-period: 20
+  max-blocks-per-minute: 480
+  teardown-depth: 12
+  concurrent-jobs: 6
+  fleet-116: true
+
+# Own-claim work — gather, chests, gifts, homestead build. Home Ava keeps working while others hire.
+autonomy:
+  enabled: true
+  tick-seconds: 8
+  gather-blocks-per-tick: 8
+  gather-radius: 16
+  max-chests: 12
+  vacuum-radius: 6
+  pause-when-hired: false
+  place-chests: true
+  build-enabled: true
+  build-blocks-per-tick: 4
+  work-territory: true
+
+# Claim (+ territory) → .schem + summary JSON (plugins/RootMC/ava-schematics/).
+# /ava schem capture|dump|rebuild|stop — RCON SUMMARY lines for Ava core vision.
+schematics:
+  enabled: true
+  y-below: 32
+  y-above: 48
+  include-territory: true
+  territory-extra-blocks: 24
+  auto-capture-seconds: 300
+  build-enabled: true
+  build-blocks-per-tick: 6
+  build-period-ticks: 4
+
+# Wallet + rewards parity — playtime while working, milestones, /bonus, claim-bank spend.
+economy:
+  enabled: true
+  tick-seconds: 60
+  credit-playtime-while-working: true
+  pay-playtime-milestones: true
+  claim-bonus-when-online: true
+  auto-claim-bank-topup: true
+  bank-reserve-gold: 150
+  wallet-float-gold: 25
+  auto-expand: true
+  expand-max-per-hour: 2

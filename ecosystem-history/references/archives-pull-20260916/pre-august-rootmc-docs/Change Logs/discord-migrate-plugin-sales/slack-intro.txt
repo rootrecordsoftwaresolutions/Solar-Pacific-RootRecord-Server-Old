@@ -1,0 +1,39 @@
+﻿**RootMC — Plugin sales research (Jul 2026)**
+Channel for planning public paid plugins, web pages, and marketplace listings.
+
+---
+
+**1) Tier-1 paid marketplaces (primary sell targets)**
+
+**SpigotMC Resources (premium)**
+• https://www.spigotmc.org/resources/
+• Largest Java plugin audience; still the default place server owners look
+• Platform fee: **0%** — you keep 100% of sale; payments are buyer↔seller (usually PayPal)
+• Price cap: **$0.99–$19.99** USD
+• Seller gate (must meet before premium upload):
+  – Account ≥ 8 weeks old
+  – 80 forum posts + 20 positive ratings
+  – **3 free resources** published
+  – 2FA enabled
+• Approval often ~1 week; “low effort” / common genres can be rejected
+• **DRM / license keys that block the jar from running are prohibited** — plugin must work from downloaded file; obfuscation allowed with caveats
+• Guidelines: https://www.spigotmc.org/threads/premium-resource-guidelines.31667/
+• Best for: max discoverability + free funnel into paid products
+
+**BuiltByBit (ex MC-Market)**
+• https://builtbybit.com/resources/categories/minecraft-plugins.1/
+• Paid plugins browse: https://builtbybit.com/resources/minecraft/plugins/paid/
+• Creators: https://builtbybit.com/resources/creators
+• Platform fee: **~9.9%** + payment gateway fees; payouts via **Tebex wallet**
+• No hard Spigot-style $19.99 ceiling (higher prices OK; mins often ~$1.99–$5.99 by category)
+• Also sells maps, configs, models, **custom plugin commissions**
+• Pro seller features / referrals optional
+• Best for: premium buyers, higher price points, services + products
+
+**Polymart**
+• https://polymart.org/ — plugins: https://polymart.org/products/category/2/plugins
+• Modern marketplace with **built-in checkout**, buyer management, license delivery
+• Takes a **% fee per sale** (check current schedule on-site when listing)
+• Developer API (purchase verify / updates): https://www.polymart.org/wiki/api
+• Supports Spigot/Paper/Velocity/Bungee/etc. tags
+

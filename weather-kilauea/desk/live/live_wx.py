@@ -1,0 +1,1 @@
+../../../live-wx/scripts/live_wx.py

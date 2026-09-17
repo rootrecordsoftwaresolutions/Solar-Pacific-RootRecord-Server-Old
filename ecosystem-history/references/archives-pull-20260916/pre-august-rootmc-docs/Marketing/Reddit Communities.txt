@@ -1,0 +1,179 @@
+================================================================================
+  ROOTMC — REDDIT COMMUNITY LIST & POST TEMPLATE
+  Last updated: 2026-06-28
+================================================================================
+
+────────────────────────────────────────────────────────────────────────────────
+  TARGET SUBREDDITS
+────────────────────────────────────────────────────────────────────────────────
+
+  #   Community                    URL                                      Notes
+  ─   ───────────────────────────   ───────────────────────────────────────   ─────────────────────────────
+  1   mcservers                     reddit.com/r/mcservers/                   Classic server advertising
+  2   MinecraftSMPs                 reddit.com/r/MinecraftSMPs/               SMP-focused audience
+  3   MinecraftServerFinder         reddit.com/r/MinecraftServerFinder/       Discovery & recommendations
+  4   MinecraftServerShare          reddit.com/r/MinecraftServerShare/        Share your server listing
+  5   MinecraftServers              reddit.com/r/MinecraftServers/            General server listings
+
+  Full links (copy-paste):
+    https://www.reddit.com/r/mcservers/
+    https://www.reddit.com/r/MinecraftSMPs/
+    https://www.reddit.com/r/MinecraftServerFinder/
+    https://www.reddit.com/r/MinecraftServerShare/
+    https://www.reddit.com/r/MinecraftServers/
+
+
+────────────────────────────────────────────────────────────────────────────────
+  BEFORE YOU POST — CHECK EACH SUB'S RULES
+────────────────────────────────────────────────────────────────────────────────
+
+  • Read the subreddit rules and pinned posts first (many limit how often you
+    can advertise or require a specific post title format).
+
+  • Use the version below as a starting point — trim or expand to fit each
+    sub's template (IP, version, plugins, Discord, etc.).
+
+  • Do not spam the same post across all subs on the same day. Space posts out
+    and vary the title slightly.
+
+  • Be honest: we are a small, growing SMP — not a 500-player network.
+
+  • No pay-to-win. G (gold) is the only in-game currency. Mention $ROOTMC only
+    if a sub allows it and keep it brief (website memecoin, not in-game money).
+
+
+────────────────────────────────────────────────────────────────────────────────
+  SUGGESTED POST TITLE (pick one)
+────────────────────────────────────────────────────────────────────────────────
+
+  [SMP] RootMC — custom gold economy, live web stock market, no server shop [26.1]
+
+  RootMC | Survival SMP with a real player stock market synced to the website
+
+  Looking for economy-minded players — Towny, McMMO, chest shops + live market
+
+
+────────────────────────────────────────────────────────────────────────────────
+  POST BODY — COPY BELOW THIS LINE
+────────────────────────────────────────────────────────────────────────────────
+
+**RootMC** — survival SMP for players who like economies, towns, and trading
+with other people — not a server NPC shop.
+
+**Connect:** `play.rootmc.net` (Java **26.1**)
+**Website:** https://rootmc.net
+**Discord:** https://discord.gg/rFFQYrNaqS
+**Map:** https://map.rootmc.net
+
+---
+
+### What makes RootMC different (custom stack — not a generic plugin pack)
+
+Most SMPs bolt on Essentials + a shop plugin and call it a day. RootMC is built
+around a **custom in-house plugin suite** wired to **rootmc.net** and a linked
+**Android app**. A few things you will not find copy-pasted from a Spigot listing:
+
+**Live player stock market (web + in-game)**
+Chest shop prices sync to https://rootmc.net/market/ every ~5 minutes while the
+server is online. Browse listings, 24h price changes, and charts — then buy in
+game or from your linked account vault. **No server shop.** If nobody is selling
+it, nobody is selling it.
+
+**Closed-loop gold economy (G) + public Server Reserve**
+Gold is backed by in-game gold ingots. Taxes, Towny founding/claims, shop fees,
+and votes flow into a **Server Reserve** treasury — tracked publicly at
+https://rootmc.net/reserve/ with daily balance and money-flow charts. Play **20+
+hours in a month** and you can qualify for the **Activity Dividend** (a share of
+that month's net pool). Economy is transparent, not a black box.
+
+**Towny without daily upkeep taxes**
+Claims cost gold up front (escalating per plot) — no daily town/plot tax drain.
+Found a nation, grow a town, run shop plots. Personal **/loan** borrowing exists
+for startup costs (community-voted feature).
+
+**RootMC-Shops — chest shops with bulk stock**
+QuickShop-style flow: create a shop on a chest/barrel, set a stack price, stock
+the container. **/shop stock** pays a merchant to bulk-fill your sell shops from
+inventory. **/buy** and **/sell** find the best player prices across the server.
+
+**Chunk survey (/survey)**
+Pay a surveyor for a one-shot report on the chunk you're standing in (slime chunk
+check, biome info) — a small gold sink with a practical use for builders.
+
+**Account linking → web + Discord + app**
+**/rootmc link** ties Minecraft to Discord. Unlocks public stats, leaderboards,
+governance votes, in-game **/rootmc waypoint** and **/rootmc note** sync to the
+**RootMC Android app**, and offline purchases into your in-game vault.
+
+**Player governance**
+Major server changes (like enabling loans) go through **Discord proposals** —
+only linked accounts vote. Season arcs and community direction are player-driven.
+
+**McMMO + web mirror**
+Classic McMMO progression on a slower curve; skill stats appear on the site after
+you link. Net worth leaderboards combine wallet, inventory, and shop stock.
+
+**Live map**
+BlueMap at map.rootmc.net — explore before you join.
+
+---
+
+### Core gameplay
+
+| Feature        | Details                                              |
+|----------------|------------------------------------------------------|
+| Version        | Minecraft Java 26.1 (Paper)                          |
+| World          | Survival, Towny towns/nations, McMMO skills          |
+| Economy        | Player chest shops, gold (G), no pay-to-win          |
+| Shops          | Player-run only — `/buy`, `/sell`, `/shop create`    |
+| Towns          | Towny — claim costs gold, shop plots supported       |
+| Community      | Discord announcements, wiki at rootmc.net/wiki       |
+
+---
+
+### Who we're looking for
+
+• Players who enjoy **trading, building towns, and shaping an economy**
+• Builders and shop owners who want their prices on a **real market page**
+• People okay with a **smaller, active** community over a crowded hub
+
+---
+
+### Quick links
+
+• Market (live shop prices): https://rootmc.net/market/
+• Leaderboards: https://rootmc.net/leaderboard/
+• Player wiki: https://rootmc.net/wiki/player/
+• Link account: https://rootmc.net/verify/
+
+Hope to see you in-game. Questions welcome in Discord or here in the comments.
+
+
+────────────────────────────────────────────────────────────────────────────────
+  SHORT VERSION (for strict character limits)
+────────────────────────────────────────────────────────────────────────────────
+
+**RootMC** SMP — `play.rootmc.net` (Java 26.1)
+
+Custom economy SMP: **no server shop**, player chest shops feed a **live stock
+market on rootmc.net**, public **Server Reserve** + monthly **Activity Dividend**
+for active players, Towny (claim-cost, no daily taxes), McMMO, personal loans,
+chunk **/survey**, account linking to Discord + Android app.
+
+Discord: https://discord.gg/rFFQYrNaqS · Map: https://map.rootmc.net
+
+Looking for economy/trading-minded players. DM or reply if you want a tour.
+
+
+────────────────────────────────────────────────────────────────────────────────
+  POSTING CHECKLIST
+────────────────────────────────────────────────────────────────────────────────
+
+  [ ] Read subreddit rules and required post format
+  [ ] Pick title variant (not identical across subs)
+  [ ] Paste body; adjust length if sub has a character cap
+  [ ] Verify play.rootmc.net and links work before posting
+  [ ] Reply to comments within 24h when possible
+  [ ] Log which sub + date you posted (avoid duplicate spam)
+
+================================================================================

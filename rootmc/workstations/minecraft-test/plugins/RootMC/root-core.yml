@@ -1,0 +1,121 @@
+# Root-Core — plugins/RootMC/root-core.yml
+# Get a free product key at {site.base}{site.keys-path} (default: https://rootmc.net/developer/keys/).
+# Leave cloud.api-base / license.api-base as RootMC unless you mirror the Worker yourself.
+
+server-name: ""
+product-key: ""
+
+# Cloudflare / RootMC edge — public URLs other hosts can override (no account tokens here).
+cloud:
+  # Worker data plane (heartbeat, economy sync, shops, …). Gen2 hosts may use https://api2.rootmc.net
+  api-base: "https://api.rootmc.net"
+  # Filled by bind into cloud.yml (shared). Optional mirror of server-id only — never put secrets here long-term.
+  server-id: ""
+  server-secret: ""
+
+license:
+  mode: operator
+  verify-remote: false
+  # Product-key bind + presence (same Worker as cloud.api-base by default)
+  api-base: "https://api.rootmc.net"
+  # Set true only on RootMC operator PCs that intentionally use the local tunnel edge
+  force-local-edge: false
+  presence-interval-minutes: 5
+  # Reachable host:port advertised on presence (required for My Servers mesh). Prefer transfer.advertise.
+  server-address: ""
+
+transfer:
+  enabled: true
+  # Public join for this test world (Playit / custom domain).
+  advertise: play.avaivy.cloud:25565
+  poll-minutes: 1
+  evacuate-on-stop: true
+  evacuate-to: claims
+  evacuate-delay-ticks: 40
+  local-peers:
+    claims:
+      enabled: true
+      host: play.rootmc.net
+      port: 25565
+      label: Claims
+      aliases: [play, c, gen2]
+    ava:
+      enabled: true
+      host: play.avaivy.cloud
+      port: 25565
+      label: Ava
+      aliases: [test, world]
+
+site:
+  base: "https://rootmc.net"
+  keys-path: "/developer/keys/"
+  # Catalog / suite auto-updater manifest (Cloudflare Pages)
+  plugins-manifest: "https://rootmc.net/plugins/manifest.json"
+
+updater:
+  enabled: true
+  # Blank = use site.plugins-manifest
+  manifest-url: ""
+  interval-hours: 6
+  plugins: []
+  only-installed: false
+  # Install every jar in the public manifest (ignore only-installed / allowlist).
+  force-ensure-all: true
+  # Extra ids when force-ensure-all is false. force-ensure-all still downloads the full catalog.
+  ensure:
+    - root-ava-core
+    - root-times
+    - root-perms
+    - root-economy
+    - root-essentials
+    - root-claims
+    - root-territories
+    - root-play
+    - root-skills
+    - root-ops
+    - root-appreciation
+    - root-chestshops
+    - root-market
+    - root-gamble
+    - root-iteminfo
+    - root-webstat
+    - root-ping
+    - root-try
+    - root-referrals
+    - root-memberships
+    - root-haste
+    - root-heads
+    - root-bluemap-r2-fix
+    - rootmc
+    - rootmc-official
+  require-product-key: false
+  # After downloading newer jars, countdown via Root-Restart (same as midnight) + restart-helper
+  restart-after-update: true
+  # Only auto-restart inside the least-active (maintenance) window; otherwise defer
+  restart-in-maintenance: true
+  restart-delay-seconds: 30
+
+repair:
+  on-reload: true
+
+logging:
+  verbose: false
+
+# Discord chat + Slack server-logs (formerly root-discord.yml). Secrets stay in cloud.yml.
+comms:
+  discord:
+    chat:
+      enabled: true
+      # T = Towny, C = Claims (normalized from GEN1/GEN2 aliases)
+      server-tag: T
+      # Used only when discord.roles.linked in cloud.yml is blank.
+      allowed-role-id: ""
+      relay-chat: true
+      relay-join: true
+      relay-leave: true
+      relay-death: true
+      relay-reachout: true
+      inbound-format: "&8▎ &9Discord&8│ &f{user}&8 &7»&f {message}"
+  slack:
+    server-logs:
+      enabled: true

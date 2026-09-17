@@ -1,0 +1,189 @@
+9/12/26, 9:11 PM                                                         qPublic - Hawai'i County, HI - Report: 110310970000
+
+
+
+
+      Parcel Information
+        Parcel Number                   110310970000
+        Location Address                11-1977 LEILA ROAD
+        Project Name                    Fern Forest Vacation Estates
+        Property Class                  AGRICULTURAL
+                                        Property Class refers to Tax Classification ONLY. For Zoning information, please go to
+                                        Planning Department GIS Public Layers (hawaiicounty.gov) or email planning@hawaiicounty.gov
+        Neighborhood Code               1131-5
+        Legal Information               LOT 38 3.000 AC BLK K-K MAP 52 LCAPP 1053
+        Land Area (acres)               3.0000
+        Land Area (approximate sq ft)   130,680
+
+        View Map
+        Plat (TMK) Maps
+      Owner Information
+        Owner Names                                                                          Mailing Address
+        BERG,MICHAEL JON Fee Owner, Joint Tenancy                                            BERG,MICHAEL JON
+        PEDRONCELLI,CORINNE MARGARET Fee Owner                                               351 E BROADWAY ST
+         Show All Owners and Addresses                                                      DIXON CA 95620 3518
+
+
+      Assessment Information
+                                                                              Show Historical Assessments
+                                            Market                       Assessed     Market          Assessed          Total          Total            Total       Total
+                                             Land        Dedicated         Land       Building        Building         Market         Assessed        Exemption    Taxable
+          Year        Property Class        Value        Use Value        Value         Value           Value          Value           Value            Value       Value
+          2026       AGRICULTURAL           $35,700          $0           $35,700       $223,100         $223,100     $258,800        $258,800            $0       $258,800
+
+
+      Land Information
+         Property Class                                       Square Footage                       Acreage                            Agricultural Use Indicator
+         AGRICULTURAL                                             130,680                            3
+
+
+      Residential Improvement Information
+        Building Number     1                                                                Bedrooms         2
+        Year Built          1999                                                             Framing          DOUBLE WALL
+        Eff Year Built      1999                                                             Exterior Wall    PLYWOOD
+        Square Feet         1,152                                                            Roof Material    CORRUGATED IRON
+        Total Room Count    4                                                                Heating/AC       NONE
+        Full Baths          2                                                                Fireplace        0
+        Half Baths          0                                                                Grade            2
+
+
+      Sketches
+
+
+
+
+https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=110310970000                                                                              1/4
+9/12/26, 9:11 PM                                                       qPublic - Hawai'i County, HI - Report: 110310970000
+
+
+
+
+                                                                            Building 1
+
+
+
+      Other Building and Yard Improvements
+         Description                                                   Quantity               Year Built                   Area                     Gross Building Value
+         WOOD STORAGE ENCLOSED                                         1                      1999                          400                                  $7,600
+
+
+      Permit Information
+        The permit data reflected in this section is for the purposes of Real Property Tax assessments. For Building permit information
+        or updates, please refer to the link below under the Building Division Permit and Inspections Information.
+         Date                     Permit Number                       Reason               Status                                                        Permit Amount
+         5/15/2000                000657                                                   PERMIT COMPLETED                                                      $5,000
+         4/26/1999                990435                                                   PERMIT COMPLETED                                                     $51,936
+
+
+      Building Division Permit & Inspections Information
+         https://hawaiicountyhi-energovpub.tylerhost.net/Apps/SelfService#/home
+
+
+      Sales Information
+                                                                                                           Land Court
+                          Sale                       Instrument            Instrument         Date          Document                       Conveyance
+         Sale Date      Amount Instrument #                Type            Description    Recorded           Number     Cert # Book/Page          Tax   Document Type
+         05/14/2010     $45,000                          FEE         Warranty Deed       05/28/2010         3967436 983727                       67.5    Warranty Deed
+                                                  CONVEYANCE
+         09/25/2009    $114,750                          FEE            Foreclosure      10/29/2009         3910911 962722                      172.1       Foreclosure
+                                                  CONVEYANCE            Conveyance                                                                          Conveyance
+                                                                         Document                                                                            Document
+         08/18/2009          $0                          OTHER          Affidavit (all   09/03/2009         3894299 747642                         0        Affidavit (all
+                                                                              types)                                                                              types)
+         04/19/2005     $85,000                          FEE       Land Court Deed       05/09/2005         3265733 747642                        85    Land Court Deed
+                                                  CONVEYANCE
+         12/01/1999      $4,500 0000000000               FEE         Quitclaim deed      12/15/1999         2595158 544912                       0.00    Quitclaim deed
+                                                  CONVEYANCE
+         08/31/1999          $0 0000000000               FEE         Quitclaim deed      09/10/1999         2573873 539145                               Quitclaim deed
+                                                  CONVEYANCE
+         12/01/1998      $2,000 0000000000               FEE         Warranty Deed       01/12/1999         2513172 524568                       2.00    Warranty Deed
+                                                  CONVEYANCE
+         10/27/1998      $4,500 0000000000               FEE         Warranty Deed       11/13/1998         2499520 520933                       4.50    Warranty Deed
+                                                  CONVEYANCE
+
+
+https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=110310970000                                                                             2/4
+9/12/26, 9:11 PM                                                           qPublic - Hawai'i County, HI - Report: 110310970000
+
+
+      Current Tax Bill Information
+                                                                                Original             Taxes       Tax             Net
+         Tax Period   Description                                               Due Date       Assessment     Credits            Tax    Penalty    Interest   Other   Amount Due
+         2026-2       Real Property Tax                                         02/22/2027           $0.00     $0.00    $1,209.89        $0.00       $0.00    $0.00     $1,209.89
+                      Tax Bill with Interest computed through 10/13/2026                             $0.00     $0.00    $1,209.89        $0.00       $0.00    $0.00     $1,209.89
+
+                                                              Pay online at http://payments.ehawaii.gov/propertytax/hawaii
+                                                                            Other Payment Options Click Here
+
+      Historical Tax Information
+                                                                            Payments                                                                                  Amount
+         Year                 Tax                                          and Credits              Penalty                  Interest             Other                 Due
+          2025               $2,414.17                                    ($2,414.17)                $0.00                    $0.00              $0.00                $0.00
+          2024               $2,294.49                                    ($2,294.49)                $0.00                    $0.00              $0.00                $0.00
+          2023               $2,146.76                                    ($2,146.76)                $0.00                    $0.00              $0.00                $0.00
+          2022               $2,081.31                                    ($2,081.31)                $0.00                    $0.00              $0.00                $0.00
+          2021               $1,738.17                                    ($1,738.17)                $0.00                    $0.00              $0.00                $0.00
+          2020               $1,704.51                                    ($1,704.51)                $0.00                    $0.00              $0.00                $0.00
+          2019               $1,586.70                                    ($1,586.70)                $0.00                    $0.00              $0.00                $0.00
+          2018               $1,502.55                                    ($1,502.55)                $0.00                    $0.00              $0.00                $0.00
+          2017               $1,465.15                                    ($1,465.15)                $0.00                    $0.00              $0.00                $0.00
+          2016               $1,390.28                                    ($1,390.28)                $0.00                    $0.00              $0.00                $0.00
+          2015               $1,280.21                                    ($1,280.21)                $0.00                    $0.00              $0.00                $0.00
+          2014               $1,292.23                                    ($1,292.23)                $0.00                    $0.00              $0.00                $0.00
+          2013               $1,238.58                                    ($1,238.58)                $0.00                    $0.00              $0.00                $0.00
+          2012               $1,157.31                                    ($1,157.31)                $0.00                    $0.00              $0.00                $0.00
+          2011               $1,145.62                                    ($1,145.62)                $0.00                    $0.00              $0.00                $0.00
+          2010               $100.00                                       ($100.00)                 $0.00                    $0.00              $0.00                $0.00
+          2009               $100.00                                       ($100.00)                 $0.00                    $0.00              $0.00                $0.00
+          2008               $100.00                                       ($100.00)                 $0.00                    $0.00              $0.00                $0.00
+          2007               $100.00                                       ($100.00)                 $0.00                    $0.00              $0.00                $0.00
+          2006               $301.92                                       ($301.92)                 $0.00                    $0.00              $0.00                $0.00
+          2005               $124.65                                       ($124.65)              ($12.47)                  ($5.48)              $0.00                $0.00
+          2004               $75.00                                          ($75.00)              ($3.75)                  ($0.83)              $0.00                $0.00
+          2003               $75.00                                          ($75.00)                $0.00                    $0.00              $0.00                $0.00
+          2002               $25.00                                          ($25.00)                $0.00                    $0.00              $0.00                $0.00
+          2001               $25.00                                          ($25.00)                $0.00                    $0.00              $0.00                $0.00
+          2000               $25.00                                          ($25.00)                $0.00                    $0.00              $0.00                $0.00
+
+
+      Map
+
+
+
+
+https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=110310970000                                                                                    3/4
+9/12/26, 9:11 PM                                                         qPublic - Hawai'i County, HI - Report: 110310970000
+
+
+      Recent Sales in Area
+        Sale date range:
+        From:                        To:
+
+            09/13/20                       09/13/20
+
+
+            Search Sales by Neighborhood
+
+
+            Search Sales by Subdivision
+
+        Distance:                    Units:
+                                                                      Search Sales by Distance
+            1500                           Feet
+
+
+
+      No data available for the following modules: Condominium/Apartment Unit Information, Agricultural Assessment Information, Commercial Improvement Information.
+
+                The County of Hawaii Real Property Tax Office makes every effort to produce the most accurate          Contact Us                Developed by
+                information possible. No warranties, expressed or implied are provided for the data herein, its
+                use or interpretation. The assessment information is from the last certified tax roll. All other
+                data is subject to change.
+                | User Privacy Policy | GDPR Privacy Notice
+                Last Data Upload: 9/12/2026, 8:55:31 PM
+
+
+
+
+https://qpublic.schneidercorp.com/Application.aspx?AppID=1048&PageTypeID=4&KeyValue=110310970000                                                                      4/4
+

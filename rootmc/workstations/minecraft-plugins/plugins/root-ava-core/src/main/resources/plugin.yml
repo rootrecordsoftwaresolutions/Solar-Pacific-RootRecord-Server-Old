@@ -1,0 +1,29 @@
+name: Root-Ava-Core
+version: '${version}'
+main: com.rootrecord.minecraft.rootavacore.RootAvaCorePlugin
+api-version: '26.1'
+description: Ava companion — /ava help, hire work orders (resume after restart), presence, Ava_Ivy powers
+author: Root Record
+website: https://rootmc.net/plugins/
+depend: [Root-Core]
+softdepend: [Root-Claims, Root-Economy, Vault]
+commands:
+  ava:
+    description: Ava companion — /ava help, status, hire, gift, work
+    usage: /<command> [help|hire|fill|layer|chest|speed|work|gift|eco|presence|play|stop]
+permissions:
+  rootavacore.use:
+    description: Use /ava help, status, and hire
+    default: true
+  rootavacore.hire:
+    description: Hire Ava as sidekick / dig help
+    default: true
+  rootavacore.admin:
+    description: Reload, presence control, judgment, gear
+    default: op
+  rootavacore.presence:
+    description: Control Ava Mannequin presence
+    default: op
+  rootavacore.judgment:
+    description: Ava judgment kill (admin / console)
+    default: op

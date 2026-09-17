@@ -1,0 +1,20 @@
+name: Root-Heads
+version: '${version}'
+main: com.rootrecord.minecraft.rootheads.RootHeadsPlugin
+api-version: '26.1'
+description: Cosmetic mob and PvP player head drops
+author: Root Record
+website: https://rootmc.net
+depend: [Root-Core]
+commands:
+  rootheads:
+    description: Root-Heads admin tools
+    usage: /rootheads reload | give <player> <mob> [amount] | inspect
+    aliases: [rheads, heads]
+permissions:
+  rootheads.admin:
+    description: Reload and grant Root-Heads
+    default: op
+  rootheads.drops:
+    description: Receive mob head drops
+    default: true

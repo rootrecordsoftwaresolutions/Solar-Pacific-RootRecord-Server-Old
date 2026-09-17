@@ -1,0 +1,47 @@
+name: Root-Core
+version: '${version}'
+main: com.rootrecord.minecraft.rootcore.RootCorePlugin
+api-version: '26.1'
+description: Central connection, cloud identity, license, and Discord/Slack comms for RootMC plugins.
+author: RootMC
+website: https://rootmc.net
+softdepend: []
+loadbefore:
+  - RootMC
+  - Root-Essentials
+  - Root-Activity
+  - Root-Bonds
+  - Root-Loans
+  - Root-Admin
+  - Root-Times
+  - Root-Rewards
+  - Root-Tokens
+  - Root-Upkeep
+  - Root-Spawn
+  - Root-Ranks
+  - Root-Announcer
+  - Root-Territories
+  - Root-Mapper
+  - Root-ItemInfo
+  - Root-Banner
+  - Root-Potions
+  - Root-Restart
+  - RootMC-Shops
+  - RootHelp
+commands:
+  rootcore:
+    description: Root-Core status, network connect check, reload, and comms
+    usage: /rootcore <status|connect|reload|license|update|comms>
+    permission: rootcore.admin
+  goto:
+    description: Transfer to another RootMC mesh server
+    usage: /goto <server>
+    permission: rootcore.goto
+    aliases: [toclaims, totowny, gen2, gen1, totest, toava, toplay]
+permissions:
+  rootcore.admin:
+    description: Administer Root-Core
+    default: op
+  rootcore.goto:
+    description: Use /goto transfer mesh
+    default: true

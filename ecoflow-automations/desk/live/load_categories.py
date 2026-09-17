@@ -1,0 +1,1 @@
+../../../load-categories/scripts/load_categories.py

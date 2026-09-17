@@ -1,0 +1,1 @@
+../../../companions/scripts/start-ava-companions.sh

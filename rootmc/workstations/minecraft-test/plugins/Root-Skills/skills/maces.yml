@@ -1,0 +1,12 @@
+id: maces
+display-name: Maces
+enabled: true
+max-level: 1000
+icon: MACE
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 12
+  action: 5
+talents:
+  - maces_crush

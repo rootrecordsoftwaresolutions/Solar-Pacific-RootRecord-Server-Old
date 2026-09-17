@@ -1,0 +1,1 @@
+../../../ollama-client/scripts/ollama.py

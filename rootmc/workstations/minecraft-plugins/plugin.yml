@@ -1,0 +1,20 @@
+name: Root-Restart
+version: '1.0.5'
+main: com.rootrecord.minecraft.rootrestart.RootRestartPlugin
+api-version: '26.1'
+description: Graceful server restart with broadcast countdown (manual + daily HST midnight)
+author: Root Record
+website: https://rootmc.net
+softdepend: [RootMC]
+commands:
+  rootrestart:
+    description: Graceful server restart with countdown
+    usage: /rootrestart [cancel]
+    aliases: [rrrestart]
+permissions:
+  rootrestart.admin:
+    description: Start a manual restart countdown with /rootrestart
+    default: op
+  rootrestart.cancel:
+    description: Cancel a pending restart countdown
+    default: op

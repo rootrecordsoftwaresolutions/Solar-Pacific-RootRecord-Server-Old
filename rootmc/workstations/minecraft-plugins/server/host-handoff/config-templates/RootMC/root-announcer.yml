@@ -1,0 +1,54 @@
+# RootMC Announcer — plugins/RootMC/root-announcer.yml
+
+
+
+enabled: true
+
+interval-seconds: 300
+
+random-order: true
+
+require-min-players: 1
+
+
+
+messages:
+
+  prefix: "&8[&6RootMC&8]&r "
+
+  lines:
+
+    - "&7Welcome to &fRootMC&7! Use &f/cmds &7for commands."
+
+    - "&7Join the community: &f/discord"
+
+    - "&7Need help? Use &f/rules &7or &f/cmds &7— or ask in chat / &f/discord&7."
+
+    - "&7We take pride in being a server that listens to its community. Use &f/feedback &7to suggest new features, report bugs, or share your opinion."
+
+    - "&7Player shops: hold the item, look at a chest or barrel, run &f/shop create&7, then type your price in chat."
+
+    - "&7Vote for the server: &f/vote"
+
+    - "&7Server Reserve stats: &f/reserve &7· vote rewards: &f/vote"
+
+    - "&7Don't want rotating tips? Use &f/announcer &7to toggle them off."
+
+  no-permission: "&cYou do not have permission."
+
+  players-only: "&cPlayers only."
+
+  toggle-on: "&aRootMC announcements enabled."
+
+  toggle-off: "&7RootMC announcements disabled. Use &f/announcer &7to turn them back on."
+
+  toggle-status-on: "&7Announcements: &aON &7— use &f/announcer off &7to hide them."
+
+  toggle-status-off: "&7Announcements: &eOFF &7— use &f/announcer &7to enable them."
+
+  reload-done: "&aRoot-Announcer reloaded."
+
+  no-lines: "&eNo announcement lines configured."
+
+  broadcast-sent: "&aAnnouncement sent."
+

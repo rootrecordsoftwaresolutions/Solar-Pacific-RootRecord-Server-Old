@@ -1,0 +1,31 @@
+name: Root-Appreciation
+version: '${version}'
+main: com.rootrecord.minecraft.rootappreciation.RootAppreciationPlugin
+api-version: '26.1'
+description: Appreciation Tokens — /thanks stats, /bonus streak, right-click redeem
+author: Root Record
+website: https://rootmc.net
+depend: [Root-Core]
+softdepend: [Root-Economy, Root-Gamble]
+commands:
+  thanks:
+    description: Appreciation Token stats and admin issue/redeem
+    usage: /thanks | /thanks redeem [amount] | (console) /thanks give <player> <amount>
+    aliases: [appreciation, apptoken]
+  bonus:
+    description: Claim daily Appreciation Token streak bonus
+    usage: /bonus
+  voteshard:
+    description: Vote Shard explainer, [Buy Voteshards], power, and craft
+    usage: /voteshard | /voteshard power | /voteshard craft | /voteshard merge
+    aliases: [voteshards, voteshares]
+permissions:
+  rootappreciation.use:
+    description: Use /thanks and /bonus
+    default: true
+  rootappreciation.admin:
+    description: Reload Root-Appreciation config
+    default: op
+  rootappreciation.redeem:
+    description: Redeem Appreciation Tokens (right-click or /thanks redeem)
+    default: true

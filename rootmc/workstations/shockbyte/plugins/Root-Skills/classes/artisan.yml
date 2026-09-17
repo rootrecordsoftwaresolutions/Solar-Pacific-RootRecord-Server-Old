@@ -1,0 +1,12 @@
+﻿id: artisan
+display-name: Artisan
+description: Gathering and crafting focus — mining, woodcutting, repair.
+primary-skills: [mining, woodcutting, repair, smelting]
+starting-talents: []
+skill-multipliers:
+  mining: 1.25
+  woodcutting: 1.25
+  repair: 1.25
+  smelting: 1.2
+  excavation: 1.1
+  swords: 0.9

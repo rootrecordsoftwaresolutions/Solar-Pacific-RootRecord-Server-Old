@@ -1,0 +1,40 @@
+# Trigger registry — keys consumed by talents / effects
+# Format: trigger-id: short description
+
+triggers:
+  on_block_break: Fired when a player breaks a block
+  on_block_place: Fired when a player places a block
+  on_crop_harvest: Fired when a player harvests a crop
+  on_fish_catch: Fired when a fishing rod catches something
+  on_entity_damage: Fired when a player damages an entity
+  on_entity_kill: Fired when a player kills an entity
+  on_player_damage: Fired when a player takes damage
+  on_fall: Fired when a player takes fall damage
+  on_dodge: Fired when a dodge roll or avoidance check succeeds
+  on_critical_hit: Fired when a melee critical lands
+  on_arrow_hit: Fired when a player arrow hits a target
+  on_crossbow_hit: Fired when a crossbow bolt hits a target
+  on_trident_hit: Fired when a thrown trident hits a target
+  on_mace_smash: Fired when a mace smash attack lands
+  on_spear_jab: Fired when a spear jab lands
+  on_shield_block: Fired when a shield successfully blocks
+  on_elytra_boost: Fired when a player firework-boosts while gliding
+  on_elytra_land: Fired when a player lands after elytra flight
+  on_repair: Fired when a player repairs an item
+  on_salvage: Fired when a player salvages an item
+  on_smelt: Fired when a furnace finishes smelting for a player
+  on_brew: Fired when a brewing stand finishes for a player
+  on_tame: Fired when a player tames an animal
+  on_level_up: Fired when a skill levels up
+  on_talent_unlock: Fired when a talent is unlocked
+  on_party_join: Fired when a player joins a skills party
+  on_mana_empty: Fired when mana reaches zero
+  on_mana_full: Fired when mana is fully restored
+  on_combat_enter: Fired when a player enters combat
+  on_combat_exit: Fired when a player leaves combat
+  on_sneak: Fired when a player starts sneaking
+  on_sprint: Fired when a player starts sprinting
+  on_right_click: Fired on player right-click interaction
+  on_left_click: Fired on player left-click interaction
+  on_ability_activate: Fired when an active ability is activated
+  on_ability_expire: Fired when an active ability expires

@@ -1,0 +1,20 @@
+[Unit]
+Description=Ava Telegram Council (Ava/Bruce/Carly long-poll)
+After=network-online.target
+Wants=network-online.target
+ConditionPathExists=%h/.ollama/skills/state/store/ava-console-up
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rootrecord/.ollama/skills/origin
+EnvironmentFile=%h/.config/ava-council/secrets.env
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=/home/rootrecord/.ollama/skills/origin/ns:/home/rootrecord/.ollama/skills/origin
+# Prefer Ava-Core .venv if present; installer rewrites ExecStart when deploying.
+ExecStart=/home/rootrecord/.ollama/skills/origin/.venv/bin/python -m apps.council
+Restart=on-failure
+RestartSec=5
+# Do not put tokens in this unit — EnvironmentFile only.
+
+[Install]
+WantedBy=default.target

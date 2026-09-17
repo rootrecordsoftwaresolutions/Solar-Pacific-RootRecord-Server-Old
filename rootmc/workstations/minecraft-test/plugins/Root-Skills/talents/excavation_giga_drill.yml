@@ -1,0 +1,18 @@
+id: excavation_giga_drill
+display-name: Giga Drill Breaker
+description: Break dirt/sand faster for a short duration.
+skill: excavation
+unlock-level: 50
+max-rank: 1
+mana-cost: 15
+cooldown-seconds: 240
+duration-seconds: 15
+triggers:
+  - on_ability_activate
+effects:
+  - id: GIGA_DRILL
+  - id: MESSAGE
+    text: '&eGiga Drill activated!'
+  - id: SOUND
+    sound: ENTITY_PLAYER_LEVELUP
+conditions: []

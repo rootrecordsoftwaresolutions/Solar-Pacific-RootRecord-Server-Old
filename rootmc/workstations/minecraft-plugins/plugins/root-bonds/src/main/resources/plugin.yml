@@ -1,0 +1,26 @@
+name: Root-Bonds
+version: '${version}'
+main: com.rootrecord.minecraft.rootbonds.RootBondsPlugin
+api-version: '26.1'
+description: RootMC bonded notes — park gold in the reserve, earn inflows, redeem as physical gold.
+author: Root Record
+website: https://rootmc.net
+softdepend: [Vault]
+depend: [Root-Essentials]
+loadafter: [Root-Essentials]
+commands:
+  bonds:
+    description: Bond vault — issue bonds, collect coupons, redeem certificates
+    usage: /<command> [create <amount|root>]
+    aliases: [bond]
+  rootbonds:
+    description: Admin reload for Root-Bonds
+    usage: /<command> reload
+    permission: rootbonds.reload
+permissions:
+  rootbonds.use:
+    description: Open /bonds and issue bonds via GUI
+    default: true
+  rootbonds.reload:
+    description: Reload root-bonds.yml
+    default: op

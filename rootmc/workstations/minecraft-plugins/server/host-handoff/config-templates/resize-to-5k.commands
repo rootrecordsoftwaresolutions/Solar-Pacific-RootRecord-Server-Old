@@ -1,0 +1,27 @@
+# Shrink RootMC to ±5k — run on Shockbyte console after uploading configs.
+
+worldborder center 0 0
+worldborder set 10000
+
+chunky pause
+chunky shape square
+chunky center 0 0
+chunky radius 5000
+chunky world world
+chunky trim
+chunky start
+
+# Nether (5k overworld = 625 nether blocks):
+# chunky radius 625
+# chunky world world_nether
+# chunky trim
+# chunky start
+
+# End:
+# chunky radius 5000
+# chunky world world_the_end
+# chunky trim
+# chunky start
+
+bluemap reload
+bluemap update world

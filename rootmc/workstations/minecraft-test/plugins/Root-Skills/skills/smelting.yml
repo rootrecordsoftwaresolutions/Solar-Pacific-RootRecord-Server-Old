@@ -1,0 +1,12 @@
+id: smelting
+display-name: Smelting
+enabled: true
+max-level: 1000
+icon: FURNACE
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 10
+  action: 5
+talents:
+  - smelting_flux_mining

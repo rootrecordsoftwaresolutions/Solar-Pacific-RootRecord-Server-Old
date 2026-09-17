@@ -1,0 +1,12 @@
+id: crossbows
+display-name: Crossbows
+enabled: true
+max-level: 1000
+icon: CROSSBOW
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 12
+  action: 5
+talents:
+  - crossbows_piercing

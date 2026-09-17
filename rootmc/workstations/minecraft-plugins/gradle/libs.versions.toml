@@ -1,0 +1,6 @@
+[versions]
+paper = "26.1.2-R0.1-SNAPSHOT"
+java = "25"
+
+[libraries]
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }

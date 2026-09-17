@@ -1,0 +1,12 @@
+id: acrobatics
+display-name: Acrobatics
+enabled: true
+max-level: 1000
+icon: FEATHER
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 10
+  action: 2
+talents:
+  - acrobatics_roll

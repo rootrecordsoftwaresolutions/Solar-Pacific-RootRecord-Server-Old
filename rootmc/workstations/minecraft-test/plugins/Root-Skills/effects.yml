@@ -1,0 +1,59 @@
+# Effect registry — keys referenced by talent YAML
+# Format: effect-id: short description
+
+effects:
+  damage_bonus: Add flat or percent damage to the triggering hit
+  damage_reduction: Reduce incoming damage by flat or percent
+  crit_chance: Increase critical hit chance
+  crit_damage: Increase critical hit damage multiplier
+  lifesteal: Heal for a portion of damage dealt
+  knockback: Apply knockback to the target
+  stun: Briefly stun the target
+  slow: Apply Slowness to the target
+  haste: Apply Haste to the caster
+  speed: Apply Speed to the caster
+  strength: Apply Strength to the caster
+  resistance: Apply Resistance to the caster
+  regeneration: Apply Regeneration to the caster
+  absorption: Grant absorption hearts
+  fire_aspect: Set the target on fire
+  poison: Apply Poison to the target
+  wither: Apply Wither to the target
+  bleed: Apply a bleed DoT
+  armor_pierce: Ignore a portion of target armor
+  shield_bash: Extra damage / knockback on shield hits
+  block_chance: Chance to fully block an incoming hit
+  dodge_chance: Chance to fully dodge an incoming hit
+  xp_bonus: Multiply XP gained from the trigger
+  double_drop: Chance to duplicate block/item drops
+  triple_drop: Chance to triple block/item drops
+  smelt_drop: Auto-smelt mined ore drops
+  tree_feller: Break connected logs in a tree
+  blast_mining: Explode nearby ores on detonation
+  green_terra: Convert nearby dirt/grass while active
+  giga_drill: Instant-break excavatable blocks while active
+  super_breaker: Instant-break mineable blocks while active
+  serrated_strikes: AoE bleed on melee hits while active
+  skull_splitter: AoE axe damage while active
+  berserk: Increased unarmed damage / dig speed while active
+  defensive_stance: Reduced damage taken while active
+  arrow_retrieval: Chance to recover arrows
+  multi_shot: Fire additional projectiles
+  pierce: Projectile pierces additional entities
+  trident_loyalty: Return thrown trident early / boost loyalty
+  mace_quake: Ground smash AoE on mace hit
+  spear_reach: Extend spear attack reach
+  elytra_glide_boost: Extra boost distance / speed
+  mana_restore: Restore mana to the caster
+  mana_cost: Spend mana (condition / cost effect)
+  cooldown_reduce: Reduce cooldowns for matching talents
+  party_share_xp: Share a portion of XP with party members
+  summon_wolf: Temporarily summon a wolf ally
+  repair_bonus: Improve repair material efficiency
+  salvage_yield: Improve salvage material yield
+  brew_speed: Speed up brewing
+  smelt_speed: Speed up furnace smelting
+  luck: Temporary Luck potion effect
+  night_vision: Temporary Night Vision
+  water_breathing: Temporary Water Breathing
+  satiation: Restore hunger / saturation

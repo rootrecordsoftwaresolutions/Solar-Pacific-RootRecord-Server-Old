@@ -1,0 +1,281 @@
+RootMC — Dev Device Root Report
+Date: 07/25/2026 (HST)
+Scope: Developer workstation hardware/software inventory + local test server boot
+Companion: Change Logs\Root Report 07-25-2026.txt (live Claims/Towny hosts)
+Path: D:\RootMC Workspace\Change Logs\Dev Device Root Report 07-25-2026.txt
+
+================================================================================
+1. SYNOPSIS
+================================================================================
+
+This document profiles the RootMC development PC (not Shockbyte). Hostname
+ROOTATMUS_PRIME — Dell OptiPlex 7060, Intel i5-8500T (6C/6T), 32 GB RAM,
+Intel UHD 630, dual storage (128 GB SSD system + 1 TB HDD workspace).
+
+Local Paper test server (`C:\Users\store\Desktop\RootMC test server`, junction
+`D:\RootMC Workspace\test server`) was booted via
+boot-once.ps1 on 07/25 ~2:36–2:39 PM HST. Paper reported Done (197.283s) —
+much slower than live Claims (~15 s) / Towny (~27 s), driven mainly by local
+MySQL schema/init waits on this box. Reached Done successfully; intentional
+stop after ready. Expected local warnings: offline-mode, cloud heartbeat 403
+(dev credentials not registered on api2), Webstat port conflict, missing r2.env.
+
+================================================================================
+2. DEVICE IDENTITY
+================================================================================
+
+  Hostname              ROOTATMUS_PRIME
+  User                  rootatmus_prime\store
+  Domain / workgroup    WORKGROUP
+  Manufacturer          Dell Inc.
+  Model                 OptiPlex 7060
+  Board                 Dell 0KYJ8C (A00)
+  BIOS                  Dell 1.26.0 (2023-07-02/03)
+  Serial                4CK41T2
+  Form factor           Desktop (OptiPlex)
+  Hypervisor present    False (Hyper-V capable per systeminfo)
+  Scan time             2026-07-25 14:36 HST
+  OS last boot          2026-07-25 10:46:35 HST (~3h 50m uptime at scan)
+
+================================================================================
+3. OPERATING SYSTEM
+================================================================================
+
+  OS                    Microsoft Windows 11 Pro
+  Version               10.0.26200 (Build 26200)
+  Architecture          64-bit
+  Install date          2026-07-01
+  PowerShell            5.1.26100.8875
+  Hotfixes installed    8
+
+================================================================================
+4. PROCESSOR
+================================================================================
+
+  CPU                   Intel Core i5-8500T @ 2.10 GHz
+  Cores / threads       6 / 6 (no HT)
+  Max / current clock   2112 MHz / 2112 MHz (WMI; turbo not shown)
+  L2 / L3 cache         1.5 MB / 9 MB
+  Socket                U3E1
+  T-series note         35 W mobile/desktop low-power SKU — fine for local
+                        Paper; not comparable to Shockbyte dedicated vCPU
+                        burst profiles under player load
+
+================================================================================
+5. MEMORY
+================================================================================
+
+  Total physical        32 GB (31.8 GB visible / 32,564 MB systeminfo)
+  Free at scan          ~13.7–14.0 GB
+  Modules               2× 16 GB DDR4
+    Part                Crucial CT16G4SFRA32A.C16FT
+    Rated speed         3200 MT/s
+    Configured speed    2666 MT/s (board-limited)
+    Serials             E9FA2F6E / E9FA2F6D
+  Virtual memory max    ~34.6 GB
+  Battery               N/A (desktop)
+
+  Vs live hosts:
+    Claims allotment    2 GB
+    Towny allotment     6 GB
+    This device         32 GB (~16× Claims / ~5.3× Towny)
+
+================================================================================
+6. GRAPHICS / DISPLAY / AUDIO
+================================================================================
+
+  GPU                   Intel UHD Graphics 630 (iGPU)
+  Adapter RAM (WMI)     1 GB (shared system memory; not discrete VRAM)
+  Driver                30.0.100.9864 (2021-08-19)
+  Display               1920×1080 @ 59 Hz (Generic PnP Monitor)
+  Audio                 Realtek Audio + Intel Display Audio — OK
+
+================================================================================
+7. STORAGE
+================================================================================
+
+  Physical disks (Healthy)
+
+  Model                          Type   Bus    Size
+  -----------------------------  -----  -----  --------
+  LITEON CV8-8E128-11 SATA       SSD    RAID   128 GB
+  HGST HTS721010A9E630           HDD    RAID   931.5 GB
+
+  Volumes
+
+  Drive  Label          FS    Size     Free     Used
+  -----  -------------  ----  -------  -------  -----
+  C:     (system)       NTFS  118.3 GB 6.68 GB  94.3%  ← tight
+  D:     Work Station   NTFS  930.5 GB 755.2 GB 18.8%  ← RootMC workspace
+
+  Risk note: C: at ~94% full — leave headroom for Windows updates / pagefile.
+  RootMC canonical path lives on D: (healthy free space).
+
+================================================================================
+8. NETWORK
+================================================================================
+
+  Active adapter        Ethernet — Intel I219-LM
+  Link speed            1 Gbps
+  MAC                   54-BF-64-89-25-0B
+  NICs installed        3 (per systeminfo; one up at scan)
+
+  Playit (test tunnel)  147.185.221.21:41654 → local 127.0.0.1:25565
+                        (from test server\playit-address.txt)
+
+================================================================================
+9. DEV TOOLCHAIN
+================================================================================
+
+  Java (PATH default)   OpenJDK 17.0.19 LTS — Microsoft
+                        C:\Program Files\Microsoft\jdk-17.0.19.10-hotspot\
+  Java (test server)    OpenJDK 25.0.3 LTS — Eclipse Temurin
+                        C:\Program Files\Eclipse Adoptium\jdk-25.0.3.9-hotspot\
+  Node.js               v24.18.0
+  npm                   11.16.0
+  Git                   2.55.0.windows.1
+
+  Top RAM processes at hardware scan (approx MB):
+    Memory Compression ~3233, javaw ~1255, Cursor ~811, Discord ~465,
+    brave ~387, MsMpEng ~326, …
+
+================================================================================
+10. ROOTMC WORKSPACE ON THIS DEVICE
+================================================================================
+
+  Canonical path        D:\RootMC Workspace\
+  Live Claims handoff   D:\RootMC Workspace\1. RootMC - Claims\
+  Live Towny handoff    D:\RootMC Workspace\2. RootMC - Towny\
+  Plugin source         D:\RootMC Workspace\Plugin Building\Minecraft\
+  Local test server     C:\Users\store\Desktop\RootMC test server
+                        (junction: D:\RootMC Workspace\test server)
+  Gen2 quarry           D:\RootMC Workspace\gen2-27\  (isolated)
+
+================================================================================
+11. LOCAL TEST SERVER — BOOT RUN (07/25)
+================================================================================
+
+Method:  powershell -File "test server\boot-once.ps1"
+Heap:    -Xms1G -Xmx3G
+Java:    Temurin 25.0.3
+Paper:   26.2-62-main@75c0b48 (Minecraft 26.2)
+Mode:    online-mode=false, port 25565, max-players=10, gamemode CREATIVE
+MOTD:    RootMC test server
+Result:  ready=True, exit 0; stop sent after Done
+
+11.1 Timing
+
+  Event                         Clock (HST)     Notes
+  ----------------------------  --------------  ------------------------------
+  Bootstrap / Java start        14:36:29
+  Plugins initialized (17)      14:36:31        ~2 s
+  Bind *:25565                  14:36:42        ~13 s from start
+  World prepare done            14:36:43        0.458 s world prep
+  Root-Times schema ready       14:37:06        ~23 s after enable start
+  Root-Perms enabled            14:37:32        MySQL/group load lag
+  RootMC MySQL ready            14:38:15        rootmc_dev (~1m 32s from enable)
+  Paper Done                    14:39:46        Done (197.283s)!
+  World borders applied         14:39:46        ±10000
+  stop issued / shutdown        14:39:54
+
+  Stage A (Paper Done):         197.283 s  (~3.3 min)
+  Wall bootstrap→Done:          ~3 min 17 s (14:36:29 → 14:39:46)
+
+11.2 Efficiency vs live hosts (Stage A Done only)
+
+  Host                         Spec              Done (s)   vs Dev
+  ---------------------------  ----------------  ---------  ---------------
+  Dev test server (this PC)    32 GB / 6C i5-T   197.283    100% (baseline)
+  Claims (Shockbyte)           2 GB / 2 vCPU     14.886     13.3× faster
+  Towny (Shockbyte)            6 GB / 2 vCPU     26.548     7.4× faster
+
+  Read carefully: live hosts are faster to Done despite less RAM because
+  (1) production MySQL is warm/remote-optimized, (2) smaller/faster Stage A
+  plugin sets on Claims, (3) this boot spent ~90+ s in local schema/MySQL
+  enable paths (Root-Times / Root-Perms / RootMC), (4) HDD workspace + busy
+  desktop (Cursor/Discord/browsers) contend with Paper. Dev Done time is not
+  a fair TPS benchmark against Shockbyte.
+
+  Heap allotment on test server (3 GB Xmx) ≈ Claims plan size; still used
+  only a fraction of the 32 GB host RAM.
+
+11.3 Plugin set (17 jars)
+
+  PlaceholderAPI 2.12.3-DEV-268
+  Vault 1.7.3-b131
+  Root-Core 1.2.24
+  Root-Essentials 1.6.46
+  RootMC 1.3.115
+  RootMC-Official 1.0.7
+  Root-Ops 1.0.10
+  Root-Play 1.0.25
+  Root-Joint 1.0.9
+  Root-Perms 1.0.2
+  Root-Claims 0.3.1
+  Root-Territories 1.3.11
+  Root-Times 1.1.14
+  Root-ItemInfo 0.1.10
+  Root-Try 0.1.11
+  Root-Webstat 0.1.6
+  Root-BlueMap-R2-Fix 1.0.4
+
+  No Towny / mcMMO / BlueMap / DecentHolograms on this test profile by default.
+
+11.4 Boot health notes (expected local noise)
+
+  OK   Paper reached Done; Root-Core operator license; MySQL rootmc_dev ready
+  OK   Discord JDA connected as [T] during boot (then shut down cleanly)
+  WARN Offline mode (intentional for local)
+  WARN Missing plugins/RootMC/r2.env (BlueMap R2 fix)
+  WARN Bond catch-up skipped — no day world
+  WARN Root-Spawn — no spawn boundary (spawnarea-refined.txt empty)
+  WARN NuVotifier not installed — vote gold won't auto-grant
+  WARN Webstat HTTP bind failed — port 8765 already in use (Times web UI)
+  WARN Cloud heartbeat / status → HTTP 403 Unknown server (api2; register
+       cloud.yml credentials when testing cloud path)
+  ERR  JDA websocket zip-closed noise on stop (shutdown race; non-blocking)
+
+Full log: C:\Users\store\Desktop\RootMC test server\boot-run.log
+          (also via junction D:\RootMC Workspace\test server\boot-run.log)
+
+11.5 How to re-run
+
+  Interactive:   Desktop\RootMC test server\start.bat
+                 or Root-Core-Node → Local Testing → Start server
+  Boot+stop:     powershell -File "C:\Users\store\Desktop\RootMC test server\boot-once.ps1"
+  Resync jars:   powershell -File "C:\Users\store\Desktop\RootMC test server\sync-plugins.ps1"
+
+  See also: Change Logs\Pre-Run Report Local Testing 07-25-2026.txt
+
+================================================================================
+12. DEVICE vs LIVE HOST SCORECARD
+================================================================================
+
+  Dimension                 Dev PC              Claims           Towny
+  ------------------------  ------------------  ---------------  ---------------
+  RAM plan / installed      32 GB installed     2 GB plan        6 GB plan
+  vCPU / cores              6C/6T i5-8500T      2 vCPU           2 vCPU
+  Role                      Build + local test  Satellite live   Primary live
+  Paper Done (07/25)        197.3 s             14.9 s           26.5 s
+  Storage for RootMC        D: HDD 755 GB free  Host panel N/A   Host panel N/A
+  System disk pressure      C: 94% used         —                —
+
+  Fit verdict: This OptiPlex is adequate for plugin builds, local Paper, and
+  dual-handoff editing. Watch C: free space. For heavy concurrent builds +
+  Paper + browsers, prefer keeping test server Xmx ≤3G (current) so desktop
+  stays responsive. Live performance numbers belong to Shockbyte hosts — see
+  Root Report 07-25-2026.txt.
+
+================================================================================
+13. ACTIONS / WATCHLIST (dev device only)
+================================================================================
+
+  - Free space on C: (currently ~6.7 GB / 94% used)
+  - Optional: clear port 8765 conflict before Webstat+Times web both bind
+  - Optional: add r2.env only if testing BlueMap R2 upload locally
+  - Register/dev-isolate cloud.yml if cloud heartbeat tests are required
+  - Prefer D: for large artifacts; avoid filling C: with Gradle/caches if possible
+
+================================================================================
+End of Dev Device Root Report — 07/25/2026
+Scan + test boot performed on ROOTATMUS_PRIME

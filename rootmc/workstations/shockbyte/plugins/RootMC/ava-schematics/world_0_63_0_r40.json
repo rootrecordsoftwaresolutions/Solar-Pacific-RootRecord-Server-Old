@@ -1,0 +1,28 @@
+{
+  "capturedAt": "2026-08-08T21:35:43.274527985Z",
+  "world": "world",
+  "claimX": 0,
+  "claimY": 63,
+  "claimZ": 0,
+  "claimRadius": 40,
+  "dims": "81x81x81",
+  "origin": [-40,31,-40],
+  "nonAir": 210174,
+  "blocks": 531441,
+  "file": "world_0_63_0_r40",
+  "schem": "world_0_63_0_r40.schem",
+  "topMaterials": [
+    {"id": "minecraft:stone", "count": 125569},
+    {"id": "minecraft:mangrove_leaves", "count": 13702},
+    {"id": "minecraft:mud", "count": 10930},
+    {"id": "minecraft:andesite", "count": 10823},
+    {"id": "minecraft:dirt", "count": 8915},
+    {"id": "minecraft:granite", "count": 8076},
+    {"id": "minecraft:water", "count": 7578},
+    {"id": "minecraft:diorite", "count": 7460},
+    {"id": "minecraft:vine", "count": 5097},
+    {"id": "minecraft:gravel", "count": 2278},
+    {"id": "minecraft:grass_block", "count": 1744},
+    {"id": "minecraft:mangrove_roots", "count": 1342}
+  ]
+}

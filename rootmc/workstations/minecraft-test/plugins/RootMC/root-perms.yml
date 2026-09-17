@@ -1,0 +1,88 @@
+# Root-Perms — plugins/RootMC/root-perms.yml
+# MySQL: plugins/RootMC/database.yml
+
+default-group: default
+
+# blank = cloud.yml server-id
+server-id: ""
+
+# Player-purchase track (same ids as root-ranks.yml)
+player-track:
+  - wanderer
+  - settler
+  - pioneer
+  - citizen
+  - veteran
+  - elite
+  - champion
+
+# Seeded groups (id → display / chat prefix). Optional inherits + nodes are written to MySQL on load.
+seed-groups:
+  default:
+    display: Explorer
+    prefix: "&7[Explorer] "
+    priority: 10
+  wanderer:
+    display: Wanderer
+    prefix: "&a[Wanderer] "
+    priority: 12
+  settler:
+    display: Settler
+    prefix: "&2[Settler] "
+    priority: 14
+  pioneer:
+    display: Pioneer
+    prefix: "&b[Pioneer] "
+    priority: 16
+  citizen:
+    display: Citizen
+    prefix: "&9[Citizen] "
+    priority: 18
+  veteran:
+    display: Veteran
+    prefix: "&3[Veteran] "
+    priority: 20
+  elite:
+    display: Elite
+    prefix: "&d[Elite] "
+    priority: 22
+  champion:
+    display: Champion
+    prefix: "&6[Champion] "
+    priority: 24
+  pro:
+    display: Pro
+    prefix: "&8[&bPro&8]&r "
+    priority: 40
+  top_active:
+    display: Top Active Player
+    prefix: "&8[&6Top Active Player&8]&r "
+    priority: 35
+  helper:
+    display: Helper
+    prefix: "&e[Helper] "
+    priority: 80
+    inherits: [default]
+  moderator:
+    display: Moderator
+    prefix: "&c[Mod] "
+    priority: 85
+    inherits: [helper]
+  admin:
+    display: Admin
+    prefix: "&4[Admin] "
+    priority: 100
+    inherits: [moderator]
+  # After admin. Wildcard * = all OP / plugin permissions (+ vanilla OP while online). No chat prefix.
+  dev:
+    display: Dev
+    prefix: ""
+    priority: 110
+    inherits: [admin]
+    nodes:
+      - "*"
+  owner:
+    display: Owner
+    prefix: "&c[Owner] "
+    priority: 120
+    inherits: [dev]

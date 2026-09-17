@@ -1,0 +1,156 @@
+name: Root-Economy
+version: '${version}'
+main: com.rootrecord.minecraft.rooteconomy.RootEconomyPlugin
+api-version: '26.1'
+description: RootMC Gold economy (Vault, treasury, bonds, loans, upkeep)
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Times, Root-Perms, RootMC, Vault, Towny, PlaceholderAPI]
+loadafter: [PlaceholderAPI]
+loadbefore: [Towny, TownyChat]
+commands:
+  balance:
+    description: Show balance
+    aliases: [bal]
+  pay:
+    description: Pay another player or donate to the Server Reserve
+    usage: /<command> <player|reserve> <amount> | /<command> reserve confirm|cancel
+  paytoggle:
+    description: Toggle accepting payments
+  baltop:
+    description: Balance leaderboard (players; towns/nations on Towny)
+    aliases: [balancetop]
+    usage: /<command> [players|towns|nations]
+  reserve:
+    description: Server treasury reserve stats (balance, inflows/outflows, playtime)
+  totals:
+    description: Precomputed economy list totals (entry types, Towny intake, supply, pools)
+    aliases: [economylist]
+  economy:
+    description: Total economy (Notes vs gold mined), inflation pressure, and tax info
+  tax:
+    description: Live transaction tax (ledger + solar/CPU host overlay)
+  gold:
+    description: Live gold mining bonus, site taxes, CPU tax, and solar skills XP
+    aliases: [goldbonus, miningbonus]
+  solar:
+    description: Live solar mining multiplier status
+    usage: /<command>
+    aliases: [solarmine]
+    permission: rootessentials.solar
+  radar:
+    description: Ore compass radar (NESW dash tape + ore pips, 4 blocks, 1 G/min)
+    usage: /<command> [on|off|status]
+    aliases: [oreradar, orescan]
+  mint:
+    description: Convert gold items to G, or withdraw G as gold items
+    usage: /<command> <hand|all|gold> [amount|max]
+  grant:
+    description: Grant G from treasury to a player (logged)
+    usage: /<command> <player> <amount> [reason]
+    permission: rootessentials.grant
+  bonds:
+    description: Bond vault — issue bonds, collect compounding yield, redeem notes in full
+    usage: /<command> [create <amount|root>|merge]
+    aliases: [bond]
+  rootbonds:
+    description: Admin reload for Root-Bonds
+    usage: /<command> reload
+    permission: rootbonds.reload
+  loan:
+    description: Borrow, view, or repay a personal loan
+    usage: /<command> <take|info|repay|list> [amount]
+  townloan:
+    description: Mayor — borrow from Server Reserve into town bank, or repay
+    usage: /<command> <take|repay|info|list> [amount]
+    aliases: [tloan]
+  rootloans:
+    description: Admin reload for Root-Loans
+    usage: /<command> reload
+    permission: rootloans.reload
+  rootupkeep:
+    description: Admin controls for inactivity tax
+    usage: /<command> reload|run
+    permission: rootupkeep.admin
+permissions:
+  rootbonds.use:
+    description: Open /bonds and issue bonds via GUI
+    default: true
+  rootbonds.reload:
+    description: Reload root-bonds.yml
+    default: op
+  rootloans.use:
+    description: Use /loan take, info, and repay
+    default: true
+  rootloans.town.use:
+    description: Mayor use /townloan
+    default: true
+  rootloans.list:
+    description: View all active personal loans
+    default: op
+  rootloans.town.list:
+    description: View all active town loans
+    default: op
+  rootloans.reload:
+    description: Reload root-loans.yml
+    default: op
+  rootupkeep.admin:
+    description: Reload config and manually trigger inactivity tax
+    default: op
+  rootessentials.balance:
+    description: Use /balance and /bal
+    default: true
+  essentials.balance:
+    description: EssentialsX alias for /balance
+    default: true
+  rootessentials.pay:
+    description: Use /pay
+    default: true
+  essentials.pay:
+    description: EssentialsX alias for /pay
+    default: true
+  rootessentials.paytoggle:
+    description: Use /paytoggle
+    default: true
+  essentials.paytoggle:
+    description: EssentialsX alias for /paytoggle
+    default: true
+  rootessentials.mint:
+    description: Use /mint
+    default: true
+  essentials.mint:
+    description: EssentialsX alias for /mint
+    default: true
+  rootessentials.reserve:
+    description: View server reserve stats (read-only)
+    default: true
+  rootessentials.totals:
+    description: View precomputed economy list totals (read-only)
+    default: true
+  rootessentials.economy:
+    description: View total economy (Notes vs gold mined) and inflation pressure (read-only)
+    default: true
+  rootessentials.tax:
+    description: View live transaction tax rate (read-only)
+    default: true
+  rootessentials.gold:
+    description: View live gold mining bonus / CPU tax / solar XP (read-only)
+    default: true
+  rootessentials.solar:
+    description: Use /solar
+    default: true
+  rootessentials.radar:
+    description: Use /radar ore compass
+    default: true
+  rootessentials.baltop:
+    description: Balance leaderboards (read-only)
+    default: true
+  essentials.baltop:
+    description: EssentialsX alias for /baltop
+    default: true
+  rootessentials.grant:
+    description: Grant G from treasury to a player
+    default: op
+  rootmc.grant:
+    description: Grant G from treasury (wiki alias for rootessentials.grant)
+    default: op

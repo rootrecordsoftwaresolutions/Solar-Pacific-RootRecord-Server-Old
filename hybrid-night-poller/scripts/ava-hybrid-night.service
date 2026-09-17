@@ -1,0 +1,16 @@
+[Unit]
+Description=Ava hybrid tracking inserts (30 min, local files)
+After=default.target
+ConditionPathExists=%h/.ollama/skills/state/store/ava-console-up
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rootrecord/.ollama/skills/origin
+ExecStart=/home/rootrecord/.ollama/skills/origin/.venv/bin/python /home/rootrecord/.ollama/skills/hybrid-night-poller/scripts/hybrid_night_poller.py
+Restart=on-failure
+RestartSec=20
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONPATH=/home/rootrecord/.ollama/skills/origin
+
+[Install]
+WantedBy=default.target

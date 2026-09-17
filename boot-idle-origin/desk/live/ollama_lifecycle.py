@@ -1,0 +1,1 @@
+../../../ollama-lifecycle/scripts/ollama_lifecycle.py

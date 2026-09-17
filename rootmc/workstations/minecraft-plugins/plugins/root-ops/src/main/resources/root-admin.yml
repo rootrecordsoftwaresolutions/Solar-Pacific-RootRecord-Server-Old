@@ -1,0 +1,64 @@
+# Root-Admin — staff commands and player reports
+
+admin-probe:
+  # Flag non-staff players after repeated unauthorized admin / op command attempts.
+  enabled: true
+  threshold: 5
+  window-minutes: 60
+  notify-staff: true
+  discord-post: true
+
+reports:
+  # Minutes of chat/commands/CoreProtect history attached to /report (reported player only).
+  lookback-minutes: 30
+  # Cooldown between reports from the same player (seconds).
+  cooldown-seconds: 120
+  # Notify online staff with rootadmin.reports.notify
+  notify-staff: true
+  # Save report bundles under plugins/RootMC/reports/
+  save-files: true
+  # POST full report bundle to RootMC Discord ticket (requires cloud.yml credentials).
+  discord-post: true
+
+# Vanilla world border — ±radius blocks from center (1000 diameter at 500 radius).
+# New-map launch: ±500. Nether diameter is auto /8 in WorldBorderService.
+world-border:
+  enabled: true
+  apply-on-start: true
+  center-x: 0
+  center-z: 0
+  radius: 500
+  warning-blocks: 32
+  warning-time-seconds: 15
+  damage-amount: 0
+  worlds:
+    - world
+    - world_nether
+    - world_the_end
+
+# Player-placed rails — tracks support below, rail, and two clearance blocks above on place.
+# Only owner or staff (rootadmin.rails.bypass) may break or fill the clearance zone.
+rails:
+  enabled: true
+  # When true, rails placed before this feature (no record) cannot be broken by non-staff.
+  protect-unknown: true
+
+messages:
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  forced-tp-disabled: "&cForced teleport is disabled. Use &f/tpa &cor &f/tpahere&c."
+  player-not-found: "&ePlayer not found: &f{player}"
+  players-only: "&cPlayers only."
+  invalid-number: "&eInvalid number."
+  report-submitted: "&aReport submitted against &f{player}&a. A staff ticket was opened in Discord."
+  report-cooldown: "&ePlease wait &f{seconds}s &ebefore reporting again."
+  report-self: "&cYou cannot report yourself."
+  report-usage: "&eUsage: /report <player> [reason]"
+  report-notify: "&cReport &7#{id}&7 &f{reporter} &7reported &f{player}&7: &f{reason}"
+  admin-probe-notify: "&cAdmin probe &7— &f{player} &7tried staff commands &f{count}&7x (last: &f{command}&7, needs &f{reason}&7)"
+  world-border-applied: "&aWorld border reapplied from config."
+  rails-deny: "&cThis rail was placed by &f{owner}&c."
+  rails-deny-request: "&7If it blocks your town, ask &f{owner} &7to remove it."
+  rails-deny-rules: "&7Removing another player's rails is against the rules."
+  rails-deny-admin: "&7Contact staff if you need help."
+  gamemode-denied: "&cThat gamemode is not allowed for your rank."

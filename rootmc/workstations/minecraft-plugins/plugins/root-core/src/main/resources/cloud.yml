@@ -1,0 +1,34 @@
+# Shared RootMC cloud credentials for ALL plugins.
+# File: plugins/RootMC/cloud.yml
+# MySQL: plugins/RootMC/database.yml
+#
+# Secrets live HERE (server-secret, Discord bot token). Public API base may also be set in root-core.yml.
+
+cloud:
+  api-base: "https://api.rootmc.net"
+  server-id: ""
+  server-secret: ""
+
+# Discord — secrets + destinations for Paper JDA (chat bridge).
+# Worker/API posts use Cloudflare wrangler DISCORD_ROOTMC_* vars, not this file.
+discord:
+  bot-token: ""
+  guild-id: ""
+  channels:
+    ingame-chat: ""    # bidirectional MC ↔ Discord bridge
+    server-logs: ""    # legacy Discord fallback (prefer slack.server-logs-webhook)
+  roles:
+    linked: ""         # role required to speak into Minecraft from Discord
+
+# Slack — server logs land in #server-logs (C0BMX0QKSTS) via Incoming Webhook (no Worker).
+# Create webhook: Slack → #server-logs → Integrations → Incoming Webhooks
+# Or: https://rootmcworkspace.slack.com/apps/A0F7XDUUB-incoming-webhooks
+slack:
+  server-logs-channel: "C0BMX0QKSTS"
+  server-logs-webhook: ""
+
+# Legacy aliases (still read if discord.* blank):
+discord-chat:
+  bot-token: ""
+  guild-id: ""
+  channel-id: ""       # → channels.ingame-chat

@@ -1,0 +1,29 @@
+id: excavation
+display-name: Excavation
+enabled: true
+max-level: 1000
+icon: DIAMOND_SHOVEL
+xp-sources:
+  block-break:
+    DIRT: 40
+    GRASS_BLOCK: 40
+    SAND: 40
+    RED_SAND: 40
+    GRAVEL: 40
+    CLAY: 40
+    SOUL_SAND: 40
+    SOUL_SOIL: 40
+    MYCELIUM: 40
+    PODZOL: 40
+    MUD: 80
+    MUDDY_MANGROVE_ROOTS: 90
+    COARSE_DIRT: 40
+    ROOTED_DIRT: 60
+    SNOW_BLOCK: 40
+    SNOW: 20
+  default-block: 40
+  combat-hit: 1
+  combat-kill: 10
+  action: 4
+talents:
+  - excavation_giga_drill

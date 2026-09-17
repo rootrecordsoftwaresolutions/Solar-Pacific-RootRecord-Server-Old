@@ -1,0 +1,193 @@
+# Root Essentials - plugins/RootMC/root-essentials.yml
+# MySQL credentials: plugins/RootMC/database.yml
+
+economy:
+  # Wallet starting balance / true-reserve-opening live in root-economy.yml
+  currency-symbol: "G"
+  worth:
+    GOLD_INGOT: 1.0
+    GOLD_NUGGET: 0.11
+    DIAMOND: 25.0
+    IRON_INGOT: 0.75
+    EMERALD: 15.0
+
+homes:
+  default-name: "home"
+  max:
+    default: 3
+    pro: 5
+    lifetime: 8
+
+spawn:
+  world: "world"
+
+newbie-kit: starter
+kits:
+  starter:
+    delay-seconds: -1
+    items:
+      - IRON_PICKAXE 1
+      - IRON_AXE 1
+      - IRON_SHOVEL 1
+      - IRON_HOE 1
+      - IRON_SWORD 1
+      - BAKED_POTATO 16
+      - OAK_LOG 16
+      - TORCH 16
+      - BREAD 16
+
+# Shown by /motd (also a Root-Try).
+server:
+  motd:
+    - "&6RootMC &8— &fplay.rootmc.net"
+    - "&7Currency is &fGold (G)&7. Redeem at the mint peg via &f/mint&7."
+    - "&7Start: &f/rules &7· &f/cmds &7· &f/try"
+    - "&7Constitution &8» &bhttps://rootmc.net/wiki/constitution/"
+  rules:
+    - "&cNo cheating. &7No x-ray, dupes, macros, hacked clients, automation, or exploit abuse. Report bugs instead of using them."
+    - "&cNo harassment. &7No slurs, threats, sexual content toward players, targeted toxicity, or trying to drive people off the server."
+    - "&eRespect land. &7Do not grief claims/towns, bypass protections, lava/water grief, or abuse wilderness edges to damage builds."
+    - "&eLand matters. &7Claim or join protected land. Local rules apply as long as they follow server rules."
+    - "&6Gold economy. &7Gold (G) is player-earned through mining, trade, shops, loans, bonds, and taxes. Do not fake markets or manipulate bugs."
+    - "&6Fair shops. &7Shop prices must stay within the configured market cap. Predatory pricing or bypass tricks can be removed."
+    - "&bPvP and conflict. &7PvP is limited by server settings and consent systems. Do not use traps or mechanics to bypass intended protections."
+    - "&bStaff tools. &7Do not ask for command cheats like /heal, /feed, /repair, or item spawning. Staff-only means staff-only."
+    - "&aGet help. &7Use chat or Discord for questions. Link with &f/link &7for stats, app features, and Discord verification."
+
+teleport:
+  warmup-seconds: 3
+  combat-tag-seconds: 30
+
+new-player:
+  grace-hours: 24
+  keep-inventory: true
+  skip-death-tax: false
+  rtp-enabled: true
+  # Always teleport into this world (not spawn_world / Multiverse hub).
+  rtp-world: "world"
+  rtp-cooldown-minutes: 15
+  rtp-min-radius: 500
+  rtp-max-radius: 5000
+  rtp-max-attempts: 24
+  # After starter grace: /rtp costs Gold (Explorer/basic = base; each rank × multiplier from prior).
+  rtp-paid-after-grace: true
+  rtp-base-fee: 5.0
+  rtp-fee-rank-multiplier: 1.5
+  welcome:
+  - ''
+  - '&6&lWelcome to {server}, {player}.'
+  - '&eRead first: &f/rules &7for conduct and land/economy basics.'
+  - '&7Explore: &f/rtp &7to leave spawn (free during starter grace), &f/map &7for the live map, &f/cmds &7only when you need more commands.'
+  - '&cWilderness breaks cost &f1 G&c/block. Claim with &f/c claim&c or &f/c new&c asap, or ask someone to &f/c add&c you.'
+  - '&7Mining rights: below Y 0 is free reign (no claims).'
+  - '&aStarter grace: keep-inventory is on for 24 hours; /rtp is free until grace ends.'
+  - ''
+
+messages:
+  prefix: ''
+  new-player-grace-welcome: '&6&lWelcome to {server}. &7Start with &f/rules&7, &f/c claim&7 or &f/c new&7, &f/cmds&7, and &f/rtp&7. Wilderness breaks cost 1G. &aStarter grace: 24h.'
+  players-only: '&cPlayers only.'
+  no-permission: '&cYou do not have permission.'
+  balance-self: '&7Balance: &6{balance} {currency}'
+  balance-other: '&7{player} balance: &6{balance} {currency}'
+  paytoggle-on: '&aIncoming payments &fon&a.'
+  paytoggle-off: '&eIncoming payments &foff&e — others cannot /pay you.'
+  player-not-found: '&cPlayer not found: &f{player}'
+  teleport-warmup: '&7Teleporting in &f{seconds}s&7. Stand still.'
+  teleport-cancelled-move: '&eTeleport cancelled because you moved.'
+  teleport-combat: '&cYou cannot teleport while in combat.'
+  teleport-failed: '&cTeleport failed. Try again.'
+  rtp-success: '&aTeleported to wilderness near &f{x}&a, &f{z}&a.'
+  rtp-failed: '&cCould not find a safe wilderness spot. Try again.'
+  rtp-cooldown: '&eRandom teleport cooldown: &f{seconds}s&e.'
+  rtp-disabled: '&e/rtp is currently disabled.'
+  rtp-insufficient: '&cNeed &f{fee} {currency}&c for /rtp — you have &f{balance}&c.'
+  rtp-grace-expired: '&e/rtp is free during starter grace; after that it costs Gold by rank.'
+  wilderness-destroy-fee-charged: '&bAva &8· &eWilderness fee &f{fee} {currency}&e → reserve for &f{item}&e. Balance: &f{balance}&e.'
+  wilderness-destroy-fee-claim: '&eTerritory fee &f{fee} {currency}&e → &f{owner}&e (75% bank / 25% server) for &f{item}&e. Balance: &f{balance}&e.'
+  wilderness-destroy-fee-cannot-afford: '&cAva &8· &cNeed &f{fee} {currency}&c to take from my wilderness (&f{item}&c). Balance: &f{balance}&c.'
+  wilderness-destroy-fee-urge-claim: '&eClaim with &f/c new&e or &f/c claim&e, or ask a player to &f/c add&e you. Mining below Y 0 is free.'
+  wilderness-destroy-fee-watch-start: "&bAva &8· &eWilderness watch is on.&7 Resource fees: &f1 G&7/block → Server Reserve. I'll recap each minute while you keep taking. &f/c new &7to claim."
+  wilderness-destroy-fee-watch-minute: '&bAva &8· &eWilderness recap &8· &f{blocks} &7blocks · &f{fee} {currency} &7→ reserve. Balance: &f{balance}&7.'
+  wilderness-build-low: '&7Wilderness: &f{action} {item}&7. Breaks cost &f1 G&7/block unless you claim (&f/c new&7) or are trusted.'
+  wilderness-build-mid: '&eWilderness: &f{action} {item}&e. Breaks cost &f1 G&e/block → server. Territory: 75% claim bank / 25% server.'
+  wilderness-build-high: '&cWilderness: &f{action} {item}&c. 1 G/block. Claim with &f/c new&c or get &f/c add&c. Y < 0 is free mining.'
+  sell-empty-hand: '&eHold an item in your hand first.'
+  sell-not-priced: '&eNo worth listed for &f{item}&e yet.'
+  mint-not-gold: '&eOnly mintable gold: nugget, ingot, or block — smelt raw gold first. Not &f{item}&e.'
+  mint-nothing: '&eNo mintable gold in your inventory.'
+  mint-gold-invalid: '&eAmount must be greater than 0.'
+  mint-gold-too-small: '&eAmount too small — minimum is 1 nugget (¹⁄₉ G).'
+  mint-gold-insufficient: '&cNeed &f{amount} {currency}&c — you have &f{balance}&c.'
+  mint-gold-no-space: '&cNot enough inventory space for that gold.'
+  mint-gold-success: '&aRedeemed &f{amount} {currency}&a → &f{summary}&a.'
+  survey-insufficient: '&cNeed &f{amount} {currency}&c to survey this chunk — you have &f{balance}&c.'
+  survey-confirm-prompt: '&eSurvey chunk &f{chunkX},{chunkZ}&e for &f{amount} {currency}&e? Confirm below.'
+  survey-cancelled: '&7Survey cancelled.'
+  survey-paid: '&aPaid &f{amount} {currency}&a -> Server Reserve for this survey.'
+  explode-need-tnt: '&cWear TNT as your chestplate to use this command.'
+  explode-confirm-prompt: '&eYou will explode if you run this command — use &f/explode confirm &eto carry out your attack.'
+  explode-wallet-warn: '&cWarning: &eYou will lose your entire wallet (&f{balance} {currency}&e). Inventory is kept except your &fTNT chestplate&e.'
+  explode-cancelled: '&7Explosion cancelled.'
+  explode-wallet-seized: '&cYour wallet (&f{amount} {currency}&c) was seized to the Server Reserve.'
+  explode-broadcast: '&4{player} &chas committed a terroristic attack against &f{victims} &c{place}&c.'
+  explode-place-town: 'in the town of {town}'
+  explode-place-wilderness: 'in the wilderness'
+  repair-hold: '&eHold a damaged repairable item.'
+  repair-already: '&7That item does not need repair.'
+  repair-insufficient: '&cNeed &f{amount} {currency}&c to repair — you have &f{balance}&c.'
+  repair-paid: '&aRepaired for &f{amount} {currency}&a -> Server Reserve.'
+  repair-all-none: '&7Nothing in your inventory needs repair.'
+  repair-all-paid: '&aRepaired &f{count}&a items for &f{amount} {currency}&a -> Server Reserve.'
+  top-insufficient: '&cNeed &f{amount} {currency}&c to /top — you have &f{balance}&c.'
+  top-failed: '&cCould not charge /top — try again.'
+  nick-insufficient: '&cNeed &f{amount} {currency}&c to set a nickname — you have &f{balance}&c.'
+  hat-insufficient: '&cNeed &f{amount} {currency}&c to wear a hat — you have &f{balance}&c.'
+  heal-insufficient: '&cNeed &f{amount} {currency}&c to /heal — you have &f{balance}&c.'
+  feed-insufficient: '&cNeed &f{amount} {currency}&c to /feed — you have &f{balance}&c.'
+  workbench-insufficient: '&cNeed &f{amount} {currency}&c to /workbench — you have &f{balance}&c.'
+
+# Hold a torch (or other light items) to illuminate nearby blocks without placing them.
+held-light:
+  enabled: true
+  level: 14
+  tick-period: 2
+  items:
+    TORCH: 14
+    SOUL_TORCH: 10
+    REDSTONE_TORCH: 7
+    LANTERN: 15
+    SOUL_LANTERN: 10
+    CAMPFIRE: 15
+    SOUL_CAMPFIRE: 10
+    JACK_O_LANTERN: 15
+    SHROOMLIGHT: 15
+    GLOWSTONE: 15
+    SEA_LANTERN: 15
+
+fees:
+  survey: 25.0
+  repair: 1000.0
+  repair-all-per-item: 1000.0
+  top: 10.0
+  nick: 100.0
+  hat: 1.0
+  heal: 15.0
+  feed: 15.0
+  workbench: 1.0
+
+wilderness-build-notify:
+  enabled: true
+  min-value: 1.0
+  base-cooldown-seconds: 120
+  high-value-threshold: 50.0
+  high-value-cooldown-seconds: 30
+
+wilderness-destroy-fee:
+  enabled: true
+  # True wilderness is Ava (guardian watch): 1 G/block → Server Reserve, recapped each minute.
+  # Territory outsiders: 75% area-root claim bank / 25% Server Reserve. Owner + trusted exempt.
+  # Y < 0 is free-reign mining (no claims, no fees). Cannot afford → break is cancelled.
+  per-block-g: 1.0
+  notify-bucket-seconds: 60
+  treasury-channel: "service-fee:wilderness-destroy"

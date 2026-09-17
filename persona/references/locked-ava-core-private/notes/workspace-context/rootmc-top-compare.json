@@ -1,0 +1,217 @@
+﻿{
+    "D":  [
+              {
+                  "Name":  ".cursor",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785472376736)\/"
+              },
+              {
+                  "Name":  "Change Logs",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785625578743)\/"
+              },
+              {
+                  "Name":  "docs",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785500244128)\/"
+              },
+              {
+                  "Name":  "emergent-repo",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1783658881562)\/"
+              },
+              {
+                  "Name":  "github-plugin-repos",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785116107613)\/"
+              },
+              {
+                  "Name":  "Marketing",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785393412802)\/"
+              },
+              {
+                  "Name":  "Mobile App Files",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1782924694344)\/"
+              },
+              {
+                  "Name":  "playit",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785024389908)\/"
+              },
+              {
+                  "Name":  "Plugin Building",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1782924782606)\/"
+              },
+              {
+                  "Name":  "scripts",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785487560986)\/"
+              },
+              {
+                  "Name":  "Server Handoffs",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785538939345)\/"
+              },
+              {
+                  "Name":  "Server Live Backups",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785112486427)\/"
+              },
+              {
+                  "Name":  "Web Files",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785538946837)\/"
+              },
+              {
+                  "Name":  "_tmp_towny_src",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785493013814)\/"
+              },
+              {
+                  "Name":  ".env",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785638603782)\/"
+              },
+              {
+                  "Name":  "Current history.txt",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785110335801)\/"
+              },
+              {
+                  "Name":  "daily-report-sample.json",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1783746271880)\/"
+              },
+              {
+                  "Name":  "finish-root-haste-rename.bat",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785110335804)\/"
+              },
+              {
+                  "Name":  "GEN-1-GEN-2.md",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785464861939)\/"
+              },
+              {
+                  "Name":  "Pre-Current history.txt",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785110335802)\/"
+              },
+              {
+                  "Name":  "WORKSPACE.md",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785464833982)\/"
+              }
+          ],
+    "E":  [
+              {
+                  "Name":  ".cursor",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785472376736)\/"
+              },
+              {
+                  "Name":  "Change Logs",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785472849003)\/"
+              },
+              {
+                  "Name":  "docs",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785500244128)\/"
+              },
+              {
+                  "Name":  "emergent-repo",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1783658881562)\/"
+              },
+              {
+                  "Name":  "github-plugin-repos",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785116107613)\/"
+              },
+              {
+                  "Name":  "Marketing",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785393412802)\/"
+              },
+              {
+                  "Name":  "Mobile App Files",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1782924694344)\/"
+              },
+              {
+                  "Name":  "playit",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785024389908)\/"
+              },
+              {
+                  "Name":  "Plugin Building",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1782924782606)\/"
+              },
+              {
+                  "Name":  "scripts",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785487560986)\/"
+              },
+              {
+                  "Name":  "Server Handoffs",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785538939345)\/"
+              },
+              {
+                  "Name":  "Server Live Backups",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785112486427)\/"
+              },
+              {
+                  "Name":  "Web Files",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785538946837)\/"
+              },
+              {
+                  "Name":  "_tmp_towny_src",
+                  "type":  "dir",
+                  "LastWriteTime":  "\/Date(1785493013814)\/"
+              },
+              {
+                  "Name":  ".env",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785609510459)\/"
+              },
+              {
+                  "Name":  "Current history.txt",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785110335801)\/"
+              },
+              {
+                  "Name":  "daily-report-sample.json",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1783746271880)\/"
+              },
+              {
+                  "Name":  "finish-root-haste-rename.bat",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785110335804)\/"
+              },
+              {
+                  "Name":  "GEN-1-GEN-2.md",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785464861939)\/"
+              },
+              {
+                  "Name":  "Pre-Current history.txt",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785110335802)\/"
+              },
+              {
+                  "Name":  "WORKSPACE.md",
+                  "type":  "file",
+                  "LastWriteTime":  "\/Date(1785464833982)\/"
+              }
+          ],
+    "compared":  "2026-08-01T19:46:15.8677410-10:00"
+}

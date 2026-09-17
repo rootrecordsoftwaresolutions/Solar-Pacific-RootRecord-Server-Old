@@ -1,0 +1,96 @@
+# Root-Haste — plugins/RootMC/root-haste.yml
+# One plugin: torch (default, all-ages) or joint (18+).
+# Catalog: https://rootmc.net/plugins/root-haste/
+
+# 18+ servers only — when true, enables /joint branding instead of /torch.
+unlock-joint: false
+
+# Gold cost to light. Change here or: /torch price <amount> (or /joint when unlocked)
+cost-gold: 1.0
+hold-seconds: 180
+# Override optional; defaults to service-fee:torch or service-fee:joint by theme.
+# treasury-channel: "service-fee:torch"
+discord-relay: true
+# Override optional; defaults to [T] or [J] by theme.
+# chat-tag: "&6[T]&r "
+
+effects:
+  regeneration-amplifier: 0
+  night-vision-amplifier: 0
+  haste-amplifier: 0
+
+record-reward:
+  enabled: true
+  starter-gold: 75.0
+  holder-gold: 25.0
+
+holder-light:
+  enabled: true
+  level: 12
+
+warn-global-seconds:
+  - 30
+warn-holder-seconds:
+  - 45
+  - 15
+  - 5
+  - 4
+  - 3
+  - 2
+  - 1
+
+messages:
+  prefix: ""
+  mode-locked-joint: "&eJoint is locked. Set &funlock-joint: true &ein &fplugins/RootMC/root-haste.yml &e(18+ only)."
+  mode-locked-torch: "&eTorch is off while joint is unlocked. Use &f/joint &eor &f/pass&e."
+  economy-unavailable: "&cEconomy is unavailable. Ensure &fRoot-Economy &cis running, then try again."
+  no-permission: "&cNo permission."
+  players-only: "&cPlayers only."
+  player-not-found: "&cPlayer &f{player} &cis not online."
+  pass-self: "&ePass it to someone else."
+  fee-failed: "&cCould not charge &f{fee} G&c."
+  fee-charged: "&eCharged &f{fee} G&e -> Server Reserve. Balance: &f{balance} G&e."
+  price-invalid: "&cInvalid amount."
+  price-failed: "&cCould not save price."
+
+  torch:
+    lit: "&f{player} &alit a torch!"
+    lit-fee: " &7({fee} G -> Server Reserve)"
+    passed: "&f{from} &apassed the torch to &f{to}&a. &7Session &f{session}&7 · highscore &f{highscore}"
+    burned-out: "&7{player}'s torch went out."
+    milk-spilt: "&f{player} &7spilt milk on the torch."
+    new-record: "&6New longest torch! &f{duration}&6 — lit by &f{player}&6 (last held by &f{holder}&6)"
+    record-reward-starter: "&6Record reward: &f{player}&6 earned &f{amount} G&6 for lighting the longest torch."
+    record-reward-holder: "&6Record reward: &f{player}&6 earned &f{amount} G&6 for holding when it went out."
+    longest: "&6Longest torch: &f{duration}&6 — lit by &f{player}&6 (last held by &f{holder}&6)"
+    no-record: "&7No longest-torch record yet. Keep it burning!"
+    already-active: "&eThere is already a torch being passed."
+    warn: "&eTorch will go out in &f{seconds}s&e. &f/torchpass &eor &f/pass &eit to keep it going."
+    warn-global: "&eTorch will go out if &f{player}&e does not pass it soon."
+    insufficient: "&cNeed &f{fee} G&c to light a torch — you have &f{balance} G&c."
+    not-holding: "&eYou are not holding the torch."
+    usage-pass: "&eUsage: &f/pass <player> &7(or /torchpass)"
+    price-current: "&7Torch price: &f{fee} G"
+    price-usage: "&eUsage: &f/torch price <amount>"
+    price-set: "&aTorch price set to &f{fee} G&a."
+
+  joint:
+    sparked: "&f{player} &asparked a joint!"
+    sparked-fee: " &7({fee} G -> Server Reserve)"
+    passed: "&f{from} &apassed the joint to &f{to}&a. &7Session &f{session}&7 · highscore &f{highscore}"
+    burned-out: "&7{player}'s joint burned out."
+    milk-dropped: "&f{player} &7dropped the joint in a glass of milk."
+    new-record: "&6New longest joint! &f{duration}&6 — sparked by &f{player}&6 (last held by &f{holder}&6)"
+    record-reward-starter: "&6Record reward: &f{player}&6 earned &f{amount} G&6 for sparking the longest joint."
+    record-reward-holder: "&6Record reward: &f{player}&6 earned &f{amount} G&6 for holding when it burned out."
+    longest: "&6Longest joint: &f{duration}&6 — sparked by &f{player}&6 (last held by &f{holder}&6)"
+    no-record: "&7No longest-joint record yet. Keep it burning!"
+    already-active: "&eThere is already a joint being passed."
+    warn: "&eJoint will burn out in &f{seconds}s&e. &f/pass &eit to another player to keep it going."
+    warn-global: "&eJoint will burn out if &f{player}&e does not pass it soon."
+    insufficient: "&cNeed &f{fee} G&c to light a joint — you have &f{balance} G&c."
+    not-holding: "&eYou are not holding the joint."
+    usage-pass: "&eUsage: &f/pass <player>"
+    price-current: "&7Joint price: &f{fee} G"
+    price-usage: "&eUsage: &f/joint price <amount>"
+    price-set: "&aJoint price set to &f{fee} G&a."

@@ -1,0 +1,1 @@
+../../../people/scripts/people.py

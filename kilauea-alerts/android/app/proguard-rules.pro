@@ -1,0 +1,4 @@
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn kotlinx.serialization.**
+-keepclassmembers class kotlinx.serialization.json.** { *; }

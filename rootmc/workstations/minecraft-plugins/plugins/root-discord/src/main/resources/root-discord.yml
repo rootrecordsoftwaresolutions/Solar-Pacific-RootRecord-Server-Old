@@ -1,0 +1,14 @@
+# plugins/RootMC/root-discord.yml
+# Secrets (bot-token, guild-id, channels) live in cloud.yml — not here.
+
+chat:
+  enabled: true
+  server-tag: T
+  # Used only when discord.roles.linked in cloud.yml is blank.
+  allowed-role-id: ""
+  relay-chat: true
+  relay-join: true
+  relay-leave: true
+  relay-death: true
+  relay-reachout: true
+  inbound-format: "&8▎ &9Discord&8│ &f{user}&8 &7»&f {message}"

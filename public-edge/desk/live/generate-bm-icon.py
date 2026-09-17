@@ -1,0 +1,1 @@
+../../../site-ops/scripts/generate-bm-icon.py

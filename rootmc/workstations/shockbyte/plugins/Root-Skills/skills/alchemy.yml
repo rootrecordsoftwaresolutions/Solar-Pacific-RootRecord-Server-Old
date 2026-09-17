@@ -1,0 +1,12 @@
+id: alchemy
+display-name: Alchemy
+enabled: true
+max-level: 1000
+icon: BREWING_STAND
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 10
+  action: 20
+talents:
+  - alchemy_catalysis

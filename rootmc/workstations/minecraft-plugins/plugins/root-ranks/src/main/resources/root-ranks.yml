@@ -1,0 +1,65 @@
+# Root-Ranks — plugins/RootMC/root-ranks.yml
+# Player track only (LuckPerms groups). Buy one tier at a time, in order.
+# Prices tuned to closed-loop economy (town 400 G, warp 500 G). ~251k G total to Champion.
+
+treasury_sink: true
+
+# Final reset 2026-08-08: purchases ON — /rank buy charges Gold (was paused after free-rankup).
+purchases_enabled: true
+
+# When TownyChat is absent (Claims), format local chat like Towny catalog.
+chat:
+  catalog-without-townychat: true
+  prefix: "&6◆&r {joint}{rank}&f{name}&8 »&f "
+
+ranks:
+  - id: wanderer
+    display: Wanderer
+    price: 500
+    benefits: "Wanderer chat prefix; loan cap 500 G (vs 100 G Explorer)"
+  - id: settler
+    display: Settler
+    price: 1500
+    benefits: "Settler prefix; loan cap 1,500 G"
+  - id: pioneer
+    display: Pioneer
+    price: 4000
+    benefits: "Pioneer prefix; loan cap 4,000 G"
+  - id: citizen
+    display: Citizen
+    price: 10000
+    benefits: "Citizen prefix; loan cap 10,000 G"
+  - id: veteran
+    display: Veteran
+    price: 25000
+    benefits: "Veteran prefix; loan cap 25,000 G"
+  - id: elite
+    display: Elite
+    price: 60000
+    benefits: "Elite prefix; loan cap 60,000 G"
+  - id: champion
+    display: Champion
+    price: 150000
+    benefits: "Champion prefix; loan cap 150,000 G"
+
+messages:
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  players-only: "&cPlayers only."
+  disabled: "&eRank purchases are disabled."
+  no-economy: "&cEconomy unavailable."
+  no-luckperms: "&cRank system unavailable (LuckPerms missing)."
+  max-rank: "&aYou already hold the highest rank: &f{rank}&a."
+  next-rank: "&7Current: &f{current}&7 · Next: &f{next} &7— &f{price} G &7(you have &f{balance} G&7)"
+  rank-list-header: "&5Player ranks &7— buy in order with &f/rank buy"
+  rank-list-row: "&7{index}. &f{display} &8— &f{price} G {owned}"
+  rank-owned-tag: "&a✓"
+  rank-locked-tag: "&8"
+  insufficient: "&cNeed &f{price} G&c — you have &f{balance} G&c."
+  purchase-success: "&aRank up! You are now &f{rank}&a. &7(-{price} G)"
+  purchase-broadcast: "&5{player} &7purchased rank &f{rank}&7!"
+  purchase-failed: "&cCould not apply rank — contact staff. Your gold was not taken."
+  bypass-granted: "&aRank &f{rank} &agranted (bypass — no charge)."
+  reload-done: "&aRoot-Ranks config reloaded."
+  explorer-benefits: "&7Explorer (default): &floan cap 100 G&7, chat prefix, all base commands."
+  rank-benefits-line: "&7  &8→ &f{benefits}"

@@ -1,0 +1,1 @@
+../../scripts/ecoflow_delta2_power_test.py

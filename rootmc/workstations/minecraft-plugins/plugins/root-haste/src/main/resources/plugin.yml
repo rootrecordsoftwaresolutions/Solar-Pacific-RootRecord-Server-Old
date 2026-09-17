@@ -1,0 +1,60 @@
+name: Root-Haste
+version: '${version}'
+main: com.rootrecord.minecraft.roothaste.RootHastePlugin
+api-version: '26.1'
+description: "Pass-the-torch / pass-the-joint minigame — torch by default; unlock-joint for 18+"
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Economy, Root-Essentials, RootMC, Vault, PlaceholderAPI]
+commands:
+  torch:
+    description: "Light a torch for Gold (default mode), or view the longest burn record"
+    usage: /torch [longest|price|reload]
+  torchpass:
+    description: Pass the torch to another online player
+    usage: /torchpass <player>
+    aliases: [tpass]
+  joint:
+    description: "Light a joint for Gold when unlock-joint is enabled, or view the longest burn record"
+    usage: /joint [longest|price|reload]
+  pass:
+    description: Pass the active torch/joint to another online player
+    usage: /pass <player>
+    aliases: [jointpass]
+permissions:
+  roothaste.use:
+    description: Light and pass the torch/joint
+    default: true
+  roothaste.bypass-fee:
+    description: Light without paying Gold
+    default: op
+  roothaste.reload:
+    description: Reload root-haste.yml
+    default: op
+  roothaste.price:
+    description: View or set Gold price
+    default: op
+  rootjoint.use:
+    description: Legacy alias of roothaste.use
+    default: true
+  rootjoint.bypass-fee:
+    description: Legacy alias of roothaste.bypass-fee
+    default: op
+  rootjoint.reload:
+    description: Legacy alias of roothaste.reload
+    default: op
+  rootjoint.price:
+    description: Legacy alias of roothaste.price
+    default: op
+  roottorch.use:
+    description: Legacy alias of roothaste.use
+    default: true
+  roottorch.bypass-fee:
+    description: Legacy alias of roothaste.bypass-fee
+    default: op
+  roottorch.reload:
+    description: Legacy alias of roothaste.reload
+    default: op
+  roottorch.price:
+    description: Legacy alias of roothaste.price
+    default: op

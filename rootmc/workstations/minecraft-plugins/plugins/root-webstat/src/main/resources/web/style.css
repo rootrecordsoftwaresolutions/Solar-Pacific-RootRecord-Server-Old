@@ -1,0 +1,260 @@
+/* Root-Webstat page — sits on top of rootmc.net design tokens */
+.webstat-page {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--rmc-bg, #0a0e14);
+  color: var(--rmc-ink, #e5e7eb);
+}
+
+.webstat-main {
+  padding: 1.5rem 0 2.5rem;
+}
+
+.webstat-title {
+  margin: 0.25rem 0 0.35rem;
+  font-family: var(--rmc-font-display, Inter, system-ui, sans-serif);
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  color: var(--rmc-ink, #e5e7eb);
+}
+
+.webstat-meta {
+  margin: 0 0 1.35rem;
+  color: var(--rmc-ink-muted, #a1afa8);
+  font-family: var(--rmc-mono, ui-monospace, monospace);
+  font-size: 0.85rem;
+}
+
+.webstat-grid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.webstat-card {
+  border: 1px solid var(--rmc-outline, rgba(245, 185, 66, 0.16));
+  border-radius: var(--rmc-r, 14px);
+  background: var(--rmc-surface, #121a1c);
+  box-shadow: var(--rmc-elev-1, 0 2px 6px rgba(0, 0, 0, 0.35));
+  padding: 1rem 1.15rem 1.1rem;
+}
+
+.webstat-card h2 {
+  margin: 0 0 0.7rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--rmc-gold, #f5b942);
+  font-family: var(--rmc-font, "DM Sans", system-ui, sans-serif);
+}
+
+.webstat-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 0.55rem;
+}
+
+.webstat-stat span {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--rmc-ink-faint, #6c7a74);
+}
+
+.webstat-stat strong {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--rmc-mono, ui-monospace, monospace);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--rmc-ink, #ecf1ed);
+}
+
+.webstat-holders {
+  margin: 0.7rem 0 0;
+  font-size: 0.85rem;
+  color: var(--rmc-ink-muted, #a1afa8);
+}
+
+.webstat-holders strong {
+  color: var(--rmc-ink-dim, #c2cec7);
+  font-weight: 600;
+}
+
+.webstat-footer {
+  padding: 0 0 2.5rem;
+  color: var(--rmc-ink-faint, #6c7a74);
+  font-size: 0.85rem;
+}
+
+.webstat-footer a {
+  color: var(--rmc-gold, #f5b942);
+  text-decoration: none;
+}
+
+.webstat-footer a:hover {
+  color: var(--rmc-gold-bright, #ffd16a);
+  text-decoration: underline;
+}
+
+.rmc-eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--rmc-gold, #f5b942);
+}
+
+.webstat-lead {
+  margin: 0 0 1.25rem;
+  max-width: 42rem;
+  color: var(--rmc-ink-muted, #a1afa8);
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.webstat-catalog {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.webstat-catalog-item {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--rmc-outline, rgba(245, 185, 66, 0.16));
+  border-radius: var(--rmc-r, 14px);
+  background: var(--rmc-surface, #121a1c);
+  color: inherit;
+  text-decoration: none;
+}
+
+.webstat-catalog-item:hover {
+  border-color: rgba(245, 185, 66, 0.4);
+}
+
+.webstat-catalog-item strong {
+  font-size: 1.05rem;
+  color: var(--rmc-gold, #f5b942);
+}
+
+.webstat-catalog-item span {
+  color: var(--rmc-ink-muted, #a1afa8);
+  font-size: 0.9rem;
+}
+
+.webstat-catalog-item code {
+  font-family: var(--rmc-mono, ui-monospace, monospace);
+  font-size: 0.78rem;
+  color: var(--rmc-ink-faint, #6c7a74);
+}
+
+.webstat-back {
+  margin: 0 0 0.6rem;
+}
+
+.webstat-back a {
+  color: var(--rmc-gold, #f5b942);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.webstat-summary-nums {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.webstat-table-wrap {
+  overflow-x: auto;
+}
+
+.webstat-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--rmc-mono, ui-monospace, monospace);
+  font-size: 0.85rem;
+}
+
+.webstat-table th,
+.webstat-table td {
+  text-align: left;
+  padding: 0.4rem 0.55rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.webstat-table th {
+  color: var(--rmc-ink-faint, #6c7a74);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.7rem;
+}
+
+.webstat-windows {
+  margin-top: 0.35rem;
+}
+
+.pct-up {
+  color: #7dcea0;
+}
+
+.pct-down {
+  color: #e07a7a;
+}
+
+.webstat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  align-items: center;
+  margin: 0 0 1rem;
+}
+
+.webstat-btn {
+  display: inline-block;
+  padding: 0.45rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid rgba(245, 185, 66, 0.35);
+  background: rgba(245, 185, 66, 0.12);
+  color: var(--rmc-gold, #f5b942);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.webstat-btn:hover {
+  background: rgba(245, 185, 66, 0.22);
+}
+
+.webstat-btn-secondary {
+  background: transparent;
+}
+
+.webstat-auto {
+  font-size: 0.85rem;
+  color: var(--rmc-ink-muted, #a1afa8);
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.webstat-log {
+  margin: 0;
+  max-height: min(70vh, 42rem);
+  overflow: auto;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--rmc-outline, rgba(245, 185, 66, 0.16));
+  border-radius: var(--rmc-r, 14px);
+  background: #0c1213;
+  color: #d5e0da;
+  font-family: var(--rmc-mono, ui-monospace, monospace);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

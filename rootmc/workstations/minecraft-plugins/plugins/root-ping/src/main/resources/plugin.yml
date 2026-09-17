@@ -1,0 +1,21 @@
+name: Root-Ping
+version: '${version}'
+main: com.rootrecord.minecraft.rootping.RootPingPlugin
+api-version: '26.1'
+description: Owns /ping — samples player connection + server load to MySQL
+author: Root Record
+website: https://rootmc.net/plugins/
+depend: [Root-Core]
+softdepend: [Root-Essentials]
+commands:
+  ping:
+    description: Show your ping and current server load
+    usage: /<command>
+    aliases: [latency]
+permissions:
+  rootping.use:
+    description: Use /ping
+    default: true
+  rootping.admin:
+    description: Reload Root-Ping
+    default: op

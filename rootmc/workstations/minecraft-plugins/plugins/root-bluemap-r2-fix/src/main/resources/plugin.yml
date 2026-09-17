@@ -1,0 +1,7 @@
+name: Root-BlueMap-R2-Fix
+version: '${version}'
+main: com.rootrecord.minecraft.bluemapr2.RootBlueMapR2FixPlugin
+api-version: '26.1'
+load: STARTUP
+loadbefore: [BlueMap]
+description: R2 signing flags for BlueMapS3Storage on Cloudflare

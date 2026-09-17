@@ -1,0 +1,881 @@
+﻿1533245399639392376
+
+Claims:
+8/1 12:27:20 PM [System] Log has been cleared.
+8/1 12:27:24 PM [System] Server has stopped.
+8/1 12:27:36 PM [Info] Please standby while we prepare your server for startup. This might take a few moments.
+8/1 12:27:36 PM [System] Server is starting.
+8/1 12:27:36 PM [Info] Starting org.bukkit.craftbukkit.Main
+8/1 12:27:37 PM [Error] 2026-08-01T22:27:37.233519494Z ServerMain WARN Advanced terminal features are not available in this environment
+8/1 12:27:37 PM [Info] [bootstrap] Running Java 25 (OpenJDK 64-Bit Server VM 25.0.1+8-LTS; Eclipse Adoptium Temurin-25.0.1+8) on Linux 6.1.0-47-amd64 (amd64)
+8/1 12:27:37 PM [Info] [bootstrap] Loading Paper 26.2-62-main@75c0b48 (2026-07-17T17:14:52Z) for Minecraft 26.2
+8/1 12:27:37 PM [Info] [PluginInitializerManager] Initializing plugins...
+8/1 12:27:37 PM [Error] [DirectoryProviderSource] Error loading plugin: zip END header not found
+8/1 12:27:37 PM [Error] java.util.zip.ZipException: zip END header not found
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.findEND(ZipFile.java:1693) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.initCEN(ZipFile.java:1701) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.<init>(ZipFile.java:1542) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1506) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:704) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:204) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:150) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.jar.JarFile.<init>(JarFile.java:333) ~[?:?]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:64) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:58) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:17) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.util.EntrypointUtil.registerProvidersFromSource(EntrypointUtil.java:15) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.PluginInitializerManager.load(PluginInitializerManager.java:104) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at net.minecraft.server.Main.main(Main.java:110) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.PaperBootstrap.boot(PaperBootstrap.java:25) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at org.bukkit.craftbukkit.Main.main(Main.java:204) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:37 PM [Error] [DirectoryProviderSource] Error loading plugin: zip END header not found
+8/1 12:27:37 PM [Error] java.util.zip.ZipException: zip END header not found
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.findEND(ZipFile.java:1693) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.initCEN(ZipFile.java:1701) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.<init>(ZipFile.java:1542) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1506) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:704) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:204) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:150) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.jar.JarFile.<init>(JarFile.java:333) ~[?:?]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:64) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:58) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:17) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.util.EntrypointUtil.registerProvidersFromSource(EntrypointUtil.java:15) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.PluginInitializerManager.load(PluginInitializerManager.java:104) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at net.minecraft.server.Main.main(Main.java:110) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.PaperBootstrap.boot(PaperBootstrap.java:25) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at org.bukkit.craftbukkit.Main.main(Main.java:204) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:37 PM [Error] [DirectoryProviderSource] Error loading plugin: zip END header not found
+8/1 12:27:37 PM [Error] java.util.zip.ZipException: zip END header not found
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.findEND(ZipFile.java:1693) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.initCEN(ZipFile.java:1701) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.<init>(ZipFile.java:1542) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1506) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:704) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:204) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:150) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.jar.JarFile.<init>(JarFile.java:333) ~[?:?]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:64) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:58) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:17) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.util.EntrypointUtil.registerProvidersFromSource(EntrypointUtil.java:15) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.PluginInitializerManager.load(PluginInitializerManager.java:104) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at net.minecraft.server.Main.main(Main.java:110) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.PaperBootstrap.boot(PaperBootstrap.java:25) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at org.bukkit.craftbukkit.Main.main(Main.java:204) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:37 PM [Info] [PluginInitializerManager] Initialized 27 plugins
+8/1 12:27:37 PM [Info] [PluginInitializerManager] Bukkit plugins (27):
+8/1 12:27:37 PM [Info] - Root-Appreciation (1.7.19), Root-BlueMap-R2-Fix (1.7.1), Root-ChestShops (1.7.15), Root-Claims (1.7.8), Root-Discord (1.7.14), Root-Economy (1.7.9), Root-Essentials (1.7.12), Root-Gamble (1.0.5), Root-Haste (1.7.12), Root-Heads (1.0.0), Root-ItemInfo (1.7.2), Root-Market (1.7.13), Root-Memberships (1.7.17), Root-Ops (1.7.6), Root-Ping (1.7.3), Root-Play (1.7.20), Root-Referrals (1.7.1), Root-Skills (1.0.2), Root-Territories (1.7.1), Root-Times (1.7.6), Root-Try (1.7.5), Root-Webstat (1.7.7), RootMC (1.7.22), RootMC-Official (1.7.4), Vault (1.7.3-b131), Votifier (2.7.3), mcMMO (2.2.053)
+8/1 12:27:40 PM [Warning] resource-pack-id missing, using default of 66db9c26-37d6-36f1-acb3-5ff13fcce27b
+8/1 12:27:40 PM [Info] Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+8/1 12:27:42 PM [Info] Loaded 1585 recipes
+8/1 12:27:42 PM [Info] Loaded 1688 advancements
+8/1 12:27:42 PM [Info] [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+8/1 12:27:42 PM [Info] [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 482.3ms
+8/1 12:27:42 PM [Warning] resource-pack-id missing, using default of 66db9c26-37d6-36f1-acb3-5ff13fcce27b
+8/1 12:27:42 PM [Info] Starting minecraft server version 26.2
+8/1 12:27:42 PM [Info] [22:27:42 INFO]: Loading properties
+8/1 12:27:42 PM [Info] This server is running Paper version 26.2-62-main@75c0b48 (2026-07-17T17:14:52Z) (Implementing API version 26.2.build.62-beta)
+8/1 12:27:43 PM [Info] [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+8/1 12:27:43 PM [Info] Server Ping Player Sample Count: 12
+8/1 12:27:43 PM [Info] Using 4 threads for Netty based IO
+8/1 12:27:43 PM [Info] [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+8/1 12:27:43 PM [Info] Default game type: SURVIVAL
+8/1 12:27:43 PM [Info] Generating keypair
+8/1 12:27:43 PM [Info] Starting Minecraft server on 0.0.0.0:24945
+8/1 12:27:43 PM [Info] Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+8/1 12:27:43 PM [Info] Paper: Using OpenSSL 3.x.x (Linux x86_64) cipher from Velocity.
+8/1 12:27:43 PM [Error] [ModernPluginLoadingStrategy] Could not load 'plugins/root-referrals-1.7.1.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Referrals'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-webstat-1.7.7.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Webstat'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-heads-1.0.0.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Heads'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-discord-1.7.14.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Discord'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-ping-1.7.3.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Ping'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-appreciation-1.7.19.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Appreciation'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-try-1.7.5.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Try'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [ModernPluginLoadingStrategy] Could not load 'plugins/root-memberships-1.7.17.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Memberships'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-gamble-1.0.5.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Gamble'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Info] [Vault] Loading server plugin Vault v1.7.3-b131
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Times] Loading server plugin Root-Times v1.7.6
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Economy] Loading server plugin Root-Economy v1.7.9
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Claims] Loading server plugin Root-Claims v1.7.8
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [RootMC] Loading server plugin RootMC v1.7.22
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Essentials] Loading server plugin Root-Essentials v1.7.12
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-ChestShops] Loading server plugin Root-ChestShops v1.7.15
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Haste] Loading server plugin Root-Haste v1.7.12
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-BlueMap-R2-Fix] Loading server plugin Root-BlueMap-R2-Fix v1.7.1
+8/1 12:27:43 PM [Warning] [Root-BlueMap-R2-Fix] Missing plugins/RootMC/r2.env — place R2 keys there (legacy plugins/Root-BlueMap-R2-Fix/r2.env is migrated on load).
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Votifier] Loading server plugin Votifier v2.7.3
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Ops] Loading server plugin Root-Ops v1.7.6
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Play] Loading server plugin Root-Play v1.7.20
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Market] Loading server plugin Root-Market v1.7.13
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Territories] Loading server plugin Root-Territories v1.7.1
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-ItemInfo] Loading server plugin Root-ItemInfo v1.7.2
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [mcMMO] Loading server plugin mcMMO v2.2.053
+8/1 12:27:43 PM [Info] [Root-Skills] Loading server plugin Root-Skills v1.0.2
+8/1 12:27:43 PM [Info] [RootMC-Official] Loading server plugin RootMC-Official v1.7.4
+8/1 12:27:43 PM [Info] Server permissions file permissions.yml is empty, ignoring it
+8/1 12:27:43 PM [Info] [Vault] Enabling Vault v1.7.3-b131
+8/1 12:27:44 PM [Info] [Vault] [Permission] SuperPermissions loaded as backup permission system.
+8/1 12:27:44 PM [Info] [Vault] Enabled Version 1.7.3-b131
+8/1 12:27:44 PM [Info] [Root-BlueMap-R2-Fix] Enabling Root-BlueMap-R2-Fix v1.7.1
+8/1 12:27:44 PM [Info] Preparing level "world"
+8/1 12:27:44 PM [Info] Loading 0 persistent chunks for level 'minecraft:overworld'...
+8/1 12:27:44 PM [Info] Prepared spawn area in 0 ms
+8/1 12:27:44 PM [Info] Loading 0 persistent chunks for level 'minecraft:the_nether'...
+8/1 12:27:44 PM [Info] Prepared spawn area in 0 ms
+8/1 12:27:44 PM [Info] Loading 0 persistent chunks for level 'minecraft:the_end'...
+8/1 12:27:44 PM [Info] [22:27:44 INFO]: Prepared spawn area in 0 ms
+8/1 12:27:44 PM [Info] [22:27:44 INFO]: Done preparing level "world" (0.299s)
+8/1 12:27:44 PM [Info] [Root-Times] Enabling Root-Times v1.7.6
+8/1 12:27:44 PM [Info] [Root-Times] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:44 PM [Info] [Root-Times] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:44 PM [Info] [Root-Times] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:44 PM [Warning] [Root-Times] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true). Install Root-Core for licensing and suite updates.
+8/1 12:27:44 PM [Info] [Root-Times] MC day id base=1487407 → local day 581 (absolute 1487988)
+8/1 12:27:44 PM [Info] [Root-Times] Playtime schema ready — root_playtime (scope *=global, else server-id=claims)
+8/1 12:27:44 PM [Info] [Root-Times] World time sync active — 20 min/day (Pacific/Honolulu)
+8/1 12:27:44 PM [Info] [Root-Times] Root-Times web UI at http://127.0.0.1:8765/
+8/1 12:27:44 PM [Info] [Root-Times] MySQL status reporter every 5s → root_times_status
+8/1 12:27:45 PM [Info] [Root-Times] Root-Times present — Root-Activity hourly writers idle.
+8/1 12:27:45 PM [Info] [Root-Times] Root-Activity enabled — /timezone (/activity) for server peak in your clock.
+8/1 12:27:45 PM [Info] [Root-Times] Root-Times enabled — day clock + harvest + AFK + activity + welcome + web.
+8/1 12:27:45 PM [Info] [Root-Economy] Enabling Root-Economy v1.7.9
+8/1 12:27:45 PM [Info] [Root-Economy] Enabling Root-Economy v1.7.9
+8/1 12:27:45 PM [Info] [Root-Economy] Registered RootMcTreasuryService (Activity Dividend treasury).
+8/1 12:27:45 PM [Info] [Root-Economy] Double ender chest (54 slots) ready — server_id=local
+8/1 12:27:45 PM [Info] [Root-Economy] Registered RootMC economy with Vault (Towny-compatible).
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Bonds using inactivity grace-days from root-upkeep.yml (30).
+8/1 12:27:45 PM [Warning] [Root-Economy] Root-Perms missing - loan limits use default-max-loan only.
+8/1 12:27:45 PM [Warning] [Root-Economy] Rank loan limits inactive - using default-max-loan 100.0 G.
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Loans enabled (treasury bridge active).
+8/1 12:27:45 PM [Info] [Root-Economy] Inactivity tax once per real day (HST hour 0).
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Upkeep enabled — inactivity tax + town daily tax (MC day).
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Economy enabled (wallets, treasury, bonds/loans/upkeep).
+8/1 12:27:45 PM [Info] [Root-Claims] Enabling Root-Claims v1.7.8
+8/1 12:27:45 PM [Info] [Root-Claims] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:45 PM [Info] [Root-Claims] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:45 PM [Info] [Root-Claims] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:45 PM [Warning] [Root-Claims] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true).
+8/1 12:27:45 PM [Info] [Root-Claims] BlueMap not installed - claim map fills skipped.
+8/1 12:27:45 PM [Info] [Root-Claims] Root-Road enabled - guided first join (/rtp -> /loan take 100.0 -> /c).
+8/1 12:27:45 PM [Info] [Root-Claims] Root-Claims enabled - 4 claim(s) loaded.
+8/1 12:27:45 PM [Info] [RootMC] Enabling RootMC v1.7.22
+8/1 12:27:45 PM [Info] [RootMC] Cross-server chat enabled as [C] transport=peer (MySQL peer)
+8/1 12:27:45 PM [Warning] [RootMC] Root-Core (comms) not available — public reachout and Discord chat relay will not post. Ensure Root-Core is installed and set cloud.yml discord.* / slack.*.
+8/1 12:27:45 PM [Info] [com.zaxxer.hikari.HikariDataSource] RootStat - Starting...
+8/1 12:27:45 PM [Info] [com.zaxxer.hikari.pool.HikariPool] RootStat - Added connection com.mysql.cj.jdbc.ConnectionImpl@27788811
+8/1 12:27:45 PM [Info] [com.zaxxer.hikari.HikariDataSource] RootStat - Start completed.
+8/1 12:27:45 PM [Info] [RootMC] Root-Skills reader enabled (prefix: root_skills_).
+8/1 12:27:45 PM [Info] [RootMC] McMMO reader enabled (prefix: mcmmo_, fallback if root-skills empty).
+8/1 12:27:45 PM [Info] [RootMC] MySQL ready (49cc9f4e50-gen3).
+8/1 12:27:45 PM [Info] [RootMC] Minecraft day rollover coordinator active (every 24000 ticks).
+8/1 12:27:45 PM [Info] [RootMC] Root-Times present — skipping RootMC McDayWorldSync (Times owns world daylight).
+8/1 12:27:45 PM [Info] [22:27:45 INFO]: [RootMC] MySQL reporting active; rollover cloud work is limited to operational actions.
+8/1 12:27:45 PM [Info] [RootMC] Physical gold storage scan scheduled - first run in 60s, then every 30 min.
+8/1 12:27:45 PM [Info] [RootMC] Death fee enabled — 15% of balance (min 1.000 G), pvp-only=false, reserve share=40%.
+8/1 12:27:45 PM [Info] [RootMC] Shop providers detected: sign — mode=auto, priority=rootmc-shops>quickshop>chestshop>sign
+8/1 12:27:46 PM [Info] [RootMC] RootMC enabled — RootMC linking, McMMO, economy, in-game capture, app sync.
+8/1 12:27:46 PM [Info] [Root-Essentials] Enabling Root-Essentials v1.7.12
+8/1 12:27:46 PM [Info] [Root-Essentials] Enabling Root-Essentials v1.7.12
+8/1 12:27:46 PM [Info] [Root-Essentials] Registered /ping via CommandMap fallback.
+8/1 12:27:46 PM [Info] [Root-Essentials] Root-Times present — /afk owned by Times (Essentials AFK stub skipped).
+8/1 12:27:46 PM [Info] [Root-Essentials] Seeded spawnarea-refined.txt from plugin default.
+8/1 12:27:46 PM [Warning] [Root-Essentials] Root-Spawn — no spawn boundary loaded (spawnarea-refined.txt empty?).
+8/1 12:27:46 PM [Info] [Root-Essentials] Root-Banner enabled — /banner (blank 5.0 G, letter 10.0 G, symbol 25.0 G).
+8/1 12:27:46 PM [Info] [Root-Essentials] Root-Potions enabled — /potions brewing guide (23 entries).
+8/1 12:27:46 PM [Info] [Root-Essentials] Root Essentials enabled (QoL + spawn/banner/potions; economy via Root-Economy).
+8/1 12:27:46 PM [Info] [22:27:46 INFO]: [Root-ChestShops] Enabling Root-ChestShops v1.7.15
+8/1 12:27:46 PM [Info] [Root-ChestShops] Root-ChestShops enabled.
+8/1 12:27:46 PM [Info] [Root-Haste] Enabling Root-Haste v1.7.12
+8/1 12:27:46 PM [Info] [Root-Haste] Root-Haste enabled — theme=TORCH (/torch, /torchpass, /pass) [torch default]
+8/1 12:27:46 PM [Info] [Votifier] Enabling Votifier v2.7.3
+8/1 12:27:46 PM [Info] [Votifier] Loaded token for website: default
+8/1 12:27:46 PM [Info] [Votifier] Using epoll transport to accept votes.
+8/1 12:27:46 PM [Info] [Votifier] Method none selected for vote forwarding: Votes will not be received from a forwarder.
+8/1 12:27:46 PM [Info] [Root-Ops] Enabling Root-Ops v1.7.6
+8/1 12:27:46 PM [Info] [Votifier] Votifier enabled on socket /[0:0:0:0:0:0:0:0%0]:22014.
+8/1 12:27:46 PM [Info] [Root-Ops] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [22:27:46 INFO]: [Root-Ops] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [Root-Ops] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:46 PM [Warning] [Root-Ops] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true).
+8/1 12:27:46 PM [Info] [Root-Ops] restart-script points at RootMC restart-helper.sh
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Restart enabled - /rootrestart [cancel] - /rootstop [cancel], daily midnight HST when enabled.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Admin enabled — staff commands, /report, admin-probe.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Announcer enabled — 10 message(s), every 300s.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Mapper 1.7.6 — /mapper for waypoint, refine, and lava area mapping.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Ops enabled (Restart + Admin + Announcer + Mapper).
+8/1 12:27:46 PM [Info] [Root-Play] Enabling Root-Play v1.7.20
+8/1 12:27:46 PM [Info] [Root-Play] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [Root-Play] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [Root-Play] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:46 PM [Warning] [Root-Play] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true).
+8/1 12:27:46 PM [Warning] [Root-Play] Root-Perms not found — Root-Ranks inactive (Play continues).
+8/1 12:27:46 PM [Info] [Root-Play] Catalog chat enabled (no TownyChat) — Claims-style ◆ Rank Name » msg.
+8/1 12:27:46 PM [Info] [Root-Play] Votifier vote listener registered.
+8/1 12:27:46 PM [Info] [Root-Play] Root-Rewards enabled — playtime milestones + vote rewards + Council poll tips.
+8/1 12:27:46 PM [Info] [Root-Play] RootHelp enabled — /rules, /cmds, /discord, /map, /feedback
+8/1 12:27:46 PM [Info] [22:27:46 INFO]: [Root-Play] Root-Play enabled (Ranks + Rewards + Help).
+8/1 12:27:46 PM [Info] [Root-Market] Enabling Root-Market v1.7.13
+8/1 12:27:46 PM [Info] [Root-Market] Root-Market enabled — /market /items /shops
+8/1 12:27:46 PM [Info] [Root-Territories] Enabling Root-Territories v1.7.1
+8/1 12:27:47 PM [Info] [Root-Territories] Claims found - using claims as default claim plugin
+8/1 12:27:47 PM [Info] [Root-Territories] Nation founding proposal gate registered.
+8/1 12:27:47 PM [Info] [Root-Territories] BlueMap not installed — territory map outlines skipped.
+8/1 12:27:47 PM [Info] [Root-Territories] Root-Territories enabled — nation/town rings and border messages.
+8/1 12:27:47 PM [Info] [Root-ItemInfo] Enabling Root-ItemInfo v1.7.2
+8/1 12:27:47 PM [Info] [Root-ItemInfo] Root-ItemInfo enabled — /info + world item census.
+8/1 12:27:47 PM [Info] [mcMMO] Enabling mcMMO v2.2.053
+8/1 12:27:47 PM [Info] [mcMMO] Loaded 232 of 232 Alchemy potions.
+8/1 12:27:48 PM [Info] [Root-Skills] Enabling Root-Skills v1.0.2
+8/1 12:27:48 PM [Info] [Root-Skills] PROP-01: migrated flat XP formula → proportional (multiplier=1.6 exponent=2.35 base=500)
+8/1 12:27:48 PM [Info] [com.zaxxer.hikari.HikariDataSource] RootSkills-Hikari - Starting...
+8/1 12:27:49 PM [Error] [Root-Skills] MySQL unavailable — memory-only fallback: Failed to initialize pool: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.throwPoolInitializationException(HikariPool.java:606) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:593) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:101) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.rootrecord.minecraft.rootskills.storage.Database.open(Database.java:45) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.rootrecord.minecraft.rootskills.RootSkillsPlugin.onEnable(RootSkillsPlugin.java:91) ~[?:?]
+8/1 12:27:49 PM [Error] at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:279) ~[paper-api-26.2.build.62-beta.jar:?]
+8/1 12:27:49 PM [Error] at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:201) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:109) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:519) ~[paper-api-26.2.build.62-beta.jar:?]
+8/1 12:27:49 PM [Error] at org.bukkit.craftbukkit.CraftServer.enablePlugin(CraftServer.java:633) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at org.bukkit.craftbukkit.CraftServer.enablePlugins(CraftServer.java:590) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.MinecraftServer.initPostWorld(MinecraftServer.java:648) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:343) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:49 PM [Error] Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:837) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:139) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:367) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:205) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:484) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:572) ~[?:?]
+8/1 12:27:49 PM [Error] ... 15 more
+8/1 12:27:49 PM [Error] Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483) ~[?:?]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.NativeSession.connect(NativeSession.java:142) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:961) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] ... 23 more
+8/1 12:27:49 PM [Error] Caused by: java.net.ConnectException: Connection refused
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:639) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:543) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:594) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.net.Socket.connect(Socket.java:659) ~[?:?]
+8/1 12:27:49 PM [Error] at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] ... 26 more
+8/1 12:27:49 PM [Error] [Root-Skills] Running memory-only — profiles will not persist until MySQL is available.
+8/1 12:27:49 PM [Info] [Root-Skills] Loaded 21 skill definitions
+8/1 12:27:49 PM [Info] [Root-Skills] Loaded 21 talents
+8/1 12:27:49 PM [Info] [Root-Skills] Loaded 2 classes
+8/1 12:27:49 PM [Info] [Root-Skills] Skill listeners registered
+8/1 12:27:49 PM [Info] [Root-Skills] Root-Skills ready v1.0.2 (mysql=false, talents=21)
+8/1 12:27:49 PM [Info] [RootMC-Official] Enabling RootMC-Official v1.7.4
+8/1 12:27:49 PM [Info] [RootMC-Official] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:49 PM [Info] [RootMC-Official] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:49 PM [Warning] [22:27:49 INFO]: [RootMC-Official] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:49 PM [Warning] [RootMC-Official] Root-Core not present — connection fallback (databaseOk=true).
+8/1 12:27:49 PM [Warning] [RootMC-Official] Root-Core (comms) not available — hourly server-log upload will not post. Ensure Root-Core is installed and set cloud.yml discord.* / slack.*.
+8/1 12:27:49 PM [Warning] [RootMC-Official] Hourly log relay is ENABLED but Root-Core comms is not available — uploads will fail until Root-Core is present.
+8/1 12:27:49 PM [Info] [RootMC-Official] RootMC-Official hourly Discord log relay enabled every 60m (uploads via Root-Core comms → Slack webhook / Discord server-logs).
+8/1 12:27:49 PM [Info] [RootMC-Official] RootMC-Official enabled — role=claims peer=mysql.shockbyte.hil2.shockbyte.host/75eedc3b19-rootmc interval=15s
+8/1 12:27:49 PM [Info] [spark] Starting background profiler...
+8/1 12:27:49 PM [Info] Starting GS4 status listener
+8/1 12:27:49 PM [Info] Thread Query Listener started
+8/1 12:27:49 PM [Info] Query running on 0.0.0.0:24945
+8/1 12:27:49 PM [Info] Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+8/1 12:27:49 PM [Info] Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+8/1 12:27:49 PM [Info] Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+8/1 12:27:49 PM [Info] ThreadedAnvilChunkStorage (world): All chunks are saved
+8/1 12:27:49 PM [Info] ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+8/1 12:27:49 PM [Info] [22:27:49 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+8/1 12:27:49 PM [Info] [22:27:49 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+8/1 12:27:49 PM [Info] Running delayed init tasks
+8/1 12:27:49 PM [Info] [Root-Economy] Economy heartbeat wired to Minecraft day rollover pipeline.
+8/1 12:27:49 PM [Info] [Root-Claims] Claim bank account labels checked for 4 claim(s).
+8/1 12:27:49 PM [Info] [Root-Essentials] PlaceholderAPI not enabled yet; rootessentials expansion will retry.
+8/1 12:27:49 PM [Info] Done (13.095s)! For help, type "help"
+8/1 12:27:49 PM [Info] [Vault] Checking for Updates ...
+8/1 12:27:49 PM [Info] [Root-ChestShops] Virtual storage MySQL ready (root_player_item_bin, root_virtual_listing).
+8/1 12:27:49 PM [Info] [Root-Economy] Bond catch-up: nothing to settle (current MC day 50, last settled 49).
+8/1 12:27:49 PM [Info] [Root-Economy] Bond reporting is MySQL-backed; no cloud snapshot sent.
+8/1 12:27:50 PM [Info] [Vault] No new version available
+8/1 12:27:50 PM [Info] *** Currently you are 25 builds behind ***
+8/1 12:27:50 PM [Info] [22:27:50 INFO]: *** It is highly recommended to download the latest build from https://papermc.io/downloads/paper ***
+8/1 12:27:50 PM [Info] [RootMC] Cross-server chat primed at last-id=4145106 (skipped backlog).
+8/1 12:27:50 PM [Info] [Root-Ops] World border on world: center 0, 112 ±1500 (world spawn)
+8/1 12:27:50 PM [Info] [Root-Ops] World border on world_nether: center 0, 0 ±1500 (world spawn)
+8/1 12:27:50 PM [Info] [22:27:50 INFO]: [Root-Ops] World border on world_the_end: center 0, 0 ±1500 (world spawn)
+8/1 12:27:51 PM [Info] [Root-Essentials] PlaceholderAPI not enabled yet; rootessentials expansion will retry.
+8/1 12:27:51 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=startup players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:27:54 PM [Info] [Root-Essentials] PlaceholderAPI not enabled yet; rootessentials expansion will retry.
+8/1 12:27:54 PM [Info] [Root-Times] MySQL status OK → root_times_status
+8/1 12:28:04 PM [Info] [Root-Ops] Startup complete — relayed to Discord #ingame-chat.
+8/1 12:29:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:31:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:33:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:35:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:37:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:39:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:41:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:43:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:45:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:47:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:49:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:51:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:53:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:55:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:57:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+
+8/1 12:27:20 PM [System] Log has been cleared.
+8/1 12:27:24 PM [System] Server has stopped.
+8/1 12:27:36 PM [Info] Please standby while we prepare your server for startup. This might take a few moments.
+8/1 12:27:36 PM [System] Server is starting.
+8/1 12:27:36 PM [Info] Starting org.bukkit.craftbukkit.Main
+8/1 12:27:37 PM [Error] 2026-08-01T22:27:37.233519494Z ServerMain WARN Advanced terminal features are not available in this environment
+8/1 12:27:37 PM [Info] [bootstrap] Running Java 25 (OpenJDK 64-Bit Server VM 25.0.1+8-LTS; Eclipse Adoptium Temurin-25.0.1+8) on Linux 6.1.0-47-amd64 (amd64)
+8/1 12:27:37 PM [Info] [bootstrap] Loading Paper 26.2-62-main@75c0b48 (2026-07-17T17:14:52Z) for Minecraft 26.2
+8/1 12:27:37 PM [Info] [PluginInitializerManager] Initializing plugins...
+8/1 12:27:37 PM [Error] [DirectoryProviderSource] Error loading plugin: zip END header not found
+8/1 12:27:37 PM [Error] java.util.zip.ZipException: zip END header not found
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.findEND(ZipFile.java:1693) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.initCEN(ZipFile.java:1701) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.<init>(ZipFile.java:1542) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1506) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:704) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:204) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:150) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.jar.JarFile.<init>(JarFile.java:333) ~[?:?]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:64) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:58) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:17) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.util.EntrypointUtil.registerProvidersFromSource(EntrypointUtil.java:15) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.PluginInitializerManager.load(PluginInitializerManager.java:104) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at net.minecraft.server.Main.main(Main.java:110) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.PaperBootstrap.boot(PaperBootstrap.java:25) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at org.bukkit.craftbukkit.Main.main(Main.java:204) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:37 PM [Error] [DirectoryProviderSource] Error loading plugin: zip END header not found
+8/1 12:27:37 PM [Error] java.util.zip.ZipException: zip END header not found
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.findEND(ZipFile.java:1693) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.initCEN(ZipFile.java:1701) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.<init>(ZipFile.java:1542) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1506) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:704) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:204) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:150) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.jar.JarFile.<init>(JarFile.java:333) ~[?:?]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:64) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:58) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:17) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.util.EntrypointUtil.registerProvidersFromSource(EntrypointUtil.java:15) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.PluginInitializerManager.load(PluginInitializerManager.java:104) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at net.minecraft.server.Main.main(Main.java:110) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.PaperBootstrap.boot(PaperBootstrap.java:25) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at org.bukkit.craftbukkit.Main.main(Main.java:204) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:37 PM [Error] [DirectoryProviderSource] Error loading plugin: zip END header not found
+8/1 12:27:37 PM [Error] java.util.zip.ZipException: zip END header not found
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.findEND(ZipFile.java:1693) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.initCEN(ZipFile.java:1701) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.<init>(ZipFile.java:1542) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$Source.get(ZipFile.java:1506) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile$CleanableResource.<init>(ZipFile.java:704) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:204) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.zip.ZipFile.<init>(ZipFile.java:150) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.util.jar.JarFile.<init>(JarFile.java:333) ~[?:?]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.FileProviderSource.registerProviders(FileProviderSource.java:64) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:58) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.provider.source.DirectoryProviderSource.registerProviders(DirectoryProviderSource.java:17) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.util.EntrypointUtil.registerProvidersFromSource(EntrypointUtil.java:15) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.plugin.PluginInitializerManager.load(PluginInitializerManager.java:104) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at net.minecraft.server.Main.main(Main.java:110) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paper.PaperBootstrap.boot(PaperBootstrap.java:25) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at org.bukkit.craftbukkit.Main.main(Main.java:204) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:37 PM [Error] at io.papermc.paperclip.Paperclip.lambda$main$0(Paperclip.java:42) ~[?:?]
+8/1 12:27:37 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:37 PM [Info] [PluginInitializerManager] Initialized 27 plugins
+8/1 12:27:37 PM [Info] [PluginInitializerManager] Bukkit plugins (27):
+8/1 12:27:37 PM [Info] - Root-Appreciation (1.7.19), Root-BlueMap-R2-Fix (1.7.1), Root-ChestShops (1.7.15), Root-Claims (1.7.8), Root-Discord (1.7.14), Root-Economy (1.7.9), Root-Essentials (1.7.12), Root-Gamble (1.0.5), Root-Haste (1.7.12), Root-Heads (1.0.0), Root-ItemInfo (1.7.2), Root-Market (1.7.13), Root-Memberships (1.7.17), Root-Ops (1.7.6), Root-Ping (1.7.3), Root-Play (1.7.20), Root-Referrals (1.7.1), Root-Skills (1.0.2), Root-Territories (1.7.1), Root-Times (1.7.6), Root-Try (1.7.5), Root-Webstat (1.7.7), RootMC (1.7.22), RootMC-Official (1.7.4), Vault (1.7.3-b131), Votifier (2.7.3), mcMMO (2.2.053)
+8/1 12:27:40 PM [Warning] resource-pack-id missing, using default of 66db9c26-37d6-36f1-acb3-5ff13fcce27b
+8/1 12:27:40 PM [Info] Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+8/1 12:27:42 PM [Info] Loaded 1585 recipes
+8/1 12:27:42 PM [Info] Loaded 1688 advancements
+8/1 12:27:42 PM [Info] [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+8/1 12:27:42 PM [Info] [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 482.3ms
+8/1 12:27:42 PM [Warning] resource-pack-id missing, using default of 66db9c26-37d6-36f1-acb3-5ff13fcce27b
+8/1 12:27:42 PM [Info] Starting minecraft server version 26.2
+8/1 12:27:42 PM [Info] [22:27:42 INFO]: Loading properties
+8/1 12:27:42 PM [Info] This server is running Paper version 26.2-62-main@75c0b48 (2026-07-17T17:14:52Z) (Implementing API version 26.2.build.62-beta)
+8/1 12:27:43 PM [Info] [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+8/1 12:27:43 PM [Info] Server Ping Player Sample Count: 12
+8/1 12:27:43 PM [Info] Using 4 threads for Netty based IO
+8/1 12:27:43 PM [Info] [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+8/1 12:27:43 PM [Info] Default game type: SURVIVAL
+8/1 12:27:43 PM [Info] Generating keypair
+8/1 12:27:43 PM [Info] Starting Minecraft server on 0.0.0.0:24945
+8/1 12:27:43 PM [Info] Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+8/1 12:27:43 PM [Info] Paper: Using OpenSSL 3.x.x (Linux x86_64) cipher from Velocity.
+8/1 12:27:43 PM [Error] [ModernPluginLoadingStrategy] Could not load 'plugins/root-referrals-1.7.1.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Referrals'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-webstat-1.7.7.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Webstat'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-heads-1.0.0.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Heads'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-discord-1.7.14.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Discord'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-ping-1.7.3.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Ping'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-appreciation-1.7.19.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Appreciation'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-try-1.7.5.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Try'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [ModernPluginLoadingStrategy] Could not load 'plugins/root-memberships-1.7.17.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Memberships'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Error] [22:27:43 ERROR]: [ModernPluginLoadingStrategy] Could not load 'plugins/root-gamble-1.0.5.jar' in 'plugins'
+8/1 12:27:43 PM [Error] org.bukkit.plugin.UnknownDependencyException: Unknown/missing dependency plugins: [Root-Core]. Please download and install these plugins to run 'Root-Gamble'.
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.strategy.modern.ModernPluginLoadingStrategy.loadProviders(ModernPluginLoadingStrategy.java:82) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.storage.SimpleProviderStorage.enter(SimpleProviderStorage.java:38) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at io.papermc.paper.plugin.entrypoint.LaunchEntryPointHandler.enter(LaunchEntryPointHandler.java:39) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at org.bukkit.craftbukkit.CraftServer.loadPlugins(CraftServer.java:549) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:297) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:43 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:43 PM [Info] [Vault] Loading server plugin Vault v1.7.3-b131
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Times] Loading server plugin Root-Times v1.7.6
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Economy] Loading server plugin Root-Economy v1.7.9
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Claims] Loading server plugin Root-Claims v1.7.8
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [RootMC] Loading server plugin RootMC v1.7.22
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Essentials] Loading server plugin Root-Essentials v1.7.12
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-ChestShops] Loading server plugin Root-ChestShops v1.7.15
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Haste] Loading server plugin Root-Haste v1.7.12
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-BlueMap-R2-Fix] Loading server plugin Root-BlueMap-R2-Fix v1.7.1
+8/1 12:27:43 PM [Warning] [Root-BlueMap-R2-Fix] Missing plugins/RootMC/r2.env — place R2 keys there (legacy plugins/Root-BlueMap-R2-Fix/r2.env is migrated on load).
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Votifier] Loading server plugin Votifier v2.7.3
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Ops] Loading server plugin Root-Ops v1.7.6
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Play] Loading server plugin Root-Play v1.7.20
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Market] Loading server plugin Root-Market v1.7.13
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-Territories] Loading server plugin Root-Territories v1.7.1
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [Root-ItemInfo] Loading server plugin Root-ItemInfo v1.7.2
+8/1 12:27:43 PM [Warning] [22:27:43 INFO]: [mcMMO] Loading server plugin mcMMO v2.2.053
+8/1 12:27:43 PM [Info] [Root-Skills] Loading server plugin Root-Skills v1.0.2
+8/1 12:27:43 PM [Info] [RootMC-Official] Loading server plugin RootMC-Official v1.7.4
+8/1 12:27:43 PM [Info] Server permissions file permissions.yml is empty, ignoring it
+8/1 12:27:43 PM [Info] [Vault] Enabling Vault v1.7.3-b131
+8/1 12:27:44 PM [Info] [Vault] [Permission] SuperPermissions loaded as backup permission system.
+8/1 12:27:44 PM [Info] [Vault] Enabled Version 1.7.3-b131
+8/1 12:27:44 PM [Info] [Root-BlueMap-R2-Fix] Enabling Root-BlueMap-R2-Fix v1.7.1
+8/1 12:27:44 PM [Info] Preparing level "world"
+8/1 12:27:44 PM [Info] Loading 0 persistent chunks for level 'minecraft:overworld'...
+8/1 12:27:44 PM [Info] Prepared spawn area in 0 ms
+8/1 12:27:44 PM [Info] Loading 0 persistent chunks for level 'minecraft:the_nether'...
+8/1 12:27:44 PM [Info] Prepared spawn area in 0 ms
+8/1 12:27:44 PM [Info] Loading 0 persistent chunks for level 'minecraft:the_end'...
+8/1 12:27:44 PM [Info] [22:27:44 INFO]: Prepared spawn area in 0 ms
+8/1 12:27:44 PM [Info] [22:27:44 INFO]: Done preparing level "world" (0.299s)
+8/1 12:27:44 PM [Info] [Root-Times] Enabling Root-Times v1.7.6
+8/1 12:27:44 PM [Info] [Root-Times] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:44 PM [Info] [Root-Times] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:44 PM [Info] [Root-Times] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:44 PM [Warning] [Root-Times] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true). Install Root-Core for licensing and suite updates.
+8/1 12:27:44 PM [Info] [Root-Times] MC day id base=1487407 → local day 581 (absolute 1487988)
+8/1 12:27:44 PM [Info] [Root-Times] Playtime schema ready — root_playtime (scope *=global, else server-id=claims)
+8/1 12:27:44 PM [Info] [Root-Times] World time sync active — 20 min/day (Pacific/Honolulu)
+8/1 12:27:44 PM [Info] [Root-Times] Root-Times web UI at http://127.0.0.1:8765/
+8/1 12:27:44 PM [Info] [Root-Times] MySQL status reporter every 5s → root_times_status
+8/1 12:27:45 PM [Info] [Root-Times] Root-Times present — Root-Activity hourly writers idle.
+8/1 12:27:45 PM [Info] [Root-Times] Root-Activity enabled — /timezone (/activity) for server peak in your clock.
+8/1 12:27:45 PM [Info] [Root-Times] Root-Times enabled — day clock + harvest + AFK + activity + welcome + web.
+8/1 12:27:45 PM [Info] [Root-Economy] Enabling Root-Economy v1.7.9
+8/1 12:27:45 PM [Info] [Root-Economy] Enabling Root-Economy v1.7.9
+8/1 12:27:45 PM [Info] [Root-Economy] Registered RootMcTreasuryService (Activity Dividend treasury).
+8/1 12:27:45 PM [Info] [Root-Economy] Double ender chest (54 slots) ready — server_id=local
+8/1 12:27:45 PM [Info] [Root-Economy] Registered RootMC economy with Vault (Towny-compatible).
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Bonds using inactivity grace-days from root-upkeep.yml (30).
+8/1 12:27:45 PM [Warning] [Root-Economy] Root-Perms missing - loan limits use default-max-loan only.
+8/1 12:27:45 PM [Warning] [Root-Economy] Rank loan limits inactive - using default-max-loan 100.0 G.
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Loans enabled (treasury bridge active).
+8/1 12:27:45 PM [Info] [Root-Economy] Inactivity tax once per real day (HST hour 0).
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Upkeep enabled — inactivity tax + town daily tax (MC day).
+8/1 12:27:45 PM [Info] [Root-Economy] Root-Economy enabled (wallets, treasury, bonds/loans/upkeep).
+8/1 12:27:45 PM [Info] [Root-Claims] Enabling Root-Claims v1.7.8
+8/1 12:27:45 PM [Info] [Root-Claims] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:45 PM [Info] [Root-Claims] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:45 PM [Info] [Root-Claims] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:45 PM [Warning] [Root-Claims] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true).
+8/1 12:27:45 PM [Info] [Root-Claims] BlueMap not installed - claim map fills skipped.
+8/1 12:27:45 PM [Info] [Root-Claims] Root-Road enabled - guided first join (/rtp -> /loan take 100.0 -> /c).
+8/1 12:27:45 PM [Info] [Root-Claims] Root-Claims enabled - 4 claim(s) loaded.
+8/1 12:27:45 PM [Info] [RootMC] Enabling RootMC v1.7.22
+8/1 12:27:45 PM [Info] [RootMC] Cross-server chat enabled as [C] transport=peer (MySQL peer)
+8/1 12:27:45 PM [Warning] [RootMC] Root-Core (comms) not available — public reachout and Discord chat relay will not post. Ensure Root-Core is installed and set cloud.yml discord.* / slack.*.
+8/1 12:27:45 PM [Info] [com.zaxxer.hikari.HikariDataSource] RootStat - Starting...
+8/1 12:27:45 PM [Info] [com.zaxxer.hikari.pool.HikariPool] RootStat - Added connection com.mysql.cj.jdbc.ConnectionImpl@27788811
+8/1 12:27:45 PM [Info] [com.zaxxer.hikari.HikariDataSource] RootStat - Start completed.
+8/1 12:27:45 PM [Info] [RootMC] Root-Skills reader enabled (prefix: root_skills_).
+8/1 12:27:45 PM [Info] [RootMC] McMMO reader enabled (prefix: mcmmo_, fallback if root-skills empty).
+8/1 12:27:45 PM [Info] [RootMC] MySQL ready (49cc9f4e50-gen3).
+8/1 12:27:45 PM [Info] [RootMC] Minecraft day rollover coordinator active (every 24000 ticks).
+8/1 12:27:45 PM [Info] [RootMC] Root-Times present — skipping RootMC McDayWorldSync (Times owns world daylight).
+8/1 12:27:45 PM [Info] [22:27:45 INFO]: [RootMC] MySQL reporting active; rollover cloud work is limited to operational actions.
+8/1 12:27:45 PM [Info] [RootMC] Physical gold storage scan scheduled - first run in 60s, then every 30 min.
+8/1 12:27:45 PM [Info] [RootMC] Death fee enabled — 15% of balance (min 1.000 G), pvp-only=false, reserve share=40%.
+8/1 12:27:45 PM [Info] [RootMC] Shop providers detected: sign — mode=auto, priority=rootmc-shops>quickshop>chestshop>sign
+8/1 12:27:46 PM [Info] [RootMC] RootMC enabled — RootMC linking, McMMO, economy, in-game capture, app sync.
+8/1 12:27:46 PM [Info] [Root-Essentials] Enabling Root-Essentials v1.7.12
+8/1 12:27:46 PM [Info] [Root-Essentials] Enabling Root-Essentials v1.7.12
+8/1 12:27:46 PM [Info] [Root-Essentials] Registered /ping via CommandMap fallback.
+8/1 12:27:46 PM [Info] [Root-Essentials] Root-Times present — /afk owned by Times (Essentials AFK stub skipped).
+8/1 12:27:46 PM [Info] [Root-Essentials] Seeded spawnarea-refined.txt from plugin default.
+8/1 12:27:46 PM [Warning] [Root-Essentials] Root-Spawn — no spawn boundary loaded (spawnarea-refined.txt empty?).
+8/1 12:27:46 PM [Info] [Root-Essentials] Root-Banner enabled — /banner (blank 5.0 G, letter 10.0 G, symbol 25.0 G).
+8/1 12:27:46 PM [Info] [Root-Essentials] Root-Potions enabled — /potions brewing guide (23 entries).
+8/1 12:27:46 PM [Info] [Root-Essentials] Root Essentials enabled (QoL + spawn/banner/potions; economy via Root-Economy).
+8/1 12:27:46 PM [Info] [22:27:46 INFO]: [Root-ChestShops] Enabling Root-ChestShops v1.7.15
+8/1 12:27:46 PM [Info] [Root-ChestShops] Root-ChestShops enabled.
+8/1 12:27:46 PM [Info] [Root-Haste] Enabling Root-Haste v1.7.12
+8/1 12:27:46 PM [Info] [Root-Haste] Root-Haste enabled — theme=TORCH (/torch, /torchpass, /pass) [torch default]
+8/1 12:27:46 PM [Info] [Votifier] Enabling Votifier v2.7.3
+8/1 12:27:46 PM [Info] [Votifier] Loaded token for website: default
+8/1 12:27:46 PM [Info] [Votifier] Using epoll transport to accept votes.
+8/1 12:27:46 PM [Info] [Votifier] Method none selected for vote forwarding: Votes will not be received from a forwarder.
+8/1 12:27:46 PM [Info] [Root-Ops] Enabling Root-Ops v1.7.6
+8/1 12:27:46 PM [Info] [Votifier] Votifier enabled on socket /[0:0:0:0:0:0:0:0%0]:22014.
+8/1 12:27:46 PM [Info] [Root-Ops] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [22:27:46 INFO]: [Root-Ops] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [Root-Ops] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:46 PM [Warning] [Root-Ops] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true).
+8/1 12:27:46 PM [Info] [Root-Ops] restart-script points at RootMC restart-helper.sh
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Restart enabled - /rootrestart [cancel] - /rootstop [cancel], daily midnight HST when enabled.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Admin enabled — staff commands, /report, admin-probe.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Announcer enabled — 10 message(s), every 300s.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Mapper 1.7.6 — /mapper for waypoint, refine, and lava area mapping.
+8/1 12:27:46 PM [Info] [Root-Ops] Root-Ops enabled (Restart + Admin + Announcer + Mapper).
+8/1 12:27:46 PM [Info] [Root-Play] Enabling Root-Play v1.7.20
+8/1 12:27:46 PM [Info] [Root-Play] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [Root-Play] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:46 PM [Info] [Root-Play] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:46 PM [Warning] [Root-Play] Root-Core not present — used RootMcCoreConnection fallback (databaseOk=true, cloudOk=true).
+8/1 12:27:46 PM [Warning] [Root-Play] Root-Perms not found — Root-Ranks inactive (Play continues).
+8/1 12:27:46 PM [Info] [Root-Play] Catalog chat enabled (no TownyChat) — Claims-style ◆ Rank Name » msg.
+8/1 12:27:46 PM [Info] [Root-Play] Votifier vote listener registered.
+8/1 12:27:46 PM [Info] [Root-Play] Root-Rewards enabled — playtime milestones + vote rewards + Council poll tips.
+8/1 12:27:46 PM [Info] [Root-Play] RootHelp enabled — /rules, /cmds, /discord, /map, /feedback
+8/1 12:27:46 PM [Info] [22:27:46 INFO]: [Root-Play] Root-Play enabled (Ranks + Rewards + Help).
+8/1 12:27:46 PM [Info] [Root-Market] Enabling Root-Market v1.7.13
+8/1 12:27:46 PM [Info] [Root-Market] Root-Market enabled — /market /items /shops
+8/1 12:27:46 PM [Info] [Root-Territories] Enabling Root-Territories v1.7.1
+8/1 12:27:47 PM [Info] [Root-Territories] Claims found - using claims as default claim plugin
+8/1 12:27:47 PM [Info] [Root-Territories] Nation founding proposal gate registered.
+8/1 12:27:47 PM [Info] [Root-Territories] BlueMap not installed — territory map outlines skipped.
+8/1 12:27:47 PM [Info] [Root-Territories] Root-Territories enabled — nation/town rings and border messages.
+8/1 12:27:47 PM [Info] [Root-ItemInfo] Enabling Root-ItemInfo v1.7.2
+8/1 12:27:47 PM [Info] [Root-ItemInfo] Root-ItemInfo enabled — /info + world item census.
+8/1 12:27:47 PM [Info] [mcMMO] Enabling mcMMO v2.2.053
+8/1 12:27:47 PM [Info] [mcMMO] Loaded 232 of 232 Alchemy potions.
+8/1 12:27:48 PM [Info] [Root-Skills] Enabling Root-Skills v1.0.2
+8/1 12:27:48 PM [Info] [Root-Skills] PROP-01: migrated flat XP formula → proportional (multiplier=1.6 exponent=2.35 base=500)
+8/1 12:27:48 PM [Info] [com.zaxxer.hikari.HikariDataSource] RootSkills-Hikari - Starting...
+8/1 12:27:49 PM [Error] [Root-Skills] MySQL unavailable — memory-only fallback: Failed to initialize pool: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] com.zaxxer.hikari.pool.HikariPool$PoolInitializationException: Failed to initialize pool: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.throwPoolInitializationException(HikariPool.java:606) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:593) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:101) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.HikariDataSource.<init>(HikariDataSource.java:80) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.rootrecord.minecraft.rootskills.storage.Database.open(Database.java:45) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.rootrecord.minecraft.rootskills.RootSkillsPlugin.onEnable(RootSkillsPlugin.java:91) ~[?:?]
+8/1 12:27:49 PM [Error] at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:279) ~[paper-api-26.2.build.62-beta.jar:?]
+8/1 12:27:49 PM [Error] at io.papermc.paper.plugin.manager.PaperPluginInstanceManager.enablePlugin(PaperPluginInstanceManager.java:201) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at io.papermc.paper.plugin.manager.PaperPluginManagerImpl.enablePlugin(PaperPluginManagerImpl.java:109) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:519) ~[paper-api-26.2.build.62-beta.jar:?]
+8/1 12:27:49 PM [Error] at org.bukkit.craftbukkit.CraftServer.enablePlugin(CraftServer.java:633) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at org.bukkit.craftbukkit.CraftServer.enablePlugins(CraftServer.java:590) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.MinecraftServer.initPostWorld(MinecraftServer.java:648) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:343) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1267) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[paper-26.2.jar:26.2-62-75c0b48]
+8/1 12:27:49 PM [Error] at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+8/1 12:27:49 PM [Error] Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:837) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:139) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:367) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:205) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:484) ~[?:?]
+8/1 12:27:49 PM [Error] at root-skills-1.0.2.jar//com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:572) ~[?:?]
+8/1 12:27:49 PM [Error] ... 15 more
+8/1 12:27:49 PM [Error] Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+8/1 12:27:49 PM [Error] The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+8/1 12:27:49 PM [Error] at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483) ~[?:?]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.NativeSession.connect(NativeSession.java:142) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:961) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:825) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] ... 23 more
+8/1 12:27:49 PM [Error] Caused by: java.net.ConnectException: Connection refused
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.Net.pollConnect(Native Method) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:639) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:543) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:594) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284) ~[?:?]
+8/1 12:27:49 PM [Error] at java.base/java.net.Socket.connect(Socket.java:659) ~[?:?]
+8/1 12:27:49 PM [Error] at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53) ~[mysql-connector-j-9.2.0.jar:9.2.0]
+8/1 12:27:49 PM [Error] ... 26 more
+8/1 12:27:49 PM [Error] [Root-Skills] Running memory-only — profiles will not persist until MySQL is available.
+8/1 12:27:49 PM [Info] [Root-Skills] Loaded 21 skill definitions
+8/1 12:27:49 PM [Info] [Root-Skills] Loaded 21 talents
+8/1 12:27:49 PM [Info] [Root-Skills] Loaded 2 classes
+8/1 12:27:49 PM [Info] [Root-Skills] Skill listeners registered
+8/1 12:27:49 PM [Info] [Root-Skills] Root-Skills ready v1.0.2 (mysql=false, talents=21)
+8/1 12:27:49 PM [Info] [RootMC-Official] Enabling RootMC-Official v1.7.4
+8/1 12:27:49 PM [Info] [RootMC-Official] database.yml present — no missing keys (secrets left untouched)
+8/1 12:27:49 PM [Info] [RootMC-Official] cloud.yml present — no missing keys (secrets left untouched)
+8/1 12:27:49 PM [Warning] [22:27:49 INFO]: [RootMC-Official] RootMC connection ensure: database=ok cloud=ok warnings=0 version=1
+8/1 12:27:49 PM [Warning] [RootMC-Official] Root-Core not present — connection fallback (databaseOk=true).
+8/1 12:27:49 PM [Warning] [RootMC-Official] Root-Core (comms) not available — hourly server-log upload will not post. Ensure Root-Core is installed and set cloud.yml discord.* / slack.*.
+8/1 12:27:49 PM [Warning] [RootMC-Official] Hourly log relay is ENABLED but Root-Core comms is not available — uploads will fail until Root-Core is present.
+8/1 12:27:49 PM [Info] [RootMC-Official] RootMC-Official hourly Discord log relay enabled every 60m (uploads via Root-Core comms → Slack webhook / Discord server-logs).
+8/1 12:27:49 PM [Info] [RootMC-Official] RootMC-Official enabled — role=claims peer=mysql.shockbyte.hil2.shockbyte.host/75eedc3b19-rootmc interval=15s
+8/1 12:27:49 PM [Info] [spark] Starting background profiler...
+8/1 12:27:49 PM [Info] Starting GS4 status listener
+8/1 12:27:49 PM [Info] Thread Query Listener started
+8/1 12:27:49 PM [Info] Query running on 0.0.0.0:24945
+8/1 12:27:49 PM [Info] Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+8/1 12:27:49 PM [Info] Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+8/1 12:27:49 PM [Info] Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+8/1 12:27:49 PM [Info] ThreadedAnvilChunkStorage (world): All chunks are saved
+8/1 12:27:49 PM [Info] ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+8/1 12:27:49 PM [Info] [22:27:49 INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+8/1 12:27:49 PM [Info] [22:27:49 INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
+8/1 12:27:49 PM [Info] Running delayed init tasks
+8/1 12:27:49 PM [Info] [Root-Economy] Economy heartbeat wired to Minecraft day rollover pipeline.
+8/1 12:27:49 PM [Info] [Root-Claims] Claim bank account labels checked for 4 claim(s).
+8/1 12:27:49 PM [Info] [Root-Essentials] PlaceholderAPI not enabled yet; rootessentials expansion will retry.
+8/1 12:27:49 PM [Info] Done (13.095s)! For help, type "help"
+8/1 12:27:49 PM [Info] [Vault] Checking for Updates ...
+8/1 12:27:49 PM [Info] [Root-ChestShops] Virtual storage MySQL ready (root_player_item_bin, root_virtual_listing).
+8/1 12:27:49 PM [Info] [Root-Economy] Bond catch-up: nothing to settle (current MC day 50, last settled 49).
+8/1 12:27:49 PM [Info] [Root-Economy] Bond reporting is MySQL-backed; no cloud snapshot sent.
+8/1 12:27:50 PM [Info] [Vault] No new version available
+8/1 12:27:50 PM [Info] *** Currently you are 25 builds behind ***
+8/1 12:27:50 PM [Info] [22:27:50 INFO]: *** It is highly recommended to download the latest build from https://papermc.io/downloads/paper ***
+8/1 12:27:50 PM [Info] [RootMC] Cross-server chat primed at last-id=4145106 (skipped backlog).
+8/1 12:27:50 PM [Info] [Root-Ops] World border on world: center 0, 112 ±1500 (world spawn)
+8/1 12:27:50 PM [Info] [Root-Ops] World border on world_nether: center 0, 0 ±1500 (world spawn)
+8/1 12:27:50 PM [Info] [22:27:50 INFO]: [Root-Ops] World border on world_the_end: center 0, 0 ±1500 (world spawn)
+8/1 12:27:51 PM [Info] [Root-Essentials] PlaceholderAPI not enabled yet; rootessentials expansion will retry.
+8/1 12:27:51 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=startup players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:27:54 PM [Info] [Root-Essentials] PlaceholderAPI not enabled yet; rootessentials expansion will retry.
+8/1 12:27:54 PM [Info] [Root-Times] MySQL status OK → root_times_status
+8/1 12:28:04 PM [Info] [Root-Ops] Startup complete — relayed to Discord #ingame-chat.
+8/1 12:29:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:31:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:33:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:35:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:37:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:39:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:41:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:43:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:45:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:47:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:49:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:51:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:53:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:55:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+8/1 12:57:49 PM [Info] [Root-ItemInfo] Item census empty startup snapshot skipped — reason=interval players=0 containers=0 skippedDupContainers=0 groundStacks=0 chunks=0 marketKeys=0 distinct=0
+
+Have her update and mention rely everything relavant and give a huge update, stating she is caught up on her end
+

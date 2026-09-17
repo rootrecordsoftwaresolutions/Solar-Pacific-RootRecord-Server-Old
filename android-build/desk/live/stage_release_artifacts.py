@@ -1,0 +1,1 @@
+../../scripts/stage_release_artifacts.py

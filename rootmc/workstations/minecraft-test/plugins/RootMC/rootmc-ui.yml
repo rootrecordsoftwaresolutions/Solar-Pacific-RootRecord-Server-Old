@@ -1,0 +1,6 @@
+# RootMC chat UI — plugins/RootMC/rootmc-ui.yml
+# Gradients + catalog lines. Prefix mark is plain "| " (no resource pack required).
+
+fancy-headlines: true
+# When true, catalog/header lines start with "| "
+use-glyph: true

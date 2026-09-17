@@ -1,0 +1,1 @@
+../../scripts/load-rootmc-env.sh

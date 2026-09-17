@@ -1,0 +1,11 @@
+[Unit]
+Description=AVA GitHub fast-forward pull (stale /opt/ava unit — park only)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/rootrecord/.ollama/skills/origin
+Environment=AVA_REPO=/home/rootrecord/.ollama/skills/origin
+Environment=AVA_LOG_DIR=/home/rootrecord/.ollama/skills/logs/store
+ExecStart=/usr/bin/python3 /home/rootrecord/.ollama/skills/git-auto-push/scripts/auto-pull-server.py check

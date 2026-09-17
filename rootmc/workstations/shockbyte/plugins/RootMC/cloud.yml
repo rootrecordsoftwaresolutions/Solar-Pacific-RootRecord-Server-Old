@@ -1,0 +1,25 @@
+# Shared RootMC cloud credentials for ALL plugins.
+# File: plugins/RootMC/cloud.yml
+# MySQL: plugins/RootMC/database.yml
+
+cloud:
+  api-base: https://api.rootmc.net
+  server-id: 4963895e-0964-48b8-81b7-1f40a966e8be
+  server-secret: a01edc4a3b30a9641ff25755437cf6866bec82ff157733db
+
+# Direct Paper ↔ Discord bridge. Keep bot-token secret and local to the server.
+discord-chat:
+  bot-token: ''
+  guild-id: '1516108585740800042'
+  channel-id: '1545284399107547179'
+discord:
+  bot-token: ''
+  guild-id: ''
+  channels:
+    ingame-chat: ''
+    server-logs: ''
+  roles:
+    linked: ''
+slack:
+  server-logs-channel: C0BMX0QKSTS
+  server-logs-webhook: ''

@@ -1,0 +1,27 @@
+name: Root-Referrals
+version: '${version}'
+main: com.rootrecord.minecraft.rootreferrals.RootReferralsPlugin
+api-version: '26.1'
+description: Player referral codes, qualify rewards, and milestones from Server Reserve
+author: Root Record
+website: https://rootmc.net/plugins/
+depend: [Root-Core]
+softdepend: [Root-Economy, RootMC, Root-Times, PlaceholderAPI, Vault]
+commands:
+  root:
+    description: Referral code, claim, info, tree, and leaderboard
+    usage: /<command> [code|claim|info|tree|top|admin ...]
+    aliases: [refer, referrals]
+  rootreferrals:
+    description: Admin reload for Root-Referrals
+    usage: /<command> reload
+permissions:
+  rootreferrals.use:
+    description: Use /root referral commands
+    default: true
+  rootreferrals.claim:
+    description: Claim a referral code
+    default: true
+  rootreferrals.admin:
+    description: Admin inspect, unlink, purge, qualify, reload
+    default: op

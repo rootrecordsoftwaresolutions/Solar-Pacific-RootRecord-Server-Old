@@ -1,0 +1,1 @@
+../../scripts/deploy-next-to-pages.sh

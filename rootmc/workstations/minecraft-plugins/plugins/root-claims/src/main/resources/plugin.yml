@@ -1,0 +1,41 @@
+name: Root-Claims
+version: '${version}'
+main: com.rootrecord.minecraft.rootclaims.RootClaimsPlugin
+api-version: '26.1'
+description: RootMC personal anchor claims + Root-Road (Claims host only)
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Core, Root-Economy, Root-Essentials, Vault, BlueMap, Root-Play]
+loadafter: [Root-Core, Root-Economy, Root-Essentials]
+commands:
+  claim:
+    description: Claim and protect personal land
+    usage: "/<command> [new|claim|menu|confirm|cancel|spawn|set|chest|toggle|info|list|lines|add|unclaim|trust|untrust|reload|grant|status] (console: add <owner> <player>)"
+    aliases: [claims, rootclaims, c]
+  scanchests:
+    description: Count an item in your claim chests and withdraw it
+    usage: /<command> <item|hand|confirm [amount]|cancel>
+    aliases: [scanchest, scanc]
+  road:
+    description: Root-Road status and admin (Claims onboarding)
+    usage: /<command> [status|reload]
+    aliases: [rootroad]
+permissions:
+  rootclaims.use:
+    description: Use personal claims
+    default: true
+  rootclaims.admin:
+    description: Manage all RootClaims and reload config
+    default: op
+  rootclaims.bypass:
+    description: Bypass claim protections
+    default: op
+  rootroad.use:
+    description: Receive Root-Road guidance
+    default: true
+  rootroad.bypass:
+    description: Skip Root-Road onboarding
+    default: op
+  rootroad.reload:
+    description: Reload root-road.yml
+    default: op

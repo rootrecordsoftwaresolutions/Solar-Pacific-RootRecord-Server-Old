@@ -1,0 +1,47 @@
+﻿{
+    "generated":  "2026-08-01T19:45:23.9172804-10:00",
+    "E_free_GB":  1390.3,
+    "D_used_GB":  319.7,
+    "C_free_GB":  24.9,
+    "E_WorkStations_children":  [
+                                    ".credentials",
+                                    "Minecraft-Marketing",
+                                    "RootMC"
+                                ],
+    "D_WorkStations_children":  [
+                                    ".credentials",
+                                    "Minecraft-Marketing",
+                                    "RootMC"
+                                ],
+    "RootMC_top":  [
+                       ".cursor",
+                       "Change Logs",
+                       "docs",
+                       "emergent-repo",
+                       "github-plugin-repos",
+                       "Marketing",
+                       "Mobile App Files",
+                       "playit",
+                       "Plugin Building",
+                       "scripts",
+                       "Server Handoffs",
+                       "Server Live Backups",
+                       "Web Files",
+                       "_tmp_towny_src",
+                       ".env",
+                       "Current history.txt",
+                       "daily-report-sample.json",
+                       "finish-root-haste-rename.bat",
+                       "GEN-1-GEN-2.md",
+                       "Pre-Current history.txt",
+                       "WORKSPACE.md"
+                   ],
+    "Ava_E":  true,
+    "Ava_D":  true,
+    "life_story":  true,
+    "lore_late_night":  true,
+    "rss_feeds":  true,
+    "priority_finished":  false,
+    "d_drive_finished":  false,
+    "c_finished":  false
+}

@@ -1,0 +1,1 @@
+../../../finance-desk/scripts/import_windows_bm_sqlite.py

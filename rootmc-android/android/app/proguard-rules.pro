@@ -1,0 +1,10 @@
+-keep class com.rootrecord.rootmc.data.local.** { *; }
+-keep class com.google.firebase.** { *; }
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.firebase.**
+-keepclassmembers class * extends androidx.room.RoomDatabase { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn kotlinx.serialization.**
+-keepclassmembers class kotlinx.serialization.json.** { *; }
+-keep @kotlinx.serialization.Serializable class com.rootrecord.rootmc.** { *; }

@@ -1,0 +1,44 @@
+prefix: ""
+expand_max_dist: 12
+
+messages:
+  started: "Mapping &f{area}&7 — use the mapper diamond."
+  refine_started: "Refining &f{area}&7 — inside ring shrinks, just outside expands."
+  lava_started: "Lava mapping &f{area}&7 — click ceiling, then floor."
+  waypoint_saved: "Waypoint &f#{n}&7 at &f{x}, {z}&7."
+  refine_pull: "Pulled border at &f{x}, {z}&7."
+  refine_push: "Pushed border at &f{x}, {z}&7."
+  refine_hint: "Click inside the ring to shrink, or within {dist} blocks outside to expand."
+  refine_saved: "Boundary saved."
+  lava_ceiling: "Ceiling at &f{x}, {y}, {z}&7 — now click the floor."
+  lava_floor_hint: "Click the floor block for this lava spot."
+  lava_ceiling_hint: "Click the ceiling block for the next lava spot."
+  lava_spot_saved: "Spot &f#{n}&7 saved (&fceiling {cx},{cy},{cz}&7 → &ffloor {fx},{fy},{fz}&7)."
+  stopped: "Mapper mode off."
+  area_created: "Created area &f{area}&7 (&f{mode}&7) → &f{file}"
+  area_exists: "Area &f{area}&7 already exists."
+  area_unknown: "Unknown area &f{area}&7 — use &f/mapper list&7 or &f/mapper create&7."
+
+# Add areas here or use /mapper create <name> [waypoint|refine|lava]
+areas:
+  spawn:
+    label: "Spawn perimeter"
+    file: spawnarea.txt
+    mode: waypoint
+  spawn-ring:
+    label: "Spawn safe zone"
+    file: spawnarea-refined.txt
+    mode: refine
+  chamber:
+    label: "Basement chamber"
+    file: chamber.txt
+    mode: waypoint
+  well:
+    label: "Basement well"
+    file: well.txt
+    mode: waypoint
+  lava:
+    label: "Chamber lava vents"
+    file: chamber.txt
+    lava_file: lava.txt
+    mode: lava

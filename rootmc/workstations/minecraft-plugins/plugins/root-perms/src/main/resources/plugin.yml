@@ -1,0 +1,19 @@
+name: Root-Perms
+version: '${version}'
+main: com.rootrecord.minecraft.rootperms.RootPermsPlugin
+api-version: '26.1'
+description: First-party permissions — groups, tracks, Bukkit attachments, Vault Permission bridge for Towny.
+author: RootMC
+website: https://rootmc.net/plugins/root-perms/
+softdepend: [Root-Core, Vault]
+loadbefore: [Root-Essentials, Root-Play, RootMC]
+commands:
+  rootperms:
+    description: Root-Perms admin
+    usage: /rootperms <status|user|group|reload>
+    aliases: [rperms, perms]
+    permission: rootperms.admin
+permissions:
+  rootperms.admin:
+    description: Administer Root-Perms
+    default: op

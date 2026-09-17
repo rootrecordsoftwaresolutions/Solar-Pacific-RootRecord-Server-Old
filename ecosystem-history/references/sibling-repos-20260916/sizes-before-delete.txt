@@ -1,0 +1,11 @@
+167M	/home/rootrecord/RootRecord/All-Connections
+2.9G	/home/rootrecord/RootRecord/Ava-Core
+137M	/home/rootrecord/RootRecord/Ava-Core-Private
+839M	/home/rootrecord/RootRecord/Ava-Ivy-Cloud
+615M	/home/rootrecord/RootRecord/RootMC-Net
+740M	/home/rootrecord/RootRecord/RootRecord-Cloud
+1.1M	/home/rootrecord/RootRecord/RootRecord-Core-Node
+23M	/home/rootrecord/RootRecord/RootRecord-Core-Ops
+1.1M	/home/rootrecord/RootRecord/RootRecord-Core-Processor
+980K	/home/rootrecord/RootRecord/RootRecord-RootMC
+244M	/home/rootrecord/RootRecord/Web-Files

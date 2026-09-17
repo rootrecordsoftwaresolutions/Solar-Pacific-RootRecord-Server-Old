@@ -1,0 +1,51 @@
+name: RootHelp
+version: '${version}'
+main: com.rootrecord.minecraft.roothelp.RootHelpPlugin
+api-version: '26.1'
+description: RootMC help — /rules, /cmds, /discord, /map, /feedback
+author: Root Record
+website: https://rootmc.net/wiki/player/#commands
+softdepend: [RootMC]
+commands:
+  rules:
+    description: Show RootMC server rules
+    usage: /<command>
+  cmds:
+    description: Paginated list of in-game commands
+    usage: /<command> [page|next|prev]
+    aliases: [commands]
+  discord:
+    description: RootMC Discord invite and link your game + Discord profile
+    usage: /<command>
+  map:
+    description: Open the RootMC BlueMap in your browser
+    usage: /<command>
+  feedback:
+    description: Send feedback to staff from your claim or territory
+    usage: /<command> <message>
+  cmdtest:
+    description: Command onboarding — test commands, earn up to 1000 G, stop reminders
+    usage: /<command> [list|try <key>|report <key> [note]]
+    aliases: [testcmds, commandtest]
+permissions:
+  roothelp.rules:
+    description: Use /rules
+    default: true
+  roothelp.commands:
+    description: Use /cmds and /commands
+    default: true
+  roothelp.discord:
+    description: Use /discord
+    default: true
+  roothelp.map:
+    description: Use /map
+    default: true
+  roothelp.feedback:
+    description: Use /feedback from your claim or territory
+    default: true
+  roothelp.feedback.anywhere:
+    description: Send /feedback outside your claim or territory
+    default: op
+  roothelp.cmdtest:
+    description: Use /cmdtest command onboarding
+    default: true

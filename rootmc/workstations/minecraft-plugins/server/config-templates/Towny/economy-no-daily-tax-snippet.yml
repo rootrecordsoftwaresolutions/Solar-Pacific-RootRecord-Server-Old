@@ -1,0 +1,10 @@
+# Towny economy snippet — merge into plugins/Towny/settings/config.yml on the host.
+# RootMC: no daily town/nation upkeep or plot taxes.
+
+daily_taxes:
+  enabled: 'false'
+  price_nation_upkeep: '0.0'
+  price_town_upkeep: '0.0'
+  town_plotbased_upkeep_minimum_amount: '0.0'
+  town_plotbased_upkeep_maximum_amount: '0.0'
+  per_outpost_cost: '0.0'

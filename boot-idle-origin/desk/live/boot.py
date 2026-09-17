@@ -1,0 +1,1 @@
+../../../core-ops-install/scripts/boot.py

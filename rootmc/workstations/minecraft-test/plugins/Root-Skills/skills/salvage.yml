@@ -1,0 +1,12 @@
+id: salvage
+display-name: Salvage
+enabled: true
+max-level: 1000
+icon: GRINDSTONE
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 10
+  action: 12
+talents:
+  - salvage_arcane_salvage

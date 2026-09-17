@@ -1,0 +1,240 @@
+================================================================================
+ROOTMC — $ROOTMC TOKEN, MOJANG COMPLIANCE & SUPPORTER PROGRAM (PLANNING DOC)
+================================================================================
+Last updated: 2026-06-22
+Canonical public policy: https://rootmc.net/wiki/token/
+In-game economy (G only): https://rootmc.net/wiki/constitution/
+Constitution (rules & reserve): https://rootmc.net/wiki/constitution/
+
+This file is the internal / repo reference for staff and developers. Players
+should use the wiki. Do not treat this as financial or legal advice.
+
+--------------------------------------------------------------------------------
+1. TOKEN BASICS (OFFICIAL REFERENCES)
+--------------------------------------------------------------------------------
+
+Name / ticker:  RootMC.net · $ROOTMC
+Chain:          Solana
+Primary list:   https://pump.fun/coin/Evy78vHFifT3tdR2vCMUeMLMyFS9ex8wHHi8uKYApump
+Mint address:   Evy78vHFifT3tdR2vCMUeMLMyFS9ex8wHHi8uKYApump
+
+$ROOTMC is a community memecoin. It is NOT Mojang/Microsoft product.
+RootMC SMP is NOT affiliated with Mojang or Microsoft.
+
+Creator fees (pump.fun) go to the on-chain creator wallet — not the in-game
+treasury (towny-server) and not automatically to players.
+
+--------------------------------------------------------------------------------
+2. CORE COMMITMENT (NON-NEGOTIABLE)
+--------------------------------------------------------------------------------
+
+GOLD STANDARD FOREVER
+  - G is and remains the ONLY in-game currency.
+  - Closed-loop treasury, shops, Towny, loans, Activity Dividend = all G.
+  - No exchange rate, peg, or bridge between G and $ROOTMC.
+
+MOJANG COMPLIANCE
+  - We follow Minecraft EULA, Commercial Usage Guidelines, and Usage Guidelines.
+  - If Mojang rules change, we update wiki + practices — even if that reduces
+    token promotion on official channels.
+
+FAIRNESS
+  - No player gets survival/economy advantages because they hold or pay $ROOTMC.
+  - Real-money (crypto) may fund COSMETIC supporter perks only — never pay-to-win.
+
+WRITTEN POLICY FIRST
+  - Any new holder/supporter program is documented on wiki BEFORE launch.
+  - Discord hype does not create obligations.
+
+--------------------------------------------------------------------------------
+3. MOJANG RULES (HOW WE INTERPRET THEM)
+--------------------------------------------------------------------------------
+
+Microsoft / Mojang have stated (paraphrased — read live docs for exact text):
+
+  - Blockchain is not permitted INSIDE Minecraft client and server applications.
+  - Minecraft in-game content must not be used to create scarce NFT-style assets.
+  - EULA: no scarcity of in-game content based on OUT-OF-GAME conditions (e.g.
+    a mod that checks NFT/token ownership to unlock skins, commands, or areas).
+  - No play-to-earn: paying crypto for in-game activity is not allowed.
+  - Commercial usage: cosmetic ranks and server access OK; gameplay advantages
+    for real money are not OK.
+
+Official links:
+  https://www.minecraft.net/en-us/article/minecraft-and-nfts
+  https://www.minecraft.net/en-us/usage-guidelines
+  https://www.minecraft.net/en-us/eula
+
+Precedent useful to us: off-game identity verification (e.g. World ID) that does
+NOT gate gameplay with token ownership checks is treated differently from wallet
+mods inside the server jar. Our model: verify/pay on WEBSITE → API flag → perks.
+
+--------------------------------------------------------------------------------
+4. THREE-RING INTEGRATION POLICY
+--------------------------------------------------------------------------------
+
+Ring 1 — GAME (play.rootmc.net, Paper plugins, MySQL)
+  $ROOTMC: NEVER
+  G:        ONLY currency
+
+Ring 2 — COMMUNITY (rootmc.net, Discord, events)
+  $ROOTMC: optional supporter subs, badges, transparency, non-gameplay polls
+  G:        documented in economy wiki; unchanged
+
+Ring 3 — ON-CHAIN (pump.fun, wallets, DEX)
+  $ROOTMC: trading, memes, creator fees
+  G:        NO LINK
+
+RULE: Ring 1 and Ring 3 never connect directly. No Solana RPC in plugins.
+
+--------------------------------------------------------------------------------
+5. ALLOWED (MOJANG-ALIGNED)
+--------------------------------------------------------------------------------
+
+  - Wiki disclaimers and compliance policy (live)
+  - Transparency: creator fees may fund hosting/events (no holder ROI promise)
+  - Off-game recognition: web badge, cosmetic Discord role
+  - COSMETIC supporter subscription paid with $ROOTMC on WEBSITE (see §7)
+  - Discord-only governance polls on META topics (event theme, build contest —
+    NOT shop tax, loan limits, dividend %, claim costs)
+  - Build contest prizes paid in G from staff/treasury budget
+  - Education: G ≠ $ROOTMC messaging everywhere
+
+--------------------------------------------------------------------------------
+6. PROHIBITED (NEVER IMPLEMENT)
+--------------------------------------------------------------------------------
+
+  - $ROOTMC as in-game currency or "deposit balance" spent like G
+  - Airdrop G or items based on token holdings
+  - Hold/pay X → cheaper town, shop tax, loans, grants, dividend multiplier
+  - Exclusive worlds, kits, fly, McMMO boosts, extra homes (gameplay) for holders
+  - In-game prefix/tab/badge driven by on-chain wallet checks in plugins
+  - Paper plugins calling Solana RPC or reading wallet balances
+  - Pay crypto for playtime, votes, PvP, milestones (play-to-earn)
+  - NFTs or scarce in-game items tied to $ROOTMC
+  - Implying Mojang/Microsoft endorses $ROOTMC
+  - Using official Minecraft logos/assets to market the token as licensed product
+
+If someone offers "RootMC holder" perks violating this list, treat as UNOFFICIAL
+unless this doc + wiki are updated first.
+
+--------------------------------------------------------------------------------
+7. SUPPORTER PROGRAM (PLANNED — COMPLIANT COSMETIC DONOR TIERS)
+--------------------------------------------------------------------------------
+
+CONCEPT
+  Monthly COSMETIC supporter subscription. Players pay $ROOTMC on rootmc.net
+  (wallet transaction). Cloud records donor_tier + expires_at on their linked
+  account. Perks are vanity only — NOT a second currency.
+
+SAY THIS                          | NOT THIS
+----------------------------------|----------------------------------
+"Supporter subscription"          | "ROOTMC currency on the server"
+"Pay $ROOTMC on the website"      | "Deposit to use as money in-game"
+"Cosmetic donor perks"            | "Dual economy" / "premium currency"
+"G is still the only game economy"| "Tokenomics in survival"
+
+REQUIREMENTS
+  - User must complete existing Minecraft link (/rootmc link + verify) before
+    supporter perks apply (same account_id in D1).
+  - Payment verification happens on API / web only — never in Paper.
+  - Plugin sync applies LuckPerms group or equivalent from cloud flag only.
+
+ALLOWED PERKS (examples — finalize before launch)
+  In-game (cosmetic only):
+    - Tab list prefix / suffix (e.g. [Supporter])
+    - Join/quit message styling
+    - Particle trail or vanity pet (NO combat stats, NO gathering bonus)
+    - Chat color (if purely cosmetic — no hidden commands)
+  Off-game:
+    - Discord donor role + optional private lounge channel
+    - Web profile badge on rootmc.net/player/
+    - Name on optional "supporters" page (opt-in)
+
+NOT ALLOWED AS DONOR PERKS
+  - /fly, /god, kits with items, McMMO XP, shop discounts, extra claims,
+    treasury/dividend boosts, G stipends, vault slots with gameplay value
+
+SUGGESTED TIERS (DRAFT — set amounts in ROOTMC after market review)
+
+  Tier       | Draft ROOTMC/mo | In-game (cosmetic)     | Discord / web
+  -----------|-----------------|------------------------|------------------
+  Supporter  | TBD             | Prefix + join message  | Role + badge
+  Patron     | TBD             | + particle trail       | + lounge access
+  Benefactor | TBD             | + vanity pet (cosmetic)| + highlighted badge
+
+Renewal: monthly; lapse removes groups/roles automatically when expires_at
+passed (cron or sync check).
+
+--------------------------------------------------------------------------------
+8. TECHNICAL IMPLEMENTATION PLAN (NOT YET BUILT)
+--------------------------------------------------------------------------------
+
+Phase A — Policy (DONE)
+  [x] Wiki: https://rootmc.net/wiki/token/
+  [x] This file in repo
+  [ ] Discord pinned post summarizing §2 + link to wiki
+
+Phase B — Data model (API / D1)
+  [ ] Table or columns: supporter_tier, supporter_expires_at, last_payment_sig
+  [ ] Optional: supporter_wallet (public key, opt-in, for receipts only)
+  [ ] Treasury wallet address for payments (env secret — never commit)
+
+Phase C — Web payment flow
+  [ ] Page: /supporter/ or /donate/
+  [ ] Require logged-in + minecraft_linked session
+  [ ] Connect wallet (Phantom etc.) → build tx → user signs → send $ROOTMC
+  [ ] API verifies tx on Solana (Worker, not game server) → extend subscription
+  [ ] Show tier, expiry, renewal on player page
+
+Phase D — Game delivery (no blockchain in jar)
+  [ ] Cloud sync field: supporter_tier → LuckPerms group donor-*
+  [ ] rootmc or essentials: apply cosmetic only (prefix, particles plugin?)
+  [ ] On expiry: sync removes group
+
+Phase E — Discord delivery
+  [ ] Bot: grant cosmetic role when API says active supporter
+  [ ] Remove role on expiry
+
+Phase F — Wiki + tier table
+  [ ] Publish final ROOTMC amounts and perk list on wiki/token
+  [ ] Update economy wiki callout if needed
+
+EXPLICIT NON-GOALS
+  - No Solana dependency in Minecraft/plugins/
+  - No ROOTMC balance in Vault/EconomyStore
+  - No shop integration with token
+
+--------------------------------------------------------------------------------
+9. WORDING FOR HOLDERS / DISCORD
+--------------------------------------------------------------------------------
+
+Short pitch (compliant):
+
+  "$ROOTMC is a community memecoin. G is the only server currency. Mojang
+  doesn't allow token-gated gameplay. Supporter tiers (when live) are optional
+  monthly COSMETIC perks on web/Discord/in-game vanity — not pay-to-win and
+  not G airdrops."
+
+--------------------------------------------------------------------------------
+10. RELATED REPO PATHS
+--------------------------------------------------------------------------------
+
+Wiki source:     Web/apps/rootmc-web/public/wiki/token/index.html
+Economy wiki:    Web/apps/rootmc-web/public/wiki/economy/
+API constants:   Web/cloudflare/rootmc-realm-api/src/rootmc-site.ts
+                 (ROOTMC_WIKI_TOKEN)
+Gold transfers:  Web/cloudflare/rootmc-realm-api/src/rootmc-gold-transfers.ts
+                 (Discord /pay between linked players — NOT supporter billing)
+In-game G:       Minecraft/plugins/root-essentials/
+Treasury:        Minecraft/plugins/root-essentials/ (towny-server anchor)
+
+--------------------------------------------------------------------------------
+11. REVISION LOG
+--------------------------------------------------------------------------------
+
+2026-06-22  Initial doc: compliance policy, three rings, supporter program plan.
+
+================================================================================
+END
+================================================================================

@@ -1,0 +1,12 @@
+id: spears
+display-name: Spears
+enabled: true
+max-level: 1000
+icon: STICK
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 12
+  action: 5
+talents:
+  - spears_lunge

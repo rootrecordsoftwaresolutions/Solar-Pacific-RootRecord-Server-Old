@@ -1,0 +1,9 @@
+[Unit]
+Description=Ava GitHub auto-push (skills, sites, Ava-Core)
+ConditionPathExists=%h/.ollama/skills/state/store/ava-console-up
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/.ollama/skills/git-auto-push
+ExecStart=%h/.ollama/skills/git-auto-push/scripts/auto-push.sh
+Environment=HOME=%h

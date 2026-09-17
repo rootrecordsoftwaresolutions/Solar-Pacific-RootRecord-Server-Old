@@ -1,0 +1,234 @@
+# RootMC Potions guide — plugins/RootMC/root-potions.yml
+# Players use /potions <search> or /potions list
+
+list-page-size: 8
+
+messages:
+  prefix: ""
+  help:
+    - "&7Brewing guide — search by name or ingredient."
+    - "&f/potions list [page] &7— all potions"
+    - "&f/potions <name> &7— recipe (e.g. &fhealing&7, &fmelon&7, &fswiftness&7)"
+    - "&f/potions search <text> &7— same as above"
+  not-found: "&cNo potion matched &f{query}&c. Try &f/potions list&c."
+  list-header: "&7Potion recipes &8(&f{page}&7/&f{pages}&8) &7— &f/potions <name> &7for details"
+  list-entry: "&8• &f{name} &7— &e{ingredient}"
+  list-footer: "&7Page &f{page}&7/&f{pages} &8— &f/potions list {next}"
+  list-prev-footer: "&7Page &f{page}&7/&f{pages} &8— &f/potions list {prev} &8| &f/potions list {next}"
+  recipe-header: "&a{name}"
+  reload-done: "&aRoot-Potions reloaded (&f{count} &arecipes)."
+  no-permission: "&cYou do not have permission."
+
+potions:
+  awkward:
+    name: Awkward Potion
+    ingredient: Nether Wart
+    aliases: [awkward, nether wart, base]
+    lines:
+      - "&7Base for most effect potions."
+      - "&fWater Bottle &7+ &fNether Wart &7→ &fAwkward Potion"
+
+  healing:
+    name: Potion of Healing
+    ingredient: Glistering Melon Slice
+    aliases: [heal, healing, health, melon, glistering melon]
+    lines:
+      - "&fAwkward Potion &7+ &fGlistering Melon Slice"
+      - "&8+ &fGlowstone Dust &7→ &aHealing II"
+      - "&8+ &fGunpowder &7→ &aSplash Healing"
+      - "&8Splash + &fDragon's Breath &7→ &aLingering Healing"
+
+  harming:
+    name: Potion of Harming
+    ingredient: Fermented Spider Eye
+    aliases: [harm, harming, damage, instant damage]
+    lines:
+      - "&fPotion of Healing &7+ &fFermented Spider Eye"
+      - "&8(or Poison → FSE → Weakness chain — brew from Healing)"
+      - "&8+ &fGlowstone Dust &7→ &cHarming II"
+      - "&8+ &fGunpowder &7→ &cSplash Harming"
+
+  regeneration:
+    name: Potion of Regeneration
+    ingredient: Ghast Tear
+    aliases: [regen, regeneration, ghast]
+    lines:
+      - "&fAwkward Potion &7+ &fGhast Tear"
+      - "&8+ &fGlowstone Dust &7→ &dRegen II"
+      - "&8+ &fRedstone Dust &7→ &dLong Regen"
+      - "&8+ &fGunpowder &7→ &dSplash Regen"
+
+  strength:
+    name: Potion of Strength
+    ingredient: Blaze Powder
+    aliases: [strength, str, blaze]
+    lines:
+      - "&fAwkward Potion &7+ &fBlaze Powder"
+      - "&8+ &fGlowstone Dust &7→ &cStrength II"
+      - "&8+ &fRedstone Dust &7→ &cLong Strength"
+      - "&8+ &fGunpowder &7→ &cSplash Strength"
+
+  fire_resistance:
+    name: Potion of Fire Resistance
+    ingredient: Magma Cream
+    aliases: [fire res, fire resistance, fire, magma]
+    lines:
+      - "&fAwkward Potion &7+ &fMagma Cream"
+      - "&8+ &fRedstone Dust &7→ &6Long Fire Res"
+      - "&8+ &fGunpowder &7→ &6Splash Fire Res"
+
+  swiftness:
+    name: Potion of Swiftness
+    ingredient: Sugar
+    aliases: [speed, swiftness, sugar, swift]
+    lines:
+      - "&fAwkward Potion &7+ &fSugar"
+      - "&8+ &fGlowstone Dust &7→ &bSwiftness II"
+      - "&8+ &fRedstone Dust &7→ &bLong Swiftness"
+      - "&8+ &fFermented Spider Eye &7→ &7Slowness"
+
+  slowness:
+    name: Potion of Slowness
+    ingredient: Fermented Spider Eye
+    aliases: [slow, slowness]
+    lines:
+      - "&fPotion of Swiftness &7+ &fFermented Spider Eye"
+      - "&8(or Leaping → FSE)"
+      - "&8+ &fRedstone Dust &7→ &7Long Slowness"
+      - "&8+ &fGlowstone Dust &7→ &7Slowness II"
+
+  leaping:
+    name: Potion of Leaping
+    ingredient: Rabbit's Foot
+    aliases: [jump, leap, leaping, rabbit]
+    lines:
+      - "&fAwkward Potion &7+ &fRabbit's Foot"
+      - "&8+ &fGlowstone Dust &7→ &aLeaping II"
+      - "&8+ &fRedstone Dust &7→ &aLong Leaping"
+
+  poison:
+    name: Potion of Poison
+    ingredient: Spider Eye
+    aliases: [poison, spider eye]
+    lines:
+      - "&fAwkward Potion &7+ &fSpider Eye"
+      - "&8+ &fGlowstone Dust &7→ &2Poison II"
+      - "&8+ &fRedstone Dust &7→ &2Long Poison"
+      - "&8+ &fFermented Spider Eye &7→ &7Weakness"
+
+  weakness:
+    name: Potion of Weakness
+    ingredient: Fermented Spider Eye
+    aliases: [weak, weakness]
+    lines:
+      - "&fPotion of Poison &7+ &fFermented Spider Eye"
+      - "&8+ &fRedstone Dust &7→ &7Long Weakness"
+      - "&8Used for &fzombie villager cure &7(with Golden Apple)"
+
+  night_vision:
+    name: Potion of Night Vision
+    ingredient: Golden Carrot
+    aliases: [night vision, nv, golden carrot, carrot]
+    lines:
+      - "&fAwkward Potion &7+ &fGolden Carrot"
+      - "&8+ &fRedstone Dust &7→ &9Long Night Vision"
+      - "&8+ &fFermented Spider Eye &7→ &8Invisibility"
+
+  invisibility:
+    name: Potion of Invisibility
+    ingredient: Fermented Spider Eye
+    aliases: [invis, invisibility]
+    lines:
+      - "&fPotion of Night Vision &7+ &fFermented Spider Eye"
+      - "&8+ &fRedstone Dust &7→ &8Long Invisibility"
+
+  water_breathing:
+    name: Potion of Water Breathing
+    ingredient: Pufferfish
+    aliases: [water breathing, breath, pufferfish, puffer]
+    lines:
+      - "&fAwkward Potion &7+ &fPufferfish"
+      - "&8+ &fRedstone Dust &7→ &3Long Water Breathing"
+      - "&8+ &fGunpowder &7→ &3Splash Water Breathing"
+
+  slow_falling:
+    name: Potion of Slow Falling
+    ingredient: Phantom Membrane
+    aliases: [slow falling, feather fall, phantom]
+    lines:
+      - "&fAwkward Potion &7+ &fPhantom Membrane"
+      - "&8+ &fRedstone Dust &7→ &fLong Slow Falling"
+      - "&8+ &fGunpowder &7→ &fSplash Slow Falling"
+
+  turtle_master:
+    name: Potion of the Turtle Master
+    ingredient: Turtle Shell
+    aliases: [turtle, turtle master, scute, resistance]
+    lines:
+      - "&fAwkward Potion &7+ &fTurtle Shell &7(scute)"
+      - "&8+ &fRedstone Dust &7→ &2Long Turtle Master"
+      - "&8+ &fGlowstone Dust &7→ &2Turtle Master II"
+      - "&7Slows you but grants strong resistance."
+
+  mundane:
+    name: Mundane Potion
+    ingredient: Redstone Dust
+    aliases: [mundane]
+    lines:
+      - "&fWater Bottle &7+ &fRedstone Dust"
+      - "&7No combat effect — used in some brew chains."
+
+  thick:
+    name: Thick Potion
+    ingredient: Glowstone Dust
+    aliases: [thick]
+    lines:
+      - "&fWater Bottle &7+ &fGlowstone Dust"
+      - "&7No effect on its own."
+
+  splash:
+    name: Splash Potions (how-to)
+    ingredient: Gunpowder
+    aliases: [splash, gunpowder, throwable]
+    lines:
+      - "&7Add &fGunpowder &7to any normal potion."
+      - "&fAny Potion &7+ &fGunpowder &7→ &aSplash Potion"
+      - "&7Splash + &fDragon's Breath &7→ &dLingering Potion"
+
+  lingering:
+    name: Lingering Potions (how-to)
+    ingredient: Dragon's Breath
+    aliases: [lingering, dragon breath]
+    lines:
+      - "&fSplash Potion &7+ &fDragon's Breath"
+      - "&7Creates a cloud on impact."
+
+  strong:
+    name: Strong Potions (how-to)
+    ingredient: Glowstone Dust
+    aliases: [strong, glowstone, level 2, ii]
+    lines:
+      - "&fEffect Potion &7+ &fGlowstone Dust"
+      - "&7Increases potency (e.g. Healing → Healing II)."
+      - "&7Cannot combine with Redstone on the same step."
+
+  long:
+    name: Long Potions (how-to)
+    ingredient: Redstone Dust
+    aliases: [long, extended, redstone, duration]
+    lines:
+      - "&fEffect Potion &7+ &fRedstone Dust"
+      - "&7Extends duration."
+      - "&7Cannot combine with Glowstone on the same step."
+
+  fermented_spider_eye:
+    name: Fermented Spider Eye
+    ingredient: Spider Eye
+    aliases: [fse, fermented spider eye, corrupt]
+    lines:
+      - "&7Craft: &fSpider Eye &7+ &fBrown Mushroom &7+ &fSugar"
+      - "&7Corrupts potions into new effects:"
+      - "&8Night Vision → Invisibility"
+      - "&8Healing → Harming"
+      - "&8Poison → Weakness"
+      - "&8Swiftness / Leaping → Slowness"

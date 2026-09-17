@@ -1,0 +1,1 @@
+../../scripts/rootrecord-static-server.py

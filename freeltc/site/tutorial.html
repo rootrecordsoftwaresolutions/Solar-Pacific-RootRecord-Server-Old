@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreeLTC Guide – Mine Litecoin in Minutes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #141b2d;
+      --accent: #3454d1;
+      --accent-hover: #4a6cf7;
+      --text: #e8edf7;
+      --muted: #94a3b8;
+      --border: #1e293b;
+      --success: #22c55e;
+      --code-bg: #0f1524;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .bg-glow {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(52, 84, 209, 0.2), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--accent); }
+    .back {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back:hover { color: var(--text); }
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 4rem;
+    }
+    h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .lead {
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .step {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: var(--accent);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-right: 0.6rem;
+    }
+    .step h2 {
+      display: inline;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .step p, .step ul {
+      margin-top: 0.85rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .step ul { padding-left: 1.25rem; }
+    .step li { margin-bottom: 0.35rem; }
+    code, .code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      background: var(--code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.88em;
+      color: #a5b4fc;
+    }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin-top: 0.85rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+    a.btn {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.7rem 1.25rem;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    a.btn:hover { background: var(--accent-hover); }
+    a.btn.secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      margin-left: 0.5rem;
+    }
+    a.btn.secondary:hover { border-color: var(--muted); }
+    .warn {
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid rgba(234, 179, 8, 0.3);
+      border-radius: 10px;
+      padding: 1rem 1.15rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      color: #fde68a;
+    }
+    .installer-box {
+      background: linear-gradient(135deg, rgba(52,84,209,0.15), rgba(34,197,94,0.08));
+      border: 1px solid rgba(52,84,209,0.35);
+      border-radius: 14px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+    .installer-box h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+    .installer-box p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .dl-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <header>
+    <div class="logo">Free<span>LTC</span></div>
+    <a href="index.html" class="back">← Back</a>
+  </header>
+  <main>
+    <h1>Super easy Litecoin mining guide</h1>
+    <p class="lead">
+      You will mine with XMRig (CPU) on unMineable and get paid in LTC.
+      The referral code is already included so you pay lower fees.
+    </p>
+
+    <div class="warn">
+      <strong>Important:</strong> Mining uses electricity and CPU. Earnings depend on your hardware and electricity cost. This is not financial advice. Antivirus may flag mining software — that is common and usually a false positive.
+    </div>
+
+    <div class="step">
+      <span class="step-num">1</span>
+      <h2>Get a Litecoin wallet address</h2>
+      <p>
+        You need an LTC address that you control. Popular options:
+      </p>
+      <ul>
+        <li><strong>Electrum-LTC</strong> or official Litecoin Core (desktop)</li>
+        <li>Exodus, Trust Wallet, or any non-custodial wallet that supports Litecoin</li>
+        <li>Exchange deposit address (only if you accept the risk of using a custodial address)</li>
+      </ul>
+      <p>Copy the address (starts with <code>L</code>, <code>M</code>, or <code>ltc1</code>).</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">2</span>
+      <h2>Download & run the one-file installer</h2>
+      <p>
+        The installer downloads the latest official XMRig, creates a config with your LTC address + our referral code, and starts mining.
+        You only enter your address once.
+      </p>
+      <p style="margin-top:0.75rem;">
+        <strong>Linux is “screensaver style”</strong>: mining is paused while you use the PC (almost zero CPU) and automatically switches to full speed after ~60 seconds of idle time.
+      </p>
+      <div class="dl-row" style="margin-top:1rem; justify-content:flex-start;">
+        <a class="btn" href="install-windows.ps1" download>Windows installer (.ps1)</a>
+        <a class="btn secondary" href="install-linux.sh" download>Linux installer (.sh)</a>
+      </div>
+      <p style="margin-top:1rem; font-size:0.85rem;">
+        <strong>Windows:</strong> Right-click the file → “Run with PowerShell” (or open PowerShell and run <code>.\install-windows.ps1</code>).<br>
+        <strong>Linux:</strong> <code>chmod +x install-linux.sh && ./install-linux.sh</code><br>
+        Recommended: <code>sudo apt install xprintidle</code> (accurate idle detection)
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">3</span>
+      <h2>Manual method (if you prefer)</h2>
+      <p>1. Download XMRig from the official releases:</p>
+      <a class="btn" href="https://github.com/xmrig/xmrig/releases" target="_blank" rel="noopener">github.com/xmrig/xmrig/releases</a>
+      <p style="margin-top:1rem;">2. Create a start script (Windows <code>start.bat</code> or Linux <code>start.sh</code>):</p>
+      <pre>xmrig -o rx.unmineable.com:3333 -a rx -k -u LTC:YOUR_LTC_ADDRESS.worker#U-80KT6Z -p x</pre>
+      <p>Replace <code>YOUR_LTC_ADDRESS</code> with your real address. You can change <code>worker</code> to any name you like.</p>
+      <p>3. Run the script. You should see hashrate appear after a few seconds.</p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">4</span>
+      <h2>Check your balance</h2>
+      <p>
+        Go to unMineable, search for your LTC address, and you will see your balance and workers.
+      </p>
+      <a class="btn" href="https://unmineable.com/?ref=U-80KT6Z" target="_blank" rel="noopener">Open unMineable (with referral)</a>
+      <p style="margin-top:0.75rem; font-size:0.9rem;">
+        Minimum payout for LTC is currently very low (around 0.00075 LTC). Payments are automatic.
+      </p>
+    </div>
+
+    <div class="installer-box">
+      <h3>Referral already applied</h3>
+      <p>
+        Using the code <code>U-80KT6Z</code> reduces the pool fee from 1% to 0.75%.
+        This is already baked into the installers and the manual command above.
+      </p>
+    </div>
+
+    <div class="step">
+      <span class="step-num">5</span>
+      <h2>Tips for better results</h2>
+      <ul>
+        <li>Leave the miner running as long as possible (more time = more LTC).</li>
+        <li>On Windows, add an exclusion for the XMRig folder in Windows Defender if it gets deleted.</li>
+        <li>On Linux, enabling huge pages can improve hashrate (the installer can help).</li>
+        <li>You can run multiple PCs — just use different worker names.</li>
+      </ul>
+    </div>
+  </main>
+  <footer>
+    freeltc.site · Tutorial for unMineable + XMRig · Referral: U-80KT6Z
+  </footer>
+</body>
+</html>

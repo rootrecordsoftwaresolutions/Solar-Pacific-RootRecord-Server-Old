@@ -1,0 +1,17 @@
+id: taming_call_of_the_wild
+display-name: Call of the Wild
+description: Bonus tame XP.
+skill: taming
+unlock-level: 25
+max-rank: 5
+mana-cost: 10
+cooldown-seconds: 60
+duration-seconds: 0
+triggers:
+  - on_tame
+effects:
+  - id: XP_BONUS
+    multiplier: 1.3
+  - id: HEAL
+    amount: 2.0
+conditions: []

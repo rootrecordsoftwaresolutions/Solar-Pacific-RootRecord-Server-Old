@@ -1,0 +1,31 @@
+name: Root-Ranks
+version: '${version}'
+main: com.rootrecord.minecraft.rootranks.RootRanksPlugin
+api-version: '26.1'
+description: RootMC purchasable player rank progression (LuckPerms + gold).
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Essentials, Vault, LuckPerms, RootMC, PlaceholderAPI]
+loadafter: [Root-Essentials, LuckPerms, PlaceholderAPI]
+commands:
+  rank:
+    description: View or buy your player rank
+    usage: /<command> [list|buy|info]
+    aliases: [ranks, rankup]
+  rootranks:
+    description: Admin reload for Root-Ranks
+    usage: /<command> reload
+    permission: rootranks.reload
+permissions:
+  rootranks.use:
+    description: View and purchase player ranks
+    default: true
+  rootranks.buy:
+    description: Purchase the next player rank
+    default: true
+  rootranks.reload:
+    description: Reload root-ranks.yml
+    default: op
+  rootranks.bypass:
+    description: Deprecated — /rank buy always charges Gold (kept for compat, unused)
+    default: false

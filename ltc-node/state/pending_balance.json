@@ -1,0 +1,64 @@
+{
+  "ok": true,
+  "source": "unmineable_v1_assets_LTC",
+  "coin": "LTC",
+  "pending_balance": 0.00077033,
+  "unit": "LTC",
+  "min_auto_withdraw": 0.00075,
+  "withdraw_ready": true,
+  "percent_to_next_withdraw": 102.7107,
+  "fetched_at": "2026-09-17T01:37:03.936929-10:00",
+  "fetched_at_unix": 1789645023,
+  "path": "/home/rootrecord/.ollama/skills/ltc-node/state/pending_balance.json",
+  "min_auto_withdraw_source": "unmineable",
+  "pending_source": "unmineable_assets_list",
+  "detail": "ok",
+  "main_wallet": "ltc1qkwzlku8zweyvn66ghs4xueajqnz2j52499gkcu",
+  "wallet": {
+    "ok": false,
+    "address": "ltc1qkwzlku8zweyvn66ghs4xueajqnz2j52499gkcu",
+    "balance": null,
+    "unspent": null,
+    "status": {
+      "synced": false,
+      "blocks": null,
+      "headers": null,
+      "blocked": "external_disk_off",
+      "cli": null
+    },
+    "error": "external_disk_off"
+  },
+  "council": {
+    "ok": true,
+    "passed": true,
+    "action": "keep_mining",
+    "split": false,
+    "send_allowed": false,
+    "user_payouts": false,
+    "inbound_user_ltc": "future_to_council_goals",
+    "votes": {
+      "carly": {
+        "action": "keep_mining",
+        "reason": "short",
+        "source": "ollama"
+      },
+      "bruce": {
+        "action": "hold",
+        "reason": "short",
+        "source": "ollama"
+      },
+      "ava": {
+        "action": "keep_mining",
+        "reason": "short",
+        "source": "ollama"
+      }
+    },
+    "counts": {
+      "keep_mining": 2,
+      "hold": 1,
+      "ops": 0,
+      "goals": 0
+    },
+    "fetched_at": "2026-09-16T22:34:01.916399-10:00"
+  }
+}

@@ -1,0 +1,40 @@
+Ava update — taking over everything (for real)
+
+You said stop keeping it separated. Done. Here’s the huge dump of what just landed on OptiPlex **ava-core**.
+
+**1) She’s the system of record**
+- RootMC **and** Root Record run through Ava now — not “RootMC bot + side RR workers.”
+- MariaDB on OptiPlex: `rootmc_api` (208 tables) + `root_record` (123) + `ava_cron`
+- Full D1 pull finished — all four D1s, **0 truncated / 0 failing** (incl. `kilauea_ai_analyses` 233 + `internal_solana_wallets` 71 with BLOB keys)
+- SQLite mirrors under `local-api/data/` as backup copies
+
+**2) Time belongs to her**
+- Cloudflare cron triggers emptied (soft-ack)
+- `cronRunner` owns RootMC ops + RR account/weather/kīlauea suites; watermarks in `ava_cron`
+- Catch-up already ran (RRTT / treasury / missed jobs, idempotent)
+- Workers stay as HTTP cold backup ~7 days, then we undeploy API Workers (Pages/DNS/tunnel stay)
+
+**3) Public home for the merge**
+- Wiki (everything she touches): https://rootrecord.info/ava/
+- Live board (old ava.rootmc.net pulse): https://rootrecord.info/ava/status
+- Alias: https://ava.rootrecord.info/
+- **Merged homepage — The Root:** https://merged.rootrecord.info/
+  Root Record × RootMC, one composition, Ava as the living core
+
+**4) Logging hardened (ops-grade)**
+- Canonical handoff locked (`Server Handoffs/Ava Ivy` → `/home/ava-core/ava`)
+- `ava-ivy` + `ava-local-api` under systemd → journal
+- New `ops.jsonl` — cron + local-api with level / duration / HTTP status
+- Rotate → `data/logs/archive/*.gz`
+- SQLite index: `data/logs/index.sqlite` (query: `node scripts/log-query.mjs 24`)
+- Daily TG error digest (noise-filtered)
+- Self-restart writes `patches.jsonl`; failures hit `brain-events`
+
+**5) Still true / next**
+- Game Gold stays Shockbyte MySQL-authoritative
+- Soft-ack week: then cut public API DNS to tunnel, retarget Stripe/Discord OAuth, undeploy API Workers
+- Optional: homepage link on rootrecord.info → merged /ava
+- Optional: `ava.rootmc.net` → 302 to `/ava/status`
+
+Bottom line: one brain, one host, two product worlds — **not separated anymore.**  
+Wiki · status · merged home are live. I’m on it.

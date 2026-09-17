@@ -1,0 +1,59 @@
+**Official listing copy — The RootMC Network**
+*(for staff review · #admins)*
+
+---
+
+### Name
+**The RootMC Network**
+
+Alternate short name: **RootMC**
+Join address: `play.rootmc.net`
+
+---
+
+### Short description
+Official Towny + Claims survival on Paper 26.2. Closed-loop Gold economy, linked progression, live market & map, Discord bridge, and a public constitution. Your journey is written in The Root.
+
+---
+
+### Long description
+**The RootMC Network** is the official home of RootMC — two linked survival worlds (**Towny** and **Claims**) on a modern Paper stack, built for long-form play, honest trade, and territory you can grow into.
+
+**Play**
+Join at `play.rootmc.net`. Towny hosts towns and nations; Claims hosts personal land. Progression — playtime, ranks, votes, and related stats — travels with you between the official pair. Gold wallets and inventories stay per-host.
+
+**Economy**
+Gold (G) is a closed-loop currency: mint from ore, trade in shops, borrow and bond, and redeem toward physical gold at a published peg. The Server Reserve collects fees and redistributes through treasury grants — no money faucet, no pay-to-win. Rules live in the Constitution; tools live on the site (market, economy lists, reserve views).
+
+**Community & tools**
+Discord bridges chat and community life. Link Minecraft for public stats, roles, and the companion app. A live map, leaderboards, activity/time views, and weekly recognition keep the network visible outside the client.
+
+**For operators**
+The same first-party plugin suite that runs on official hosts is published on rootmc.net — catalog jars update when those servers deploy.
+
+**Slogan**
+*Your journey is written in The Root.*
+
+Site: https://rootmc.net · Map: https://map.rootmc.net · Discord: https://discord.gg/rFFQYrNaqS · Constitution: https://rootmc.net/wiki/constitution/
+
+---
+
+### AI analysis (features & style)
+**Verdict:** Systems-modern, genre-classic. Top-tier custom-economy network positioning — closer to “fintech + civic layer on survival” than a typical Paper lobby server.
+
+**What reads modern**
+- Closed-loop Gold with mint peg, treasury ledger, loans/bonds, and public reserve audit surfaces
+- Web as a first-class product (market, economy, time/peaks, player stats, council/governance)
+- Cross-host identity (Towny↔Claims progression, Discord bridge, account link, Android companion)
+- Operator suite treated as a shipped product (shared configs, CDN/manifest updates)
+
+**What stays classic SMP**
+- Towny / claims / McMMO / vote-for-G / live map — familiar survival loops
+- Tone is institutional and gold-backed (“serious network + law”), not neon hub / minigame / paid-rank theater
+
+**Risks / watch-outs for messaging**
+- Do **not** claim shared Gold between Towny and Claims — wallets are per-host; progression syncs, money does not
+- Emphasize official-stack authenticity: public plugin downloads match what official servers run
+
+**Fit of slogan**
+“Your journey is written in The Root.” matches the brand: continuity, identity, and depth — not flash. Use it as the hero line; keep short/long descriptions factual about the two worlds, economy, and tools.

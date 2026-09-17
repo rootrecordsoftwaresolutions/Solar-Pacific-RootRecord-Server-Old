@@ -1,0 +1,40 @@
+name: Root-Gamble
+version: '${version}'
+main: com.rootrecord.minecraft.rootgamble.RootGamblePlugin
+api-version: '26.1'
+description: RootMC gambling — roulette, hilo, lotto, coin, dice
+author: Root Record
+website: https://rootmc.net
+depend: [Root-Core, Root-Economy]
+softdepend: [Vault]
+commands:
+  gamble:
+    description: Open the RootMC gamble menu
+    usage: /gamble
+    aliases: [casino, bets]
+  roulette:
+    description: European roulette vs Server Reserve
+    usage: /roulette <amount> <red|black|green|0-36>
+  hilo:
+    description: Card hi-lo vs Server Reserve
+    usage: /hilo | /hilo <amount> <high|low>
+  lotto:
+    description: Lotto tickets (McDay draw)
+    usage: /lotto [1-500]
+  coin:
+    description: Coin flip vs a player or Ava
+    usage: /coin <player|Ava> <amount> | /coin accept|deny
+  dice:
+    description: Dice duel vs a player
+    usage: /dice <player> <amount> | /dice accept|deny
+  rootgamble:
+    description: Root-Gamble admin reload
+    usage: /rootgamble reload
+    permission: rootgamble.admin
+permissions:
+  rootgamble.use:
+    description: Play gamble games and open /gamble
+    default: true
+  rootgamble.admin:
+    description: Reload Root-Gamble config (does not trigger draws)
+    default: op

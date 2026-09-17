@@ -1,0 +1,41 @@
+# Root-Activity — plugins/RootMC/root-activity.yml
+# MySQL: leave mysql.host/database/username/password blank to inherit from root-essentials.yml (central DB).
+
+enabled: true
+flush-interval-seconds: 60
+peak-hour-count: 3
+
+ip-lookup:
+  enabled: true
+  # Free tier ~45 req/min — cache results per IP for 24h
+  url-template: "http://ip-api.com/json/{ip}?fields=status,offset,timezone"
+  cache-hours: 24
+
+mysql:
+  enabled: true
+  host: ""
+  port: 3306
+  database: ""
+  username: ""
+  password: ""
+  table-prefix: "root_"
+  jdbc-params: "verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC"
+
+messages:
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  players-only: "&cPlayers only."
+  disabled: "&eActivity tracking is disabled."
+  your-timezone: "&7Your timezone: &f{label} &8({source})"
+  your-timezone-unset: "&7Your timezone: &8not set yet &8(join again or pick in Discord)"
+  clock-fallback: "&8No zone yet — server times below use &fUTC&8 until yours is set."
+  your-peak: "&7Your peak play (&fyour clock&7): &f{peak}"
+  your-peak-none: "&7Your peak play: &8not enough data yet — keep playing!"
+  server-peak: "&aServer busiest (&f{clock}&a): &f{peak}"
+  server-peak-none: "&7Server busiest: &8not enough play data yet"
+  zones-header: "&7Players by timezone &8({total} mapped) &8— peaks in &f{clock}&8"
+  zone-line: "&f{label} &8— &f{players} &7player(s) &8— &7peak &f{peak}"
+  zone-line-no-peak: "&f{label} &8— &f{players} &7player(s) &8— &7peak &8no play data yet"
+  realm-empty: "&8No timezone data yet — players are mapped on join."
+  discord-hint: "&8Prefer a different timezone? Run &f/link&8, then pick your zone in &9#time-zone&8 on Discord (that choice overrides IP)."
+  reload-done: "&aRoot-Activity reloaded."

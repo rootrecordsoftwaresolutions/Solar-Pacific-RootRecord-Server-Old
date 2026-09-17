@@ -1,0 +1,1011 @@
+# TREE: /home/ava-core/data
+# Generated: 2026-08-23 07:34:48 UTC
+
+[DIR] data
+    /home/ava-core/data
+├── [DIR ] conversations
+│       /home/ava-core/data/conversations
+├── [DIR ] ecoflow
+│       /home/ava-core/data/ecoflow
+│   ├── [DIR ] certs
+│   │       /home/ava-core/data/ecoflow/certs
+│   ├── [DIR ] devices
+│   │       /home/ava-core/data/ecoflow/devices
+│   │   └── [FILE] list.json
+│   │           /home/ava-core/data/ecoflow/devices/list.json
+│   ├── [DIR ] history
+│   │       /home/ava-core/data/ecoflow/history
+│   │   ├── [FILE] R331ZAB5SG6S2858-minutes.jsonl
+│   │   │       /home/ava-core/data/ecoflow/history/R331ZAB5SG6S2858-minutes.jsonl
+│   │   ├── [FILE] R331ZAB5SG6S2858.jsonl
+│   │   │       /home/ava-core/data/ecoflow/history/R331ZAB5SG6S2858.jsonl
+│   │   ├── [FILE] R621ZA16XH6K1155-minutes.jsonl
+│   │   │       /home/ava-core/data/ecoflow/history/R621ZA16XH6K1155-minutes.jsonl
+│   │   └── [FILE] R621ZA16XH6K1155.jsonl
+│   │           /home/ava-core/data/ecoflow/history/R621ZA16XH6K1155.jsonl
+│   ├── [DIR ] mqtt
+│   │       /home/ava-core/data/ecoflow/mqtt
+│   │   └── [FILE] certification.json
+│   │           /home/ava-core/data/ecoflow/mqtt/certification.json
+│   ├── [DIR ] quota
+│   │       /home/ava-core/data/ecoflow/quota
+│   │   ├── [FILE] R331ZAB5SG6S2858.json
+│   │   │       /home/ava-core/data/ecoflow/quota/R331ZAB5SG6S2858.json
+│   │   └── [FILE] R621ZA16XH6K1155.json
+│   │           /home/ava-core/data/ecoflow/quota/R621ZA16XH6K1155.json
+│   └── [FILE] README.txt
+│           /home/ava-core/data/ecoflow/README.txt
+├── [DIR ] finance
+│       /home/ava-core/data/finance
+├── [DIR ] flight
+│       /home/ava-core/data/flight
+├── [DIR ] guilds
+│       /home/ava-core/data/guilds
+├── [DIR ] host-metrics
+│       /home/ava-core/data/host-metrics
+│   ├── [FILE] days.json
+│   │       /home/ava-core/data/host-metrics/days.json
+│   ├── [FILE] lifetime.json
+│   │       /home/ava-core/data/host-metrics/lifetime.json
+│   ├── [FILE] minutes.jsonl
+│   │       /home/ava-core/data/host-metrics/minutes.jsonl
+│   └── [FILE] snapshot.json
+│           /home/ava-core/data/host-metrics/snapshot.json
+├── [DIR ] jobs
+│       /home/ava-core/data/jobs
+├── [DIR ] logs
+│       /home/ava-core/data/logs
+│   ├── [FILE] actions.jsonl
+│   │       /home/ava-core/data/logs/actions.jsonl
+│   ├── [FILE] inbound.jsonl
+│   │       /home/ava-core/data/logs/inbound.jsonl
+│   └── [FILE] outbound.jsonl
+│           /home/ava-core/data/logs/outbound.jsonl
+├── [DIR ] players
+│       /home/ava-core/data/players
+│   └── [DIR ] mc
+│           /home/ava-core/data/players/mc
+│       ├── [FILE] khouzrh.json
+│       │       /home/ava-core/data/players/mc/khouzrh.json
+│       └── [FILE] zuppafredda.json
+│               /home/ava-core/data/players/mc/zuppafredda.json
+├── [DIR ] reactions
+│       /home/ava-core/data/reactions
+│   ├── [DIR ] messages
+│   │       /home/ava-core/data/reactions/messages
+│   │   ├── [FILE] 1532924707425226955.json
+│   │   │       /home/ava-core/data/reactions/messages/1532924707425226955.json
+│   │   ├── [FILE] 1532924737477414972.json
+│   │   │       /home/ava-core/data/reactions/messages/1532924737477414972.json
+│   │   ├── [FILE] 1532924752606400593.json
+│   │   │       /home/ava-core/data/reactions/messages/1532924752606400593.json
+│   │   ├── [FILE] 1533185998031294685.json
+│   │   │       /home/ava-core/data/reactions/messages/1533185998031294685.json
+│   │   ├── [FILE] 1533186001667883120.json
+│   │   │       /home/ava-core/data/reactions/messages/1533186001667883120.json
+│   │   ├── [FILE] 1533186001743384610.json
+│   │   │       /home/ava-core/data/reactions/messages/1533186001743384610.json
+│   │   ├── [FILE] 1533186339426795663.json
+│   │   │       /home/ava-core/data/reactions/messages/1533186339426795663.json
+│   │   ├── [FILE] 1533186551901589514.json
+│   │   │       /home/ava-core/data/reactions/messages/1533186551901589514.json
+│   │   ├── [FILE] 1533186685276258394.json
+│   │   │       /home/ava-core/data/reactions/messages/1533186685276258394.json
+│   │   ├── [FILE] 1533187078400118855.json
+│   │   │       /home/ava-core/data/reactions/messages/1533187078400118855.json
+│   │   ├── [FILE] 1533187115045621940.json
+│   │   │       /home/ava-core/data/reactions/messages/1533187115045621940.json
+│   │   ├── [FILE] 1533245368114876599.json
+│   │   │       /home/ava-core/data/reactions/messages/1533245368114876599.json
+│   │   ├── [FILE] 1533247979870486589.json
+│   │   │       /home/ava-core/data/reactions/messages/1533247979870486589.json
+│   │   ├── [FILE] 1533248043544084550.json
+│   │   │       /home/ava-core/data/reactions/messages/1533248043544084550.json
+│   │   ├── [FILE] 1533248240672309399.json
+│   │   │       /home/ava-core/data/reactions/messages/1533248240672309399.json
+│   │   ├── [FILE] 1533248263589855272.json
+│   │   │       /home/ava-core/data/reactions/messages/1533248263589855272.json
+│   │   ├── [FILE] 1533248429596344441.json
+│   │   │       /home/ava-core/data/reactions/messages/1533248429596344441.json
+│   │   ├── [FILE] 1533268460228972604.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268460228972604.json
+│   │   ├── [FILE] 1533268518370545915.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268518370545915.json
+│   │   ├── [FILE] 1533268549949325323.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268549949325323.json
+│   │   ├── [FILE] 1533268586267807834.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268586267807834.json
+│   │   ├── [FILE] 1533268606740336871.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268606740336871.json
+│   │   ├── [FILE] 1533268636213710938.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268636213710938.json
+│   │   ├── [FILE] 1533268671760306287.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268671760306287.json
+│   │   ├── [FILE] 1533268702718332960.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268702718332960.json
+│   │   ├── [FILE] 1533268736511967352.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268736511967352.json
+│   │   ├── [FILE] 1533268763829469249.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268763829469249.json
+│   │   ├── [FILE] 1533268800533954744.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268800533954744.json
+│   │   ├── [FILE] 1533268810277064715.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268810277064715.json
+│   │   ├── [FILE] 1533268832657997974.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268832657997974.json
+│   │   ├── [FILE] 1533268841268772998.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268841268772998.json
+│   │   ├── [FILE] 1533268850819203162.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268850819203162.json
+│   │   ├── [FILE] 1533268861304963182.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268861304963182.json
+│   │   ├── [FILE] 1533268870897471498.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268870897471498.json
+│   │   ├── [FILE] 1533268879990718554.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268879990718554.json
+│   │   ├── [FILE] 1533268889117524170.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268889117524170.json
+│   │   ├── [FILE] 1533268899942895626.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268899942895626.json
+│   │   ├── [FILE] 1533268909380210858.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268909380210858.json
+│   │   ├── [FILE] 1533268918599422002.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268918599422002.json
+│   │   ├── [FILE] 1533268927646400636.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268927646400636.json
+│   │   ├── [FILE] 1533268936668217565.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268936668217565.json
+│   │   ├── [FILE] 1533268946168582164.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268946168582164.json
+│   │   ├── [FILE] 1533268964220735508.json
+│   │   │       /home/ava-core/data/reactions/messages/1533268964220735508.json
+│   │   ├── [FILE] 1533270206061871154.json
+│   │   │       /home/ava-core/data/reactions/messages/1533270206061871154.json
+│   │   ├── [FILE] 1533277583913779241.json
+│   │   │       /home/ava-core/data/reactions/messages/1533277583913779241.json
+│   │   ├── [FILE] 1533277831000363101.json
+│   │   │       /home/ava-core/data/reactions/messages/1533277831000363101.json
+│   │   ├── [FILE] 1533285829810716833.json
+│   │   │       /home/ava-core/data/reactions/messages/1533285829810716833.json
+│   │   ├── [FILE] 1533285830066569336.json
+│   │   │       /home/ava-core/data/reactions/messages/1533285830066569336.json
+│   │   ├── [FILE] 1533285831056560248.json
+│   │   │       /home/ava-core/data/reactions/messages/1533285831056560248.json
+│   │   ├── [FILE] 1533285831417266217.json
+│   │   │       /home/ava-core/data/reactions/messages/1533285831417266217.json
+│   │   ├── [FILE] 1533286002955653120.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286002955653120.json
+│   │   ├── [FILE] 1533286067934072953.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286067934072953.json
+│   │   ├── [FILE] 1533286343679938711.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286343679938711.json
+│   │   ├── [FILE] 1533286343755436143.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286343755436143.json
+│   │   ├── [FILE] 1533286378174021802.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286378174021802.json
+│   │   ├── [FILE] 1533286381554761753.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286381554761753.json
+│   │   ├── [FILE] 1533286788506980404.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286788506980404.json
+│   │   ├── [FILE] 1533286978110361711.json
+│   │   │       /home/ava-core/data/reactions/messages/1533286978110361711.json
+│   │   ├── [FILE] 1533287029365014538.json
+│   │   │       /home/ava-core/data/reactions/messages/1533287029365014538.json
+│   │   ├── [FILE] 1533319282639900792.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319282639900792.json
+│   │   ├── [FILE] 1533319285638824041.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319285638824041.json
+│   │   ├── [FILE] 1533319292601499871.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319292601499871.json
+│   │   ├── [FILE] 1533319296455938108.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319296455938108.json
+│   │   ├── [FILE] 1533319299668906157.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319299668906157.json
+│   │   ├── [FILE] 1533319306383720548.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319306383720548.json
+│   │   ├── [FILE] 1533319310083231825.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319310083231825.json
+│   │   ├── [FILE] 1533319313606311978.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319313606311978.json
+│   │   ├── [FILE] 1533319317326790848.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319317326790848.json
+│   │   ├── [FILE] 1533319334242549841.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319334242549841.json
+│   │   ├── [FILE] 1533319342480031786.json
+│   │   │       /home/ava-core/data/reactions/messages/1533319342480031786.json
+│   │   ├── [FILE] 1533371054897102978.json
+│   │   │       /home/ava-core/data/reactions/messages/1533371054897102978.json
+│   │   ├── [FILE] 1533535568267579452.json
+│   │   │       /home/ava-core/data/reactions/messages/1533535568267579452.json
+│   │   ├── [FILE] 1533536741393305702.json
+│   │   │       /home/ava-core/data/reactions/messages/1533536741393305702.json
+│   │   ├── [FILE] 1533536743746437163.json
+│   │   │       /home/ava-core/data/reactions/messages/1533536743746437163.json
+│   │   ├── [FILE] 1533536753980276936.json
+│   │   │       /home/ava-core/data/reactions/messages/1533536753980276936.json
+│   │   ├── [FILE] 1533536755297292502.json
+│   │   │       /home/ava-core/data/reactions/messages/1533536755297292502.json
+│   │   ├── [FILE] 1533551415480422490.json
+│   │   │       /home/ava-core/data/reactions/messages/1533551415480422490.json
+│   │   ├── [FILE] 1533551416847761499.json
+│   │   │       /home/ava-core/data/reactions/messages/1533551416847761499.json
+│   │   ├── [FILE] 1533553302208516177.json
+│   │   │       /home/ava-core/data/reactions/messages/1533553302208516177.json
+│   │   ├── [FILE] 1533560354356072589.json
+│   │   │       /home/ava-core/data/reactions/messages/1533560354356072589.json
+│   │   ├── [FILE] 1533567304141373592.json
+│   │   │       /home/ava-core/data/reactions/messages/1533567304141373592.json
+│   │   ├── [FILE] 1533567305953574912.json
+│   │   │       /home/ava-core/data/reactions/messages/1533567305953574912.json
+│   │   ├── [FILE] 1533644388243210312.json
+│   │   │       /home/ava-core/data/reactions/messages/1533644388243210312.json
+│   │   ├── [FILE] 1533644516865872012.json
+│   │   │       /home/ava-core/data/reactions/messages/1533644516865872012.json
+│   │   ├── [FILE] 1533644548843245580.json
+│   │   │       /home/ava-core/data/reactions/messages/1533644548843245580.json
+│   │   ├── [FILE] 1533699019283365888.json
+│   │   │       /home/ava-core/data/reactions/messages/1533699019283365888.json
+│   │   ├── [FILE] 1533699021900746802.json
+│   │   │       /home/ava-core/data/reactions/messages/1533699021900746802.json
+│   │   ├── [FILE] 1533699039718150276.json
+│   │   │       /home/ava-core/data/reactions/messages/1533699039718150276.json
+│   │   ├── [FILE] 1533699047238533250.json
+│   │   │       /home/ava-core/data/reactions/messages/1533699047238533250.json
+│   │   ├── [FILE] 1533885917461348422.json
+│   │   │       /home/ava-core/data/reactions/messages/1533885917461348422.json
+│   │   ├── [FILE] 1533885919088742724.json
+│   │   │       /home/ava-core/data/reactions/messages/1533885919088742724.json
+│   │   ├── [FILE] 1533918839765471252.json
+│   │   │       /home/ava-core/data/reactions/messages/1533918839765471252.json
+│   │   ├── [FILE] 1533918844685385932.json
+│   │   │       /home/ava-core/data/reactions/messages/1533918844685385932.json
+│   │   ├── [FILE] 1533918852373811370.json
+│   │   │       /home/ava-core/data/reactions/messages/1533918852373811370.json
+│   │   ├── [FILE] 1533918858748891257.json
+│   │   │       /home/ava-core/data/reactions/messages/1533918858748891257.json
+│   │   ├── [FILE] 1533926514138026186.json
+│   │   │       /home/ava-core/data/reactions/messages/1533926514138026186.json
+│   │   ├── [FILE] 1533947070095036458.json
+│   │   │       /home/ava-core/data/reactions/messages/1533947070095036458.json
+│   │   ├── [FILE] 1533996388231155932.json
+│   │   │       /home/ava-core/data/reactions/messages/1533996388231155932.json
+│   │   ├── [FILE] 1533996483043397662.json
+│   │   │       /home/ava-core/data/reactions/messages/1533996483043397662.json
+│   │   ├── [FILE] 1533996620356517910.json
+│   │   │       /home/ava-core/data/reactions/messages/1533996620356517910.json
+│   │   ├── [FILE] 1533996622139097158.json
+│   │   │       /home/ava-core/data/reactions/messages/1533996622139097158.json
+│   │   ├── [FILE] 1534031916649414706.json
+│   │   │       /home/ava-core/data/reactions/messages/1534031916649414706.json
+│   │   ├── [FILE] 1534125557334282383.json
+│   │   │       /home/ava-core/data/reactions/messages/1534125557334282383.json
+│   │   ├── [FILE] 1534125558969925672.json
+│   │   │       /home/ava-core/data/reactions/messages/1534125558969925672.json
+│   │   ├── [FILE] 1534282046879432847.json
+│   │   │       /home/ava-core/data/reactions/messages/1534282046879432847.json
+│   │   ├── [FILE] 1534297426465128550.json
+│   │   │       /home/ava-core/data/reactions/messages/1534297426465128550.json
+│   │   ├── [FILE] 1534297748856111266.json
+│   │   │       /home/ava-core/data/reactions/messages/1534297748856111266.json
+│   │   ├── [FILE] 1534298954835951706.json
+│   │   │       /home/ava-core/data/reactions/messages/1534298954835951706.json
+│   │   ├── [FILE] 1534298955754504316.json
+│   │   │       /home/ava-core/data/reactions/messages/1534298955754504316.json
+│   │   ├── [FILE] 1534299717981179964.json
+│   │   │       /home/ava-core/data/reactions/messages/1534299717981179964.json
+│   │   ├── [FILE] 1534300651411079289.json
+│   │   │       /home/ava-core/data/reactions/messages/1534300651411079289.json
+│   │   ├── [FILE] 1534301054920032256.json
+│   │   │       /home/ava-core/data/reactions/messages/1534301054920032256.json
+│   │   ├── [FILE] 1534306045403594802.json
+│   │   │       /home/ava-core/data/reactions/messages/1534306045403594802.json
+│   │   ├── [FILE] 1534307985852203098.json
+│   │   │       /home/ava-core/data/reactions/messages/1534307985852203098.json
+│   │   ├── [FILE] 1534309150375542834.json
+│   │   │       /home/ava-core/data/reactions/messages/1534309150375542834.json
+│   │   ├── [FILE] 1534309205933035625.json
+│   │   │       /home/ava-core/data/reactions/messages/1534309205933035625.json
+│   │   ├── [FILE] 1534309208487497921.json
+│   │   │       /home/ava-core/data/reactions/messages/1534309208487497921.json
+│   │   ├── [FILE] 1534311879747305655.json
+│   │   │       /home/ava-core/data/reactions/messages/1534311879747305655.json
+│   │   ├── [FILE] 1534416269996986479.json
+│   │   │       /home/ava-core/data/reactions/messages/1534416269996986479.json
+│   │   ├── [FILE] 1534418133702672584.json
+│   │   │       /home/ava-core/data/reactions/messages/1534418133702672584.json
+│   │   ├── [FILE] 1534419461707141302.json
+│   │   │       /home/ava-core/data/reactions/messages/1534419461707141302.json
+│   │   ├── [FILE] 1534419463154307133.json
+│   │   │       /home/ava-core/data/reactions/messages/1534419463154307133.json
+│   │   ├── [FILE] 1534424147344752691.json
+│   │   │       /home/ava-core/data/reactions/messages/1534424147344752691.json
+│   │   ├── [FILE] 1534426795942609066.json
+│   │   │       /home/ava-core/data/reactions/messages/1534426795942609066.json
+│   │   ├── [FILE] 1534431668721684525.json
+│   │   │       /home/ava-core/data/reactions/messages/1534431668721684525.json
+│   │   ├── [FILE] 1534432232691728496.json
+│   │   │       /home/ava-core/data/reactions/messages/1534432232691728496.json
+│   │   ├── [FILE] 1534432238366621790.json
+│   │   │       /home/ava-core/data/reactions/messages/1534432238366621790.json
+│   │   ├── [FILE] 1534432244003766423.json
+│   │   │       /home/ava-core/data/reactions/messages/1534432244003766423.json
+│   │   ├── [FILE] 1534432250274512896.json
+│   │   │       /home/ava-core/data/reactions/messages/1534432250274512896.json
+│   │   ├── [FILE] 1534433462658793612.json
+│   │   │       /home/ava-core/data/reactions/messages/1534433462658793612.json
+│   │   ├── [FILE] 1534433468551790643.json
+│   │   │       /home/ava-core/data/reactions/messages/1534433468551790643.json
+│   │   ├── [FILE] 1534433474633662555.json
+│   │   │       /home/ava-core/data/reactions/messages/1534433474633662555.json
+│   │   ├── [FILE] 1534433480321269902.json
+│   │   │       /home/ava-core/data/reactions/messages/1534433480321269902.json
+│   │   ├── [FILE] 1534598803376705729.json
+│   │   │       /home/ava-core/data/reactions/messages/1534598803376705729.json
+│   │   ├── [FILE] 1534631695389560983.json
+│   │   │       /home/ava-core/data/reactions/messages/1534631695389560983.json
+│   │   ├── [FILE] 1534689513715269872.json
+│   │   │       /home/ava-core/data/reactions/messages/1534689513715269872.json
+│   │   ├── [FILE] 1534713395134333061.json
+│   │   │       /home/ava-core/data/reactions/messages/1534713395134333061.json
+│   │   ├── [FILE] 1534713400037474499.json
+│   │   │       /home/ava-core/data/reactions/messages/1534713400037474499.json
+│   │   ├── [FILE] 1534726037634547832.json
+│   │   │       /home/ava-core/data/reactions/messages/1534726037634547832.json
+│   │   ├── [FILE] 1534727402901606641.json
+│   │   │       /home/ava-core/data/reactions/messages/1534727402901606641.json
+│   │   ├── [FILE] 1534727859489345760.json
+│   │   │       /home/ava-core/data/reactions/messages/1534727859489345760.json
+│   │   ├── [FILE] 1534728460214341740.json
+│   │   │       /home/ava-core/data/reactions/messages/1534728460214341740.json
+│   │   ├── [FILE] 1534729225817559193.json
+│   │   │       /home/ava-core/data/reactions/messages/1534729225817559193.json
+│   │   ├── [FILE] 1534729676399050832.json
+│   │   │       /home/ava-core/data/reactions/messages/1534729676399050832.json
+│   │   ├── [FILE] 1534730173574938634.json
+│   │   │       /home/ava-core/data/reactions/messages/1534730173574938634.json
+│   │   ├── [FILE] 1534747896535060592.json
+│   │   │       /home/ava-core/data/reactions/messages/1534747896535060592.json
+│   │   ├── [FILE] 1534775193736708158.json
+│   │   │       /home/ava-core/data/reactions/messages/1534775193736708158.json
+│   │   ├── [FILE] 1534779684674605056.json
+│   │   │       /home/ava-core/data/reactions/messages/1534779684674605056.json
+│   │   ├── [FILE] 1534784390192693430.json
+│   │   │       /home/ava-core/data/reactions/messages/1534784390192693430.json
+│   │   ├── [FILE] 1534785797289541682.json
+│   │   │       /home/ava-core/data/reactions/messages/1534785797289541682.json
+│   │   ├── [FILE] 1534788343722803371.json
+│   │   │       /home/ava-core/data/reactions/messages/1534788343722803371.json
+│   │   ├── [FILE] 1534790643883184238.json
+│   │   │       /home/ava-core/data/reactions/messages/1534790643883184238.json
+│   │   ├── [FILE] 1534797759025250325.json
+│   │   │       /home/ava-core/data/reactions/messages/1534797759025250325.json
+│   │   ├── [FILE] 1534798072058740867.json
+│   │   │       /home/ava-core/data/reactions/messages/1534798072058740867.json
+│   │   ├── [FILE] 1534798073711038606.json
+│   │   │       /home/ava-core/data/reactions/messages/1534798073711038606.json
+│   │   ├── [FILE] 1534800437054668820.json
+│   │   │       /home/ava-core/data/reactions/messages/1534800437054668820.json
+│   │   ├── [FILE] 1534800451386609726.json
+│   │   │       /home/ava-core/data/reactions/messages/1534800451386609726.json
+│   │   ├── [FILE] 1534800464619770029.json
+│   │   │       /home/ava-core/data/reactions/messages/1534800464619770029.json
+│   │   ├── [FILE] 1534800478104322058.json
+│   │   │       /home/ava-core/data/reactions/messages/1534800478104322058.json
+│   │   ├── [FILE] 1534800490997743646.json
+│   │   │       /home/ava-core/data/reactions/messages/1534800490997743646.json
+│   │   ├── [FILE] 1534800504368926752.json
+│   │   │       /home/ava-core/data/reactions/messages/1534800504368926752.json
+│   │   ├── [FILE] 1534802134275457175.json
+│   │   │       /home/ava-core/data/reactions/messages/1534802134275457175.json
+│   │   ├── [FILE] 1535154558915842069.json
+│   │   │       /home/ava-core/data/reactions/messages/1535154558915842069.json
+│   │   ├── [FILE] 1535154570135732384.json
+│   │   │       /home/ava-core/data/reactions/messages/1535154570135732384.json
+│   │   ├── [FILE] 1535298507387306044.json
+│   │   │       /home/ava-core/data/reactions/messages/1535298507387306044.json
+│   │   ├── [FILE] 1535508023001485312.json
+│   │   │       /home/ava-core/data/reactions/messages/1535508023001485312.json
+│   │   ├── [FILE] 1535561286212124772.json
+│   │   │       /home/ava-core/data/reactions/messages/1535561286212124772.json
+│   │   ├── [FILE] 1535562534499647500.json
+│   │   │       /home/ava-core/data/reactions/messages/1535562534499647500.json
+│   │   ├── [FILE] 1535768184261582959.json
+│   │   │       /home/ava-core/data/reactions/messages/1535768184261582959.json
+│   │   ├── [FILE] 1536137889769857105.json
+│   │   │       /home/ava-core/data/reactions/messages/1536137889769857105.json
+│   │   ├── [FILE] 1536151095326543965.json
+│   │   │       /home/ava-core/data/reactions/messages/1536151095326543965.json
+│   │   ├── [FILE] 1536151098212225080.json
+│   │   │       /home/ava-core/data/reactions/messages/1536151098212225080.json
+│   │   ├── [FILE] 1536151101550624788.json
+│   │   │       /home/ava-core/data/reactions/messages/1536151101550624788.json
+│   │   ├── [FILE] 1536162439706578964.json
+│   │   │       /home/ava-core/data/reactions/messages/1536162439706578964.json
+│   │   ├── [FILE] 1536162447675629759.json
+│   │   │       /home/ava-core/data/reactions/messages/1536162447675629759.json
+│   │   ├── [FILE] 1536231055504314399.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231055504314399.json
+│   │   ├── [FILE] 1536231058528534619.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231058528534619.json
+│   │   ├── [FILE] 1536231068976414792.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231068976414792.json
+│   │   ├── [FILE] 1536231072373669941.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231072373669941.json
+│   │   ├── [FILE] 1536231082968485958.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231082968485958.json
+│   │   ├── [FILE] 1536231086403756053.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231086403756053.json
+│   │   ├── [FILE] 1536231098512703610.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231098512703610.json
+│   │   ├── [FILE] 1536231101326958662.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231101326958662.json
+│   │   ├── [FILE] 1536231111766577152.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231111766577152.json
+│   │   ├── [FILE] 1536231114937475202.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231114937475202.json
+│   │   ├── [FILE] 1536231125389934593.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231125389934593.json
+│   │   ├── [FILE] 1536231129449758800.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231129449758800.json
+│   │   ├── [FILE] 1536231139897778176.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231139897778176.json
+│   │   ├── [FILE] 1536231143001559110.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231143001559110.json
+│   │   ├── [FILE] 1536231153395044425.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231153395044425.json
+│   │   ├── [FILE] 1536231156889026580.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231156889026580.json
+│   │   ├── [FILE] 1536231167232053299.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231167232053299.json
+│   │   ├── [FILE] 1536231170319319050.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231170319319050.json
+│   │   ├── [FILE] 1536231180666409051.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231180666409051.json
+│   │   ├── [FILE] 1536231183757615145.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231183757615145.json
+│   │   ├── [FILE] 1536231193929064480.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231193929064480.json
+│   │   ├── [FILE] 1536231198257315890.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231198257315890.json
+│   │   ├── [FILE] 1536231208755662879.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231208755662879.json
+│   │   ├── [FILE] 1536231212346114139.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231212346114139.json
+│   │   ├── [FILE] 1536231223297450076.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231223297450076.json
+│   │   ├── [FILE] 1536231225994514506.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231225994514506.json
+│   │   ├── [FILE] 1536231236387864648.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231236387864648.json
+│   │   ├── [FILE] 1536231239307108372.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231239307108372.json
+│   │   ├── [FILE] 1536231249469771796.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231249469771796.json
+│   │   ├── [FILE] 1536231252389269614.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231252389269614.json
+│   │   ├── [FILE] 1536231262757322802.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231262757322802.json
+│   │   ├── [FILE] 1536231265768972298.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231265768972298.json
+│   │   ├── [FILE] 1536231276384620584.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231276384620584.json
+│   │   ├── [FILE] 1536231280578924635.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231280578924635.json
+│   │   ├── [FILE] 1536231290905428038.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231290905428038.json
+│   │   ├── [FILE] 1536231293959016468.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231293959016468.json
+│   │   ├── [FILE] 1536231304729722930.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231304729722930.json
+│   │   ├── [FILE] 1536231307623792721.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231307623792721.json
+│   │   ├── [FILE] 1536231318449299588.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231318449299588.json
+│   │   ├── [FILE] 1536231323599904808.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231323599904808.json
+│   │   ├── [FILE] 1536231334408618025.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231334408618025.json
+│   │   ├── [FILE] 1536231337617526784.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231337617526784.json
+│   │   ├── [FILE] 1536231348015075379.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231348015075379.json
+│   │   ├── [FILE] 1536231351047557183.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231351047557183.json
+│   │   ├── [FILE] 1536231361478656012.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231361478656012.json
+│   │   ├── [FILE] 1536231365123637319.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231365123637319.json
+│   │   ├── [FILE] 1536231375588302948.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231375588302948.json
+│   │   ├── [FILE] 1536231378838880286.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231378838880286.json
+│   │   ├── [FILE] 1536231389584826378.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231389584826378.json
+│   │   ├── [FILE] 1536231392969621625.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231392969621625.json
+│   │   ├── [FILE] 1536231403270709338.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231403270709338.json
+│   │   ├── [FILE] 1536231406286409728.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231406286409728.json
+│   │   ├── [FILE] 1536231416189419542.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231416189419542.json
+│   │   ├── [FILE] 1536231419263721534.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231419263721534.json
+│   │   ├── [FILE] 1536231429757734945.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231429757734945.json
+│   │   ├── [FILE] 1536231433285410836.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231433285410836.json
+│   │   ├── [FILE] 1536231443678756894.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231443678756894.json
+│   │   ├── [FILE] 1536231446744928256.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231446744928256.json
+│   │   ├── [FILE] 1536231457196998696.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231457196998696.json
+│   │   ├── [FILE] 1536231460317437962.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231460317437962.json
+│   │   ├── [FILE] 1536231470748930078.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231470748930078.json
+│   │   ├── [FILE] 1536231473814839317.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231473814839317.json
+│   │   ├── [FILE] 1536231484346867862.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231484346867862.json
+│   │   ├── [FILE] 1536231487614226492.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231487614226492.json
+│   │   ├── [FILE] 1536231498405908500.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231498405908500.json
+│   │   ├── [FILE] 1536231501555826748.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231501555826748.json
+│   │   ├── [FILE] 1536231511836205057.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231511836205057.json
+│   │   ├── [FILE] 1536231515393105930.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231515393105930.json
+│   │   ├── [FILE] 1536231525870338152.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231525870338152.json
+│   │   ├── [FILE] 1536231528907018310.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231528907018310.json
+│   │   ├── [FILE] 1536231539405488168.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231539405488168.json
+│   │   ├── [FILE] 1536231543020724255.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231543020724255.json
+│   │   ├── [FILE] 1536231552948895755.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231552948895755.json
+│   │   ├── [FILE] 1536231556660596786.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231556660596786.json
+│   │   ├── [FILE] 1536231566936772678.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231566936772678.json
+│   │   ├── [FILE] 1536231569910407178.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231569910407178.json
+│   │   ├── [FILE] 1536231580262203453.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231580262203453.json
+│   │   ├── [FILE] 1536231583432843295.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231583432843295.json
+│   │   ├── [FILE] 1536231593847554140.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231593847554140.json
+│   │   ├── [FILE] 1536231596993019934.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231596993019934.json
+│   │   ├── [FILE] 1536231607420199002.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231607420199002.json
+│   │   ├── [FILE] 1536231610461192242.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231610461192242.json
+│   │   ├── [FILE] 1536231621177507850.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231621177507850.json
+│   │   ├── [FILE] 1536231626357342248.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231626357342248.json
+│   │   ├── [FILE] 1536231636901830716.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231636901830716.json
+│   │   ├── [FILE] 1536231640173379584.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231640173379584.json
+│   │   ├── [FILE] 1536231650609070130.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231650609070130.json
+│   │   ├── [FILE] 1536231654031364196.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231654031364196.json
+│   │   ├── [FILE] 1536231664399949945.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231664399949945.json
+│   │   ├── [FILE] 1536231667474235392.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231667474235392.json
+│   │   ├── [FILE] 1536231677767057509.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231677767057509.json
+│   │   ├── [FILE] 1536231680698744972.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231680698744972.json
+│   │   ├── [FILE] 1536231690773463062.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231690773463062.json
+│   │   ├── [FILE] 1536231693692968961.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231693692968961.json
+│   │   ├── [FILE] 1536231704354623558.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231704354623558.json
+│   │   ├── [FILE] 1536231707735498752.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231707735498752.json
+│   │   ├── [FILE] 1536231718095425609.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231718095425609.json
+│   │   ├── [FILE] 1536231721081511977.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231721081511977.json
+│   │   ├── [FILE] 1536231731353362442.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231731353362442.json
+│   │   ├── [FILE] 1536231735644393482.json
+│   │   │       /home/ava-core/data/reactions/messages/1536231735644393482.json
+│   │   ├── [FILE] 1536232317708795904.json
+│   │   │       /home/ava-core/data/reactions/messages/1536232317708795904.json
+│   │   ├── [FILE] 1536232320317657179.json
+│   │   │       /home/ava-core/data/reactions/messages/1536232320317657179.json
+│   │   ├── [FILE] 1536232323157196841.json
+│   │   │       /home/ava-core/data/reactions/messages/1536232323157196841.json
+│   │   ├── [FILE] 1536232325698818128.json
+│   │   │       /home/ava-core/data/reactions/messages/1536232325698818128.json
+│   │   ├── [FILE] 1536254720333717605.json
+│   │   │       /home/ava-core/data/reactions/messages/1536254720333717605.json
+│   │   ├── [FILE] 1536459511605493781.json
+│   │   │       /home/ava-core/data/reactions/messages/1536459511605493781.json
+│   │   ├── [FILE] 1536468471267987486.json
+│   │   │       /home/ava-core/data/reactions/messages/1536468471267987486.json
+│   │   ├── [FILE] 1536468475969675404.json
+│   │   │       /home/ava-core/data/reactions/messages/1536468475969675404.json
+│   │   ├── [FILE] 1536644886202163270.json
+│   │   │       /home/ava-core/data/reactions/messages/1536644886202163270.json
+│   │   ├── [FILE] 1536667236264054834.json
+│   │   │       /home/ava-core/data/reactions/messages/1536667236264054834.json
+│   │   ├── [FILE] 1536826182904062133.json
+│   │   │       /home/ava-core/data/reactions/messages/1536826182904062133.json
+│   │   ├── [FILE] 1536826661746647103.json
+│   │   │       /home/ava-core/data/reactions/messages/1536826661746647103.json
+│   │   ├── [FILE] 1537007493895561237.json
+│   │   │       /home/ava-core/data/reactions/messages/1537007493895561237.json
+│   │   ├── [FILE] 1537189412352434207.json
+│   │   │       /home/ava-core/data/reactions/messages/1537189412352434207.json
+│   │   ├── [FILE] 1537189616623296543.json
+│   │   │       /home/ava-core/data/reactions/messages/1537189616623296543.json
+│   │   ├── [FILE] 1537376023300018236.json
+│   │   │       /home/ava-core/data/reactions/messages/1537376023300018236.json
+│   │   ├── [FILE] 1537376538633437194.json
+│   │   │       /home/ava-core/data/reactions/messages/1537376538633437194.json
+│   │   ├── [FILE] 1537472534251970740.json
+│   │   │       /home/ava-core/data/reactions/messages/1537472534251970740.json
+│   │   ├── [FILE] 1537531238670143609.json
+│   │   │       /home/ava-core/data/reactions/messages/1537531238670143609.json
+│   │   ├── [FILE] 1537551516637073418.json
+│   │   │       /home/ava-core/data/reactions/messages/1537551516637073418.json
+│   │   ├── [FILE] 1537653834510503968.json
+│   │   │       /home/ava-core/data/reactions/messages/1537653834510503968.json
+│   │   ├── [FILE] 1537660381919580260.json
+│   │   │       /home/ava-core/data/reactions/messages/1537660381919580260.json
+│   │   ├── [FILE] 1537730843928174643.json
+│   │   │       /home/ava-core/data/reactions/messages/1537730843928174643.json
+│   │   ├── [FILE] 1537912095780380733.json
+│   │   │       /home/ava-core/data/reactions/messages/1537912095780380733.json
+│   │   ├── [FILE] 1537918045698392134.json
+│   │   │       /home/ava-core/data/reactions/messages/1537918045698392134.json
+│   │   ├── [FILE] 1538194103798468719.json
+│   │   │       /home/ava-core/data/reactions/messages/1538194103798468719.json
+│   │   ├── [FILE] 1538283384684675192.json
+│   │   │       /home/ava-core/data/reactions/messages/1538283384684675192.json
+│   │   ├── [FILE] 1538375368392843355.json
+│   │   │       /home/ava-core/data/reactions/messages/1538375368392843355.json
+│   │   ├── [FILE] 1538576284253167729.json
+│   │   │       /home/ava-core/data/reactions/messages/1538576284253167729.json
+│   │   ├── [FILE] 1538638629340057741.json
+│   │   │       /home/ava-core/data/reactions/messages/1538638629340057741.json
+│   │   ├── [FILE] 1538763685013495858.json
+│   │   │       /home/ava-core/data/reactions/messages/1538763685013495858.json
+│   │   ├── [FILE] 1539001004291260528.json
+│   │   │       /home/ava-core/data/reactions/messages/1539001004291260528.json
+│   │   ├── [FILE] 1539058652772696156.json
+│   │   │       /home/ava-core/data/reactions/messages/1539058652772696156.json
+│   │   ├── [FILE] 1539227438075215942.json
+│   │   │       /home/ava-core/data/reactions/messages/1539227438075215942.json
+│   │   ├── [FILE] 1539242556594855956.json
+│   │   │       /home/ava-core/data/reactions/messages/1539242556594855956.json
+│   │   ├── [FILE] 1539362412237426759.json
+│   │   │       /home/ava-core/data/reactions/messages/1539362412237426759.json
+│   │   ├── [FILE] 1539362759022608386.json
+│   │   │       /home/ava-core/data/reactions/messages/1539362759022608386.json
+│   │   ├── [FILE] 1539362835761733632.json
+│   │   │       /home/ava-core/data/reactions/messages/1539362835761733632.json
+│   │   ├── [FILE] 1539362977835122718.json
+│   │   │       /home/ava-core/data/reactions/messages/1539362977835122718.json
+│   │   ├── [FILE] 1539363361542770728.json
+│   │   │       /home/ava-core/data/reactions/messages/1539363361542770728.json
+│   │   ├── [FILE] 1539363363870740581.json
+│   │   │       /home/ava-core/data/reactions/messages/1539363363870740581.json
+│   │   ├── [FILE] 1539363754469363712.json
+│   │   │       /home/ava-core/data/reactions/messages/1539363754469363712.json
+│   │   ├── [FILE] 1539364606844211342.json
+│   │   │       /home/ava-core/data/reactions/messages/1539364606844211342.json
+│   │   ├── [FILE] 1539368131066335252.json
+│   │   │       /home/ava-core/data/reactions/messages/1539368131066335252.json
+│   │   ├── [FILE] 1539378388786216960.json
+│   │   │       /home/ava-core/data/reactions/messages/1539378388786216960.json
+│   │   ├── [FILE] 1539381850504568933.json
+│   │   │       /home/ava-core/data/reactions/messages/1539381850504568933.json
+│   │   ├── [FILE] 1539388773132013679.json
+│   │   │       /home/ava-core/data/reactions/messages/1539388773132013679.json
+│   │   ├── [FILE] 1539393552671445002.json
+│   │   │       /home/ava-core/data/reactions/messages/1539393552671445002.json
+│   │   ├── [FILE] 1539393571298213929.json
+│   │   │       /home/ava-core/data/reactions/messages/1539393571298213929.json
+│   │   ├── [FILE] 1539396514340667402.json
+│   │   │       /home/ava-core/data/reactions/messages/1539396514340667402.json
+│   │   ├── [FILE] 1539408716032507987.json
+│   │   │       /home/ava-core/data/reactions/messages/1539408716032507987.json
+│   │   ├── [FILE] 1539408762450739234.json
+│   │   │       /home/ava-core/data/reactions/messages/1539408762450739234.json
+│   │   ├── [FILE] 1539419727229624341.json
+│   │   │       /home/ava-core/data/reactions/messages/1539419727229624341.json
+│   │   ├── [FILE] 1539423877061681213.json
+│   │   │       /home/ava-core/data/reactions/messages/1539423877061681213.json
+│   │   ├── [FILE] 1539424889839165470.json
+│   │   │       /home/ava-core/data/reactions/messages/1539424889839165470.json
+│   │   ├── [FILE] 1539438869705924779.json
+│   │   │       /home/ava-core/data/reactions/messages/1539438869705924779.json
+│   │   ├── [FILE] 1539453910941438064.json
+│   │   │       /home/ava-core/data/reactions/messages/1539453910941438064.json
+│   │   ├── [FILE] 1539466061194469426.json
+│   │   │       /home/ava-core/data/reactions/messages/1539466061194469426.json
+│   │   ├── [FILE] 1539468997773238322.json
+│   │   │       /home/ava-core/data/reactions/messages/1539468997773238322.json
+│   │   ├── [FILE] 1539481613149282335.json
+│   │   │       /home/ava-core/data/reactions/messages/1539481613149282335.json
+│   │   ├── [FILE] 1539484142700466176.json
+│   │   │       /home/ava-core/data/reactions/messages/1539484142700466176.json
+│   │   ├── [FILE] 1539495419518914560.json
+│   │   │       /home/ava-core/data/reactions/messages/1539495419518914560.json
+│   │   ├── [FILE] 1539499241901129758.json
+│   │   │       /home/ava-core/data/reactions/messages/1539499241901129758.json
+│   │   ├── [FILE] 1539514329957802004.json
+│   │   │       /home/ava-core/data/reactions/messages/1539514329957802004.json
+│   │   ├── [FILE] 1539529386145882152.json
+│   │   │       /home/ava-core/data/reactions/messages/1539529386145882152.json
+│   │   ├── [FILE] 1539529403694973060.json
+│   │   │       /home/ava-core/data/reactions/messages/1539529403694973060.json
+│   │   ├── [FILE] 1539544270019493908.json
+│   │   │       /home/ava-core/data/reactions/messages/1539544270019493908.json
+│   │   ├── [FILE] 1539544548978720818.json
+│   │   │       /home/ava-core/data/reactions/messages/1539544548978720818.json
+│   │   ├── [FILE] 1539544575205580800.json
+│   │   │       /home/ava-core/data/reactions/messages/1539544575205580800.json
+│   │   ├── [FILE] 1539563238226796584.json
+│   │   │       /home/ava-core/data/reactions/messages/1539563238226796584.json
+│   │   ├── [FILE] 1539568506150850580.json
+│   │   │       /home/ava-core/data/reactions/messages/1539568506150850580.json
+│   │   ├── [FILE] 1539568707108474900.json
+│   │   │       /home/ava-core/data/reactions/messages/1539568707108474900.json
+│   │   ├── [FILE] 1539569759568535624.json
+│   │   │       /home/ava-core/data/reactions/messages/1539569759568535624.json
+│   │   ├── [FILE] 1539574693164613722.json
+│   │   │       /home/ava-core/data/reactions/messages/1539574693164613722.json
+│   │   ├── [FILE] 1539589878201712683.json
+│   │   │       /home/ava-core/data/reactions/messages/1539589878201712683.json
+│   │   ├── [FILE] 1539591739915112548.json
+│   │   │       /home/ava-core/data/reactions/messages/1539591739915112548.json
+│   │   ├── [FILE] 1539591746881847376.json
+│   │   │       /home/ava-core/data/reactions/messages/1539591746881847376.json
+│   │   ├── [FILE] 1539591802338807859.json
+│   │   │       /home/ava-core/data/reactions/messages/1539591802338807859.json
+│   │   ├── [FILE] 1539591924527145020.json
+│   │   │       /home/ava-core/data/reactions/messages/1539591924527145020.json
+│   │   ├── [FILE] 1539594258900721665.json
+│   │   │       /home/ava-core/data/reactions/messages/1539594258900721665.json
+│   │   ├── [FILE] 1539630576972202044.json
+│   │   │       /home/ava-core/data/reactions/messages/1539630576972202044.json
+│   │   ├── [FILE] 1539655357456973874.json
+│   │   │       /home/ava-core/data/reactions/messages/1539655357456973874.json
+│   │   ├── [FILE] 1539656788734115902.json
+│   │   │       /home/ava-core/data/reactions/messages/1539656788734115902.json
+│   │   ├── [FILE] 1539659617875796118.json
+│   │   │       /home/ava-core/data/reactions/messages/1539659617875796118.json
+│   │   ├── [FILE] 1539660420263186513.json
+│   │   │       /home/ava-core/data/reactions/messages/1539660420263186513.json
+│   │   ├── [FILE] 1539660457609273365.json
+│   │   │       /home/ava-core/data/reactions/messages/1539660457609273365.json
+│   │   ├── [FILE] 1539741793720213544.json
+│   │   │       /home/ava-core/data/reactions/messages/1539741793720213544.json
+│   │   ├── [FILE] 1539744431517732874.json
+│   │   │       /home/ava-core/data/reactions/messages/1539744431517732874.json
+│   │   ├── [FILE] 1539760858392035444.json
+│   │   │       /home/ava-core/data/reactions/messages/1539760858392035444.json
+│   │   ├── [FILE] 1539769721375952896.json
+│   │   │       /home/ava-core/data/reactions/messages/1539769721375952896.json
+│   │   ├── [FILE] 1539770281759875163.json
+│   │   │       /home/ava-core/data/reactions/messages/1539770281759875163.json
+│   │   ├── [FILE] 1539782177430970428.json
+│   │   │       /home/ava-core/data/reactions/messages/1539782177430970428.json
+│   │   ├── [FILE] 1539782179306082334.json
+│   │   │       /home/ava-core/data/reactions/messages/1539782179306082334.json
+│   │   ├── [FILE] 1539783234416680971.json
+│   │   │       /home/ava-core/data/reactions/messages/1539783234416680971.json
+│   │   ├── [FILE] 1539786052129259600.json
+│   │   │       /home/ava-core/data/reactions/messages/1539786052129259600.json
+│   │   ├── [FILE] 1539795423923798117.json
+│   │   │       /home/ava-core/data/reactions/messages/1539795423923798117.json
+│   │   ├── [FILE] 1539801155113324698.json
+│   │   │       /home/ava-core/data/reactions/messages/1539801155113324698.json
+│   │   ├── [FILE] 1539816249175969893.json
+│   │   │       /home/ava-core/data/reactions/messages/1539816249175969893.json
+│   │   ├── [FILE] 1539831349043535992.json
+│   │   │       /home/ava-core/data/reactions/messages/1539831349043535992.json
+│   │   ├── [FILE] 1539837591896072222.json
+│   │   │       /home/ava-core/data/reactions/messages/1539837591896072222.json
+│   │   ├── [FILE] 1539845137222606940.json
+│   │   │       /home/ava-core/data/reactions/messages/1539845137222606940.json
+│   │   ├── [FILE] 1539845144478482472.json
+│   │   │       /home/ava-core/data/reactions/messages/1539845144478482472.json
+│   │   ├── [FILE] 1539852686848172152.json
+│   │   │       /home/ava-core/data/reactions/messages/1539852686848172152.json
+│   │   ├── [FILE] 1539860236540837898.json
+│   │   │       /home/ava-core/data/reactions/messages/1539860236540837898.json
+│   │   ├── [FILE] 1539860240659644437.json
+│   │   │       /home/ava-core/data/reactions/messages/1539860240659644437.json
+│   │   ├── [FILE] 1539861548124864543.json
+│   │   │       /home/ava-core/data/reactions/messages/1539861548124864543.json
+│   │   ├── [FILE] 1539861556680982609.json
+│   │   │       /home/ava-core/data/reactions/messages/1539861556680982609.json
+│   │   ├── [FILE] 1539867043417817148.json
+│   │   │       /home/ava-core/data/reactions/messages/1539867043417817148.json
+│   │   ├── [FILE] 1539873841843535883.json
+│   │   │       /home/ava-core/data/reactions/messages/1539873841843535883.json
+│   │   ├── [FILE] 1539876651758788613.json
+│   │   │       /home/ava-core/data/reactions/messages/1539876651758788613.json
+│   │   ├── [FILE] 1539876653659062333.json
+│   │   │       /home/ava-core/data/reactions/messages/1539876653659062333.json
+│   │   ├── [FILE] 1539881307260067930.json
+│   │   │       /home/ava-core/data/reactions/messages/1539881307260067930.json
+│   │   ├── [FILE] 1539881392102711346.json
+│   │   │       /home/ava-core/data/reactions/messages/1539881392102711346.json
+│   │   ├── [FILE] 1539891748434739200.json
+│   │   │       /home/ava-core/data/reactions/messages/1539891748434739200.json
+│   │   ├── [FILE] 1539892048465891408.json
+│   │   │       /home/ava-core/data/reactions/messages/1539892048465891408.json
+│   │   ├── [FILE] 1540049726458691595.json
+│   │   │       /home/ava-core/data/reactions/messages/1540049726458691595.json
+│   │   ├── [FILE] 1540050004616413285.json
+│   │   │       /home/ava-core/data/reactions/messages/1540050004616413285.json
+│   │   ├── [FILE] 1540053900302884904.json
+│   │   │       /home/ava-core/data/reactions/messages/1540053900302884904.json
+│   │   ├── [FILE] 1540058289407131782.json
+│   │   │       /home/ava-core/data/reactions/messages/1540058289407131782.json
+│   │   ├── [FILE] 1540082799946768595.json
+│   │   │       /home/ava-core/data/reactions/messages/1540082799946768595.json
+│   │   ├── [FILE] 1540106590420603011.json
+│   │   │       /home/ava-core/data/reactions/messages/1540106590420603011.json
+│   │   ├── [FILE] 1540121250817507408.json
+│   │   │       /home/ava-core/data/reactions/messages/1540121250817507408.json
+│   │   ├── [FILE] 1540175289320214559.json
+│   │   │       /home/ava-core/data/reactions/messages/1540175289320214559.json
+│   │   ├── [FILE] 1540451797854978118.json
+│   │   │       /home/ava-core/data/reactions/messages/1540451797854978118.json
+│   │   ├── [FILE] 1540451803450310750.json
+│   │   │       /home/ava-core/data/reactions/messages/1540451803450310750.json
+│   │   ├── [FILE] 1540452056127770735.json
+│   │   │       /home/ava-core/data/reactions/messages/1540452056127770735.json
+│   │   ├── [FILE] 1540554696920404000.json
+│   │   │       /home/ava-core/data/reactions/messages/1540554696920404000.json
+│   │   ├── [FILE] 1540640412736290907.json
+│   │   │       /home/ava-core/data/reactions/messages/1540640412736290907.json
+│   │   ├── [FILE] 1540640610212380784.json
+│   │   │       /home/ava-core/data/reactions/messages/1540640610212380784.json
+│   │   ├── [FILE] 1540640635525013566.json
+│   │   │       /home/ava-core/data/reactions/messages/1540640635525013566.json
+│   │   ├── [FILE] 1540787339163336714.json
+│   │   │       /home/ava-core/data/reactions/messages/1540787339163336714.json
+│   │   ├── [FILE] 1540787364413182014.json
+│   │   │       /home/ava-core/data/reactions/messages/1540787364413182014.json
+│   │   ├── [FILE] 1540787469107204241.json
+│   │   │       /home/ava-core/data/reactions/messages/1540787469107204241.json
+│   │   ├── [FILE] 1540787473058369606.json
+│   │   │       /home/ava-core/data/reactions/messages/1540787473058369606.json
+│   │   ├── [FILE] 1540787736749940846.json
+│   │   │       /home/ava-core/data/reactions/messages/1540787736749940846.json
+│   │   ├── [FILE] 1540794124834308228.json
+│   │   │       /home/ava-core/data/reactions/messages/1540794124834308228.json
+│   │   ├── [FILE] 1540794326299181218.json
+│   │   │       /home/ava-core/data/reactions/messages/1540794326299181218.json
+│   │   ├── [FILE] 1540794351515336716.json
+│   │   │       /home/ava-core/data/reactions/messages/1540794351515336716.json
+│   │   ├── [FILE] 1540801836460548197.json
+│   │   │       /home/ava-core/data/reactions/messages/1540801836460548197.json
+│   │   ├── [FILE] 1540803574114558103.json
+│   │   │       /home/ava-core/data/reactions/messages/1540803574114558103.json
+│   │   ├── [FILE] 1540810315690811455.json
+│   │   │       /home/ava-core/data/reactions/messages/1540810315690811455.json
+│   │   ├── [FILE] 1540813334834843688.json
+│   │   │       /home/ava-core/data/reactions/messages/1540813334834843688.json
+│   │   ├── [FILE] 1540813359153283195.json
+│   │   │       /home/ava-core/data/reactions/messages/1540813359153283195.json
+│   │   ├── [FILE] 1540822064552738956.json
+│   │   │       /home/ava-core/data/reactions/messages/1540822064552738956.json
+│   │   ├── [FILE] 1540829999374794792.json
+│   │   │       /home/ava-core/data/reactions/messages/1540829999374794792.json
+│   │   ├── [FILE] 1540837162570878997.json
+│   │   │       /home/ava-core/data/reactions/messages/1540837162570878997.json
+│   │   ├── [FILE] 1540844712368279615.json
+│   │   │       /home/ava-core/data/reactions/messages/1540844712368279615.json
+│   │   ├── [FILE] 1540850754473164861.json
+│   │   │       /home/ava-core/data/reactions/messages/1540850754473164861.json
+│   │   ├── [FILE] 1540850780284653640.json
+│   │   │       /home/ava-core/data/reactions/messages/1540850780284653640.json
+│   │   ├── [FILE] 1540858264256909446.json
+│   │   │       /home/ava-core/data/reactions/messages/1540858264256909446.json
+│   │   ├── [FILE] 1540866243182198816.json
+│   │   │       /home/ava-core/data/reactions/messages/1540866243182198816.json
+│   │   ├── [FILE] 1540866267743916193.json
+│   │   │       /home/ava-core/data/reactions/messages/1540866267743916193.json
+│   │   ├── [FILE] 1540873749488738365.json
+│   │   │       /home/ava-core/data/reactions/messages/1540873749488738365.json
+│   │   ├── [FILE] 1540877749449793646.json
+│   │   │       /home/ava-core/data/reactions/messages/1540877749449793646.json
+│   │   ├── [FILE] 1540877772929507378.json
+│   │   │       /home/ava-core/data/reactions/messages/1540877772929507378.json
+│   │   ├── [FILE] 1540878549400031263.json
+│   │   │       /home/ava-core/data/reactions/messages/1540878549400031263.json
+│   │   ├── [FILE] 1540885254150029384.json
+│   │   │       /home/ava-core/data/reactions/messages/1540885254150029384.json
+│   │   ├── [FILE] 1540888315488772196.json
+│   │   │       /home/ava-core/data/reactions/messages/1540888315488772196.json
+│   │   ├── [FILE] 1540893249940754513.json
+│   │   │       /home/ava-core/data/reactions/messages/1540893249940754513.json
+│   │   ├── [FILE] 1540893274724892742.json
+│   │   │       /home/ava-core/data/reactions/messages/1540893274724892742.json
+│   │   ├── [FILE] 1540900755358228580.json
+│   │   │       /home/ava-core/data/reactions/messages/1540900755358228580.json
+│   │   ├── [FILE] 1540908870254334005.json
+│   │   │       /home/ava-core/data/reactions/messages/1540908870254334005.json
+│   │   ├── [FILE] 1540908894786687087.json
+│   │   │       /home/ava-core/data/reactions/messages/1540908894786687087.json
+│   │   ├── [FILE] 1540916375407566858.json
+│   │   │       /home/ava-core/data/reactions/messages/1540916375407566858.json
+│   │   ├── [FILE] 1540924063063744545.json
+│   │   │       /home/ava-core/data/reactions/messages/1540924063063744545.json
+│   │   ├── [FILE] 1540924088279638067.json
+│   │   │       /home/ava-core/data/reactions/messages/1540924088279638067.json
+│   │   ├── [FILE] 1540924821456818288.json
+│   │   │       /home/ava-core/data/reactions/messages/1540924821456818288.json
+│   │   ├── [FILE] 1540931569882108025.json
+│   │   │       /home/ava-core/data/reactions/messages/1540931569882108025.json
+│   │   ├── [FILE] 1540939503772897400.json
+│   │   │       /home/ava-core/data/reactions/messages/1540939503772897400.json
+│   │   ├── [FILE] 1540946667602317397.json
+│   │   │       /home/ava-core/data/reactions/messages/1540946667602317397.json
+│   │   ├── [FILE] 1540954604693618768.json
+│   │   │       /home/ava-core/data/reactions/messages/1540954604693618768.json
+│   │   ├── [FILE] 1540961767318888501.json
+│   │   │       /home/ava-core/data/reactions/messages/1540961767318888501.json
+│   │   ├── [FILE] 1540969317766664252.json
+│   │   │       /home/ava-core/data/reactions/messages/1540969317766664252.json
+│   │   └── [FILE] 1540975272386498611.json
+│   │           /home/ava-core/data/reactions/messages/1540975272386498611.json
+│   ├── [FILE] good-examples.json
+│   │       /home/ava-core/data/reactions/good-examples.json
+│   ├── [FILE] reactor-index.json
+│   │       /home/ava-core/data/reactions/reactor-index.json
+│   └── [FILE] summary.json
+│           /home/ava-core/data/reactions/summary.json
+├── [DIR ] slack
+│       /home/ava-core/data/slack
+│   └── [DIR ] channels
+│           /home/ava-core/data/slack/channels
+├── [DIR ] training
+│       /home/ava-core/data/training
+│   ├── [FILE] rcon-pairs.jsonl
+│   │       /home/ava-core/data/training/rcon-pairs.jsonl
+│   └── [FILE] utterances.jsonl
+│           /home/ava-core/data/training/utterances.jsonl
+├── [FILE] data.txt
+│       /home/ava-core/data/data.txt
+├── [FILE] ecoflow.json
+│       /home/ava-core/data/ecoflow.json
+├── [FILE] heartbeat.json
+│       /home/ava-core/data/heartbeat.json
+├── [FILE] host-site-telemetry.json
+│       /home/ava-core/data/host-site-telemetry.json
+├── [FILE] ingame-join-metrics.json
+│       /home/ava-core/data/ingame-join-metrics.json
+├── [FILE] ingame-mention-watch.json
+│       /home/ava-core/data/ingame-mention-watch.json
+├── [FILE] mood.json
+│       /home/ava-core/data/mood.json
+├── [FILE] seen.json
+│       /home/ava-core/data/seen.json
+├── [FILE] solar-day-cycle.json
+│       /home/ava-core/data/solar-day-cycle.json
+├── [FILE] status-events.jsonl
+│       /home/ava-core/data/status-events.jsonl
+└── [FILE] watermark.json
+        /home/ava-core/data/watermark.json

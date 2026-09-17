@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5FWZH64B');</script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account &mdash; RootRecord</title>
+  <meta name="description" content="Your RootRecord account: membership and billing, security and verification, connected apps, active sessions, notifications, and email preferences — all in one place.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,30..100;1,9..144,300..600,30..100&family=Geist:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#000d1a">
+  <link rel="canonical" href="https://rootrecord.info/account">
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RootRecord">
+  <meta property="og:title" content="Account &mdash; RootRecord">
+  <meta property="og:description" content="Your RootRecord account: membership and billing, security and verification, connected apps, active sessions, notifications, and email preferences.">
+  <meta property="og:url" content="https://rootrecord.info/account">
+  <meta property="og:image" content="https://rootrecord.info/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@RootRecord">
+  <meta name="twitter:title" content="Account &mdash; RootRecord">
+  <meta name="twitter:description" content="Your RootRecord account: membership and billing, security and verification, connected apps, active sessions, notifications, and email preferences.">
+  <meta name="twitter:image" content="https://rootrecord.info/assets/og.jpg">
+  <link rel="stylesheet" href="/styles.css?v=15">
+</head>
+<body data-account-page="login">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5FWZH64B"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+  <div class="site">
+    <header class="site-header">
+      <div class="container site-header-inner">
+        <a class="brand" href="/"><img class="brand-mark" src="/favicon-180.png" alt="RootRecord logo" width="32" height="32">RootRecord</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" onclick="document.querySelector('.site-nav').classList.toggle('is-open');this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='true'?'false':'true');">Menu</button>
+        <nav class="site-nav">
+          <a href="/">Home</a>
+          <a href="/products.html">Services</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/about.html">About</a>
+          <a href="/faq.html">FAQ</a>
+          <a href="/contact.html">Contact</a>
+          <span class="nav-auth-guest">
+            <a href="/account-signup" class="nav-signup" data-testid="nav-signup-cta">Sign up</a>
+            <a href="/account" class="nav-cta" data-testid="nav-account-login" aria-current="page">Account</a>
+          </span>
+          <span class="nav-auth-user">
+            <span class="nav-account-wrap">
+              <button type="button" class="nav-cta nav-account-trigger" aria-expanded="false" aria-haspopup="true" aria-controls="nav-account-panel" data-testid="nav-account-cta">Account</button>
+              <div id="nav-account-panel" class="nav-account-panel" role="menu" hidden>
+                <a href="/account" role="menuitem" aria-current="page">Account</a>
+                <a href="/account/settings/website.html" role="menuitem">Website</a>
+                <a href="/my-apps.html" role="menuitem">My Apps</a>
+                <a href="/billing.html" role="menuitem">Billing</a>
+                <a href="/account/emails/" role="menuitem">Email preferences</a>
+                <a href="/development-notice.html" role="menuitem">Development notice</a>
+              </div>
+            </span>
+          </span>
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">
+      <section class="page-header">
+        <div class="container">
+          <div class="page-header-inner">
+            <p class="breadcrumb">Account</p>
+            <h1 class="page-title">Your <em>account</em>.</h1>
+            <p class="page-lead">Everything tied to your rootrecord.info profile in one place &mdash; membership, security, connected apps, sessions, and notifications. Your apps and local data stay on your devices.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top:0">
+        <div class="container">
+          <div class="account-wrap acct-page">
+            <p id="status" class="status" role="status" data-testid="account-status"></p>
+
+            <section id="panel-loading" class="card-plain acct-auth" hidden>
+              <p class="acct-loading-line">Loading your account&hellip;</p>
+            </section>
+
+            <section id="panel-forms" class="card-plain acct-auth" hidden data-testid="account-forms-panel">
+              <h2>Sign in</h2>
+              <p class="acct-auth-lead">Use your RootRecord account &mdash; the same one your Android apps sign in with.</p>
+              <form id="form-login" class="stack-form" data-testid="login-form">
+                <label>Email <input type="email" id="login-email" name="email" autocomplete="username" required data-testid="login-email-input"></label>
+                <label>Password <input type="password" id="login-password" name="password" autocomplete="current-password" required data-testid="login-password-input"></label>
+                <button type="submit" class="btn btn-primary" data-testid="login-submit-btn">Sign in</button>
+              </form>
+
+              <div class="acct-auth-links">
+                <a href="/account-reset" data-testid="forgot-password-link">Forgot password?</a>
+                <a href="/account-signup" data-testid="create-account-link">Create an account</a>
+              </div>
+
+              <div class="acct-auth-alt" data-testid="account-discord-guest-cta">
+                <h3>Verify with Discord</h3>
+                <p>Link Discord to get <strong>@Verified</strong> in the RootRecord server. Handy straight from Discord.</p>
+                <a class="btn btn-secondary" href="/discord-verify" data-testid="discord-verify-page-link">Open Discord verification</a>
+              </div>
+            </section>
+
+            <div id="panel-account" class="acct-dash" hidden data-testid="account-details-panel">
+
+              <section class="acct-hero" data-testid="account-hero">
+                <div class="acct-hero-id">
+                  <span class="acct-avatar" id="acct-avatar" aria-hidden="true">&mdash;</span>
+                  <div class="acct-hero-who">
+                    <h2 class="acct-hero-name" id="acct-hero-name">Your account</h2>
+                    <p class="acct-hero-email" id="acct-hero-email">&mdash;</p>
+                    <p class="acct-badges" id="acct-badges"></p>
+                  </div>
+                </div>
+                <div class="acct-hero-meta">
+                  <div class="acct-hero-meta-item">
+                    <span class="acct-hero-meta-k">Member since</span>
+                    <span class="acct-hero-meta-v" id="acct-hero-since">&mdash;</span>
+                  </div>
+                  <div class="acct-hero-meta-item">
+                    <span class="acct-hero-meta-k">Account ID</span>
+                    <span class="acct-hero-meta-v acct-mono">
+                      <span id="acct-hero-account-id">&mdash;</span>
+                      <button type="button" class="acct-copy" id="acct-copy-id" title="Copy account ID" hidden>Copy</button>
+                    </span>
+                  </div>
+                </div>
+                <div class="acct-actions">
+                  <a class="btn btn-primary" href="/billing.html" id="acct-action-billing">Membership &amp; billing</a>
+                  <a class="btn btn-secondary" href="/account/settings/website.html">Website</a>
+                  <a class="btn btn-secondary" href="/my-apps.html">My apps</a>
+                  <a class="btn btn-secondary" href="/account/emails/">Email preferences</a>
+                  <button type="button" class="btn btn-ghost" id="btn-logout" data-testid="logout-btn">Sign out</button>
+                </div>
+              </section>
+
+              <div class="acct-grid">
+
+                <section class="acct-card" data-testid="account-overview">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Account details</h3>
+                  </div>
+                  <div id="account-details" class="account-grid"></div>
+                </section>
+
+                <section class="acct-card" id="acct-card-membership" data-testid="account-membership">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Membership &amp; access</h3>
+                    <span class="acct-card-tag" id="acct-membership-tag" hidden></span>
+                  </div>
+                  <div class="acct-kv" id="acct-membership-body">
+                    <p class="acct-empty">Loading membership&hellip;</p>
+                  </div>
+                  <div class="acct-card-foot" id="acct-membership-foot" hidden>
+                    <a class="btn btn-secondary" href="/billing.html">Manage membership</a>
+                  </div>
+                </section>
+
+                <section class="acct-card" data-testid="account-verification">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Verification</h3>
+                  </div>
+                  <p class="note" id="account-verification-status">Checking verification status&hellip;</p>
+                  <div class="acct-card-foot" id="account-verification-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-email-verify" data-testid="btn-email-verify">Send verification email</button>
+                    <a class="btn btn-secondary" href="/discord-verify" data-testid="account-discord-verify-link">Verify with Discord</a>
+                  </div>
+                </section>
+
+                <section class="acct-card" data-testid="account-connections">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Connections</h3>
+                  </div>
+                  <div class="acct-conn" data-testid="account-discord-link">
+                    <div class="acct-conn-row">
+                      <div class="acct-conn-what">
+                        <span class="acct-conn-name">Discord</span>
+                        <span class="note" id="discord-link-status">Not linked.</span>
+                      </div>
+                      <div class="acct-conn-act account-discord-actions">
+                        <button type="button" class="btn btn-secondary" id="btn-discord-link" data-testid="btn-discord-link">Link Discord</button>
+                        <button type="button" class="btn btn-ghost" id="btn-discord-unlink" data-testid="btn-discord-unlink" hidden>Unlink Discord</button>
+                      </div>
+                    </div>
+                    <p class="note acct-conn-note">Linking gives you <strong>@Verified</strong> in the RootRecord server and protects account recovery.</p>
+                  </div>
+                  <div class="acct-conn">
+                    <div class="acct-conn-row">
+                      <div class="acct-conn-what">
+                        <span class="acct-conn-name">RootMC</span>
+                        <span class="note">Minecraft server &mdash; separate login</span>
+                      </div>
+                      <div class="acct-conn-act">
+                        <a class="btn btn-secondary" href="https://rootmc.net/" target="_blank" rel="noopener">Open RootMC</a>
+                      </div>
+                    </div>
+                    <p class="note acct-conn-note">RootMC player profiles live on <a href="https://rootmc.net/" target="_blank" rel="noopener">rootmc.net</a> and are not part of this portal.</p>
+                  </div>
+                </section>
+
+                <section class="acct-card" id="acct-card-website" data-testid="account-website">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Website hosting</h3>
+                    <span class="acct-card-tag">$10/mo</span>
+                  </div>
+                  <p class="note">Publish a personal site on Root Record — free trial, then $10/month. Custom domain via Cloudflare nameservers, or <code>rootrecord.info/sites/&lt;id&gt;</code>.</p>
+                  <div class="acct-card-foot">
+                    <a class="btn btn-secondary" href="/account/settings/website.html">Create or manage site</a>
+                    <a class="btn btn-ghost" href="/website-hosting.html">Learn more</a>
+                  </div>
+                </section>
+
+                <section class="acct-card" id="acct-card-apps" data-testid="account-apps">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Apps &amp; entitlements</h3>
+                    <span class="acct-card-tag" id="acct-apps-tag" hidden></span>
+                  </div>
+                  <div id="acct-apps-body">
+                    <p class="acct-empty">Loading apps&hellip;</p>
+                  </div>
+                  <div class="acct-card-foot">
+                    <a class="btn btn-secondary" href="/my-apps.html">App details</a>
+                  </div>
+                </section>
+
+                <section class="acct-card" id="acct-card-sessions" data-testid="account-sessions">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Active sessions</h3>
+                    <span class="acct-card-tag" id="acct-sessions-tag" hidden></span>
+                  </div>
+                  <div id="acct-sessions-body">
+                    <p class="acct-empty">Loading sessions&hellip;</p>
+                  </div>
+                  <div class="acct-card-foot">
+                    <button type="button" class="btn btn-secondary" id="acct-signout-all">Sign out everywhere</button>
+                  </div>
+                </section>
+
+                <section class="acct-card" id="acct-card-notifications" data-testid="account-notifications">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Notifications &amp; data</h3>
+                  </div>
+                  <div id="acct-notifications-body">
+                    <p class="acct-empty">Loading preferences&hellip;</p>
+                  </div>
+                  <div class="acct-card-foot">
+                    <a class="btn btn-secondary" href="/account/emails/">Email preferences</a>
+                    <a class="btn btn-ghost" href="/data-deletion.html">Data &amp; deletion policy</a>
+                  </div>
+                </section>
+
+                <section class="acct-card" data-testid="account-public-profile">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Public profile</h3>
+                  </div>
+                  <p class="note">Your display name is shown on public RootRecord pages instead of your email. Letters, numbers, spaces, underscore, hyphen, or period &mdash; up to 32 characters.</p>
+                  <form id="form-public-display-name" class="stack-form acct-form">
+                    <label>Display name
+                      <input type="text" id="public-display-name" name="public_display_name" maxlength="32" autocomplete="nickname" placeholder="Optional">
+                    </label>
+                    <button type="submit" class="btn btn-secondary" id="btn-save-display-name">Save display name</button>
+                  </form>
+                  <p class="note" id="public-display-name-status" hidden></p>
+                </section>
+
+                <section class="acct-card acct-card-span" data-testid="account-security-confirm">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Security</h3>
+                    <span class="acct-card-tag acct-tag-muted">Confirmation required</span>
+                  </div>
+                  <p class="note" id="account-security-confirm-status">Confirm your identity here before changing your password or email, unlinking Discord, or deleting the account.</p>
+                  <div class="acct-card-foot">
+                    <button type="button" class="btn btn-secondary" id="btn-security-open" data-testid="btn-security-open">Confirm sensitive changes</button>
+                  </div>
+                  <div class="acct-security-controls account-discord-actions" id="account-security-controls" hidden>
+                    <button type="button" class="btn btn-secondary" id="btn-security-email" data-testid="btn-security-email">Email confirmation code</button>
+                    <input type="text" id="security-code" inputmode="numeric" autocomplete="one-time-code" placeholder="6-digit code" aria-label="Email confirmation code">
+                    <button type="button" class="btn btn-primary" id="btn-security-confirm" data-testid="btn-security-confirm">Confirm code</button>
+                    <a class="btn btn-ghost" href="/discord-verify">Re-verify with Discord</a>
+                  </div>
+
+                  <div class="acct-security-forms">
+                    <div class="acct-security-form" data-testid="account-password-change">
+                      <h4 class="acct-sub-title">Change password</h4>
+                      <form id="form-change-password" class="stack-form acct-form">
+                        <label>Current password <input type="password" id="change-current-password" autocomplete="current-password" required data-testid="change-current-password"></label>
+                        <label>New password <input type="password" id="change-new-password" autocomplete="new-password" minlength="6" required data-testid="change-new-password"></label>
+                        <button type="submit" class="btn btn-secondary" data-testid="change-password-submit">Update password</button>
+                      </form>
+                      <p class="note" id="change-password-status" hidden></p>
+                    </div>
+
+                    <div class="acct-security-form" data-testid="account-email-change">
+                      <h4 class="acct-sub-title">Change email</h4>
+                      <p class="note">We send a confirmation link to the new address.</p>
+                      <form id="form-change-email" class="stack-form acct-form">
+                        <label>New email <input type="email" id="change-new-email" autocomplete="email" required data-testid="change-new-email"></label>
+                        <button type="submit" class="btn btn-secondary" data-testid="change-email-submit">Send change link</button>
+                      </form>
+                      <p class="note" id="change-email-status" hidden></p>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="acct-card acct-card-danger acct-card-span" data-testid="account-danger-zone">
+                  <div class="acct-card-head">
+                    <h3 class="acct-card-title">Danger zone</h3>
+                  </div>
+                  <p class="note">Deleting your account permanently removes your RootRecord portal profile and the server-stored data tied to it (saved locations, notification tokens, sessions). This cannot be undone.</p>
+                  <div class="acct-card-foot">
+                    <button type="button" class="btn btn-secondary" id="btn-delete-account" data-testid="delete-account-btn">Delete account</button>
+                  </div>
+                </section>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="/"><img class="brand-mark" src="/favicon-180.png" alt="RootRecord logo" width="32" height="32">RootRecord</a>
+            <p>Multi-device solutions - your grounding roots for productivity.</p>
+          </div>
+          <div class="footer-col"><h4>Services</h4><ul><li><a href="/website-hosting.html">Website hosting</a></li><li><a href="/rootrecord-business-manager.html">Business Manager</a></li><li><a href="/rootrecord-weather-manager.html">Weather Manager</a></li><li><a href="/kilauea-alerts.html">Kilauea Alerts</a></li><li><a href="/pricing.html">Pricing</a></li></ul></div>
+          <div class="footer-col"><h4>Platform</h4><ul><li><a href="https://rootmc.net/" target="_blank" rel="noopener">RootMC</a></li><li><a href="https://avaivy.cloud/wiki">Ava</a></li><li><a href="/app-build-request">App build requests</a></li><li><a href="/partnership-signup">Partnerships</a></li></ul></div>
+          <div class="footer-col"><h4>Company</h4><ul><li><a href="/about.html">About</a></li><li><a href="/roadmap/">Roadmap</a></li><li><a href="/faq.html">FAQ</a></li><li><a href="/contact.html">Contact</a></li><li><a href="/account">Account</a></li><li><a href="/billing.html">Billing</a></li></ul></div>
+          <div class="footer-col"><h4>Community</h4><ul><li><a href="https://discord.gg/uQ7kGFqtbG" target="_blank" rel="noopener">Discord</a></li><li><a href="https://x.com/RootRecord" target="_blank" rel="noopener">X (Twitter)</a></li><li><a href="/terms.html">Terms</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="https://github.com/RootRecord/Doc-Repo" target="_blank" rel="noopener">Developer Documentation</a></li><li><a href="https://alexrs94.site">About Developer</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+          <span>&copy; <span id="yr">2026</span> RootRecord &middot; <a href="https://rootrecord.info/">rootrecord.info</a></span>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+  <script src="/site-nav.js?v=6" defer></script>
+  <script src="/account.js?v=42" defer></script>
+  <script src="/account-dashboard.js?v=1" defer></script>
+<script src="/eco-nav.js?v=1" defer></script>
+</body>
+</html>

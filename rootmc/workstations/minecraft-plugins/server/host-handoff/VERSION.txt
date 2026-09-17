@@ -1,0 +1,17 @@
+RootMC plugin handoff bundle
+Built: run publishPlugins from Minecraft/
+
+rootmc-1.3.13.jar
+rootmc-shops-1.3.14.jar
+roothelp-1.0.7.jar
+root-essentials-1.4.6.jar
+root-rewards-1.0.0.jar
+root-admin-1.0.3.jar
+root-announcer-1.0.2.jar
+root-loans-1.0.0.jar
+root-bluemap-r2-fix-1.0.1.jar
+
+Zip: from Minecraft/server run
+  Compress-Archive -Path host-handoff\* -DestinationPath host-handoff-rootmc-plugins.zip -Force
+
+See README.md for live host paths.

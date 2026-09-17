@@ -1,0 +1,85 @@
+# Root-Loans — plugins/RootMC/root-loans.yml
+
+mysql:
+  enabled: true
+  host: ""
+  port: 3306
+  database: ""
+  username: ""
+  password: ""
+  table-prefix: "root_"
+  jdbc-params: "verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC"
+
+loan:
+  enabled: true
+  interest-rate: 0.10
+  default-max-loan: 100.0
+  rank-limits-enabled: true
+  max-cap-mode: rank
+  max-takes-per-24h: 3
+  max-concurrent-loans: 3
+  income-sweep-percent: 1.0
+  gold-ore-repayment: true
+
+town-loan:
+  enabled: true
+  max-loan: 500.0
+  interest-rate: 0.10
+
+loan-daily-tax:
+  enabled: true
+  # Daily % of outstanding balance added to owed. 0 = off (no accrual / no chat).
+  rate: 0
+  schedule-hour-hst: 0
+  poll-seconds: 300
+  min-accrual: 0.01
+
+messages:
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  players-only: "&cPlayers only."
+  disabled: "&eLoans are disabled."
+  treasury-unavailable: "&cLoans need Root-Economy treasury — update &froot-economy&c and restart."
+  invalid-amount: "&eAmount must be greater than 0."
+  active-loan: "&cYou already have an active loan. Pay it off first."
+  max-loans: "&cYou already have &f{max}&c active loans. Repay one before taking another."
+  rate-limited: "&cLoan take limit reached (&f{max}&c takes per 24h). Next slot in &f{time}&c."
+  over-limit: "&cYou can borrow up to &f{max} G&c more under your rank limit."
+  treasury-empty: "&cThe server loan pool is empty right now. Try again later."
+  take-success: "&aBorrowed &f{principal} G&a from the server bank. You owe &f{owed} G&a (&7{interest}% interest&a)."
+  take-failed: "&cCould not create loan."
+  no-loan: "&7You have no active loan."
+  info-header: "&6Loans &7— total owed &c{owed} G&7 | limit &f{max} G&7 | takes &f{takes}/{max_takes}&7 (24h)"
+  info-loan-row: "&8  #{n} &7owed &c{owed} G &7(principal &f{principal} G&7)"
+  info-clear: "&aNo active loans. &7Borrowing limit: &f{max} G&7 | takes &f{takes}/{max_takes}&7 (24h)"
+  repay-success: "&aPaid &f{amount} G&a toward your loans (highest balance first). Remaining: &f{owed} G&a."
+  repay-none: "&eNothing to repay."
+  repay-insufficient: "&cInsufficient balance. Need &f{amount} G&c, you have &f{balance} G&c."
+  paid-off: "&aAll loans paid in full! &7You can borrow up to &f{max} G&a again."
+  income-sweep: "&7&f{amount} G &7applied to your loans (&f{owed} G &7remaining)."
+  ore-sweep: "&7Gold ore value (&f{amount} G&7) applied to your loans."
+  list-empty: "&7No active loans."
+  list-row: "&f{player}&7: &c{owed} G &7(principal &f{principal} G&7)"
+  reload-done: "&aRoot-Loans config reloaded."
+  reload-treasury-pending: "&eRoot-Loans reloaded but treasury bridge is not ready — check console."
+  town-disabled: "&eTown loans are disabled (Towny + treasury required)."
+  town-no-town: "&cYou must be in a town."
+  town-not-mayor: "&cOnly the town mayor can manage town loans."
+  town-active-loan: "&cThis town already has an active server loan. Repay it first."
+  town-over-limit: "&cMaximum town loan is &f{max} G&c."
+  town-treasury-empty: "&cServer Reserve could not fund that town loan right now."
+  town-take-failed: "&cCould not create town loan."
+  town-take-success: "&aTown &f{town} &aborrowed &f{principal} G &afrom the Server Reserve into the town bank. Owed: &f{owed} G &7({interest}% interest)."
+  town-no-loan: "&7Your town has no active server loan."
+  town-info-header: "&6Town loan &f{town} &7— owed &c{owed} G&7 | max borrow &f{max} G"
+  town-info-clear: "&aNo town loan. &7Mayors may borrow up to &f{max} G &7from the Server Reserve via &f/townloan take"
+  town-repay-success: "&aPaid &f{amount} G &afrom the town bank toward the server loan. Remaining: &f{owed} G&a."
+  town-repay-none: "&eNothing to repay."
+  town-bank-insufficient: "&cTown bank needs &f{amount} G&c; balance is &f{balance} G&c."
+  town-repay-failed: "&cTown loan repayment failed."
+  town-paid-off: "&aTown loan paid in full! &7Borrow up to &f{max} G &7again when needed."
+  town-list-empty: "&7No active town loans."
+  town-list-row: "&f{town}&7: &c{owed} G &7(principal &f{principal} G&7)"
+  loan-daily-tax-player: "&7Daily loan tax (&f{rate}%&7): &f{amount} G &7added to balance owed (&c{owed} G&7)."
+  loan-daily-tax-town: "&7Daily town loan tax (&f{rate}%&7): &f{town} &7+&f{amount} G &7owed (&c{owed} G&7)."
+  loan-daily-tax-run-complete: "&7Loan daily tax applied to &f{count} &7active loan(s)."

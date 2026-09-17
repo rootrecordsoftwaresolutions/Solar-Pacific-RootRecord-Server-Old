@@ -1,0 +1,24 @@
+name: Root-Banner
+version: '${version}'
+main: com.rootrecord.minecraft.rootbanner.RootBannerPlugin
+api-version: '26.1'
+description: RootMC paid letter/number/symbol and blank color banners — /banner
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Essentials, Vault]
+loadafter: [Root-Essentials]
+commands:
+  banner:
+    description: Quote and buy letter, number, symbol, or blank color banners
+    usage: /<command> <text|confirm|cancel|colors|prices|help>
+    aliases: [banners, rootbanner]
+permissions:
+  rootbanner.use:
+    description: Use /banner
+    default: true
+  rootbanner.reload:
+    description: Reload root-banner.yml
+    default: op
+  rootbanner.free:
+    description: Receive banners without paying Gold
+    default: op

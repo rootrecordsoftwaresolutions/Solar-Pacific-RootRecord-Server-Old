@@ -1,0 +1,1 @@
+../../../../../origin/tests/council/test_join_welcome.py

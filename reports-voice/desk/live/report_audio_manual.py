@@ -1,0 +1,1 @@
+../../../report-audio-manual/scripts/report_audio_manual.py

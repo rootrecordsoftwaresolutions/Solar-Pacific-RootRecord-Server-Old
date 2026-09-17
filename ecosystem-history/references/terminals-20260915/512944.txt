@@ -1,0 +1,62 @@
+---
+pid: 243559
+cwd: "/home/rootrecord/RootRecord/Ava-Core"
+command: "set -euo pipefail\ncd /home/rootrecord/RootRecord/Ava-Core\n\necho '==== status ===='\n./.venv/bin/python -m apps.council --once-status\nsystemctl --user is-active ava-council.service\ncat ~/.config/ava-council/state.json\necho\ncat ~/.config/ava-council/trust.json\n\n# Stop briefly to steal getUpdates snapshot without fighting the poller forever\nsystemctl --user stop ava-council.service\nsleep 1\n\npython3 - << 'PY'\nimport json, urllib.request, ssl\nfrom pathlib import Path\n\ndef token():\n    for line in Path.home().joinpath(\".config/ava-council/secrets.env\").read_text().splitlines():\n        if line.startswith(\"TELEGRAM_AVA_TOKEN=\"):\n            return line.split(\"=\",1)[1].strip()\n    raise SystemExit(\"no token\")\n\ntok = token()\nst = json.loads(Path.home().joinpath(\".config/ava-council/state.json\").read_text())\noffset = int(st.get(\"update_offset\") or 0)\nctx = ssl.create_default_context()\n# fetch without advancing permanently first - get last few by using offset-20\nstart = max(0, offset - 30)\nurl = f\"https://api.telegram.org/bot{tok}/getUpdates\"\nbody = json.dumps({\"offset\": start, \"limit\": 50, \"timeout\": 0}).encode()\nreq = urllib.request.Request(url, data=body, headers={\"Content-Type\":\"application/json\"}, method=\"POST\")\nwith urllib.request.urlopen(req, context=ctx, timeout=30) as r:\n    data = json.loads(r.read().decode())\nprint(\"ok\", data.get(\"ok\"), \"n\", len(data.get(\"result\") or []))\nmax_id = offset\nfor u in data.get(\"result\") or []:\n    max_id = max(max_id, int(u.get(\"update_id\", 0)) + 1)\n    msg = u.get(\"message\") or u.get(\"edited_message\") or {}\n    chat = msg.get(\"chat\") or {}\n    frm = msg.get(\"from\") or {}\n    text = (msg.get(\"text\") or msg.get(\"caption\") or \"\")[:200]\n    print({\n        \"uid\": u.get(\"update_id\"),\n        \"chat\": chat.get(\"id\"),\n        \"title\": chat.get(\"title\"),\n        \"from_id\": frm.get(\"id\"),\n        \"from_user\": frm.get(\"username\"),\n        \"from_name\": frm.get(\"first_name\"),\n        \"is_bot\": frm.get(\"is_bot\"),\n        \"text\": text,\n        \"date\": msg.get(\"date\"),\n    })\n# restore offset to max so we don't reprocess forever - actually service will use state offset\n# If we consumed updates by calling getUpdates with old offset, Telegram may have given us them;\n# confirming offset in state should be set to max_id so service continues cleanly\nst[\"update_offset\"] = max_id\nst[\"busy\"] = False\nPath.home().joinpath(\".config/ava-council/state.json\").write_text(json.dumps(st, indent=2, sort_keys=True)+\"\\n\")\nprint(\"saved offset\", max_id)\nPY\n"
+title: "Stop council, dump recent Telegram updates"
+status: succeeded
+started_at: 2026-09-15T22:28:01.652Z
+running_for_ms: 32118    
+---
+==== status ====
+discussion=on
+mode=auto
+ollama-up=true
+owner-bound=true
+auto_execute=false
+busy=false
+group-chat-set=true
+active
+{
+  "auto_execute": false,
+  "busy": false,
+  "busy_note": "",
+  "busy_started": 0,
+  "discussion": "on",
+  "group_chat_id": "-1004367256267",
+  "mode": "auto",
+  "owner_id": "8589077731",
+  "update_offset": 142130757,
+  "updated": 1789511215
+}
+
+{
+  "users": {
+    "6574408926": {
+      "aliases": [
+        "Sara",
+        "sara",
+        "chicken lady",
+        "Crazychickenlady12"
+      ],
+      "display_name": "Sara",
+      "last_trigger": 1789510599,
+      "score": 75,
+      "updated": 1789510820,
+      "username": "Crazychickenlady12"
+    },
+    "8589077731": {
+      "last_trigger": 0,
+      "score": 100,
+      "updated": 1789511215,
+      "username": "rootrecordadmin"
+    }
+  }
+}
+ok True n 0
+saved offset 142130757
+
+---
+exit_code: 0
+elapsed_ms: 32118
+ended_at: 2026-09-15T22:28:33.770Z
+---

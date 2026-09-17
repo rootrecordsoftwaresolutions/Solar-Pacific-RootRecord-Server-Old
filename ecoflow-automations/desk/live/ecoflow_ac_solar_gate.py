@@ -1,0 +1,1 @@
+../../../ecoflow-ac-solar-gate/scripts/ecoflow_ac_solar_gate.py

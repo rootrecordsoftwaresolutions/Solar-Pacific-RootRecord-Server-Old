@@ -1,0 +1,34 @@
+name: Root-Skills
+version: '${version}'
+main: com.rootrecord.minecraft.rootskills.RootSkillsPlugin
+api-version: '26.1'
+description: RootMC skills, talents, classes, and prestige (mcMMO-style)
+author: Root Record
+website: https://rootmc.net
+softdepend: [Vault, PlaceholderAPI, Root-Economy, Root-Claims, Towny]
+commands:
+  skills:
+    description: Open skills hub or view skill progress
+    usage: /skills [skill]
+    aliases: [skill]
+  talents:
+    description: View and manage talents
+    usage: /talents [skill]
+  class:
+    description: View or select a class
+    usage: /class [info|select] [name]
+    aliases: [classes]
+  rootskills:
+    description: Root-Skills admin commands
+    usage: /rootskills <reload|xp|level|migrate|...>
+    permission: rootskills.admin
+permissions:
+  rootskills.use:
+    description: Use skills commands and earn XP
+    default: true
+  rootskills.admin:
+    description: Admin Root-Skills
+    default: op
+  rootskills.reload:
+    description: Reload Root-Skills config
+    default: op

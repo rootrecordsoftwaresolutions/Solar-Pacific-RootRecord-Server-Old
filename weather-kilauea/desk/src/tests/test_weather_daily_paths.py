@@ -1,0 +1,1 @@
+../../../../origin/tests/test_weather_daily_paths.py

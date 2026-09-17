@@ -1,0 +1,36 @@
+enabled: true
+sync-on-join: true
+sync-interval-seconds: 300
+memberships:
+  pro:
+    enabled: true
+    group: pro
+    require-cloud-pro: true
+    require-life: false
+    life-counts-as-pro: true
+    display-prefix: "&8[&bPro&8]&r "
+  top_active:
+    enabled: true
+    group: top_active
+    require-cloud-pro: false
+    require-life: false
+    require-top-active: true
+    display-prefix: "&8[&6Top Active Player&8]&r "
+vouchers:
+  enabled: true
+  month:
+    material: NAME_TAG
+    display-name: "&bPro Voucher &7(1 Month)"
+    lore:
+      - "&7Right-click to redeem &b30 days&7 of Pro."
+      - "&8Tradeable until redeemed."
+  lifetime:
+    material: NAME_TAG
+    display-name: "&6Pro Voucher &7(Lifetime)"
+    lore:
+      - "&7Right-click to redeem &6Lifetime Pro&7."
+      - "&8Tradeable until redeemed."
+  messages:
+    redeem-month: "&aRedeemed &b1 Month Pro&a! Relog or wait for sync for &8[&bPro&8]&a."
+    redeem-lifetime: "&aRedeemed &6Lifetime Pro&a! Relog or wait for sync for &8[&bPro&8]&a."
+    redeem-fail: "&cCould not redeem voucher: &f{detail}"

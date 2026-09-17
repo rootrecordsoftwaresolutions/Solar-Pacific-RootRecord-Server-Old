@@ -1,0 +1,1 @@
+../../../api-prices-boot/scripts/job.py

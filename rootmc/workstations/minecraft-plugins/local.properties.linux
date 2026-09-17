@@ -1,0 +1,12 @@
+# Linux / Ubuntu (OptiPlex ava-core) — Paper test IS the handoff.
+# Copy to local.properties after provision if needed.
+
+java.version=25
+org.gradle.java.home=/usr/lib/jvm/java-17-openjdk-amd64
+org.gradle.java.installations.paths=/home/ava-core/.local/jdk-25
+org.gradle.java.installations.auto-detect=true
+org.gradle.java.installations.auto-download=true
+
+rootmc.generation=gen1
+rootmc.live.plugins.dir=/home/ava-core/ava/workstations/minecraft-test/plugins
+rootmc.workspace.handoff.plugins.dir=/home/ava-core/ava/workstations/minecraft-test/plugins

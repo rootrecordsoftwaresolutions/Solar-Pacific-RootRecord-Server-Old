@@ -1,0 +1,1 @@
+../../../site-ops/scripts/insert-my-apps-nav.py

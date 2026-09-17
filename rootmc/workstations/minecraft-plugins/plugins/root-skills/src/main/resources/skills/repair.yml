@@ -1,0 +1,12 @@
+id: repair
+display-name: Repair
+enabled: true
+max-level: 1000
+icon: ANVIL
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 10
+  action: 8
+talents:
+  - repair_repair_mastery

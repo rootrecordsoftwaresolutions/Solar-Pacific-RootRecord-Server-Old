@@ -1,0 +1,98 @@
+# Root-Economy - plugins/RootMC/root-economy.yml
+# MySQL credentials: plugins/RootMC/database.yml
+
+economy:
+  starting-balance: 0
+  # Ava wallet = Server Reserve. Fresh wipe opening.
+  true-reserve-opening: 0
+  currency-symbol: "G"
+  worth:
+    GOLD_INGOT: 1.0
+    GOLD_NUGGET: 0.11
+    DIAMOND: 25.0
+    IRON_INGOT: 0.75
+    EMERALD: 15.0
+
+treasury:
+  transaction-tax-enabled: true
+  transaction-tax-rate: 0.001
+  dynamic-tax-enabled: true
+  dynamic-tax-shortfall-factor: 0.1
+  dynamic-tax-max-rate: 0.0
+  dynamic-tax-retire-over-issue: true
+  dividend-payout-ratio: 0.50
+
+economy-heartbeat:
+  enabled: true
+  towny-new-day-fallback: true
+
+towny:
+  plot-unclaim-full-refund: true
+
+messages:
+  prefix: ''
+  players-only: '&cPlayers only.'
+  no-permission: '&cYou do not have permission.'
+  balance-self: '&7Balance: &6{balance} {currency}'
+  balance-other: '&7{player} balance: &6{balance} {currency}'
+  paytoggle-on: '&aIncoming payments &fon&a.'
+  paytoggle-off: '&eIncoming payments &foff&e — others cannot /pay you.'
+  player-not-found: '&cPlayer not found: &f{player}'
+  invalid-number: '&cInvalid number.'
+  pay-sent: '&aPaid &f{amount} {currency}&a to &f{player}&a.'
+  pay-received: '&aReceived &f{amount} {currency}&a from &f{player}&a.'
+  pay-self: '&cYou cannot pay yourself.'
+  pay-disabled: '&eThat player is not accepting payments.'
+  pay-invalid-amount: '&cAmount must be greater than 0.'
+  pay-insufficient: '&cInsufficient balance. Need &f{amount} {currency}&c, you have &f{balance}&c.'
+  pay-reserve-cancelled: '&eReserve donation cancelled.'
+  pay-reserve-confirm-prompt: '&eDonate &f{amount} {currency}&e to the Server Reserve?'
+  pay-reserve-none-pending: '&eNo pending reserve donation.'
+  pay-reserve-expired: '&eReserve donation expired — run /pay reserve again.'
+  pay-reserve-success: '&aDonated &f{amount} {currency}&a to the Server Reserve.'
+  pay-reserve-backing: '&7Note backing: &f{backing}%'
+  pay-reserve-over-issue: '&7Over-issue &f{before}&7 → &f{after} {currency}&7.'
+  pay-all-min: '&e/pay all minimum is &f{min} {currency}&e per player.'
+  pay-all-nobody: '&eNo other players online.'
+  pay-all-none-accepting: '&eNo online players are accepting payments.'
+  pay-all-insufficient: '&cNeed &f{total} {currency}&c (&f{count}&c × &f{amount}&c). You have &f{balance}&c.'
+  pay-all-partial: '&ePaid &f{paid}&e/&f{count}&e players before balance ran out.'
+  pay-all-sent: '&aPaid &f{amount} {currency}&a to &f{count}&a players (&f{total} {currency}&a total).'
+  pay-all-skipped: '&7Skipped &f{count}&7 not accepting pay: &f{names}'
+  sell-empty-hand: '&eHold an item in your hand first.'
+  sell-not-priced: '&eNo worth listed for &f{item}&e yet.'
+  mint-not-gold: '&eOnly mintable gold: nugget, ingot, or block — smelt raw gold first. Not &f{item}&e.'
+  mint-nothing: '&eNo mintable gold in your inventory.'
+  mint-gold-invalid: '&eAmount must be greater than 0.'
+  mint-gold-too-small: '&eAmount too small — minimum is 1 nugget (1/9 G).'
+  mint-gold-insufficient: '&cNeed &f{amount} {currency}&c — you have &f{balance}&c.'
+  mint-gold-no-space: '&cNot enough inventory space for that gold.'
+  mint-gold-success: '&aRedeemed &f{amount} {currency}&a → &f{summary}&a.'
+
+fees:
+  survey: 25.0
+  repair: 1000.0
+  repair-all-per-item: 1000.0
+  top: 10.0
+  nick: 100.0
+  hat: 1.0
+  heal: 15.0
+  feed: 15.0
+
+# Connected: 1 + 1% base + 1% per 10% battery + 1% per 100 W (gold and skills).
+# Disconnected: 1.00× + 1% env tax. Reserve tax always has a 0.05% floor.
+solar-mining:
+  enabled: true
+  poll-seconds: 60
+
+# /radar: 4-block NESW dash tape + up to 3 ore pips, 1G/min, idle-off after 10 still pings.
+# Gold ore pays wallet Notes (multipliers). Redeem with /mint gold.
+gold-prospect:
+  enabled: true
+  radius: 4
+  env-tax: 0.01          # Y -20 to 20
+  env-y-min: -20
+  env-y-max: 20
+  mesa-tax: 0.50         # badlands / mesa biomes
+  nether-tax: 0
+  deepslate-value: 1.5

@@ -1,0 +1,1 @@
+../../../../origin/tests/test_launch_script_repo_root.py

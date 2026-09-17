@@ -1,0 +1,96 @@
+# Independent towns (not in a nation): 250-block influence from plot edges.
+# When a town joins a nation it becomes part of the nation area instead.
+
+enabled: true
+refresh-minutes: 5
+enforce-town-rules: true
+message-cooldown-seconds: 8
+
+# Capital town plots: buffer past the outermost plot edges (blocks).
+nation-capital-buffer: 500
+
+# Member nation towns: extend the nation by this many blocks past plot edges.
+# Also used as the independent-town influence radius.
+nation-extension-buffer: 250
+
+# Legacy alias (used if nation-extension-buffer is missing):
+town-buffer: 250
+
+# Pulls the BlueMap outline slightly inward (map display only; in-game borders are exact).
+map-outline-inset: 8
+
+particles:
+  enabled: false
+  interval_ticks: 16
+  batch_size: 120
+  count: 8
+  size: 3.0
+  spread: 0.22
+  layers: 2
+  surface_y_offset: 1
+  contour-step: 16
+  edge-spacing: 3
+  view_radius: 96
+  nation-color: [255, 40, 40]
+  town-color: [30, 144, 255]
+
+wilderness-alerts:
+  enabled: true
+  cooldown-minutes: 3
+  min-y-above-sea-level: 0
+
+check-y: false
+
+bluemap:
+  enabled: true
+  marker-set-nations: root-territories-nations
+  nations-label: Nation territories
+  marker-set-towns: root-territories-towns
+  towns-label: Independent town territories
+  shape-y: 64
+  contour-step: 16
+  circle-segments: 48
+  line-width: 2
+  depth-test: false
+  nation-line: [255, 200, 64, 0.95]
+  nation-fill: [255, 200, 64, 0.10]
+  town-line: [96, 160, 255, 0.95]
+  town-fill: [96, 160, 255, 0.10]
+  spawn:
+    shape-y: 90
+    grief-line: [80, 220, 80, 0.95]
+    grief-fill: [80, 220, 80, 0.16]
+    wall-line: [255, 230, 0, 0.9]
+
+messages:
+  enter-nation: "&7Entering nation &b{nation}"
+  exit-nation: "&7Leaving nation &b{nation}"
+  enter-town: "&7Entering town &b{town}"
+  exit-town: "&7Leaving town &b{town}"
+  mute-suffix: ''
+  notifications-enabled: "&aTerritory border messages enabled."
+  notifications-disabled: "&7Territory border messages muted. Ally nation visits still show."
+  notifications-status-on: "&7Border messages: &aenabled"
+  notifications-status-off: "&7Border messages: &7muted"
+  deny-create-town: "&cYou cannot found a town inside another town or nation's influence."
+  deny-join-nation: "&cYour town's influence must touch or overlap the nation's territory before joining."
+  wilderness-intrusion-town: "&7Satellite imagery shows &f{player} &7is stealing resources in your territory."
+  wilderness-intrusion-nation: "&7Satellite imagery shows &f{player} &7is stealing resources in your nation's wilderness territory."
+
+# Nation founding — multi-town agreement + split Server Reserve fee (Towny price_new_nation should be 0).
+nation-founding:
+  enabled: true
+  require-proposal: true
+  min-towns: 2
+  total-cost-g: 2000
+  snapshot-grandfather-on-enable: true
+  messages:
+    proposed: "&aNation founding proposal &f{id} &acreated for &f{nation}&a. Partner mayors run &f/nationfounding agree {id}"
+    agreed: "&aYou signed proposal &f{id}&a. (&f{signed}&7/&f{total}&a towns)"
+    approved: "&aProposal &f{id} &ais fully signed. Capital mayor may run &f/nation new {nation}&a."
+    denied-no-proposal: "&cNation creation requires an approved founding proposal. Capital mayor: &f/nationfounding propose <Nation> <PartnerTown>"
+    denied-payment: "&cNation founding payment failed for &f{town}&c (&f{amount} G&c in town bank required)."
+    not-mayor: "&cOnly the mayor of &f{town} &ccan sign for that town."
+    already-in-nation: "&cTown &f{town} &cis already in a nation."
+    no-touch: "&cTown &f{town} &cmust touch or overlap &f{capital}&c's influence before joining the proposal."
+    executed: "&aNation &f{nation} &afounded. &f{total} G &asplit across &f{towns} &atown banks → Server Reserve."

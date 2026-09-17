@@ -1,0 +1,16 @@
+[Unit]
+Description=Ava EcoFlow Delta 2 + River 2 Pro BLE quota (Starlink on Delta AC; USB-C PV gate)
+After=bluetooth.target
+ConditionPathExists=%h/.ollama/skills/state/store/ava-console-up
+
+[Service]
+Type=simple
+WorkingDirectory=/home/rootrecord/.ollama/skills/ecoflow-ble-poller/store
+ExecStart=/home/rootrecord/.ollama/skills/origin/.venv/bin/python /home/rootrecord/.ollama/skills/ecoflow-ble-poller/scripts/ecoflow_ble_poller.py
+Restart=on-failure
+RestartSec=8
+Environment=PYTHONUNBUFFERED=1
+Environment=PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+[Install]
+WantedBy=default.target

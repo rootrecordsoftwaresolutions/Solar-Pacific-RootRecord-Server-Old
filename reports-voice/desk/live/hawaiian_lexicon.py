@@ -1,0 +1,1 @@
+../../../kokoro/scripts/hawaiian_lexicon.py

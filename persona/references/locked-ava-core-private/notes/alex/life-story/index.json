@@ -1,0 +1,17 @@
+{
+  "personId": "alexrs94",
+  "discordId": "1497037418979786823",
+  "minecraft": "Alexrs94",
+  "created": "2026-08-01",
+  "updated": "2026-08-01",
+  "privacy": "operator-private",
+  "chapters": [
+    {
+      "id": "snapshot-2026-08",
+      "title": "Present snapshot (seed)",
+      "file": "chapters/00-present-snapshot.md",
+      "updated": "2026-08-01"
+    }
+  ],
+  "inbox": "raw-inbox.md"
+}

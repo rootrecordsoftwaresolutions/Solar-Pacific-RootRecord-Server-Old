@@ -1,0 +1,84 @@
+# Root-Core — single operator file: plugins/RootMC/root-core.yml
+# Put server-name + product-key here. Root-Core bind fills blank cloud.* and mirrors to cloud.yml.
+
+server-name: RootMC
+product-key: ''
+
+cloud:
+  # Data-plane API (Gen1 = api.rootmc.net, Gen2 = api2.rootmc.net). License bind always uses license.api-base.
+  api-base: https://api.rootmc.net
+  server-id: 4963895e-0964-48b8-81b7-1f40a966e8be
+  server-secret: ''
+
+license:
+  mode: operator
+  verify-remote: false
+  api-base: https://api.rootmc.net
+  presence-interval-minutes: 5
+  server-address: ''
+  force-local-edge: false
+
+updater:
+  enabled: true
+  manifest-url: https://rootmc.net/plugins/manifest.json
+  interval-hours: 6
+  plugins: []
+  only-installed: true
+  ensure:
+  - root-ava-core
+  - root-times
+  - root-perms
+  - root-economy
+  - root-essentials
+  - root-claims
+  - root-territories
+  - root-play
+  - root-skills
+  - root-ops
+  - root-appreciation
+  - rootmc
+  restart-after-update: true
+  restart-delay-seconds: 30
+  require-product-key: false
+  restart-in-maintenance: false
+  force-ensure-all: true
+
+repair:
+  on-reload: true
+
+logging:
+  verbose: false
+transfer:
+  enabled: true
+  advertise: play.rootmc.net:25565
+  poll-minutes: 1
+  evacuate-on-stop: true
+  evacuate-to: ava
+  evacuate-delay-ticks: 40
+  # Set ava.host to play.avaivy.cloud after Playit + DNS are live.
+  local-peers:
+    ava:
+      enabled: true
+      host: play.avaivy.cloud
+      port: 25565
+      label: Ava
+      aliases: [test, world, dev]
+site:
+  base: https://rootmc.net
+  keys-path: /developer/keys/
+  plugins-manifest: https://rootmc.net/plugins/manifest.json
+comms:
+  discord:
+    chat:
+      enabled: true
+      server-tag: T
+      allowed-role-id: ''
+      relay-chat: true
+      relay-join: true
+      relay-leave: true
+      relay-death: true
+      relay-reachout: true
+      inbound-format: '&8▎ &9Discord&8│ &f{user}&8 &7»&f {message}'
+  slack:
+    server-logs:
+      enabled: true

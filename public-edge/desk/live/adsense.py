@@ -1,0 +1,1 @@
+../../../adsense-eod/scripts/adsense.py

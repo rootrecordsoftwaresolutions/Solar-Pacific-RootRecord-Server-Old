@@ -1,0 +1,1 @@
+../../../report-blog/scripts/sync-blogs.py

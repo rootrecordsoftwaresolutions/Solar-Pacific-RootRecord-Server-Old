@@ -1,0 +1,6 @@
+# RootMC basement well opening (wide warning zone)
+# Format: index,world,x,z
+world=world
+---
+1,world,2,-3
+2,world,-2,1

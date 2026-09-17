@@ -1,0 +1,12 @@
+id: fishing
+display-name: Fishing
+enabled: true
+max-level: 1000
+icon: FISHING_ROD
+xp-sources:
+  default-block: 5
+  combat-hit: 1
+  combat-kill: 10
+  action: 100
+talents:
+  - fishing_ice_fishing

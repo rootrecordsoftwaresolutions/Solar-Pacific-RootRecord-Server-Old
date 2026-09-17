@@ -1,0 +1,17 @@
+name: Root-Discord
+version: '${version}'
+main: com.rootrecord.minecraft.rootdiscord.RootDiscordPlugin
+api-version: '26.1'
+description: Per-server Discord bot — chat bridge, reachout posts, server-log uploads.
+author: RootMC
+website: https://rootmc.net
+depend: [Root-Core]
+commands:
+  rootdiscord:
+    description: Root-Discord status and reload
+    usage: /rootdiscord <status|reload>
+    permission: rootdiscord.admin
+permissions:
+  rootdiscord.admin:
+    description: Administer Root-Discord
+    default: op

@@ -1,0 +1,11 @@
+﻿id: warrior
+display-name: Warrior
+description: Melee combat focus — swords, axes, defense.
+primary-skills: [swords, axes, defense, unarmed]
+starting-talents: []
+skill-multipliers:
+  swords: 1.25
+  axes: 1.25
+  defense: 1.25
+  unarmed: 1.15
+  archery: 0.9

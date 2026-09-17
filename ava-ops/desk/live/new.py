@@ -1,0 +1,1 @@
+../../../obs-studio/scripts/new.py

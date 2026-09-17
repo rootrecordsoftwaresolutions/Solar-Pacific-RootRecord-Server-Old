@@ -1,0 +1,37 @@
+name: Root-Rewards
+version: '${version}'
+main: com.rootrecord.minecraft.rootrewards.RootRewardsPlugin
+api-version: '26.1'
+description: RootMC playtime milestones and vote rewards (gold via Root Essentials).
+author: Root Record
+website: https://rootmc.net
+softdepend: [Root-Essentials, Vault, NuVotifier, VotifierPlus, RootMC]
+loadafter: [Root-Essentials, RootMC]
+commands:
+  playtime:
+    description: Your playtime, milestones, and leaderboard
+    usage: /<command> [player|top]
+    aliases: [playtimerewards, playrewards, rewards]
+  vote:
+    description: Server list vote links
+    usage: /<command>
+  rootrewards:
+    description: Admin reload for Root-Rewards
+    usage: /<command> reload
+    permission: rootrewards.reload
+permissions:
+  rootrewards.use:
+    description: View your playtime and receive milestone rewards
+    default: true
+  rootrewards.playtime.others:
+    description: View another player's playtime with /playtime <name>
+    default: true
+  rootrewards.playtime.top:
+    description: View the playtime leaderboard
+    default: true
+  rootrewards.vote:
+    description: Receive vote gold
+    default: true
+  rootrewards.reload:
+    description: Reload root-rewards.yml
+    default: op

@@ -1,0 +1,1 @@
+../../../report-blog/scripts/compile-blog-posts.py

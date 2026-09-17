@@ -1,0 +1,59 @@
+# Root-Upkeep — plugins/RootMC/root-upkeep.yml
+# Inactivity tax debits idle wallets / town & nation banks into the server treasury.
+# MySQL: leave host/database/username blank — plugins/RootMC/database.yml is the source of truth.
+
+enabled: true
+
+mysql:
+  enabled: true
+  host: ""
+  port: 3306
+  database: ""
+  username: ""
+  password: ""
+  table-prefix: "root_"
+  jdbc-params: "verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC"
+  # Global playtime table (prefix + playtime), scope=*
+  playtime-table: "playtime"
+
+schedule:
+  # Real calendar day in Hawaii time — tax runs at most once per this day (not per MC day).
+  hour-hst: 0
+  poll-seconds: 60
+
+inactivity:
+  # No tax until a player (or all town/nation members) has been away for one real month.
+  grace-days: 30
+  # Tax rates by time beyond grace (percent of current balance per real calendar day).
+  week-1-rate: 0.01
+  week-2-rate: 0.05
+  week-3-rate: 0.1
+  week-4-rate: 1.0
+  min-balance: 0.01
+  min-tax: 0.01
+
+# Active town bank tax — once per Minecraft day (~20–30 min), not real calendar day.
+# Debited as TAX → Server Reserve. Eligible bond income (25% share) accumulates for the
+# current MC day and is compounded to bondholders when that day settles (next rollover).
+town-daily-tax:
+  enabled: true
+  # Percent of town bank balance per MC day (0.01 = 0.01%).
+  rate-percent: 0.01
+  min-balance: 0.01
+  min-tax: 0.01
+  # After downtime, only the last N MC days are taxed (~96 ≈ 2 real days).
+  catch-up-max-mc-days: 96
+
+messages:
+  player-tax: "&7Inactivity tax: &f{target} &7charged &b{amount} G &7(&b{rate}%&7, &f{days} &7days idle)"
+  town-tax: "&7Town inactivity tax: &f{target} &7charged &b{amount} G &7(&b{rate}%&7, &f{days} &7days since last member login)"
+  nation-tax: "&7Nation inactivity tax: &f{target} &7charged &b{amount} G &7(&b{rate}%&7, &f{days} &7days since last member login)"
+  town-daily-tax: "&7Town tax: &f{town}&7 bank charged &b{amount} G &7(&b{rate}%&7 of &f{balance} G&7 / MC day)"
+  run-complete: "&7Inactivity tax cycle complete — &f{count} &7debit(s) applied."
+  reload-done: "&aRoot-Upkeep reloaded."
+  no-permission: "&cYou do not have permission."
+  return-summary-header: "&6&lWelcome back &7— you were away &f{days} &7days. Inactivity tax while you were gone:"
+  return-summary-player: "&8  &7Your wallet: &c-{amount} G"
+  return-summary-town: "&8  &7Town &f{town}&7 bank: &c-{amount} G"
+  return-summary-nation: "&8  &7Nation &f{nation}&7 bank: &c-{amount} G"
+  return-summary-total: "&7Total lost to inactivity tax: &c-{amount} G"

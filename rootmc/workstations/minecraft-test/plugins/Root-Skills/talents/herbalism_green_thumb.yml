@@ -1,0 +1,19 @@
+id: herbalism_green_thumb
+display-name: Green Thumb
+description: Chance for bonus crop XP and drop.
+skill: herbalism
+unlock-level: 25
+max-rank: 5
+mana-cost: 5
+cooldown-seconds: 30
+duration-seconds: 0
+triggers:
+  - on_crop_harvest
+effects:
+  - id: XP_BONUS
+    multiplier: 1.15
+  - id: MESSAGE
+    text: '&aGreen Thumb!'
+conditions:
+  - type: chance
+    value: 0.2

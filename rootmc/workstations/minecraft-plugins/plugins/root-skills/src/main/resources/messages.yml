@@ -1,0 +1,45 @@
+prefix: '&8[&6Root-Skills&8]&r '
+
+general:
+  players-only: '&cPlayers only.'
+  no-permission: '&cYou lack permission.'
+  reload-ok: '&aRoot-Skills reloaded.'
+  feature-disabled: '&cThat feature is disabled.'
+
+skills:
+  hub-title: '&6Skills'
+  level-up: '&a{skill} leveled up to &e{level}&a!'
+  xp-gain: '&7+{xp} {skill} XP'
+  progress: '&e{skill}&7: &fLv {level} &7({xp}/{next})'
+  unknown: '&cUnknown skill: {skill}'
+
+talents:
+  unlocked: '&aTalent unlocked: &e{talent}'
+  locked: '&cTalent locked: {talent}'
+  triggered: '&7{talent} activated!'
+  on-cooldown: '&c{talent} on cooldown ({seconds}s).'
+
+classes:
+  selected: '&aClass selected: &e{class}'
+  already: '&eYou are already {class}.'
+  unknown: '&cUnknown class: {class}'
+  info: '&e{class}&7: {description}'
+
+prestige:
+  ready: '&6You can prestige {skill} at level {level}!'
+  done: '&6{skill} prestiged to P{prestige}!'
+  not-ready: '&cNeed level {threshold} to prestige.'
+
+party:
+  created: '&aParty created.'
+  joined: '&aJoined party.'
+  left: '&7Left party.'
+  full: '&cParty is full.'
+  not-in: '&cYou are not in a party.'
+
+admin:
+  usage: '&e/rootskills <reload|setlevel|xp|migrate|booster|party|prestige>'
+  xp-set: '&aSet {player} {skill} XP to {xp}.'
+  level-set: '&aSet {player} {skill} level to {level}.'
+  migrate-started: '&emcMMO migration started…'
+  migrate-no-db: '&cMySQL unavailable — cannot migrate.'

@@ -1,0 +1,1 @@
+../../../ecoflow-river-car/scripts/drive_automation.py

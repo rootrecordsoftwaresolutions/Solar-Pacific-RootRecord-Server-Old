@@ -1,0 +1,15 @@
+# Shared MySQL credentials for ALL RootMC plugins.
+# File: plugins/RootMC/database.yml
+#
+# Set host, database, username, and password once — every plugin inherits this file.
+
+database:
+  enabled: true
+  host: your-db-host.example.com
+  port: 3306
+  database: your_database_name
+  username: your_db_user
+  password: ""
+  table-prefix: root_
+  pool-size: 5
+  jdbc-params: "verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC"

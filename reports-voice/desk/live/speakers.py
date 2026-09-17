@@ -1,0 +1,1 @@
+../../../kokoro/scripts/speakers.py

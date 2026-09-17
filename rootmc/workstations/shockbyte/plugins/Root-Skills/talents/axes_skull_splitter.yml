@@ -1,0 +1,17 @@
+id: axes_skull_splitter
+display-name: Skull Splitter
+description: Heavy axe damage window.
+skill: axes
+unlock-level: 50
+max-rank: 1
+mana-cost: 12
+cooldown-seconds: 180
+duration-seconds: 10
+triggers:
+  - on_ability_activate
+effects:
+  - id: DAMAGE_BONUS
+    amount: 2.5
+  - id: MESSAGE
+    text: '&6Skull Splitter!'
+conditions: []

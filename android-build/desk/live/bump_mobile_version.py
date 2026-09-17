@@ -1,0 +1,1 @@
+../../scripts/bump_mobile_version.py

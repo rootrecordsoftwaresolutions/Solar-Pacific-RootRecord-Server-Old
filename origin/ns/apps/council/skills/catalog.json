@@ -1,0 +1,244 @@
+{
+  "skills": [
+    {
+      "id": "kilauea-glossary",
+      "description": "Kīlauea / Kiweh naming and brand facts — stop invention",
+      "voices": ["ava", "carly", "bruce"],
+      "risk": "read",
+      "keywords": ["kilauea", "kīlauea", "kiweh", "kileau", "kilauea alerts"]
+    },
+    {
+      "id": "hawaiian-glossary",
+      "description": "ʻŌlelo Hawaiʻi desk pack + local Wiktionary lookup — only when relevant",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "read",
+      "keywords": [
+        "ʻāina",
+        "aina",
+        "aloha",
+        "mahalo",
+        "mauka",
+        "makai",
+        "ohana",
+        "ʻohana",
+        "olelo",
+        "ʻōlelo",
+        "kamaaina",
+        "kamaʻāina",
+        "malihini",
+        "wikiwiki",
+        "kokua",
+        "kōkua"
+      ]
+    },
+    {
+      "id": "trust-ladder",
+      "description": "Trust scores 40/75/90/100",
+      "voices": ["ava"],
+      "risk": "read",
+      "keywords": ["trust ladder", "trust score", "trust 40", "what is trust"]
+    },
+    {
+      "id": "feelings-howto",
+      "description": "Mood words without number dumps",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "read",
+      "keywords": ["how do feelings", "mood word", "feelings system"]
+    },
+    {
+      "id": "addressing-rules",
+      "description": "When bots speak in the group",
+      "voices": ["ava"],
+      "risk": "read",
+      "keywords": ["when do you speak", "addressing rules", "vocative"]
+    },
+    {
+      "id": "moderation-help",
+      "description": "How moderation votes work",
+      "voices": ["carly", "ava"],
+      "risk": "read",
+      "keywords": ["how votes work", "moderation vote", "mute kick ban"]
+    },
+    {
+      "id": "council-status",
+      "description": "Desk/council status script (ollama up, discussion) — no secrets",
+      "voices": ["bruce", "ava"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["run status script", "run the status script", "council-status", "once-status", "desk status script"]
+    },
+    {
+      "id": "brainstorm-howto",
+      "description": "Timed brainstorm: ask duration, wrap on time or stop",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "read",
+      "keywords": [
+        "brainstorm",
+        "thought session",
+        "how long to brainstorm",
+        "timed brainstorm"
+      ]
+    },
+    {
+      "id": "desk-files",
+      "description": "Where live EcoFlow, proposals, and status files live — no secrets",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "read",
+      "keywords": [
+        "ecoflow",
+        "generator",
+        "proposal",
+        "desk files",
+        "solar gate",
+        "ecoflow-live"
+      ]
+    },
+    {
+      "id": "desk-read",
+      "description": "Read an allowlisted repo file (no secrets)",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": [
+        "desk read",
+        "read the proposal",
+        "read this file path",
+        "read ecoflow",
+        "read generator"
+      ]
+    },
+    {
+      "id": "recycle-origin",
+      "description": "Recycle Ava Core on :8787 (not a PC reboot)",
+      "voices": ["bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["recycle origin", "recycle the core", "reboot the core terminal"]
+    },
+    {
+      "id": "handoff-zip",
+      "description": "Copy allowlisted desk files and zip for manual/non-API use",
+      "voices": ["bruce", "ava", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": [
+        "handoff zip",
+        "zip handoff",
+        "bundle copies",
+        "manual api zip",
+        "zip the copies"
+      ]
+    },
+    {
+      "id": "report-publish",
+      "description": "Publish queued public reports — council, not the operator",
+      "voices": ["ava", "bruce"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": true,
+      "argv": [],
+      "keywords": [
+        "publish reports",
+        "publish the report queue",
+        "publish report drafts"
+      ]
+    },
+    {
+      "id": "goals-desk",
+      "description": "List or add council goals (DDR5, income, LTC node). No invented USD.",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["our goals", "list goals", "add a goal", "ddr5 goal"]
+    },
+    {
+      "id": "ltc-status",
+      "description": "Litecoin node/disk status. Wait for sync. No send.",
+      "voices": ["bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["litecoin", "ltc balance", "is the chain synced", "litecoin node"]
+    },
+    {
+      "id": "disk-session",
+      "description": "See if the external disk is present; River car DC for drives",
+      "voices": ["bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": true,
+      "timeout": 75,
+      "argv": [],
+      "keywords": [
+        "external drive",
+        "external disk",
+        "river car",
+        "turn on the drives",
+        "turn off the drives",
+        "drive power",
+        "12v drives"
+      ]
+    },
+    {
+      "id": "web-facts",
+      "description": "Allowlisted HTTPS fact fetch (NWS, USGS, Wikipedia, Litecoin docs)",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": true,
+      "argv": [],
+      "keywords": ["look up nws", "fetch wikipedia", "web fact"]
+    },
+    {
+      "id": "storm-plot",
+      "description": "Distance and bearing of the nearest cyclone vs Hawaiʻi. Not a map.",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["storm plot", "how far is the storm", "storm bearing", "japan storm"]
+    },
+    {
+      "id": "cooking-desk",
+      "description": "List recipes or cook-from-pantry. Shared dishes save as user-submitted.",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["list recipes", "save this recipe", "cook from pantry", "what can we cook"]
+    },
+    {
+      "id": "pantry-desk",
+      "description": "Logged food stock. No invented counts.",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["pantry stock", "what's in the pantry", "what is in the pantry"]
+    },
+    {
+      "id": "nutrition-desk",
+      "description": "Nutrient-dense food database. Not milligrams. Not medical advice.",
+      "voices": ["ava", "bruce", "carly"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "argv": [],
+      "keywords": ["nutrient dense", "nutrition desk", "high nutrient food"]
+    }
+  ]
+}

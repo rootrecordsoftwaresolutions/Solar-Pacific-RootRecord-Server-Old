@@ -1,0 +1,1 @@
+../../../obs-studio/scripts/solar_monitor.py

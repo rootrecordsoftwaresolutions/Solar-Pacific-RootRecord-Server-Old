@@ -1,0 +1,25 @@
+name: Root-Activity
+version: '${version}'
+main: com.rootrecord.minecraft.rootactivity.RootActivityPlugin
+api-version: '26.1'
+description: RootMC playtime activity by timezone (IP estimate + Discord override).
+author: Root Record
+website: https://rootmc.net
+softdepend: [RootMC]
+loadafter: [RootMC]
+commands:
+  timezone:
+    description: Server busiest window in your local time, plus players per timezone
+    usage: /<command>
+    aliases: [activity]
+  rootactivity:
+    description: Admin reload for Root-Activity
+    usage: /<command> reload
+    permission: rootactivity.reload
+permissions:
+  rootactivity.use:
+    description: View /timezone activity report
+    default: true
+  rootactivity.reload:
+    description: Reload root-activity.yml
+    default: op

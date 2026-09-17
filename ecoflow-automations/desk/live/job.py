@@ -1,0 +1,1 @@
+../../../hourly-solar-weather/scripts/job.py

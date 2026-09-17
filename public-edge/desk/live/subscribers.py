@@ -1,0 +1,1 @@
+../../../subscribers/scripts/subscribers.py

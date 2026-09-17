@@ -1,0 +1,50 @@
+# RootMC Banner shop — plugins/RootMC/root-banner.yml
+# /banner <text> quotes a purchase; /banner confirm charges and delivers.
+
+enabled: true
+
+# Defaults for letter / number / symbol banners (blank color uses the color you type).
+defaults:
+  base: black
+  ink: white
+
+prices:
+  blank: 5
+  letter: 10
+  number-or-symbol: 25
+
+limits:
+  max-banners: 36
+  confirm-seconds: 60
+
+messages:
+  prefix: ""
+  no-permission: "&cYou do not have permission."
+  disabled: "&cBanner shop is disabled."
+  economy-missing: "&cEconomy is unavailable — ask staff."
+  help:
+    - "&7Buy blank color banners, letters (&f10 G&7), or numbers/symbols (&f25 G&7)."
+    - "&f/banner <text> &7— quote a sentence (spaces skip; color words = blank banner)"
+    - "&f/banner colors &7— blank color names"
+    - "&f/banner prices &7— current prices"
+    - "&f/banner confirm &7— pay and receive"
+    - "&f/banner cancel &7— cancel the quote"
+  colors-header: "&7Blank colors:"
+  prices-line: "&7Blank &f{blank} G &8| &7Letter &f{letter} G &8| &7Number/symbol &f{symbol} G"
+  empty-text: "&cType something to buy. Example: &f/banner Hello &7or &f/banner red"
+  unsupported: "&cUnsupported character(s): &f{chars}&c. Use A–Z, 0–9, ? ! . - _ / \\ + = : ; , ' \" * # @ & % ( )"
+  too-many: "&cMax &f{max} &cbanners per order."
+  quote-header: "&7Quote — &f{count} &7banner(s) for &6{total} G&7:"
+  quote-line: "&8  {index}. &f{label} &7— &6{price} G"
+  quote-total: "&7Total: &6{total} G &8| &7Your balance: &f{balance} G"
+  inventory-ok: "&7Inventory space: &a{free} &7free slot(s) (need &f{need}&7)."
+  inventory-warn: "&eWarning: only &f{free} &efree slot(s) for &f{need} &ebanners — overflow drops at your feet if you confirm."
+  confirm-prompt: "&7Confirm to create and charge."
+  nothing-pending: "&cNo pending banner order. Use &f/banner <text> &cfirst."
+  expired: "&cThat quote expired. Run &f/banner <text> &cagain."
+  cancelled: "&7Banner order cancelled."
+  cannot-afford: "&cNeed &6{total} G&c — you have &f{balance} G&c."
+  charge-failed: "&cCould not charge your wallet. Try again."
+  success: "&aPaid &6{total} G&a — delivered &f{count} &abanner(s)."
+  success-dropped: "&ePaid &6{total} G&e — delivered &f{kept}&e; &f{dropped} &edropped at your feet."
+  reload-done: "&aRoot-Banner reloaded."

@@ -1,0 +1,274 @@
+﻿# RootMC Help - plugins/RootMC/roothelp.yml
+
+discord:
+  invite-url: "https://discord.gg/rFFQYrNaqS"
+  guild-name: "RootMC Discord"
+  verify-url: "https://rootmc.net/verify"
+  wiki-commands-url: "https://rootmc.net/wiki/player/#commands"
+
+# Optional override; leave blank to use server.map-url from plugins/RootMC/rootmc.yml
+map:
+  base-url: ""
+
+commands:
+  lines-per-page: 10
+
+command-test:
+  # Locked off — no Gold for testing commands.
+  enabled: false
+  total-gold-cap: 1000.0
+  reminder-interval-seconds: 120
+  action-bar-reminders: true
+  fee-refund: true
+  mysql:
+    enabled: true
+    host: ""
+    port: 3306
+    database: ""
+    username: ""
+    password: ""
+    table-prefix: "root_"
+    jdbc-params: "verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC"
+  messages:
+    intro-detail: "&7Run each command you have access to &fonce&7 - reminders stop when you use it. Up to &f1000 G&7 total (&f{per} G&7 Ã- &f{count}&7 commands). Paid commands get &fone free test use&7."
+    reminder: "&eCommand test &8(&f{done}&8/&f{total}&8)&7 - try &f{cmd}&7 for &f{gold} G&7 (&f/cmdtest&7)"
+    completed-one: "&aTested: &f{cmd}&a - &f+{gold} G&7 (&f{done}&7/&f{total}&7)"
+
+messages:
+  prefix: ""
+  rules-header: "&6&lRootMC Rules &8- &7short version"
+  rules-footer: "&7Full rules and constitution:"
+  cmds-header: "&7Commands &8(&f{page}&7/&f{pages}&7) &8- &7click a command or page number"
+  cmds-empty: "&eNo commands configured."
+  cmds-page-invalid: "&ePage &f{page}&e is out of range (&f1&7-&f{pages}&e)."
+  discord-header: "&7RootMC Discord & link status"
+  discord-invite: "&7Join the community:"
+  discord-mc-unlinked: "&7Minecraft: &eNot linked &8- &7use &f/link"
+  discord-mc-linked: "&7Minecraft: &aLinked &7(&f{account}&7)"
+  discord-discord-unlinked: "&7Discord: &eNot linked &8- &7open verify, run &f/link&7 in-game, then &fLink with Discord&7 to chat"
+  discord-discord-linked: "&7Discord: &aLinked &7as &f{user}"
+  discord-both-linked: "&aYour game and Discord profiles are linked to RootMC."
+  discord-stats: "&7Public stats:"
+  discord-no-cloud: "&cRootMC cloud credentials missing - ask staff."
+  discord-fetch-fail: "&cCould not load link status: &f{error}"
+  map-header: "&7RootMC live map &8- &7click to open in your browser:"
+  map-unconfigured: "&cLive map unavailable - ask staff to check server.map-url in rootmc.yml."
+  feedback-usage: "&7Usage: &f/feedback <message>&7 — bugs, suggestions, or praise."
+  feedback-sent: "&aThanks - your feedback was sent to staff."
+  feedback-sent-paid: "&aThanks — &f+5 G&a. Implemented ideas can earn extra bonuses."
+  feedback-sent-recent: "&aAlready rewarded recently — still received. Implemented ideas can earn extra bonuses."
+  feedback-too-long: "&eFeedback is limited to &f{max}&e characters."
+  feedback-no-cloud: "&cFeedback is unavailable - cloud credentials missing. Tell staff."
+  feedback-fail: "&cCould not send feedback: &f{error}"
+  feedback-not-in-land: "&cStand in &fyour claim or territory&c to send feedback."
+  feedback-claims-offline: "&cClaims are offline — feedback is paused. Tell staff."
+  cmdtest-intro: "&bCommand testing &8- &7earn up to &f1000 G&7 while learning every command available to you."
+  cmdtest-intro-cmdtest: "&7Progress: &f/cmdtest&7 Â· pending list: &f/cmdtest list&7 Â· issue: &f/cmdtest report <key> [note]"
+  cmdtest-status: "&7Command test &8(&f{done}&7/&f{total}&7)&7 - earned &f{earned}&7/&f{cap} G&7 (&f{per} G&7 each)"
+  cmdtest-status-complete: "&aCommand testing complete! &7You earned &f{earned} G&7 across &f{total}&7 commands."
+  cmdtest-next: "&7Next: &f{cmd} &8(&7key &f{key}&8)"
+  cmdtest-all-complete: "&aAll commands tested! &7Total earned: &f{earned} G&7. Notifications stopped."
+  cmdtest-list-header: "&7Pending command tests &8(&f{count}&8)&7:"
+  cmdtest-list-empty: "&aYou have tested every command available to you."
+  cmdtest-try-usage: "&7Usage: &f/cmdtest try <key>"
+  cmdtest-report-usage: "&7Usage: &f/cmdtest report <key> [note]"
+  cmdtest-report-sent: "&aReport sent to staff - thank you."
+  cmdtest-report-fail: "&cCould not send report: &f{error}"
+  cmdtest-key-unknown: "&eUnknown test key &f{key}&e - use &f/cmdtest list"
+  cmdtest-not-manual: "&eRun the command normally: &f{cmd}"
+  cmdtest-disabled: "&eCommand testing is unavailable right now."
+  cmdtest-no-cloud: "&cReports need cloud credentials - tell staff."
+
+rules:
+  - "&cNo cheating. &7No x-ray, dupes, macros, hacked clients, automation, or exploit abuse. Report bugs instead of using them."
+  - "&cNo harassment. &7No slurs, threats, sexual content toward players, targeted toxicity, or trying to drive people off the server."
+  - "&eRespect land. &7Do not grief claimed towns, bypass protections, lava/water grief, or abuse wilderness edges to damage builds."
+  - "&eTowny matters. &7Join or found towns for protected land. Towns/nations handle their own rules as long as they follow server rules."
+  - "&6Gold economy. &7Gold (G) is player-earned through mining, trade, shops, loans, bonds, and taxes. Do not fake markets or manipulate bugs."
+  - "&6Fair shops. &7Shop prices must stay within the configured market cap. Predatory pricing or bypass tricks can be removed."
+  - "&bPvP and conflict. &7PvP is limited by server settings and consent systems. Do not use traps or mechanics to bypass intended protections."
+  - "&bStaff tools. &7Do not ask for command cheats like /heal, /feed, /repair, or item spawning. Staff-only means staff-only."
+  - "&aGet help. &7Use chat or Discord for questions. Link with &f/link &7for stats, app features, and Discord verification."
+
+command-list:
+  - section: "Start here - first 10 minutes"
+    items:
+      - cmd: "/rules"
+        desc: "Read the short rules and open the full constitution"
+      - cmd: "/rtp"
+        desc: "Leave spawn and find wilderness to explore (starter grace only)"
+      - cmd: "/map"
+        desc: "Open the live map near your location"
+        permission: rootstat.map
+      - cmd: "/sethome"
+        desc: "Save your current spot as home"
+      - cmd: "/home"
+        desc: "Teleport back to your saved home"
+      - cmd: "/balance (/bal)"
+        desc: "Check your Gold balance"
+      - cmd: "/shop create [price]"
+        desc: "Create a chest shop from the item in your hand"
+        test-key: shop-create
+      - cmd: "/town new <name>"
+        desc: "Found a protected Towny town when you are ready (400 G)"
+        test-key: town-new
+        test-fee: 400
+      - cmd: "/town claim"
+        desc: "Claim the chunk you are standing in for your town"
+      - cmd: "/link"
+        desc: "Link your account for stats, app, and Discord features"
+        permission: rootstat.link
+  - section: "Land and towns"
+    items:
+      - cmd: "/towny map"
+        desc: "View nearby town chunks in chat"
+      - cmd: "/town deposit <amount>"
+        desc: "Add Gold to your town bank"
+      - cmd: "/town invite <player>"
+        desc: "Invite a player to your town"
+      - cmd: "/plot claim"
+        desc: "Claim a personal plot inside a town"
+      - cmd: "/territories"
+        desc: "Check the zone, allegiance, and wilderness-alert status where you stand"
+      - cmd: "/territories notifications [on|off|status]"
+        desc: "Toggle territory border messages"
+  - section: "Gold and economy"
+    items:
+      - cmd: "/pay <player> <amount>"
+        desc: "Send Gold to another player"
+      - cmd: "/paytoggle"
+        desc: "Toggle whether players can pay you"
+      - cmd: "/gold"
+        desc: "Live gold mining bonus, site taxes (mesa/nether/env), solar XP (☀)"
+      - cmd: "/radar [on|off]"
+        desc: "Ore compass tape (4 blocks, 1 G/min) — gold, diamond, iron, coal, lapis, redstone, emerald"
+      - cmd: "/mint hand | /mint all | /mint gold <amount|max>"
+        desc: "Mine gold → Notes; /mint gold redeems Notes to nuggets/ingots/blocks"
+      - cmd: "/value [item]"
+        desc: "Check carried item value or look up one item"
+      - cmd: "/sell hand | /sell all | /sell blocks"
+        desc: "Sell items using shop-market average or fallback worth"
+      - cmd: "/economy"
+        desc: "View Notes, mined gold backing, and over-issue status"
+      - cmd: "/reserve"
+        desc: "View Server Reserve, backing, and dividends"
+      - cmd: "/tax"
+        desc: "View ledger tax plus solar/CPU host overlay"
+      - cmd: "/gamble"
+        desc: "Open the gamble menu (roulette, hilo, lotto, coin, dice — first play free each)"
+      - cmd: "/roulette <amount> <red|black|green|0-36>"
+        desc: "European roulette vs Server Reserve"
+      - cmd: "/hilo <amount> <high|low>"
+        desc: "High/low vs Server Reserve"
+      - cmd: "/lotto [1-500]"
+        desc: "Buy a lotto ticket or view jackpot (draws each Minecraft day)"
+      - cmd: "/coin <player> <amount>"
+        desc: "Challenge a player or Ava to a coin flip (Ava always accepts if reserve 0+)"
+      - cmd: "/dice <player> <amount>"
+        desc: "Challenge a player to a dice duel"
+      - cmd: "/baltop players | towns | nations"
+        desc: "View balance leaderboards"
+  - section: "Shops"
+    items:
+      - cmd: "/buy <item> [amount]"
+        desc: "Buy from the cheapest in-stock player shop"
+      - cmd: "/sell <item> [amount]"
+        desc: "Sell to the best-paying buy shop"
+      - cmd: "/shop stock confirm"
+        desc: "Pay merchant fee to stock a sell shop from inventory"
+        test-key: shop-stock
+        test-fee: 5
+      - cmd: "/shop edittype"
+        desc: "Toggle a shop between sell and buy mode"
+      - cmd: "/shop editprice"
+        desc: "Change shop price"
+      - cmd: "/shop editqty"
+        desc: "Change shop quantity per sale"
+      - cmd: "/shop remove"
+        desc: "Remove a shop from the target chest"
+      - cmd: "/shop avg <item>"
+        desc: "Show market average and price cap"
+  - section: "Travel and homes"
+    items:
+      - cmd: "/spawn"
+        desc: "Return to server spawn"
+      - cmd: "/tpa | /tpahere | /tpaccept | /tpdeny"
+        desc: "Consent-based player teleport requests"
+      - cmd: "/homes"
+        desc: "List your homes"
+      - cmd: "/delhome <name>"
+        desc: "Delete a home"
+      - cmd: "/renamehome <old> <new>"
+        desc: "Rename a home"
+      - cmd: "/warp | /warps"
+        desc: "Use or list public warps"
+      - cmd: "/top"
+        desc: "Teleport to the surface (10 G)"
+  - section: "Help and community"
+    items:
+      - cmd: "/cmds [page]"
+        desc: "This command list"
+      - cmd: "/discord"
+        desc: "Discord invite and profile link status"
+      - cmd: "/feedback <message>"
+        desc: "Send bugs or suggestions to staff"
+      - cmd: "/playtime"
+        desc: "View your playtime and milestones"
+        permission: rootrewards.use
+      - cmd: "/vote | /votes"
+        desc: "Vote links, Appreciation Tokens, Vote Shards, and [Buy Voteshards]"
+        permission: rootrewards.vote
+      - cmd: "/voteshard | /voteshards"
+        desc: "Vote Shard explainer, power, and [Buy Voteshards]"
+      - cmd: "/donor | /pro | /lifetime"
+        desc: "Membership perks, features, and checkout links"
+      - cmd: "/msg <player> <text> | /reply (/r)"
+        desc: "Private messages"
+      - cmd: "/ignore <player> | /unignore <player>"
+        desc: "Mute or unmute a player"
+      - cmd: "/mail | /mail send | /mail read | /mail clear"
+        desc: "Offline mail"
+  - section: "Advanced systems"
+    items:
+      - cmd: "/loan take <amount>"
+        desc: "Borrow Gold based on credit limit"
+        permission: rootloans.use
+      - cmd: "/loan info"
+        desc: "View loan balance, limit, and interest"
+        permission: rootloans.use
+      - cmd: "/loan repay <amount|all>"
+        desc: "Repay a loan"
+        permission: rootloans.use
+      - cmd: "/rank list | /rank info | /rank buy"
+        desc: "View and buy progression ranks"
+        permission: rootranks.use
+      - cmd: "/skills [skill]"
+        desc: "View Root-Skills progression (replaces /mcstats)"
+      - cmd: "/mcstats (/stats)"
+        desc: "Legacy skills view — prefer /skills"
+      - cmd: "/mctop [skill]"
+        desc: "Legacy skill leaderboards — prefer /skills"
+      - cmd: "/show hand"
+        desc: "Show your held item in chat"
+      - cmd: "/kit starter | /kit list"
+        desc: "Claim or list kits"
+  - section: "Staff"
+    items:
+      - cmd: "/grant <player> <amount> [reason]"
+        desc: "Pay Gold from server treasury"
+        permission: rootessentials.grant
+      - cmd: "/rootstat sync"
+        desc: "Force cloud sync"
+        permission: rootstat.sync
+      - cmd: "/rootstat reload"
+        desc: "Reload RootMC config"
+        permission: rootstat.reload
+      - cmd: "/rootloans reload"
+        desc: "Reload loan config"
+        permission: rootloans.reload
+      - cmd: "/rootrestart [cancel]"
+        desc: "Graceful restart countdown"
+        permission: rootrestart.admin
+      - cmd: "/rootstop [cancel]"
+        desc: "Stop for update countdown"
+        permission: rootrestart.admin

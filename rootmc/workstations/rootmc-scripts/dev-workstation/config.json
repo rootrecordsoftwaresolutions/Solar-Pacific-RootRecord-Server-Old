@@ -1,0 +1,10 @@
+{
+  "workstationId": "primary",
+  "machineLabel": "Dev workstation",
+  "workstationDrive": "D",
+  "workspaceFolderName": "RootMC Workspace",
+  "discordChannelId": "",
+  "slackServerLogsChannelId": "C0BMX0QKSTS",
+  "apiBase": "https://api.rootmc.info",
+  "heartbeatMinutes": 5
+}

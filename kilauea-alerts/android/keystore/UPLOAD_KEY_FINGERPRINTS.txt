@@ -1,0 +1,26 @@
+﻿Alias name: kilauea-upload
+Creation date: May 7, 2026
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: CN=Root Record, OU=Mobile, O=Root Record, L=, ST=, C=US
+Issuer: CN=Root Record, OU=Mobile, O=Root Record, L=, ST=, C=US
+Serial number: a838e6cf84cc5046
+Valid from: Thu May 07 20:36:13 HST 2026 until: Mon Sep 22 20:36:13 HST 2053
+Certificate fingerprints:
+	 SHA1: 66:85:6F:E6:1F:26:E2:1D:8A:EB:55:B8:BD:DA:47:C4:A2:FD:5C:E7
+	 SHA256: DB:8E:EB:41:43:D0:2B:7A:04:4C:68:36:EC:6D:CF:1F:07:42:7E:2D:7A:F4:6A:5B:80:8F:81:50:93:7C:EC:02
+Signature algorithm name: SHA256withRSA
+Subject Public Key Algorithm: 2048-bit RSA key
+Version: 3
+
+Extensions: 
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: F4 A0 72 D2 58 C9 CB 1D   82 61 CF 09 53 BD DA 78  ..r.X....a..S..x
+0010: 0B D1 D8 CF                                        ....
+]
+]
+

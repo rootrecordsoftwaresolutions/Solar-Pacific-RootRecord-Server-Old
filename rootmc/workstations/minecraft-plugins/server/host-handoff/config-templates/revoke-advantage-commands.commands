@@ -1,0 +1,22 @@
+# Run on Shockbyte console — removes survival-cheat commands from default (and pro/lifetime via inheritance).
+# Staff keep heal/feed via admin: essentials.heal.others / rootadmin.heal.others
+
+lp group default permission set essentials.feed false
+lp group default permission set essentials.heal false
+lp group default permission set essentials.repair false
+lp group default permission set essentials.more false
+lp group default permission set essentials.workbench false
+lp group default permission set essentials.extinguish false
+lp group pro permission set essentials.feed false
+lp group pro permission set essentials.heal false
+lp group pro permission set essentials.repair false
+lp group pro permission set essentials.more false
+lp group pro permission set essentials.workbench false
+lp group pro permission set essentials.extinguish false
+lp group lifetime permission set essentials.feed false
+lp group lifetime permission set essentials.heal false
+lp group lifetime permission set essentials.repair false
+lp group lifetime permission set essentials.more false
+lp group lifetime permission set essentials.workbench false
+lp group lifetime permission set essentials.extinguish false
+lp sync

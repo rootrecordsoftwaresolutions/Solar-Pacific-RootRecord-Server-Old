@@ -1,0 +1,1 @@
+../../../startup-voice/scripts/startup_voice.py

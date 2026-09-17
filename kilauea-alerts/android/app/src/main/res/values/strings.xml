@@ -1,0 +1,30 @@
+<resources>
+    <!-- Short label so home screen / recents do not truncate ("Kilauea …"). -->
+    <string name="app_name">Kīlauea</string>
+    <string name="disclaimer_short">Independent app. Not endorsed by USGS. Data from official agencies.</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_earthquakes">Earthquakes</string>
+    <string name="nav_weather">Weather</string>
+    <string name="nav_live_feeds">Live Feeds</string>
+    <string name="nav_alerts">Alerts</string>
+    <string name="nav_more">Menu</string>
+    <string name="watch_live">Watch Live</string>
+    <string name="view_usgs_webcams">View all official USGS webcams →</string>
+
+    <string name="welcome_tutorial_step0_title">E komo mai!</string>
+    <string name="welcome_tutorial_step0_body">Welcome to the Kilauea Alerts App,\n\nMahalo nui loa for using Kīlauea Alerts. Your feedback helps us keep improving something genuinely useful for Hawaiʻi Island.</string>
+
+    <string name="welcome_tutorial_step1_title">Around the app</string>
+    <string name="welcome_tutorial_step1_body">Use the tabs along the bottom for the main pages. The Menu tab groups everything by category: official alerts, island conditions, live feeds, account tools, photos, and support.</string>
+
+    <string name="welcome_tutorial_step2_title">Alerts &amp; your account</string>
+    <string name="welcome_tutorial_step2_body">Kīlauea volcano push alerts are included for everyone. Signing in is optional. Some features require additional resources, including broader alert categories, every Big Island weather location, and the full dashboard.</string>
+
+    <string name="welcome_tutorial_step3_title">Mahalo — you\'re set</string>
+    <string name="welcome_tutorial_step3_body">Explore safely, stay informed, and tell us what would help you most. We appreciate you.</string>
+
+    <string name="welcome_tutorial_next">Next</string>
+    <string name="welcome_tutorial_back">Back</string>
+    <string name="welcome_tutorial_begin">Begin</string>
+    <string name="welcome_tutorial_skip">Skip intro</string>
+</resources>

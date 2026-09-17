@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Foreground fills the adaptive safe zone (~66dp center); outer 18dp may be masked. -->
+    <path
+        android:fillColor="@color/ic_launcher_lava"
+        android:pathData="M54,24 L32,88 L76,88 Z" />
+    <path
+        android:fillColor="@color/ic_launcher_lava_dark"
+        android:pathData="M54,38 L40,82 L68,82 Z" />
+    <path
+        android:fillColor="#FFFF8F5C"
+        android:pathData="M54,40 A8,8 0 1,0 54,56 A8,8 0 1,0 54,40 Z" />
+</vector>

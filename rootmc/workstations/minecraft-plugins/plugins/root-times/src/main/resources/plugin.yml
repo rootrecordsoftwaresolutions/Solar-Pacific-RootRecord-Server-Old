@@ -1,0 +1,50 @@
+name: Root-Times
+version: '${version}'
+main: com.rootrecord.minecraft.roottimes.RootTimesPlugin
+api-version: '26.1'
+description: Minecraft-day clock, play/AFK/activity harvest, timezone peaks, join welcome, and local status web for RootMC.
+author: RootMC
+website: https://rootmc.net/plugins/root-times/
+softdepend: [Root-Core, PlaceholderAPI]
+loadbefore: [RootMC, Root-Essentials]
+commands:
+  times:
+    description: Root-Times status and admin
+    usage: /times [status|reload|resetday|web]
+    aliases: [roottimes]
+    permission: roottimes.admin
+  time:
+    description: New day countdown, uptime, sessions, top playtime, clocks
+    usage: /time
+    permission: roottimes.time
+  afk:
+    description: Toggle AFK
+    usage: /afk
+    permission: roottimes.afk
+  timezone:
+    description: Server busiest window in your local time, plus players per timezone
+    usage: /<command>
+    aliases: [activity]
+  rootactivity:
+    description: Admin reload for Root-Activity (absorbed into Times)
+    usage: /<command> reload
+    permission: rootactivity.reload
+permissions:
+  roottimes.admin:
+    description: Administer Root-Times
+    default: op
+  roottimes.time:
+    description: View /time clock and playtime summary
+    default: true
+  roottimes.afk:
+    description: Toggle AFK
+    default: true
+  roottimes.bypass:
+    description: Bypass idle AFK detection
+    default: false
+  rootactivity.use:
+    description: View /timezone activity report
+    default: true
+  rootactivity.reload:
+    description: Reload root-activity.yml
+    default: op

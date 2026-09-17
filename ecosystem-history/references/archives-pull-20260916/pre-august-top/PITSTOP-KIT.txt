@@ -1,0 +1,5 @@
+﻿PIT-STOP KIT (2026-08-03)
+Start here: .1 Work Stations\RootMC\Server Handoffs\Ava Ivy\notes\PITSTOP-E-UBUNTU-WHILE-D-FLASH.md
+This is NOT MIGRATION-READY.txt — do not wipe disks until operator checklist is green.
+E serial (mass storage): ZDZSCFL4 → /mnt/e
+D serial (twin / flash target when you say): JR100X4M1R3TUE

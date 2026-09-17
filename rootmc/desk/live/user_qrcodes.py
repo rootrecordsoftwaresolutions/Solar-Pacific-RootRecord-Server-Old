@@ -1,0 +1,1 @@
+../../../user-qrcodes/scripts/user_qrcodes.py

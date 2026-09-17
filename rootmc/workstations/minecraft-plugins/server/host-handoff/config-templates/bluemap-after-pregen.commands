@@ -1,0 +1,11 @@
+# Run on the game server after Chunky finishes a world (or on a schedule during pre-gen).
+# Uploads rendered tiles to R2 when sync-bluemap-r2.ps1 is run from your PC afterward.
+
+bluemap reload
+bluemap update world
+
+# On PC (repo root):
+#   powershell -File Web\cloudflare\rootrecord-minecraft-map\sync-bluemap-r2.ps1
+#
+# If tiles look wrong:
+# bluemap purge world

@@ -1,0 +1,36 @@
+# RootMC Announcer — plugins/RootMC/root-announcer.yml
+# Uniform &7 body, &b highlights. One line per tip; mute suffix appended inline.
+
+enabled: true
+interval-seconds: 300
+random-order: true
+require-min-players: 1
+
+cloud:
+  sync-enabled: true
+  sync-interval-minutes: 5
+  season-lines-first: true
+
+messages:
+  mute-suffix: ''
+  lines:
+    - "&7Welcome to &bRootMC&7 — use &b/cmds &7for commands."
+    - "&7Join the community: &b/discord"
+    - "&7Need help? &b/rules &7or &b/cmds&7, or ask in chat / &b/discord"
+    - "&7Suggest features or report bugs with &b/feedback"
+    - "&7Player shops: hold the item, look at a chest, run &b/shop create&7, then type your price."
+    - "&7Vote for the server: &b/vote"
+    - "&7Server Reserve stats: &b/reserve &7· vote rewards: &b/vote"
+    - "&7Claim daily &bAppreciation Tokens&7 with &b/bonus&7 — check totals via &b/thanks"
+    - "&7Appreciation Tokens reward players — staff can issue them; redeem comes later."
+    - "&7Try your luck: &b/gamble &7— first play free on each game."
+    - "&7Lotto tickets &b/lotto &7— jackpot draws each Minecraft day."
+  no-permission: "&cYou do not have permission."
+  players-only: "&cPlayers only."
+  toggle-on: "&7Announcements &aenabled&7."
+  toggle-off: "&7Announcements &8muted&7 — &b/announcements on &7to restore."
+  toggle-status-on: "&7Announcements: &aenabled"
+  toggle-status-off: "&7Announcements: &8muted"
+  reload-done: "&aRoot-Announcer reloaded."
+  no-lines: "&eNo announcement lines configured."
+  broadcast-sent: "&aAnnouncement sent."

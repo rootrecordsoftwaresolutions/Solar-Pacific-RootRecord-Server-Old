@@ -1,0 +1,36 @@
+# Root Restart — plugins/RootMC/root-restart.yml
+# spigot.yml must use settings.restart-script: ./plugins/RootMC/restart-helper.sh
+# (auto-patched from ./start.sh on enable; restart-helper.sh is copied from this plugin)
+#
+# Shockbyte / Pterodactyl: Paper restart() cannot bring the server back — Wings owns the PID.
+# Plugin auto-update at 10:00 PM HST only stages jars. Add Panel → Schedules → Restart
+# at 10:00 PM Honolulu so the new jars actually load. Check restart.log in server root.
+
+daily:
+  # Ava morning first-startup owns production restart (10:00 HST + in-game warnings).
+  # Leave false to avoid a second midnight reboot. /rootrestart [morning|cancel] still works.
+  enabled: false
+  zone: Pacific/Honolulu
+
+# Relay restart/stop countdown lines to Discord #ingame-chat (RootMC API).
+discord:
+  relay: true
+  startup-notify: true
+
+messages:
+  prefix: '&c&l[Restart] &r'
+  countdown: '&eServer restarting in &f{time}&e.'
+  daily-countdown: '&eMorning restart in &f{time}&e.'
+  started-manual: '&7Manual restart started by &f{player}&7.'
+  cancelled: '&aCountdown cancelled.'
+  already-running: '&cA countdown is already running.'
+  restarting-now: '&c&lRestarting now!'
+  startup-complete: '&aServer is online — &fplay.rootmc.net'
+  # /rootstop — stop for panel update (no restart-helper)
+  stop-prefix: '&c[Update] &r'
+  stop-countdown: '&eServer stopping for an update in &f{time}&e.'
+  started-stop: '&7Stop for update started by &f{player}&7.'
+  stopping-now: '&c&lStopping for update!'
+  update-prefix: '&c[Plugins] &r'
+  update-countdown: '&ePlugin updates ready — restarting in &f{time}&e.'
+  started-update: '&7Plugin update restart started (&f{summary}&7).'

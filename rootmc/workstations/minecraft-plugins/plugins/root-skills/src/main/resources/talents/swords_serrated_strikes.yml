@@ -1,0 +1,19 @@
+id: swords_serrated_strikes
+display-name: Serrated Strikes
+description: Bleed bonus damage on sword hits.
+skill: swords
+unlock-level: 25
+max-rank: 5
+mana-cost: 0
+cooldown-seconds: 0
+duration-seconds: 0
+triggers:
+  - on_entity_damage
+effects:
+  - id: DAMAGE_BONUS
+    amount-per-rank: 0.8
+  - id: XP_BONUS
+    multiplier: 1.05
+conditions:
+  - type: chance
+    value: 0.35

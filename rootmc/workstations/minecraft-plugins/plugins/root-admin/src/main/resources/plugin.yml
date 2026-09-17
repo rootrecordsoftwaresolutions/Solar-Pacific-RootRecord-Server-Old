@@ -1,0 +1,112 @@
+name: Root-Admin
+version: '${version}'
+main: com.rootrecord.minecraft.rootadmin.RootAdminPlugin
+api-version: '26.1'
+description: RootMC staff commands and player reports
+author: Root Record
+website: https://rootmc.net
+depend: [Root-Essentials]
+softdepend: [CoreProtect, LuckPerms, Root-Restart]
+loadafter: [Root-Essentials, Root-Restart]
+commands:
+  report:
+    description: Report a player (includes last 30 min chat, commands, CoreProtect)
+    usage: /report <player> [reason]
+  kick:
+    description: Kick player
+  ban:
+    description: Ban player
+  tempban:
+    description: Temporarily ban player
+  unban:
+    description: Unban player
+  mute:
+    description: Mute player
+  unmute:
+    description: Unmute player
+  tpoffline:
+    description: Teleport to online player by name
+  vanish:
+    description: Toggle vanish
+  socialspy:
+    description: Toggle social spy
+  invsee:
+    description: Open player inventory
+  echest:
+    description: Open ender chest
+  enderchest:
+    description: Open ender chest
+    aliases: [ec]
+  setspawn:
+    description: Set server spawn
+  tppos:
+    description: Teleport to coordinates
+  sudo:
+    description: Run command as player
+  give:
+    description: Give items to player
+  speed:
+    description: Set walk or fly speed
+  realname:
+    description: Resolve nickname to username
+  whois:
+    description: Player information lookup
+  recipe:
+    description: Lookup item recipe
+  skull:
+    description: Get player head
+  lightning:
+    description: Strike lightning
+  ext:
+    description: Extinguish fire
+    aliases: [extinguish]
+  mutechat:
+    description: Mute global chat
+  unmutechat:
+    description: Unmute global chat
+  tpo:
+    description: Force teleport to player
+  tpohere:
+    description: Force teleport player to you
+  tpall:
+    description: Teleport all players to you
+  fly:
+    description: Toggle flight
+  god:
+    description: Toggle god mode
+  gamemode:
+    description: Change gamemode (server console only)
+    aliases: [gm]
+  gms:
+    description: Survival mode
+  gmc:
+    description: Creative mode
+  gma:
+    description: Adventure mode
+  gmsp:
+    description: Spectator mode
+  broadcast:
+    description: Broadcast message
+  time:
+    description: Get or set world time
+  day:
+    description: Set time to day
+  night:
+    description: Set time to night
+  weather:
+    description: Set weather
+  remove:
+    description: Remove items from player
+  burn:
+    description: Ignite player
+  world:
+    description: Teleport to world spawn
+  setwarp:
+    description: Create warp
+  delwarp:
+    description: Delete warp
+  item:
+    description: Give items (alias)
+  worldborder:
+    description: Reapply world border from root-admin.yml
+    aliases: [wb]

@@ -1,0 +1,1 @@
+../../../uptime-log/scripts/uptime_log.py

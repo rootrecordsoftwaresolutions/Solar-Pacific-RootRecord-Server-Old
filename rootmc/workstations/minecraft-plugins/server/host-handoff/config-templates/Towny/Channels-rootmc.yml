@@ -1,0 +1,60 @@
+# RootMC Towny chat channels — merge into plugins/Towny/settings/Channels.yml
+# Commands: /g global · /tc town · /nc nation · /ac alliance · /l local
+
+Channels:
+  general:
+    commands: g
+    type: GLOBAL
+    channeltag: '&2✦&r'
+    messagecolour: '&f'
+    permission: towny.chat.general
+    default: 'true'
+    range: '-1'
+    spam_time: '0.5'
+  town:
+    commands: tc
+    type: TOWN
+    channeltag: '&3◆ Town&r'
+    messagecolour: '&b'
+    permission: towny.chat.town
+    range: '-1'
+    spam_time: '0.5'
+  nation:
+    commands: nc
+    type: NATION
+    channeltag: '&6◆ Nation&r'
+    messagecolour: '&e'
+    permission: towny.chat.nation
+    range: '-1'
+    spam_time: '0.5'
+  alliance:
+    commands: ac
+    type: ALLIANCE
+    channeltag: '&a◆ Ally&r'
+    messagecolour: '&a'
+    permission: towny.chat.alliance
+    range: '-1'
+    spam_time: '0.5'
+  admin:
+    commands: a,admin
+    type: DEFAULT
+    channeltag: '&c◆ Staff&r'
+    messagecolour: '&c'
+    permission: towny.chat.admin
+    range: '-1'
+    ignoreable: 'false'
+  mod:
+    commands: m,mod
+    type: DEFAULT
+    channeltag: '&9◆ Mod&r'
+    messagecolour: '&5'
+    permission: towny.chat.mod
+    range: '-1'
+    ignoreable: 'false'
+  local:
+    commands: l,lc
+    type: GLOBAL
+    channeltag: '&7◈ Local&r'
+    messagecolour: '&f'
+    permission: towny.chat.local
+    range: '100'

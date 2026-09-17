@@ -1,0 +1,12 @@
+name: Root-Chamber
+version: '${version}'
+main: com.rootrecord.minecraft.rootchamber.RootChamberPlugin
+api-version: '26.1'
+description: RootMC chamber survival minigame (split from Root-Spawn)
+author: Root Record
+website: https://rootmc.net
+depend: [Root-Spawn]
+permissions:
+  rootspawn.chamber.bypass:
+    description: Ignore chamber 24h cooldown (testing)
+    default: op

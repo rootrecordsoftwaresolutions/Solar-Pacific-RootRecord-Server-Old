@@ -1,0 +1,42 @@
+# Root Spawn — plugins/RootMC/root-spawn.yml
+# Vanilla locator bar (player waypoint HUD above hotbar, 1.21.6+) is disabled on startup by Root-Spawn.
+
+particles:
+  enabled: false
+  # yellow / blue = thick colored dust; green = Towny-style sparks
+  color: yellow
+  interval_ticks: 16
+  batch_size: 100
+  count: 8
+  size: 3.0
+  spread: 0.22
+  layers: 2
+  surface_y_offset: 1
+
+protection:
+  y_min: 0
+  grief_buffer_blocks: 5
+  mob_cleanup_ticks: 80
+
+basement:
+  y_top: 0
+  y_bottom: -60
+
+messages:
+  prefix: ''
+  enter_chat: ''
+  leave_chat: ''
+  enter_title: ''
+  enter_subtitle: ''
+  enter_actionbar: '&aSpawn safe zone &7— no PvP, mobs, or griefing inside the walls'
+  leave_title: ''
+  leave_subtitle: ''
+  leave_actionbar: '&7Outside spawn walls &8— &cPvP and mobs active'
+  build_started: '&aSpawn refine — &7click &finside&7 to shrink, &fjust outside&7 the walls to expand.'
+  build_pull: '&7Border pulled inward at &f{x}, {z}&7.'
+  build_push: '&7Border pushed outward at &f{x}, {z}&7.'
+  build_hint: '&7Click &finside&7 to shrink, or &fwithin 12 blocks outside&7 the wall line to expand.'
+  build_saved: '&aUpdated &fspawnarea-refined.txt&a.'
+
+build:
+  expand_max_dist: 12

@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Website — Account — RootRecord</title>
+  <meta name="description" content="Create and manage your Root Record personal website. $10/month hosting subscription."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/styles.css?v=17"/>
+  <link rel="icon" href="/favicon-32.png"/>
+  <style>
+    .wh-shell {
+      max-width: 68rem;
+      margin: 0 auto;
+      padding: 0 1.25rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+    .wh-hero {
+      padding: 2.2rem 0 1.4rem;
+      animation: wh-in 0.55s var(--ease-out) both;
+    }
+    .wh-hero h1 {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(2.1rem, 4.5vw, 3rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin: 0.35rem 0 0.65rem;
+    }
+    .wh-hero .lede { max-width: 36rem; color: var(--ink-soft); margin: 0; }
+    .wh-hero .lede strong { color: var(--moss-bright); font-weight: 600; }
+    .wh-price {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0, 229, 255, 0.06);
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+    .wh-price b { color: var(--ink); font-weight: 600; }
+
+    .wh-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.85fr);
+      gap: 1.5rem;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .wh-layout { grid-template-columns: 1fr; }
+      .wh-preview-wrap { order: -1; position: static !important; }
+    }
+
+    .wh-progress {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0 0 1.25rem;
+      animation: wh-in 0.55s var(--ease-out) 0.06s both;
+    }
+    .wh-progress a {
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      border: 1px solid var(--line-soft);
+      border-radius: 999px;
+      padding: 0.35rem 0.7rem;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .wh-progress a:hover {
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(0, 229, 255, 0.06);
+    }
+
+    .wh-steps { display: grid; gap: 1rem; }
+    .wh-step {
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, rgba(0, 229, 255, 0.05), transparent 42%),
+        var(--surface);
+      padding: 1.25rem 1.35rem 1.35rem;
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      animation: wh-in 0.55s var(--ease-out) both;
+    }
+    .wh-step:nth-child(1) { animation-delay: 0.08s; }
+    .wh-step:nth-child(2) { animation-delay: 0.12s; }
+    .wh-step:nth-child(3) { animation-delay: 0.16s; }
+    .wh-step:nth-child(4) { animation-delay: 0.2s; }
+    .wh-step:nth-child(5) { animation-delay: 0.24s; }
+    .wh-step:focus-within {
+      border-color: var(--line-strong);
+      box-shadow: var(--glow-cyan);
+    }
+    .wh-step h3 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1.35rem;
+      letter-spacing: -0.02em;
+    }
+    .wh-step .step-num {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 0.4rem;
+    }
+    .wh-step .note { color: var(--ink-muted); font-size: 0.92rem; margin: 0.35rem 0 0.85rem; }
+    .wh-step label {
+      display: block;
+      margin: 0.75rem 0 0.3rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+    .wh-step input[type="text"],
+    .wh-step select,
+    .wh-step textarea {
+      width: 100%;
+      max-width: none;
+      background: rgba(0, 13, 26, 0.65);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem 0.85rem;
+      font: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .wh-step input:focus,
+    .wh-step select:focus,
+    .wh-step textarea:focus {
+      outline: none;
+      border-color: rgba(0, 229, 255, 0.55);
+      box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.12);
+    }
+    .wh-step textarea { min-height: 5.5rem; resize: vertical; }
+    .wh-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; }
+    @media (max-width: 560px) { .wh-row { grid-template-columns: 1fr; } }
+
+    .wh-themes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+      margin-top: 0.35rem;
+    }
+    @media (max-width: 560px) { .wh-themes { grid-template-columns: 1fr; } }
+    .wh-theme {
+      appearance: none;
+      cursor: pointer;
+      border: 1px solid var(--line-soft);
+      border-radius: 12px;
+      padding: 0.75rem 0.7rem 0.85rem;
+      background: rgba(0, 13, 26, 0.45);
+      text-align: left;
+      color: inherit;
+      font: inherit;
+      transition: border-color 0.2s, transform 0.2s var(--ease-out), background 0.2s;
+    }
+    .wh-theme:hover { border-color: var(--line); transform: translateY(-1px); }
+    .wh-theme.is-on {
+      border-color: rgba(0, 229, 255, 0.55);
+      background: rgba(0, 229, 255, 0.08);
+      box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.15);
+    }
+    .wh-theme .swatch {
+      display: block;
+      height: 2.4rem;
+      border-radius: 8px;
+      margin-bottom: 0.55rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .wh-theme[data-theme="default"] .swatch {
+      background: linear-gradient(135deg, #001428, #0a2a4a 55%, #00e5ff 160%);
+    }
+    .wh-theme[data-theme="minimal"] .swatch {
+      background: linear-gradient(135deg, #0e1116, #1a1f28 60%, #c8d0da 140%);
+    }
+    .wh-theme[data-theme="editorial"] .swatch {
+      background: linear-gradient(135deg, #14100c, #2a2118 55%, #e8c9a0 140%);
+    }
+    .wh-theme .t-name { display: block; font-weight: 600; font-size: 0.9rem; }
+    .wh-theme .t-desc { display: block; font-size: 0.75rem; color: var(--ink-muted); margin-top: 0.15rem; }
+    #wh-theme { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+    .wh-feats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 0.35rem 0 0.25rem;
+      border: 0;
+      padding: 0;
+    }
+    .wh-feats legend { width: 100%; padding: 0; margin: 0 0 0.35rem; }
+    .wh-feat {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin: 0 !important;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--line-soft);
+      background: rgba(0, 13, 26, 0.4);
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .wh-feat:has(input:checked) {
+      border-color: rgba(0, 229, 255, 0.45);
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--ink);
+    }
+    .wh-feat input { accent-color: var(--moss); width: auto; margin: 0; }
+
+    .wh-dev-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+      padding: 0.65rem 0.8rem;
+      border-radius: 10px;
+      border: 1px dashed var(--line);
+      background: rgba(0, 229, 255, 0.03);
+    }
+    .wh-dev-row label { margin: 0 !important; display: inline-flex; align-items: center; gap: 0.45rem; cursor: pointer; }
+    .wh-dev-row input { width: auto; }
+
+    .wh-default {
+      margin: 0.85rem 0 0;
+      padding: 0.95rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      background: rgba(0, 229, 255, 0.07);
+    }
+    .wh-default .wh-default-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--moss);
+      margin-bottom: 0.35rem;
+    }
+    .wh-default strong { display: block; font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .wh-default a { color: var(--moss-bright); word-break: break-all; }
+    .wh-default .wh-default-note {
+      margin: 0.55rem 0 0;
+      font-size: 0.82rem;
+      color: var(--ink-muted);
+    }
+    .wh-ns {
+      margin-top: 0.85rem;
+      padding: 0.85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0, 13, 26, 0.55);
+    }
+    .wh-ns-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.4rem 0;
+    }
+    .wh-ns code {
+      display: block;
+      flex: 1;
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--moss-bright);
+      padding: 0.45rem 0.6rem;
+      border-radius: 8px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--line-soft);
+    }
+    .wh-ns .wh-copy {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(0, 229, 255, 0.08);
+      color: var(--ink-soft);
+      border-radius: 8px;
+      padding: 0.4rem 0.55rem;
+      font-size: 0.75rem;
+      cursor: pointer;
+    }
+    .wh-ns .wh-copy:hover { color: var(--ink); border-color: var(--line-strong); }
+    .wh-domain-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-top: 0.65rem;
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+    }
+    .wh-domain-status[data-state="active"] { color: #7dffa8; }
+    .wh-domain-status[data-state="pending"] { color: var(--sun); }
+    .wh-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+
+    .wh-modal[hidden] { display: none !important; }
+    .wh-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      background: rgba(0, 8, 18, 0.72);
+      backdrop-filter: blur(6px);
+    }
+    .wh-modal-card {
+      width: min(34rem, 100%);
+      max-height: min(90vh, 40rem);
+      overflow: auto;
+      border-radius: 16px;
+      border: 1px solid var(--line-strong);
+      background: #001428;
+      padding: 1.25rem 1.35rem 1.4rem;
+      box-shadow: var(--shadow-lg);
+      animation: wh-in 0.35s var(--ease-out);
+    }
+    .wh-modal-card h3 {
+      margin: 0 0 0.35rem;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: 1.45rem;
+    }
+    .wh-modal-card ol {
+      margin: 0.75rem 0 1rem;
+      padding-left: 1.2rem;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+    }
+    .wh-modal-card li { margin: 0.4rem 0; }
+    .wh-modal-card label {
+      display: block;
+      margin: 0.75rem 0 0.3rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-soft);
+    }
+    .wh-modal-card input[type="text"] {
+      width: 100%;
+      background: rgba(0, 13, 26, 0.65);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem 0.85rem;
+      font: inherit;
+    }
+    .wh-modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .wh-meta { font-size: 0.92rem; color: var(--ink-muted); margin: 0.75rem 0 0; line-height: 1.5; }
+    .wh-meta a { color: var(--moss); }
+    .wh-status { margin: 0.85rem 0 0; min-height: 1.25rem; }
+    .wh-foot {
+      margin-top: 1.5rem;
+      color: var(--ink-muted);
+      font-size: 0.92rem;
+    }
+    .wh-foot a { color: var(--moss); text-decoration: none; }
+    .wh-foot a:hover { text-decoration: underline; }
+
+    .wh-preview-wrap {
+      position: sticky;
+      top: 5.5rem;
+      animation: wh-in 0.6s var(--ease-out) 0.14s both;
+    }
+    .wh-preview {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000d1a;
+      box-shadow: var(--shadow-md);
+    }
+    .wh-preview-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.65rem 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+    .wh-preview-bar i {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.18);
+      display: inline-block;
+    }
+    .wh-preview-bar span {
+      margin-left: 0.4rem;
+      font-size: 0.7rem;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .wh-preview-body {
+      min-height: 16rem;
+      padding: 1.5rem 1.35rem 1.75rem;
+      transition: background 0.35s var(--ease-out), color 0.35s;
+    }
+    .wh-preview-body[data-theme="default"] {
+      background:
+        radial-gradient(500px 280px at 90% 0%, rgba(0, 229, 255, 0.18), transparent 55%),
+        linear-gradient(180deg, #001428, #000d1a);
+      color: #fff;
+    }
+    .wh-preview-body[data-theme="minimal"] {
+      background: linear-gradient(180deg, #12151a, #0b0d10);
+      color: #e8eaed;
+    }
+    .wh-preview-body[data-theme="editorial"] {
+      background: linear-gradient(180deg, #1c1612, #100e0c);
+      color: #f3e9dc;
+    }
+    .wh-preview-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin: 0 0 0.55rem;
+    }
+    .wh-preview-title {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      line-height: 1.15;
+      margin: 0 0 0.55rem;
+      letter-spacing: -0.02em;
+    }
+    .wh-preview-body[data-theme="editorial"] .wh-preview-title { font-style: italic; }
+    .wh-preview-intro {
+      margin: 0;
+      font-size: 0.92rem;
+      opacity: 0.78;
+      line-height: 1.5;
+    }
+    .wh-preview-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 1.15rem;
+    }
+    .wh-preview-chips span {
+      font-size: 0.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      opacity: 0.85;
+    }
+    .wh-preview-hint {
+      margin: 0.75rem 0 0;
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+      text-align: center;
+    }
+
+    @keyframes wh-in {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="/"><img src="/favicon-180.png" alt="RootRecord" width="36" height="36"/><span>RootRecord</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="/account">Account</a>
+        <a href="/billing.html">Billing</a>
+        <a href="/website-hosting.html">Hosting</a>
+        <a href="/account/settings/website.html" aria-current="page">Website</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="wh-shell">
+    <header class="wh-hero">
+      <p class="eyebrow">Account · Website</p>
+      <h1>Your site</h1>
+      <p class="lede">Name it, pick a look, choose pages, attach a domain, publish. Guided once — editable anytime.</p>
+      <p class="wh-price">Website hosting <b>$10/month</b> · separate recurring subscription (sign-in required)</p>
+      <p class="wh-status status" id="wh-status" role="status"></p>
+      <p class="wh-meta" id="wh-summary">Sign in to create or manage your site.</p>
+    </header>
+
+    <nav class="wh-progress" aria-label="Setup steps">
+      <a href="#step-name">1 Name</a>
+      <a href="#step-theme">2 Theme</a>
+      <a href="#step-pages">3 Pages</a>
+      <a href="#step-domain">4 Domain</a>
+      <a href="#step-publish">5 Publish</a>
+    </nav>
+
+    <div class="wh-layout">
+      <section class="wh-steps" id="wh-wizard">
+        <div class="wh-step" data-step="1" id="step-name">
+          <span class="step-num">Step 1</span>
+          <h3>Name</h3>
+          <p class="note">Public title and optional slug for your site.</p>
+          <div class="wh-row">
+            <div>
+              <label for="wh-title">Site title</label>
+              <input id="wh-title" type="text" maxlength="120" placeholder="Alex’s site" autocomplete="organization"/>
+            </div>
+            <div>
+              <label for="wh-slug">Slug (optional)</label>
+              <input id="wh-slug" type="text" maxlength="64" placeholder="alex" pattern="[a-z0-9\-]*"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="wh-step" data-step="2" id="step-theme">
+          <span class="step-num">Step 2</span>
+          <h3>Theme</h3>
+          <p class="note">Pick a visual direction. Preview updates live on the right.</p>
+          <label for="wh-theme" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)">Theme</label>
+          <select id="wh-theme" tabindex="-1" aria-hidden="true">
+            <option value="default">Default (navy)</option>
+            <option value="minimal">Minimal</option>
+            <option value="editorial">Editorial</option>
+          </select>
+          <div class="wh-themes" role="listbox" aria-label="Theme">
+            <button type="button" class="wh-theme is-on" data-theme="default" role="option" aria-selected="true">
+              <span class="swatch" aria-hidden="true"></span>
+              <span class="t-name">Default</span>
+              <span class="t-desc">Navy + cyan</span>
+            </button>
+            <button type="button" class="wh-theme" data-theme="minimal" role="option" aria-selected="false">
+              <span class="swatch" aria-hidden="true"></span>
+              <span class="t-name">Minimal</span>
+              <span class="t-desc">Quiet charcoal</span>
+            </button>
+            <button type="button" class="wh-theme" data-theme="editorial" role="option" aria-selected="false">
+              <span class="swatch" aria-hidden="true"></span>
+              <span class="t-name">Editorial</span>
+              <span class="t-desc">Warm print</span>
+            </button>
+          </div>
+          <label for="wh-css">Custom CSS (developer mode)</label>
+          <textarea id="wh-css" placeholder="Optional — live on your site when developer mode is on"></textarea>
+          <div class="wh-dev-row">
+            <label for="wh-dev"><input type="checkbox" id="wh-dev"/> Enable developer mode</label>
+          </div>
+        </div>
+
+        <div class="wh-step" data-step="3" id="step-pages">
+          <span class="step-num">Step 3</span>
+          <h3>Pages &amp; features</h3>
+          <p class="note">Pick what your site includes. You can edit copy after publish.</p>
+          <label for="wh-home-title">Home page title</label>
+          <input id="wh-home-title" type="text" maxlength="120" placeholder="Home" value="Home"/>
+          <label for="wh-home-body">Home intro</label>
+          <textarea id="wh-home-body" placeholder="Welcome to my site."></textarea>
+          <label for="wh-about">About</label>
+          <textarea id="wh-about" placeholder="Who you are, what you build…"></textarea>
+          <label for="wh-contact">Contact / CTA</label>
+          <input id="wh-contact" type="text" maxlength="200" placeholder="hello@example.com or a booking link"/>
+          <fieldset class="wh-feats">
+            <legend class="note">Include</legend>
+            <label class="wh-feat"><input type="checkbox" id="wh-feat-blog" checked/> Blog</label>
+            <label class="wh-feat"><input type="checkbox" id="wh-feat-gallery"/> Gallery</label>
+            <label class="wh-feat"><input type="checkbox" id="wh-feat-projects"/> Projects</label>
+            <label class="wh-feat"><input type="checkbox" id="wh-feat-links"/> Link-in-bio</label>
+          </fieldset>
+          <label for="wh-social">Social links (one per line)</label>
+          <textarea id="wh-social" placeholder="https://x.com/you&#10;https://github.com/you"></textarea>
+          <label for="wh-seo">SEO description</label>
+          <input id="wh-seo" type="text" maxlength="160" placeholder="Short description for search &amp; shares"/>
+        </div>
+
+        <div class="wh-step" data-step="4" id="step-domain">
+          <span class="step-num">Step 4</span>
+          <h3>Domain &amp; nameservers</h3>
+          <p class="note">A custom domain is <strong>optional</strong>. Every site gets a free Root Record URL when you publish.</p>
+
+          <div class="wh-default" id="wh-default-domain">
+            <span class="wh-default-label">Default domain · included</span>
+            <strong id="wh-default-title">Your Root Record URL</strong>
+            <a id="wh-default-url" href="/sites/">Publish to unlock your default URL</a>
+            <p class="wh-default-note" id="wh-default-alt"></p>
+          </div>
+
+          <div class="wh-ns" id="wh-ns">
+            <p style="margin:0 0 0.35rem;color:var(--ink-soft);font-size:0.9rem">
+              Root Record Cloudflare nameservers (point a custom domain here after you add it):
+            </p>
+            <div class="wh-ns-row">
+              <code id="wh-ns-1">anahi.ns.cloudflare.com</code>
+              <button type="button" class="wh-copy" data-copy="#wh-ns-1">Copy</button>
+            </div>
+            <div class="wh-ns-row">
+              <code id="wh-ns-2">yoxall.ns.cloudflare.com</code>
+              <button type="button" class="wh-copy" data-copy="#wh-ns-2">Copy</button>
+            </div>
+            <p class="wh-domain-status" id="wh-domain-status" data-state="none">No custom domain yet — default URL is enough.</p>
+          </div>
+
+          <input id="wh-domain" type="hidden" value=""/>
+          <div class="wh-actions">
+            <button type="button" class="btn primary" id="wh-add-domain">Add Domain</button>
+          </div>
+        </div>
+
+        <div class="wh-step" data-step="5" id="step-publish">
+          <span class="step-num">Step 5</span>
+          <h3>Publish</h3>
+          <p class="note">Creates your site (you must be signed in). Then subscribe to Website Hosting — $10/month recurring.</p>
+          <div class="wh-actions">
+            <button type="button" class="btn primary" id="wh-create">Create site</button>
+            <button type="button" class="btn secondary" id="wh-save" hidden>Save changes</button>
+            <button type="button" class="btn primary" id="wh-subscribe" hidden>Subscribe — $10/mo</button>
+            <a class="btn ghost" id="wh-open" href="/sites/" hidden>Open public URL</a>
+          </div>
+        </div>
+      </section>
+
+      <aside class="wh-preview-wrap" aria-label="Live preview">
+        <div class="wh-preview">
+          <div class="wh-preview-bar">
+            <i></i><i></i><i></i>
+            <span id="wh-preview-host">yoursite.rootrecord.info</span>
+          </div>
+          <div class="wh-preview-body" id="wh-preview-body" data-theme="default">
+            <p class="wh-preview-eyebrow">Your site</p>
+            <h2 class="wh-preview-title" id="wh-preview-title">Alex’s site</h2>
+            <p class="wh-preview-intro" id="wh-preview-intro">Welcome to my site.</p>
+            <div class="wh-preview-chips" id="wh-preview-chips"></div>
+          </div>
+        </div>
+        <p class="wh-preview-hint">Live preview · not published yet</p>
+      </aside>
+    </div>
+
+    <p class="wh-foot"><a href="/account">← Back to Account</a> · <a href="/website-hosting.html">Product page</a></p>
+  </main>
+
+  <div class="wh-modal" id="wh-domain-modal" hidden role="dialog" aria-modal="true" aria-labelledby="wh-domain-modal-title">
+    <div class="wh-modal-card">
+      <h3 id="wh-domain-modal-title">Add a custom domain</h3>
+      <p class="note" style="margin:0">Optional. We add the domain to the Root Record Cloudflare account, attach it to hosting, and give you the nameservers to set at your registrar.</p>
+      <ol>
+        <li>Keep using your <strong>default Root Record URL</strong> — it works immediately after publish.</li>
+        <li>Enter the domain you own (example: <code>alexrs94.site</code>).</li>
+        <li>We create/link the zone in our Cloudflare account and attach it to Website Hosting.</li>
+        <li>At your registrar, replace nameservers with the two Root Record Cloudflare NS values shown on this page (or the ones returned after add).</li>
+        <li>DNS usually activates in minutes to a few hours. Status here flips to <strong>active</strong> when the ecosystem sees it live.</li>
+      </ol>
+      <label for="wh-domain-input">Custom domain</label>
+      <input id="wh-domain-input" type="text" maxlength="253" placeholder="alexrs94.site" autocomplete="off"/>
+      <p class="note" id="wh-domain-modal-msg" style="min-height:1.2rem"></p>
+      <div class="wh-modal-actions">
+        <button type="button" class="btn primary" id="wh-domain-submit">Add to Root Record</button>
+        <button type="button" class="btn secondary" id="wh-domain-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function () {
+  const TOKEN_KEY = "rootrecord_portal_token";
+  let apiBase = "";
+  let site = null;
+
+  const statusEl = document.getElementById("wh-status");
+  const summaryEl = document.getElementById("wh-summary");
+  const themeSelect = document.getElementById("wh-theme");
+
+  function setStatus(msg, kind) {
+    statusEl.textContent = msg || "";
+    statusEl.className = "wh-status status" + (kind ? " " + kind : "");
+  }
+
+  function setThemeUI(value) {
+    const v = value || "default";
+    themeSelect.value = v;
+    document.querySelectorAll(".wh-theme").forEach(function (btn) {
+      const on = btn.getAttribute("data-theme") === v;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-selected", on ? "true" : "false");
+    });
+    const body = document.getElementById("wh-preview-body");
+    if (body) body.setAttribute("data-theme", v);
+  }
+
+  function updatePreview() {
+    const title = document.getElementById("wh-title").value.trim() || "Your site";
+    const intro = document.getElementById("wh-home-body").value.trim()
+      || document.getElementById("wh-about").value.trim()
+      || "Welcome to my site.";
+    const domain = document.getElementById("wh-domain").value.trim();
+    document.getElementById("wh-preview-title").textContent = title;
+    document.getElementById("wh-preview-intro").textContent = intro.slice(0, 160);
+    document.getElementById("wh-preview-host").textContent =
+      domain || (site && site.publicUrl
+        ? String(site.publicUrl).replace(/^https?:\/\//, "")
+        : "rootrecord.info/…-Website");
+    const chips = [];
+    if (document.getElementById("wh-feat-blog").checked) chips.push("Blog");
+    if (document.getElementById("wh-feat-gallery").checked) chips.push("Gallery");
+    if (document.getElementById("wh-feat-projects").checked) chips.push("Projects");
+    if (document.getElementById("wh-feat-links").checked) chips.push("Links");
+    document.getElementById("wh-preview-chips").innerHTML = chips
+      .map(function (c) { return "<span>" + c + "</span>"; })
+      .join("");
+  }
+
+  function setNameservers(list) {
+    const ns = Array.isArray(list) && list.length >= 2
+      ? list
+      : ["anahi.ns.cloudflare.com", "yoxall.ns.cloudflare.com"];
+    document.getElementById("wh-ns-1").textContent = ns[0] || "";
+    document.getElementById("wh-ns-2").textContent = ns[1] || "";
+  }
+
+  function setDefaultDomainUI(s) {
+    const titleEl = document.getElementById("wh-default-title");
+    const urlEl = document.getElementById("wh-default-url");
+    const altEl = document.getElementById("wh-default-alt");
+    const statusEl = document.getElementById("wh-domain-status");
+    if (!s) {
+      titleEl.textContent = "Your Root Record URL";
+      urlEl.textContent = "Publish (step 5) to unlock your default URL";
+      urlEl.removeAttribute("href");
+      altEl.textContent = "Custom domains are optional.";
+      statusEl.dataset.state = "none";
+      statusEl.textContent = "No custom domain yet — default URL is enough.";
+      setNameservers(null);
+      return;
+    }
+    const primary = s.publicUrl || ("https://rootrecord.info/" + encodeURIComponent(s.id) + "-Website");
+    const alt = s.altPublicUrl || ("https://rootrecord.info/sites/" + encodeURIComponent(s.id));
+    titleEl.textContent = "Default domain (always on)";
+    urlEl.href = primary;
+    urlEl.textContent = primary;
+    altEl.innerHTML = "Also: <a href=\"" + alt + "\">" + alt + "</a>";
+    const st = String(s.nameserverStatus || "none").toLowerCase();
+    const custom = s.customDomain || "";
+    document.getElementById("wh-domain").value = custom;
+    setNameservers(s.nameservers);
+    if (custom && st === "active") {
+      statusEl.dataset.state = "active";
+      statusEl.textContent = "Custom domain active: " + custom;
+    } else if (custom) {
+      statusEl.dataset.state = "pending";
+      statusEl.textContent = "Custom domain pending DNS: " + custom + " — set nameservers at your registrar.";
+    } else {
+      statusEl.dataset.state = "none";
+      statusEl.textContent = "No custom domain — using default Root Record URL.";
+    }
+  }
+
+  function openDomainModal() {
+    const modal = document.getElementById("wh-domain-modal");
+    const input = document.getElementById("wh-domain-input");
+    const msg = document.getElementById("wh-domain-modal-msg");
+    msg.textContent = "";
+    input.value = document.getElementById("wh-domain").value || "";
+    modal.hidden = false;
+    input.focus();
+  }
+
+  function closeDomainModal() {
+    document.getElementById("wh-domain-modal").hidden = true;
+  }
+
+  document.querySelectorAll(".wh-theme").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      setThemeUI(btn.getAttribute("data-theme"));
+      updatePreview();
+    });
+  });
+
+  ["wh-title", "wh-slug", "wh-home-body", "wh-about",
+   "wh-feat-blog", "wh-feat-gallery", "wh-feat-projects", "wh-feat-links"
+  ].forEach(function (id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("input", updatePreview);
+    el.addEventListener("change", updatePreview);
+  });
+
+  document.querySelectorAll(".wh-copy").forEach(function (btn) {
+    btn.addEventListener("click", async function () {
+      const sel = btn.getAttribute("data-copy");
+      const node = sel ? document.querySelector(sel) : null;
+      const text = (node && node.textContent || "").trim();
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = "Copy"; }, 1200);
+      } catch {
+        btn.textContent = "Select & copy";
+      }
+    });
+  });
+
+  document.getElementById("wh-add-domain").addEventListener("click", openDomainModal);
+  document.getElementById("wh-domain-cancel").addEventListener("click", closeDomainModal);
+  document.getElementById("wh-domain-modal").addEventListener("click", function (e) {
+    if (e.target === this) closeDomainModal();
+  });
+
+  async function loadConfig() {
+    try {
+      const res = await fetch("/api/site-config", { cache: "no-store" });
+      if (!res.ok) return;
+      const j = await res.json();
+      if (j && typeof j.apiBase === "string") apiBase = j.apiBase.replace(/\/+$/, "");
+    } catch { /* scaffold: API may be absent locally */ }
+  }
+
+  async function apiFetch(path, opts) {
+    if (!apiBase) {
+      return new Response(JSON.stringify({ detail: "API not configured on this host." }), { status: 503 });
+    }
+    const headers = new Headers(opts && opts.headers);
+    const token = localStorage.getItem(TOKEN_KEY);
+    if (token && !headers.has("Authorization")) headers.set("Authorization", "Bearer " + token);
+    if (opts && opts.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+    return fetch(apiBase + path, Object.assign({}, opts, { headers: headers, credentials: "include" }));
+  }
+
+  function fillForm(s) {
+    site = s;
+    if (!s) {
+      summaryEl.textContent = "No site yet — sign in, complete the steps, then create your site.";
+      document.getElementById("wh-create").hidden = false;
+      document.getElementById("wh-save").hidden = true;
+      document.getElementById("wh-open").hidden = true;
+      document.getElementById("wh-subscribe").hidden = true;
+      setDefaultDomainUI(null);
+      updatePreview();
+      return;
+    }
+    document.getElementById("wh-title").value = s.title || "";
+    document.getElementById("wh-slug").value = s.slug || "";
+    const cfg = s.config || {};
+    setThemeUI(cfg.theme || "default");
+    document.getElementById("wh-css").value = cfg.customCss || "";
+    document.getElementById("wh-dev").checked = Boolean(cfg.developerMode);
+    const home = (Array.isArray(cfg.pages) && cfg.pages[0]) || {};
+    document.getElementById("wh-home-title").value = home.title || "Home";
+    document.getElementById("wh-home-body").value = home.body || "";
+    document.getElementById("wh-about").value = cfg.about || "";
+    document.getElementById("wh-contact").value = cfg.contact || "";
+    document.getElementById("wh-seo").value = cfg.seoDescription || "";
+    document.getElementById("wh-social").value = Array.isArray(cfg.socialLinks)
+      ? cfg.socialLinks.join("\n")
+      : (cfg.socialLinks || "");
+    const feats = cfg.features || {};
+    document.getElementById("wh-feat-blog").checked = feats.blog !== false;
+    document.getElementById("wh-feat-gallery").checked = !!feats.gallery;
+    document.getElementById("wh-feat-projects").checked = !!feats.projects;
+    document.getElementById("wh-feat-links").checked = !!feats.links;
+    setDefaultDomainUI(s);
+    const pay = s.paywall ? " · paywall active (renew $10/mo)" : "";
+    const statusLc = String(s.subscriptionStatus || "").toLowerCase();
+    const subscribed = statusLc === "active" || statusLc === "trialing";
+    summaryEl.innerHTML =
+      "Status: <strong>" + (s.subscriptionStatus || "—") + "</strong>" +
+      pay +
+      (!subscribed ? " · subscribe to Website Hosting ($10/mo) for recurring hosting" : "") +
+      "<br/>Public: <a href=\"" + (s.publicUrl || ("/sites/?id=" + encodeURIComponent(s.id))) + "\">" +
+      (s.publicUrl || ("/sites/?id=" + s.id)) + "</a>";
+    document.getElementById("wh-create").hidden = true;
+    document.getElementById("wh-save").hidden = false;
+    document.getElementById("wh-subscribe").hidden = subscribed;
+    const open = document.getElementById("wh-open");
+    open.hidden = false;
+    open.href = s.publicUrl || ("/sites/?id=" + encodeURIComponent(s.id));
+    updatePreview();
+  }
+
+  function configPayload() {
+    const social = document.getElementById("wh-social").value
+      .split(/\n+/)
+      .map(function (s) { return s.trim(); })
+      .filter(Boolean);
+    return {
+      theme: document.getElementById("wh-theme").value,
+      customCss: document.getElementById("wh-css").value,
+      developerMode: document.getElementById("wh-dev").checked,
+      about: document.getElementById("wh-about").value.trim(),
+      contact: document.getElementById("wh-contact").value.trim(),
+      seoDescription: document.getElementById("wh-seo").value.trim(),
+      socialLinks: social,
+      features: {
+        blog: document.getElementById("wh-feat-blog").checked,
+        gallery: document.getElementById("wh-feat-gallery").checked,
+        projects: document.getElementById("wh-feat-projects").checked,
+        links: document.getElementById("wh-feat-links").checked
+      },
+      pages: [{
+        path: "/",
+        title: document.getElementById("wh-home-title").value.trim() || "Home",
+        body: document.getElementById("wh-home-body").value.trim()
+      }]
+    };
+  }
+
+  async function refresh() {
+    const res = await apiFetch("/api/sites/me", { method: "GET" });
+    if (res.status === 401) {
+      setStatus("Sign in on Account first, then return here.", "warn");
+      summaryEl.innerHTML = '<a href="/account">Sign in</a> to manage Website hosting.';
+      return;
+    }
+    if (!res.ok) {
+      const j = await res.json().catch(function () { return {}; });
+      setStatus(j.detail || ("Could not load site (" + res.status + ")."), "warn");
+      return;
+    }
+    const data = await res.json();
+    fillForm(data.site);
+    setStatus("");
+  }
+
+  document.getElementById("wh-create").addEventListener("click", async function () {
+    setStatus("Creating site…");
+    const body = {
+      title: document.getElementById("wh-title").value.trim() || "My site",
+      slug: document.getElementById("wh-slug").value.trim(),
+      config: configPayload()
+    };
+    const res = await apiFetch("/api/sites", { method: "POST", body: JSON.stringify(body) });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok) {
+      setStatus(data.detail || "Create failed.", "warn");
+      if (data.site) fillForm(data.site);
+      return;
+    }
+    setStatus("Site created. Subscribe below for $10/mo hosting.", "ok");
+    fillForm(data.site);
+  });
+
+  document.getElementById("wh-subscribe").addEventListener("click", async function () {
+    if (!site || !site.id) {
+      setStatus("Create your site first, then subscribe.", "warn");
+      return;
+    }
+    if (!localStorage.getItem(TOKEN_KEY)) {
+      setStatus("Sign in on Account first.", "warn");
+      return;
+    }
+    setStatus("Opening Stripe Checkout…");
+    const res = await apiFetch("/api/sites/" + encodeURIComponent(site.id) + "/checkout", {
+      method: "POST",
+      body: "{}"
+    });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok || !data.url) {
+      setStatus(data.detail || "Checkout unavailable.", "warn");
+      return;
+    }
+    window.location.href = data.url;
+  });
+
+  document.getElementById("wh-save").addEventListener("click", async function () {
+    if (!site || !site.id) return;
+    setStatus("Saving…");
+    const body = {
+      title: document.getElementById("wh-title").value.trim(),
+      slug: document.getElementById("wh-slug").value.trim(),
+      config: configPayload()
+    };
+    const res = await apiFetch("/api/sites/" + encodeURIComponent(site.id), {
+      method: "PATCH",
+      body: JSON.stringify(body)
+    });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok) {
+      setStatus(data.detail || "Save failed.", "warn");
+      return;
+    }
+    setStatus("Saved.", "ok");
+    fillForm(data.site);
+  });
+
+  document.getElementById("wh-domain-submit").addEventListener("click", async function () {
+    const msg = document.getElementById("wh-domain-modal-msg");
+    if (!site || !site.id) {
+      msg.textContent = "Create the site first (step 5), then add a custom domain.";
+      return;
+    }
+    const domain = document.getElementById("wh-domain-input").value.trim();
+    if (!domain) {
+      msg.textContent = "Enter a domain, or Cancel — default URL already works.";
+      return;
+    }
+    msg.textContent = "Adding domain to Root Record…";
+    setStatus("Provisioning domain…");
+    const res = await apiFetch("/api/sites/" + encodeURIComponent(site.id) + "/domain", {
+      method: "POST",
+      body: JSON.stringify({ domain: domain, provision: true })
+    });
+    const data = await res.json().catch(function () { return {}; });
+    if (!res.ok) {
+      msg.textContent = data.detail || "Domain add failed.";
+      setStatus(data.detail || "Domain add failed.", "warn");
+      return;
+    }
+    setStatus(data.provisioned
+      ? "Domain linked — set nameservers at your registrar."
+      : "Domain saved — update nameservers at your registrar.", "ok");
+    fillForm(data.site);
+    if (Array.isArray(data.nameservers)) setNameservers(data.nameservers);
+    closeDomainModal();
+  });
+
+  setDefaultDomainUI(null);
+  setThemeUI("default");
+  updatePreview();
+  loadConfig().then(refresh);
+})();
+  </script>
+  <script src="/site-nav.js?v=6" defer></script>
+</body>
+</html>

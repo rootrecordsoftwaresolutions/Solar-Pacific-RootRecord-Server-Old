@@ -1,0 +1,28 @@
+# Root-Try — plugins/RootMC/root-try.yml
+enabled: true
+
+# Host tag for catalog filtering (auto-detect if blank: Towny present → towny, else claims).
+# Values: towny | claims | both
+host: ""
+
+reward-g: 1.0
+
+reminder:
+  enabled: true
+  # Seconds between whisper hints for one incomplete try (rotating).
+  interval-seconds: 180
+  # Only whisper when the player is not AFK (if Root-Times AFK is available — best-effort).
+  skip-if-empty-world: false
+
+messages:
+  prefix: ""
+  completed: "&aTry complete: &f{title}&a — &f+{gold} G&7 (&f{done}&7/&f{total}&7)"
+  already: "&7Already completed: &f{title}"
+  next: "&eNext try: &f{title}&7 — {hint}"
+  progress: "&7Progress: &f{done}&7/&f{total}&7 tries (&f{remaining}&7 left)"
+  none-left: "&aYou've finished every try on this host. Nice work."
+  disabled: "&cRoot-Try is disabled."
+  no-treasury: "&cCould not pay reward (treasury unavailable)."
+  incomplete-status: "Test this command for {gold}g"
+  admin-skipped: "&7Skipped try &f{id}&7 for &f{player}"
+  admin-forced: "&7Force-completed &f{id}&7 for &f{player}"
