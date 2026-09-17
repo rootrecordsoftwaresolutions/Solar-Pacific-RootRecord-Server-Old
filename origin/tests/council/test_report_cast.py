@@ -21,6 +21,26 @@ def test_transcript_and_caption_explain_notes():
     assert "Wind advisory" in body
 
 
+def test_boot_kind_is_catchup_only(monkeypatch, tmp_path):
+    monkeypatch.setattr("apps.council.report_cast.PATH", tmp_path / "cast.json")
+    monkeypatch.setattr("apps.council.report_cast.CONFIG_DIR", tmp_path)
+    sent: list = []
+
+    def poster(kind, a, b):
+        sent.append((kind, a, b))
+        return {"ok": True, "result": {"message_id": 1}}
+
+    out = notify_report(
+        "boot",
+        transcript="This is the Ava Core Root Record boot status.",
+        cfg=object(),
+        poster=poster,
+    )
+    assert out.get("skipped") is True
+    assert out.get("detail") == "boot_catchup_only"
+    assert sent == []
+
+
 def test_cast_posts_audio_then_transcript(monkeypatch, tmp_path):
     monkeypatch.setattr("apps.council.report_cast.PATH", tmp_path / "cast.json")
     monkeypatch.setattr("apps.council.report_cast.CONFIG_DIR", tmp_path)

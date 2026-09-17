@@ -16,4 +16,10 @@ This folder **is** the runtime. Do not dump tokens or `.env`.
 - Ava-Core `scripts/` copies exec this folder.
 - Windows `auto-push.py` / `auto-pull.py` / `git_win.py` live here too (not the OmniBook timer).
 
-Never force-push. Never stage `.env`. Repo root is `/home/rootrecord/.ollama/skills/origin`.
+Never force-push. Never stage `.env`.
+
+## One tree only
+
+Vercel sites push from `~/.ollama/skills/<desk>/site/` with `site/.git` in place.
+Do not create a second clone, mirror checkout, or `GIT_DIR` under `~/.local/state`.
+Edit those `site/` folders — nowhere else.

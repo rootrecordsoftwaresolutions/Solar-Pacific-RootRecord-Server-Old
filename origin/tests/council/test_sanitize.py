@@ -159,3 +159,17 @@ def test_keeps_ordinary_answer():
     out = sanitize_outbound("DELTA 2 is at 12% SOC, 123 Wh stored.", voice="ava")
     assert "DELTA 2" in out
     assert "123" in out
+
+
+def test_strips_self_name_greeting():
+    out = sanitize_outbound("Good morning, Ava! How's it going?", voice="ava")
+    low = out.lower()
+    assert "good morning" in low
+    assert ", ava" not in low
+    assert "how's it going" in low
+    bruce = sanitize_outbound("Morning, Bruce. Status?", voice="bruce")
+    assert "morning" in bruce.lower()
+    assert ", bruce" not in bruce.lower()
+    # Other voices may still address Ava
+    kept = sanitize_outbound("Good morning, Ava!", voice="bruce")
+    assert "Ava" in kept

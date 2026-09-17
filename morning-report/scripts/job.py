@@ -17,10 +17,10 @@ log = logging.getLogger("ava.cron.morning")
 HST = ZoneInfo("Pacific/Honolulu")
 
 
-async def _refresh_prelims() -> dict:
+async def _refresh_prelims(*, write_report: bool = True) -> dict:
     from apps.core.crons.in_order_on_boot import boot_prelims
 
-    return await boot_prelims.run(write_report=True)
+    return await boot_prelims.run(write_report=write_report)
 
 
 async def run():
@@ -33,26 +33,25 @@ async def run():
 
     daily_report_board.ensure_today()
     morning_slot = daily_report_board.get_slot("morning") or {}
-    if morning_slot.get("status") in {"done", "running"}:
+    # skipped_optional = automation off already settled — do not rewrite boot every */5.
+    if morning_slot.get("status") in {"done", "running", "skipped_optional"}:
         log.info("Morning report already active or generated today — skip duplicate run")
         return {"ok": True, "skipped": True, "detail": "already_done"}
     daily_report_board.mark_due()
 
     if not boot_report.morning_automation_enabled():
-        log.info("Morning report automation OFF — prelims still refresh facts")
-        prelim = await _refresh_prelims()
+        log.info("Morning report automation OFF — refresh facts only (no boot rewrite)")
+        prelim = await _refresh_prelims(write_report=False)
         log.info("morning prelims ok=%s", prelim.get("ok"))
-        if prelim.get("ok"):
-            daily_report_board.mark_skipped_optional("morning", reason="automation_off")
-        else:
-            daily_report_board.mark_failed("morning", error="prelims_failed")
+        # Always settle the slot so report_readiness stops calling us all morning.
+        daily_report_board.mark_skipped_optional("morning", reason="automation_off")
         return {
             "ok": True,
             "skipped": True,
             "detail": "automation_off",
             "prelim": prelim,
         }
-    prelim = await _refresh_prelims()
+    prelim = await _refresh_prelims(write_report=True)
     log.info("morning prelims ok=%s", prelim.get("ok"))
     if not prelim.get("ok"):
         log.warning("Morning report skipped: prelim refresh failed")

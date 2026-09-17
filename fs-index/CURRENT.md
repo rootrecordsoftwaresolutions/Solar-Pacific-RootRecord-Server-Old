@@ -1,14 +1,14 @@
 # Live machine index — run stats
 
-Generated 2026-09-17T01:41:54-10:00.
+Generated 2026-09-17T10:28:19-10:00.
 
-- paths indexed: **986578**
-- dir re-walks: 7
-- dirs reused (mtime match): 81
-- lines reused: 986503
-- files seen this walk: 48
-- stubs (not descended): 12
-- symlinks: 7
+- paths indexed: **986778**
+- dir re-walks: 0
+- dirs reused (mtime match): 9
+- lines reused: 986762
+- files seen this walk: 1
+- stubs (not descended): 10
+- symlinks: 4
 - errors: 0
 
 Full map: `paths.txt`. Columns: `path`, `kind`, optional extra (symlink target).

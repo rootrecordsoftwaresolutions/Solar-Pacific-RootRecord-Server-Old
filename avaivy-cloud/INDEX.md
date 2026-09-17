@@ -1,3 +1,3 @@
 # Desk — avaivy-cloud
 
-Vercel Next.js app: `site/` → `/home/rootrecord/.ollama/skills/origin/sites/avaivy-cloud`.
+Vercel Next.js app: `site/` (git root → `Ava-Core-Dev/avaivy-cloud`).

@@ -8,7 +8,7 @@ description: >-
 # rootmc-mobile-web
 
 This folder **is** the React app (`site/`). Native Kotlin is
-`rootmc-android`.
+`rootmc-android`. Publish from `site/` only (`site/.git` → `Ava-Core-Dev/rootmc-mobile`).
 
 ```bash
 cd ~/.ollama/skills/rootmc-mobile-web/site

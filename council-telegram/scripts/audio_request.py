@@ -76,14 +76,39 @@ def _say(
     *,
     reply_to: int | None = None,
     thread_id: int | None = None,
-) -> None:
-    telegram.send_message(
+) -> bool:
+    # Prompts are plain group messages (no reply_to) so they stay visible in the main feed.
+    out = telegram.send_message(
         cfg.token_for("ava"),
         chat_id,
         msg,
-        reply_to=reply_to,
+        reply_to=None,
         message_thread_id=thread_id,
     )
+    if out.get("ok"):
+        print(f"audio-request sent chat={chat_id} text={msg[:60]!r}", flush=True)
+        return True
+    print(
+        f"audio-request send fail {out.get('error_code')} {(out.get('description') or '')[:180]}",
+        flush=True,
+    )
+    # One bare retry if the first attempt used a thread id.
+    if thread_id is not None:
+        out = telegram.send_message(
+            cfg.token_for("ava"),
+            chat_id,
+            msg,
+            reply_to=None,
+            message_thread_id=None,
+        )
+        if out.get("ok"):
+            print(f"audio-request sent-retry chat={chat_id} text={msg[:60]!r}", flush=True)
+            return True
+        print(
+            f"audio-request retry fail {out.get('error_code')} {(out.get('description') or '')[:180]}",
+            flush=True,
+        )
+    return False
 
 
 def _cancel() -> None:
@@ -204,8 +229,8 @@ def handle_text(
         st = "idle"
 
     if low.startswith("/audio"):
-        extra = low[6:].strip()
-        if extra in {"cancel", "stop", "nevermind", "never mind"}:
+        rest = re.sub(r"^/audio(?:@[A-Za-z0-9_]+)?\s*", "", low, flags=re.I).strip()
+        if rest in {"cancel", "stop", "nevermind", "never mind"}:
             _cancel()
             _say(cfg, chat_id, "Audio request cancelled.", reply_to=reply_to, thread_id=thread_id)
             return True
@@ -215,9 +240,8 @@ def handle_text(
         return False
     if str(sess.get("chat_id") or "") != str(chat_id):
         return False
-    saved_uid = sess.get("uid")
-    if saved_uid is not None and uid is not None and str(saved_uid) != str(uid):
-        return False
+    # Team chat: anyone in this group may answer the voice/script prompts.
+    # /audio itself stays owner-gated in __main__.
     if low in {"/cancel", "cancel", "stop"}:
         _cancel()
         _say(cfg, chat_id, "Audio request cancelled.", reply_to=reply_to, thread_id=thread_id)

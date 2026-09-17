@@ -47,24 +47,32 @@ async def main() -> int:
         print("FAIL missing_user_id")
         return 2
     from bleak import BleakScanner
-    from bleak.backends.scanner import AdvertisementData
+    from eflib import NewDevice
     from eflib.connection import ConnectionState
     from eflib.devices.delta2 import Device
 
-    ble = await BleakScanner.find_device_by_address(mac, timeout=12)
-    if ble is None:
+    want = mac.upper()
+    hit: dict = {}
+
+    def _cb(d, adv):
+        if d.address.upper() == want:
+            hit["rec"] = (d, adv)
+
+    scanner = BleakScanner(detection_callback=_cb)
+    await scanner.start()
+    await asyncio.sleep(10)
+    await scanner.stop()
+    await asyncio.sleep(0.3)
+    if "rec" not in hit:
         print("FAIL not_advertising")
         return 3
-    adv = AdvertisementData(
-        local_name=getattr(ble, "name", None),
-        manufacturer_data={},
-        service_data={},
-        service_uuids=[],
-        tx_power=None,
-        rssi=-127,
-        platform_data=(),
-    )
-    device = Device(ble, adv, DELTA_SN)
+    ble, adv = hit["rec"]
+    if 0xB5B5 not in (adv.manufacturer_data or {}):
+        print("FAIL missing EcoFlow manufacturer data")
+        return 3
+    device = NewDevice(ble, adv)
+    if device is None or not isinstance(device, Device):
+        device = Device(ble, adv, DELTA_SN)
     await device.connect(user_id=user_id, max_attempts=3)
     try:
         state = await asyncio.wait_for(

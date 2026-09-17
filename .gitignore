@@ -11,7 +11,7 @@ credentials.env
 credentials.env.*
 google-services.json
 
-# Nested git pointers (site remotes use GIT_DIR outside this tree)
+# Nested site repos keep .git in place (avaivy-cloud/site, etc.)
 .git
 
 # Python / Node build

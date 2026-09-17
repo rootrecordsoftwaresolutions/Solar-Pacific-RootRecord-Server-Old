@@ -88,17 +88,21 @@ def _from_md() -> tuple[list[dict], list[dict], str]:
         if not lines:
             continue
         name = lines[0].strip()
+        # Keep shortForecast on the title line only. Joining the detail
+        # paragraph used to yield "Occasional Rain Showers Occasional rain showers".
+        title_line = lines[1].strip() if len(lines) > 1 else ""
         rest = " ".join(lines[1:])
-        tm = re.search(r"(\d+)°([FC])", rest)
+        tm = re.search(r"(\d+)°([FC])", title_line or rest)
         wm = re.search(r"wind[^\d]{0,20}(\d+(?:\s+to\s+\d+)?)\s*mph", rest, re.I)
         gm = re.search(r"gusts as high as (\d+)\s*mph", rest, re.I)
-        sm = re.search(r"—\s*([^\n.]+)", rest)
+        sm = re.search(r"—\s*([^.\n]+)", title_line)
+        short = (sm.group(1).strip() if sm else "")
         periods.append(
             {
                 "name": name,
                 "temperature": int(tm.group(1)) if tm else None,
                 "temperatureUnit": tm.group(2) if tm else "F",
-                "shortForecast": (sm.group(1).strip() if sm else ""),
+                "shortForecast": short,
                 "windSpeed": f"{wm.group(1)} mph" if wm else "",
                 "windGust": f"{gm.group(1)} mph" if gm else "",
             }

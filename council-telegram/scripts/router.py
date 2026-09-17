@@ -479,7 +479,7 @@ def detect_mentions(text: str) -> list[str]:
 
 
 def detect_bot_tags_in_reply(text: str) -> list[str]:
-    """Follow-ups only on explicit @tags or clear 'over to Bruce/Carly/Ava' handoffs."""
+    """Follow-ups on @tags, handoffs, or vocative calls to another agent."""
     t = (text or "").strip()
     found: list[str] = []
     low = t.lower()
@@ -489,7 +489,23 @@ def detect_bot_tags_in_reply(text: str) -> list[str]:
     for voice in _handoff_voices(t):
         if voice not in found:
             found.append(voice)
+    for voice in _vocative_voices(t):
+        if voice not in found:
+            found.append(voice)
     return found
+
+
+def detect_agent_calls_in_reply(text: str, *, from_voice: str | None = None) -> list[str]:
+    """Who else is being spoken to — excludes the speaker."""
+    self = (from_voice or "").strip().lower()
+    return [v for v in detect_bot_tags_in_reply(text) if v != self]
+
+
+def team_chain_order(voices: list[str] | None = None) -> list[str]:
+    """One pass Ava→Bruce→Carly for whole-team greetings (no loop-back)."""
+    prefer = ["ava", "bruce", "carly"]
+    have = [v for v in prefer if not voices or v in voices]
+    return have or prefer
 
 
 def route_untagged(cfg: Any, text: str, display: str) -> dict[str, Any]:

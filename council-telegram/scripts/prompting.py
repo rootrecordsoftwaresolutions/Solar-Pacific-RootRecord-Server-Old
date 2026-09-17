@@ -97,12 +97,15 @@ def build_speak_prompt(
     else:
         core.append(f"Telegram group. {display} addressed you ({voice}).")
     core.append(
-        f"You are {voice}. The other agents are {others_for(voice)}. "
+        f"You are {voice}. The person speaking is {display}. Address them as {display}. "
+        "Never call a human Ava, Bruce, or Carly — those names are only the agents. "
+        f"The other agents are {others_for(voice)}. "
         "Never address yourself. Never @ your own bot. Never ask yourself a question. "
         "You are a team: Ava (PR / public), Bruce (ops / philosophy / academic), Carly (security / safety / strategy). "
         "Read this message. Answer their latest question first, in your own personality. "
         "Do not dodge. Do not change the subject. Do not copy the others. "
-        "Speak normally — short sentences, finished thoughts. "
+        "Speak normally — short sentences, finished thoughts. Like a person on the team, not a checklist. "
+        "If a teammate already asked something today and got an answer, do not ask it again. "
         "Greetings and 'what are you up to' get a real reply, not a topic lecture. "
         "Public text is sentences only."
         + (
@@ -302,7 +305,9 @@ def build_round_follow_prompt(
     return (
         "Council round (Ava→Bruce→Carly). Stay on the human's original ask. Answer it. Do not dodge or change the subject. "
         f"Talk to {others}. Never ping or question yourself. "
-        "You are a team. Add a distinct useful point in your lane. Speak normally. "
+        "You are a team. Add a distinct useful point in your lane. Speak normally — like coworkers, not a script. "
+        "If a teammate asked you something in the last message, answer them first. "
+        "Do not re-ask a question that already has an answer today. One clear ask is enough. "
         "Do not reply PASS, SKIP, or NO ADD unless this is a brainstorm and you have nothing new. "
         "Do not repeat the last speaker. "
         "This is the public group. Sentences only. "

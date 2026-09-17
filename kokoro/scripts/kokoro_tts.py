@@ -64,13 +64,8 @@ def generate_wav(text: str, out_path: Path, *, voice: str | None = None) -> dict
     if dest.suffix.lower() != ".wav":
         dest = dest.with_suffix(".wav")
     dest.parent.mkdir(parents=True, exist_ok=True)
+    # generate.py applies speakable once — do not pre-process here or clocks/HST double-mangle.
     spoken = " ".join((text or "").split()).strip()
-    try:
-        from apps.voice.speakable import speakable as _speakable
-
-        spoken = _speakable(spoken)
-    except Exception:
-        pass
     if not spoken:
         return {"ok": False, "detail": "empty_text", "engine": "kokoro", "wav": str(dest)}
     if not venv_ready():

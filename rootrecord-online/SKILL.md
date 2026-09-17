@@ -7,10 +7,11 @@ description: >-
 
 # rootrecord-online
 
-This folder is the ops desk. The Vercel app is `site/` (git: `Ava-Core/sites/rootrecord-online`).
+This folder is the ops desk. Edit and publish from `site/` only — that is the
+git root (`site/.git` → `Ava-Core-Dev/rootrecord-online`). Do not use a second clone.
 
-Keep Vercel format at that root: `package.json`, `vercel.json`, `next.config.ts`, `src/`, `public/`.
+Keep Vercel format at `site/`: `package.json`, `vercel.json`, `next.config.ts`, `src/`, `public/`.
 
-Vercel project `rootrecord-online`. Root Directory `sites/rootrecord-online`. Framework Next.js. Skip home-box env on import.
+Vercel project `rootrecord-online`. Root Directory `.` (repo root is `site/`). Framework Next.js.
 
 Topic index: `public-edge`.

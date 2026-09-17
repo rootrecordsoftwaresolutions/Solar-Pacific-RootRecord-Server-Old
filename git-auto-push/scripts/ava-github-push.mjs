@@ -29,7 +29,6 @@ const AVA_CORE_V2 = path.join(os.homedir(), ".ollama", "skills", "origin", "repo
 const HANDOFF = path.join(os.homedir(), ".ollama", "skills");
 const MIRRORS = HANDOFF;
 const SKILLS = path.join(os.homedir(), ".ollama", "skills");
-const GIT_STATE = path.join(os.homedir(), ".local", "state", "ava", "git");
 
 function loadGithubToken() {
   if (process.env.GH_TOKEN || process.env.GITHUB_TOKEN) return;
@@ -101,26 +100,24 @@ const LIVE_REPOS = [
     alsoDev: false,
     createPrivate: true,
   },
+  // Vercel sites: git lives in site/.git only. Never use a second work tree or GIT_DIR.
   {
     id: "avaivy-cloud",
     dir: path.join(SKILLS, "avaivy-cloud", "site"),
-    gitDir: path.join(GIT_STATE, "avaivy-cloud.git"),
-    remoteUrl: "https://github.com/Ava-Core-Dev/avaivy-cloud.git",
+    remoteUrl: "https://github.com/Ava-Core-Dev/Ava-Ivy-Cloud.git",
     defaultBranch: "main",
     alsoDev: false,
   },
   {
     id: "rootrecord-online",
     dir: path.join(SKILLS, "rootrecord-online", "site"),
-    gitDir: path.join(GIT_STATE, "rootrecord-online.git"),
-    remoteUrl: "https://github.com/Ava-Core-Dev/rootrecord-online.git",
+    remoteUrl: "https://github.com/Ava-Core-Dev/RootRecord-Cloud.git",
     defaultBranch: "main",
     alsoDev: false,
   },
   {
     id: "alexrs94-site",
     dir: path.join(SKILLS, "alexrs94-site", "site"),
-    gitDir: path.join(GIT_STATE, "alexrs94-site.git"),
     remoteUrl: "https://github.com/Ava-Core-Dev/alexrs94-site.git",
     defaultBranch: "main",
     alsoDev: false,
@@ -128,7 +125,6 @@ const LIVE_REPOS = [
   {
     id: "holding",
     dir: path.join(SKILLS, "holding", "site"),
-    gitDir: path.join(GIT_STATE, "holding.git"),
     remoteUrl: "https://github.com/Ava-Core-Dev/holding.git",
     defaultBranch: "main",
     alsoDev: false,
@@ -136,7 +132,6 @@ const LIVE_REPOS = [
   {
     id: "freeltc-site",
     dir: path.join(SKILLS, "freeltc", "site"),
-    gitDir: path.join(GIT_STATE, "freeltc-site.git"),
     remoteUrl: "https://github.com/Ava-Core-Dev/freeltc-site.git",
     defaultBranch: "main",
     alsoDev: false,
@@ -144,7 +139,6 @@ const LIVE_REPOS = [
   {
     id: "rootmc-mobile-web",
     dir: path.join(SKILLS, "rootmc-mobile-web", "site"),
-    gitDir: path.join(GIT_STATE, "rootmc-mobile-web.git"),
     remoteUrl: "https://github.com/Ava-Core-Dev/rootmc-mobile.git",
     defaultBranch: "main",
     alsoDev: false,
@@ -152,70 +146,10 @@ const LIVE_REPOS = [
 ];
 
 /**
- * Mirror specs: rsync curated Ava paths into a dedicated clone, then push.
- * Plugins + Cloudflare workers land in ava-core-private so they update with Ava.
+ * Mirror specs intentionally empty: never rsync into a second checkout under
+ * ~/.ollama/skills. Sites and desk code push from their live folders only.
  */
-const MIRROR_REPOS = [
-  {
-    id: "ava-core-private",
-    checkoutDir: path.join(HANDOFF, "Ava-Core-Private"),
-    remoteUrl: "https://github.com/Ava-Core-Dev/ava-core-private.git",
-    defaultBranch: "main",
-    alsoDev: true,
-    sync: [
-      {
-        from: path.join(HANDOFF, "workstations", "cloudflare"),
-        to: "workstations/cloudflare",
-      },
-      {
-        from: path.join(HANDOFF, "workstations", "minecraft-plugins", "plugins"),
-        to: "workstations/minecraft-plugins/plugins",
-      },
-      {
-        from: path.join(HANDOFF, "workstations", "projects"),
-        to: "workstations/projects",
-      },
-      {
-        from: path.join(AVA_CORE_V2, "docs"),
-        to: "docs/ava-core-v2",
-      },
-      {
-        from: path.join(HANDOFF, "Media", "documents", "docs"),
-        to: "docs/media",
-      },
-      {
-        from: path.join(AVA_CORE_V2, "scripts"),
-        to: "scripts/ava-core-v2",
-      },
-    ],
-  },
-  {
-    id: "web-files",
-    checkoutDir: path.join(HANDOFF, "Web-Files"),
-    remoteUrl: "https://github.com/Ava-Core-Dev/web-files.git",
-    defaultBranch: "main",
-    alsoDev: true,
-    sync: [
-      {
-        from: path.join(HANDOFF, "Web Files"),
-        to: "Web Files",
-      },
-      {
-        from: path.join(HANDOFF, "workstations", "rootmc-web"),
-        to: "workstations/rootmc-web",
-      },
-    ],
-  },
-];
-
-function gitEnv(repo, extra = {}) {
-  const env = { ...authEnv(), ...extra };
-  if (repo && typeof repo === "object" && repo.gitDir) {
-    env.GIT_DIR = repo.gitDir;
-    env.GIT_WORK_TREE = repo.dir;
-  }
-  return env;
-}
+const MIRROR_REPOS = [];
 
 function gitCwd(repoOrDir) {
   if (repoOrDir && typeof repoOrDir === "object" && repoOrDir.dir) return repoOrDir.dir;
@@ -224,7 +158,7 @@ function gitCwd(repoOrDir) {
 
 function git(cwd, args, opts = {}) {
   const extraEnv = opts.env || {};
-  const env = gitEnv(typeof cwd === "object" ? cwd : null, extraEnv);
+  const env = { ...authEnv(), ...extraEnv };
   const r = spawnSync("git", args, {
     cwd: gitCwd(cwd),
     encoding: "utf8",
@@ -345,7 +279,6 @@ function ensureGithubRepo(repo) {
 }
 
 function hasGit(repo) {
-  if (repo.gitDir) return fs.existsSync(path.join(repo.gitDir, "HEAD")) || fs.existsSync(repo.gitDir);
   return fs.existsSync(path.join(repo.dir, ".git"));
 }
 
@@ -353,20 +286,8 @@ function ensureLiveRepo(repo) {
   const realDir = fs.existsSync(repo.dir) ? fs.realpathSync(repo.dir) : repo.dir;
   repo.dir = realDir;
   if (!fs.existsSync(repo.dir)) return { ok: false, reason: "missing_dir" };
-  if (repo.gitDir) {
-    fs.mkdirSync(path.dirname(repo.gitDir), { recursive: true });
-  }
   if (!hasGit(repo)) {
-    const initArgs = repo.gitDir ? ["init", "--separate-git-dir", repo.gitDir] : ["init"];
-    const init = git(repo.gitDir ? repo.dir : repo, initArgs);
-    // After --separate-git-dir, git writes a .git *file* in the work tree. Remove it
-    // so ~/.ollama/skills can track the same files without nested repos.
-    const gitFile = path.join(repo.dir, ".git");
-    if (repo.gitDir && fs.existsSync(gitFile) && fs.statSync(gitFile).isFile()) {
-      try {
-        fs.unlinkSync(gitFile);
-      } catch {}
-    }
+    const init = git(repo, ["init"]);
     if (!init.ok && !hasGit(repo)) {
       return { ok: false, reason: "init_failed", detail: init.stderr || init.stdout };
     }
@@ -628,7 +549,7 @@ export async function runAvaGithubPush({
 
   for (const repo of LIVE_REPOS) {
     if (filter && !filter.has(repo.id)) continue;
-    const entry = { id: repo.id, kind: "live", dir: repo.dir, gitDir: repo.gitDir || null };
+    const entry = { id: repo.id, kind: "live", dir: repo.dir };
     const ready = ensureLiveRepo(repo);
     entry.dir = repo.dir;
     if (!ready.ok) {

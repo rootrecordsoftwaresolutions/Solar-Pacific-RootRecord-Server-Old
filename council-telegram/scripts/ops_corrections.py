@@ -19,7 +19,8 @@ HINT = re.compile(
     r"confusing global|heading.{0,60}japan|used the gpu|"
     r"stay on topic|that(?:'s| is) not(?: a)?|"
     r"listen to ops|ops (?:said|says|corrected)|3k miles|3000 miles|"
-    r"not close enough|heading away"
+    r"not close enough|heading away|"
+    r"i(?:['’]m| am) not ava|you(?:['’]re| are) ava"
     r")"
 )
 

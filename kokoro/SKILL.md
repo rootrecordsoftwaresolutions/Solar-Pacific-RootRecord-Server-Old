@@ -25,4 +25,8 @@ Clip-stitch TTS is off: `~/.ollama/disabled/clip-tts`.
 
 Locked speakers: Ava Heart (`af_heart`), Bruce Echo (`am_echo`), Carly Nova (`af_nova`). Automated desks route through `scripts/speakers.py`. Do not write WAV unless the body has live facts.
 
+Hawaiian / local place names: Kokoro cannot say IPA cleanly. `speakable` respells
+them as spaced English (`Kīlauea` → `Kill ah way uh`). See `SPEAK_ENGLISH` in
+`scripts/hawaiian_lexicon.py`. Tune respells there; do not feed IPA tags to voice.
+
 Topic index: `reports-voice`.

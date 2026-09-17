@@ -26,6 +26,8 @@ Pulled 2026-09-16 from `/mnt/Projects/FreeLTC`. Newer zip
 | `site/install-linux.sh` | One-shot Linux XMRig installer |
 | `site/install-windows.ps1` | Windows installer |
 
+Publish from `site/` only (`site/.git` → `Ava-Core-Dev/freeltc-site`). No second clone.
+
 Hand notes on the drive: buy `freeltc.site`, point the unMineable referral at
 the page, email signup to reveal the how-to, later a Solana token on that
 domain. Domain price notes were on the scrap file; do not invent a live DNS

@@ -7,8 +7,11 @@ description: >-
 
 # holding
 
-This folder is the ops desk. The page is `site/index.html` (git: `Ava-Core/sites/holding`).
+This folder is the ops desk. Edit and publish from `site/` only — that is the
+git root (`site/.git` → `Ava-Core-Dev/holding`). Do not use a second clone.
 
-Vercel format: static `index.html` + `vercel.json` at that root. Live visitor worker still deploys from the `cloudflare-workers` skill (`wrangler.rootrecord-cloud.toml`).
+Vercel format: static `index.html` + `vercel.json` at `site/`. Root Directory `.`.
+Live visitor worker still deploys from the `cloudflare-workers` skill
+(`wrangler.rootrecord-cloud.toml`).
 
 Topic index: `public-edge`.

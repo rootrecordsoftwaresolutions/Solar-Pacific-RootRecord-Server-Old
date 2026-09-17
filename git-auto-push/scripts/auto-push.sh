@@ -7,7 +7,7 @@
 #   ava-core (+ branch `dev`), ava-core-private (+ `dev`),
 #   all-connections (+ `dev`), web-files (+ `dev`),
 #   ollama-skills (private, ~/.ollama/skills in place),
-#   Vercel site folders via GIT_DIR under ~/.local/state/ava/git (no extra copies)
+#   Vercel sites from each skill's site/ (git in site/.git — one tree only)
 # Plugins sync into ava-core-private under workstations/minecraft-plugins/plugins.
 set -euo pipefail
 
@@ -28,6 +28,9 @@ fi
 FLAG="${XDG_STATE_HOME:-$HOME/.local/state}/ava/github-auto-push.off"
 if [ -f "$FLAG" ]; then
   # Quiet exit when operator (or /ops) disabled auto-push for Emergent / manual work.
+  # Still leave a breadcrumb so "timer succeeded" is not mistaken for a push.
+  mkdir -p "$LOG_DIR"
+  printf '%s auto-push disabled by flag %s\n' "$(date -Iseconds)" "$FLAG" >>"$LOG"
   exit 0
 fi
 

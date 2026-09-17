@@ -24,6 +24,13 @@ async def run():
 
     if now.hour < 10:
         slot = "morning"
+        morning_slot = daily_report_board.get_slot("morning") or {}
+        if morning_slot.get("status") in {"done", "running", "skipped_optional"}:
+            return {
+                "ok": True,
+                "slot": slot,
+                "result": {"ok": True, "skipped": True, "detail": "already_done"},
+            }
         from apps.core.crons.on_time import morning_report
 
         result = await morning_report.run()

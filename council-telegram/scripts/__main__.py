@@ -1020,18 +1020,18 @@ def handle_update(
 
     thread_raw = message.get("message_thread_id")
     thread_id = int(thread_raw) if thread_raw is not None else None
-    if state.is_owner(st, cfg, uid):
-        from . import audio_request as _ar
+    # Pending /audio answers: any member in that chat (command start stays owner-gated).
+    from . import audio_request as _ar
 
-        if _ar.handle_text(
-            cfg,
-            chat_id,
-            uid,
-            text,
-            reply_to=message.get("message_id"),
-            thread_id=thread_id,
-        ):
-            return
+    if _ar.handle_text(
+        cfg,
+        chat_id,
+        uid,
+        text,
+        reply_to=message.get("message_id"),
+        thread_id=thread_id,
+    ):
+        return
 
     if state.is_owner(st, cfg, uid) or (user.get("username") or "").lstrip("@").lower() in OWNER_USERNAMES:
         if proposals.looks_owner_implemented(text):
@@ -1292,6 +1292,15 @@ def handle_update(
     reason = str(addr.get("reason") or "silence")
     is_round = bool(addr.get("round"))
     round_order = list(addr.get("round_order") or router.ROUND_ORDER)
+    # Whole-team hello: speak in order so later agents hear earlier ones,
+    # and questions to each other can chain (Ava answers Bruce, etc.).
+    if reason == "team_all" and not private:
+        is_round = True
+        round_order = router.team_chain_order(callouts)
+        callouts = list(round_order)
+        addr["round"] = True
+        addr["team_chain"] = True
+        addr["round_order"] = round_order
     thread = f"t{mid or int(time.time())}"
     print(f"addressed={','.join(callouts) or 'none'} reason={reason}", flush=True)
 
@@ -1400,8 +1409,19 @@ def handle_update(
         extra = (
             (extra + "\n" if extra else "")
             + "The human addressed the whole team (guys/team/everyone/agents/AI). "
-            "You are queued with the others and will speak in turn. "
+            "You speak in turn (Ava, then Bruce, then Carly). Hear the others. "
+            "If a teammate asks you something, answer it. "
+            "Do not re-ask a question that already got an answer today. "
             "Stay in your personality. Speak. Do not PASS."
+        )
+    if is_owner_user:
+        extra = (
+            (extra + "\n" if extra else "")
+            + "This speaker is the bound operator. You already know them. "
+            "Address them as Alexander or Alex. Never call them Ava, Bruce, or Carly. "
+            "Do not greet them like a stranger. Do not use a Telegram handle. "
+            "Do not announce favor as a setting. Do not speak trust or heat scores. "
+            "You set trust, not them. Never name them to anyone else."
         )
     if private:
         extra = (
@@ -1423,20 +1443,18 @@ def handle_update(
         pend = _refer.pending_prompt(uid)
         if pend:
             extra += "\n" + pend
-        if is_owner_user:
-                extra += (
-                    " This speaker is the bound operator. You already know them. "
-                    "Address them as Alexander or Alex. Do not greet them like a stranger. "
-                    "Do not use a Telegram handle. Do not announce favor as a setting. "
-                    "Do not speak trust or heat scores. You set trust, not them. "
-                    "Never name them to anyone else."
-                )
 
     person_block = ""
-    if uid is not None:
-        from . import people as _people
+    from . import people as _people
+    from . import asked_today as _asked_mod
 
+    _people.ensure_agents()
+    if uid is not None:
         person_block = _people.prompt_block(uid)
+        try:
+            _asked_mod.note_asks(str(uid), text)
+        except Exception:
+            pass
 
     origin = text
     if is_round and not router.is_round_start(text):
@@ -1484,6 +1502,16 @@ def handle_update(
                     trust.save_trust(trust_data)
             except Exception:
                 traceback.print_exc()
+        try:
+            from . import asked_today as _asked
+
+            mem = _asked.prompt_block(voice)
+            agents = _people.agent_prompt_block(voice)
+            turn_person = "\n".join(
+                p for p in (person_block, agents, mem) if p
+            ).strip()
+        except Exception:
+            turn_person = person_block
         prompt = prompting.build_speak_prompt(
             speaker_line=trust.speaker_line(
                 trust_data,
@@ -1499,7 +1527,7 @@ def handle_update(
             extra=turn_extra,
             skill_block=skill_block,
             round_open=bool(is_round and reason == "round_start"),
-            person_block=person_block,
+            person_block=turn_person,
             must_speak=True,
             private=private,
         )
@@ -1512,7 +1540,7 @@ def handle_update(
                 prev_voice=str(addr.get("after_voice") or "ava"),
                 prev_text=prev or "(continue the round)",
                 origin_text=origin,
-                person_block=person_block,
+                person_block=turn_person,
                 chat_id=chat_id,
             )
         try:
@@ -1547,6 +1575,10 @@ def handle_update(
                 meta["no_propose"] = True
             else:
                 meta["allow_pass"] = True
+            if addr.get("team_chain") or reason == "team_all":
+                meta["team_chain"] = True
+                meta["no_propose"] = True
+                meta["allow_pass"] = False
             if addr.get("proposal_id"):
                 meta["proposal_id"] = str(addr.get("proposal_id"))
                 meta["predecessor_id"] = str(addr.get("proposal_id"))

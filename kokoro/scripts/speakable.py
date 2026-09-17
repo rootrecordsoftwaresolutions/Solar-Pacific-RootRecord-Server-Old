@@ -84,15 +84,39 @@ _READ_FROM = re.compile(
     r"|\bfrom (?:disk|sqlite|jsonl|the store|file)\b[^.!?\n]*[.!]?"
 )
 
+# YYYY-MM-DD HH:MM (space) — park before bare clocks so "16 19" is not a time.
+_DATE_CLOCK = re.compile(
+    r"\b(\d{4})-(\d{2})-(\d{2})[ T](\d{1,2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})?\b"
+)
+
+# Colon clocks, or "about 12 37" — never after a digit/hyphen (avoids date day + hour).
 _CLOCK = re.compile(
-    r"\b(?:at\s+|about\s+)?"
-    r"(?:([01]?\d|2[0-3])[:.]([0-5]\d)(?::[0-5]\d)?"
-    r"|(?:([01]?\d|2[0-3])\s+([0-5]\d)))"
+    r"(?<![\d\-])(?:at\s+|about\s+)?"
+    r"(?:"
+    r"([01]?\d|2[0-3]):([0-5]\d)(?::[0-5]\d)?"
+    r"|"
+    r"([01]?\d|2[0-3])\s+([0-5]\d)"
+    r")"
     r"(?:\s*([AaPp])\.?\s*[Mm]\.?)?\b"
 )
 
 _ISO = re.compile(
     r"\b(\d{4}-\d{2}-\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})?\b"
+)
+
+_MONTHS = (
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
 )
 
 
@@ -122,7 +146,25 @@ def spoken_clock(hour: int, minute: int) -> str:
     return f"{name} {_minute_words(minute)} {ampm}"
 
 
-def _clock_match(m: re.Match) -> str:
+def _apply_meridian(hour: int, mer: str | None, *, hint: str = "") -> int:
+    """Return 0–23. hint may include 'morning' / 'afternoon' when no A/P marker."""
+    h = int(hour)
+    m = (mer or "").upper()[:1]
+    hint_l = (hint or "").lower()
+    if not m:
+        if "morning" in hint_l or "a.m" in hint_l:
+            m = "A"
+        elif "afternoon" in hint_l or "evening" in hint_l or "p.m" in hint_l or "night" in hint_l:
+            m = "P"
+    if m == "A":
+        h = h % 12
+    elif m == "P":
+        h = h % 12
+        h = 12 if h == 0 else h + 12
+    return h
+
+
+def _clock_match(m: re.Match, *, after: str = "") -> str:
     raw = m.group(0)
     if m.group(1) is not None:
         hour = int(m.group(1))
@@ -132,13 +174,7 @@ def _clock_match(m: re.Match) -> str:
         hour = int(m.group(3))
         minute = int(m.group(4))
         mer = m.group(5)
-    if mer:
-        mer = mer.upper()
-        hour = hour % 12
-        if mer == "P":
-            hour = 12 if hour == 0 else hour + 12
-        elif hour == 12:
-            hour = 0
+    hour = _apply_meridian(hour, mer, hint=after)
     spoken = spoken_clock(hour, minute)
     low = raw.lower().lstrip()
     if low.startswith("about"):
@@ -146,6 +182,31 @@ def _clock_match(m: re.Match) -> str:
     if low.startswith("at"):
         return f"at {spoken}"
     return spoken
+
+
+def _date_clock_match(m: re.Match) -> str:
+    year, month, day = int(m.group(1)), int(m.group(2)), int(m.group(3))
+    hour, minute = int(m.group(4)), int(m.group(5))
+    raw = m.group(0)
+    # If timezone present on a space/T stamp, prefer Honolulu for spoken local.
+    if "T" in raw or raw.endswith("Z") or re.search(r"[+-]\d{2}:\d{2}$", raw):
+        try:
+            iso = raw.replace(" ", "T", 1)
+            if iso.endswith("Z"):
+                iso = iso[:-1] + "+00:00"
+            if re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{1,2}:\d{2}", iso):
+                iso = iso + ":00"
+            dt = datetime.fromisoformat(iso)
+            if dt.tzinfo is not None:
+                from zoneinfo import ZoneInfo
+
+                dt = dt.astimezone(ZoneInfo("Pacific/Honolulu"))
+            month, day, hour, minute = dt.month, dt.day, dt.hour, dt.minute
+        except Exception:
+            pass
+    if not (1 <= month <= 12):
+        return raw
+    return f"{_MONTHS[month - 1]} {day} at {spoken_clock(hour, minute)}"
 
 
 def _iso_match(m: re.Match) -> str:
@@ -158,23 +219,18 @@ def _iso_match(m: re.Match) -> str:
             from zoneinfo import ZoneInfo
 
             dt = dt.astimezone(ZoneInfo("Pacific/Honolulu"))
-        months = (
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-        )
-        return f"{months[dt.month - 1]} {dt.day} at {spoken_clock(dt.hour, dt.minute)}"
+        return f"{_MONTHS[dt.month - 1]} {dt.day} at {spoken_clock(dt.hour, dt.minute)}"
     except Exception:
         return spoken_clock(int(m.group(2)), int(m.group(3)))
+
+
+def _sub_clocks(text: str) -> str:
+    """Expand clocks with trailing morning/afternoon hints."""
+
+    def repl(m: re.Match) -> str:
+        return _clock_match(m, after=text[m.end() : m.end() + 32])
+
+    return _CLOCK.sub(repl, text)
 
 
 def _expand_units(text: str) -> str:
@@ -267,19 +323,27 @@ def speakable(text: str) -> str:
         except ImportError:
             fold_place_spellings = lambda t: t  # noqa: E731
             pronounce_places = lambda t: t  # noqa: E731
+    # Park [Name](/ipa/) so slash cleanup cannot destroy them; later → English.
+    _tag_slots: list[str] = []
+
+    def _park_tag(m: re.Match) -> str:
+        _tag_slots.append(m.group(0))
+        return f"\0IPATAG{len(_tag_slots) - 1}\0"
+
+    out = re.sub(r"\[[^\]]+\]\(/[^)]+/\)", _park_tag, out)
     out = fold_place_spellings(out)
     out = re.sub(r"(?i)\bHI-res\b", "high-res", out)
     out = re.sub(r"(?i)\bH(?:\.|\s)*I\.?\b", "Hawaii", out)
     out = re.sub(r"(?i)\bHI alerts\b", "Hawaii alerts", out)
     out = re.sub(r"(?i)\s*Not on the roof\.?", " ", out)
     out = re.sub(r"(?i)\bGround-mounted PV\b", "Ground-mounted solar", out)
-    out = pronounce_places(out)
     out = _REDUNDANT.sub(" ", out)
     out = _VOICE_SRC.sub(" ", out)
     out = _STORE_SRC.sub(" ", out)
     out = _READ_FROM.sub(" ", out)
+    out = _DATE_CLOCK.sub(_date_clock_match, out)
     out = _ISO.sub(_iso_match, out)
-    out = _CLOCK.sub(_clock_match, out)
+    out = _sub_clocks(out)
     out = _expand_units(out)
     out = re.sub(r"(?i)\bnot erupting(?:[. ]+not erupting)+\b", "not erupting", out)
     out = re.sub(r"(?i)\bis erupting(?:[. ]+is erupting)+\b", "is erupting", out)
@@ -291,4 +355,20 @@ def speakable(text: str) -> str:
     out = re.sub(r"\s{2,}", " ", out)
     out = re.sub(r"\s+([.,:])", r"\1", out)
     out = re.sub(r"([.!?]){2,}", r"\1", out)
-    return out.strip(" ,;.")
+    for i, tag in enumerate(_tag_slots):
+        out = out.replace(f"\0IPATAG{i}\0", tag)
+    # Keep HST whole — otherwise "Hawaiian" → place syllables mid-phrase.
+    _hst_slots: list[str] = []
+
+    def _park_hst(m: re.Match) -> str:
+        _hst_slots.append(m.group(0))
+        return f"\0HSTPHRASE{len(_hst_slots) - 1}\0"
+
+    out = re.sub(r"(?i)\bHawaii(?:an)? Standard Time\b", _park_hst, out)
+    # Place names → spaced English (Kill ah way uh). Not IPA tags.
+    out = pronounce_places(out)
+    for i, phrase in enumerate(_hst_slots):
+        # Keep "Standard Time" intact — do not run place respell on this phrase.
+        out = out.replace(f"\0HSTPHRASE{i}\0", "Hawaii Standard Time")
+    # Do not strip "." — that would turn "a.m." into "a.m".
+    return out.strip(" ,;")

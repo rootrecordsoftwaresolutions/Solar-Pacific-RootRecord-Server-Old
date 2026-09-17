@@ -1,7 +1,7 @@
 # alexrs94.site
 
 Public personal site for Alex. Ops desk: `~/.ollama/skills/alexrs94-site`.
-Vercel root: `sites/alexrs94-site` in Ava-Core.
+Edit only `site/` here — that folder is the git and Vercel root.
 
 ## Pages
 
@@ -13,11 +13,12 @@ Vercel root: `sites/alexrs94-site` in Ava-Core.
 ## Local dev
 
 ```bash
-cd /home/rootrecord/.ollama/skills/origin/sites/alexrs94-site
+cd ~/.ollama/skills/alexrs94-site/site
 npm install
 npm run dev
 ```
 
 ## Deploy
 
-Vercel project `alexrs94-site`, Root Directory `sites/alexrs94-site`.
+GitHub `Ava-Core-Dev/alexrs94-site` ← `site/`. Vercel project `alexrs94-site`, Root Directory `.`.
+Auto-push: `git-auto-push` while the AVA Console is up.

@@ -82,3 +82,26 @@ def test_secret_not_stored(monkeypatch, tmp_path):
     blob = prompt_block(33)
     assert "abcdef" not in blob
     assert "api_key leaked" not in blob
+
+
+def test_im_not_ava_drops_agent_name(monkeypatch, tmp_path):
+    monkeypatch.setattr("apps.council.people.PATH", tmp_path / "people.json")
+    monkeypatch.setattr("apps.council.people.CONFIG_DIR", tmp_path)
+    observe(7, "Call me Alex", username="rootrecordadmin", display_name="Alexander")
+    observe(7, "I'm not Ava... You're ava", username="rootrecordadmin", display_name="Alexander")
+    from apps.council.people import dossier
+
+    row = dossier(7)
+    assert row.get("display_name") != "Ava"
+    assert "ava" not in [str(a).lower() for a in (row.get("aliases") or [])]
+
+
+def test_im_glad_not_a_name(monkeypatch, tmp_path):
+    monkeypatch.setattr("apps.council.people.PATH", tmp_path / "people.json")
+    monkeypatch.setattr("apps.council.people.CONFIG_DIR", tmp_path)
+    observe(8, "I'm glad you stopped", username="x", display_name="x")
+    from apps.council.people import dossier
+
+    row = dossier(8)
+    assert "glad" not in [str(a).lower() for a in (row.get("aliases") or [])]
+    assert row.get("display_name") != "glad"

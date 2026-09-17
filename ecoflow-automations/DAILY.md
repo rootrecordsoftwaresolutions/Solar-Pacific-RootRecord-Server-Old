@@ -21,3 +21,57 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **0130** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 70 W | Current 49%
 
 > ◇ **0130** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **0200** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0200** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0230** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0230** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0300** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0300** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0330** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0330** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0400** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0400** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0430** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0430** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0500** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0500** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0530** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0530** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0600** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0600** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0630** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0630** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0830** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0830** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0900** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **0900** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
+
+> ◇ **1000** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 161W | total in 156W | Delta SOC 6%
+
+> ◇ **1000** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 60 W | Current 5%
+
+> ◇ **1000** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%

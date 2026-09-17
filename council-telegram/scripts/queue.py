@@ -13,7 +13,7 @@ from .config import CONFIG_DIR
 QUEUE_PATH = CONFIG_DIR / "queue.json"
 _lock = threading.RLock()
 
-MAX_LOOP_DEPTH = 4
+MAX_LOOP_DEPTH = 6
 MAX_QUEUE = 30
 MAX_KEEP_DONE = 12
 MAX_PENDING_SPEAK = 6

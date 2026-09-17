@@ -24,7 +24,7 @@ CURRENT_NAME = "morning-boot-current.md"
 PROMPT_NAME = "MORNING_BOOT_REPORT.txt"
 
 # Spoken format lock — also mirrored under Media/public/documents/persona/
-BOOT_LOCK = """You ARE Ava Ivy writing the Ava Core Root Record morning Boot Report for easy audio readout.
+BOOT_LOCK = """You ARE Ava Ivy writing the Ava Core Root Record boot status for easy audio readout.
 
 Hard rules:
 - No "Aloha". Never say HP, OmniBook, laptop brand, or any PC maker name.
@@ -36,18 +36,19 @@ Hard rules:
 - Do not use markdown ## headings. Use spoken lead-ins as plain sentences.
 - Pronunciation: never write all-caps AVA as a standalone token. TTS spells A-V-A. Prefer “Ava”, “Ava Core”, “Ava Ivy”, or “Root Record”. Say host name as “Ava Core”, not AVA-CORE.
 - Pronunciation: never write bare HI or HST. TTS spells H-I / H-S-T. Prefer “Hawaii”, “Hawaiian Standard Time”, and “Hawaii Pacific Solar Root Server” (or “the Hawaii Pacific Solar Root Server”). Do not write “HI Pacific…”.
+- This is a boot status, not the scheduled morning report. Never open with “morning status”.
 
 Required shape:
-1. Open exactly in this spirit: "This is the Ava Core Root Record morning status for [weekday date], about [time] Hawaiian Standard Time." Full reports may include that clock stamp. Offline short stubs omit the clock — weekday date only.
+1. Open exactly in this spirit: "This is the Ava Core Root Record boot status for [weekday date], about [time] Hawaiian Standard Time." Full reports may include that clock stamp. Offline short stubs omit the clock — weekday date only.
 2. Then Hawaii Pacific Solar Root Server / host Ava Core / C-only / public doors / public tunnel → origin — plain spoken sentences.
 3. Then these paragraphs, each with a clear spoken lead-in:
    - Boot Summary (overnight downtime, restore/boot time, net-gate stop/restore, desk restore issues if any)
    - System Summary (origin, tunnel, on-device brain, Desk, watchdog tasks, voice mode local, public chat path when warm)
-   - Weather Summary (use the weather facts; say how fresh if age is given)
+   - Weather Summary (use the weather facts; say how fresh if age is given; never repeat the same rain/shower phrase twice)
    - NWS by County (use the NWS Hawaii by county FACTS — one short line per county; quiet counties may say no active warnings; do not invent storms)
    - Kīlauea Summary (advisory / not erupting is NOT an eruption; use erupting=false when present)
    - Power / bank if measured numbers exist
-   - Change vs previous morning Boot Report when DIFFERENTIALS are in FACTS (bank %, pack SOC, host charge, hours — measured only)
+   - Change vs previous Boot Report when DIFFERENTIALS are in FACTS (bank %, pack SOC, host charge, hours — measured only)
    - Broken / needs work
    - Already landed (recent)
    - Priority (keep paid cloud voice off; keep Starlink and site bank on solar packs / sun / load management)
@@ -762,13 +763,13 @@ def _fallback_spoken(
     except Exception:
         pass
 
-    opener = f"This is the Ava Core Root Record morning status for {weekday}."
+    opener = f"This is the Ava Core Root Record boot status for {weekday}."
     if include_timestamp:
         hour = now.hour % 12 or 12
         minute = now.minute
         about = f"{hour} {minute:02d}" if minute else f"{hour} o'clock"
         opener = (
-            f"This is the Ava Core Root Record morning status for {weekday}, "
+            f"This is the Ava Core Root Record boot status for {weekday}, "
             f"about {about} Hawaiian Standard Time."
         )
 
@@ -842,7 +843,7 @@ def generate_spoken(
         {
             "role": "user",
             "content": (
-                f"Write today's morning Boot Report from these FACTS only.\n{stamp_note}\n\n"
+                f"Write today's boot status from these FACTS only.\n{stamp_note}\n\n"
                 + facts
             ),
         },
@@ -885,12 +886,53 @@ def generate_spoken(
     }
 
 
-def write_boot_report(*, source: str = "boot", text: str | None = None) -> dict:
-    """Write dated + current Boot Report markdown. After noon HST this is midday, not morning."""
+def write_boot_report(
+    *,
+    source: str = "boot",
+    text: str | None = None,
+    once_per_day: bool = False,
+) -> dict:
+    """Write dated + current Boot Report markdown. After noon HST this is midday, not morning.
+
+    Never posts to Telegram — boot audio in the group is catch-up only.
+    """
     if datetime.now(HST).hour >= 12:
         from apps.core.services import midday_report
 
         return midday_report.write_midday_report(source=source, text=text)
+
+    now = datetime.now(HST)
+    day = now.strftime("%Y-%m-%d")
+    config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+    dated = config.REPORTS_DIR / f"morning-boot-{day}.md"
+    current = config.REPORTS_DIR / CURRENT_NAME
+    if once_per_day and dated.is_file() and dated.stat().st_size > 80:
+        try:
+            existing = dated.read_text(encoding="utf-8", errors="replace")
+        except OSError:
+            existing = ""
+        if existing.strip():
+            log.info(
+                "boot report already on disk for %s — skip rewrite (source=%s)",
+                day,
+                source,
+            )
+            return {
+                "ok": True,
+                "skipped": True,
+                "detail": "already_today",
+                "source": source,
+                "engine": "existing",
+                "day": day,
+                "dated": str(dated),
+                "current": str(current),
+                "bytes": len(existing.encode("utf-8")),
+                "text": existing if existing.endswith("\n") else existing + "\n",
+                "grok": False,
+                "tts": {"ok": False, "skipped": True, "detail": "already_today"},
+                "scrub": scrub_path_clean(existing),
+            }
+
     if text is None:
         gen = generate_spoken(source=source)
         text = gen["text"]
@@ -899,11 +941,6 @@ def write_boot_report(*, source: str = "boot", text: str | None = None) -> dict:
         engine = "provided"
         gen = {"ok": True, "engine": engine, "grok": False}
 
-    now = datetime.now(HST)
-    day = now.strftime("%Y-%m-%d")
-    config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    dated = config.REPORTS_DIR / f"morning-boot-{day}.md"
-    current = config.REPORTS_DIR / CURRENT_NAME
     body = text if text.endswith("\n") else text + "\n"
     dated.write_text(body, encoding="utf-8")
     current.write_text(body, encoding="utf-8")

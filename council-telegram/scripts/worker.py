@@ -75,16 +75,99 @@ def _send(
     return int(mid) if mid is not None else None
 
 
-def _person_prompt(cfg: Config, meta: dict[str, Any]) -> str:
-    uid = meta.get("judge_user_id")
-    if uid is None:
-        return ""
+def _person_prompt(cfg: Config, meta: dict[str, Any], *, voice: str | None = None) -> str:
+    parts: list[str] = []
     try:
         from . import people
 
-        return people.prompt_block(uid)
+        uid = meta.get("judge_user_id")
+        if uid is not None:
+            parts.append(people.prompt_block(uid))
+        if voice:
+            people.ensure_agents()
+            parts.append(people.agent_prompt_block(voice))
     except Exception:
-        return ""
+        pass
+    try:
+        from . import asked_today
+
+        if voice:
+            parts.append(asked_today.prompt_block(voice))
+    except Exception:
+        pass
+    return "\n".join(p for p in parts if p).strip()
+
+
+
+def _enqueue_agent_follows(
+    cfg: Config,
+    *,
+    job: dict[str, Any],
+    meta: dict[str, Any],
+    voice: str,
+    clean: str,
+    chat_id: int | str,
+    reply_to: int | None,
+    source_mid: int | None,
+    depth: int,
+    skip: set[str] | None = None,
+    force_question: bool = False,
+) -> None:
+    """Queue a natural reply when one agent asks another (vocative or handoff)."""
+    if depth >= queue.MAX_LOOP_DEPTH:
+        return
+    if meta.get("dm"):
+        return
+    skip = set(skip or set())
+    try:
+        from . import asked_today
+        from . import prompting
+    except Exception:
+        return
+    targets = asked_today.follow_targets(clean, from_voice=voice)
+    for v in router.detect_agent_calls_in_reply(clean, from_voice=voice):
+        if v not in targets:
+            if force_question or "?" in clean:
+                targets.append(v)
+    origin = str(meta.get("origin_text") or meta.get("user_text") or "")[:800]
+    for nxt in targets:
+        if nxt in skip or nxt == voice:
+            continue
+        if depth + 1 > queue.MAX_LOOP_DEPTH:
+            break
+        follow_prompt = prompting.build_round_follow_prompt(
+            voice=nxt,
+            prev_voice=voice,
+            prev_text=clean[:1500],
+            origin_text=origin or "(team thread)",
+            person_block=_person_prompt(cfg, meta, voice=nxt),
+            chat_id=chat_id,
+        )
+        follow_prompt += (
+            "\n\nA teammate asked you something. Answer them directly. "
+            "Do not re-ask what already has an answer today. "
+            "One clear reply is enough."
+        )
+        queue.enqueue(
+            voice=nxt,
+            prompt=follow_prompt,
+            chat_id=chat_id,
+            reply_to=reply_to,
+            source_message_id=source_mid,
+            thread_id=job.get("thread_id"),
+            depth=depth + 1,
+            kind="speak",
+            meta={
+                "allow_loop": False,
+                "from_voice": voice,
+                "agent_follow": True,
+                "no_propose": True,
+                "judge_user_id": meta.get("judge_user_id"),
+                "judge_is_owner": bool(meta.get("judge_is_owner")),
+                "origin_text": origin,
+            },
+        )
+        print(f"agent-follow {voice} -> {nxt}", flush=True)
 
 
 def _is_pass(text: str) -> bool:
@@ -325,6 +408,15 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                 _bs.note_said(voice, clean)
             except Exception:
                 pass
+            try:
+                from . import people as _people
+                from . import asked_today as _asked
+
+                _people.observe_agent(voice, clean)
+                _asked.note_answer(voice, clean)
+                _asked.note_asks(voice, clean)
+            except Exception:
+                print("agent-memory skip", flush=True)
         if meta.get("dm") and not passed:
             try:
                 from . import dm_propose
@@ -360,7 +452,7 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                     prev_voice=voice,
                     prev_text=clean if not passed else "(passed — nothing to add)",
                     origin_text=origin,
-                    person_block=_person_prompt(cfg, meta),
+                    person_block=_person_prompt(cfg, meta, voice=nxt),
                     chat_id=chat_id,
                 )
                 nxt_job = queue.enqueue(
@@ -380,6 +472,7 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                         "origin_text": origin,
                         "from_voice": voice,
                         "no_propose": bool(meta.get("no_propose")),
+                        "team_chain": bool(meta.get("team_chain")),
                         "judge_user_id": meta.get("judge_user_id"),
                         "judge_is_owner": bool(meta.get("judge_is_owner")),
                         "allow_pass": bool(meta.get("allow_pass")),
@@ -400,27 +493,36 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                     meta = dict(meta)
                     meta["thread_id"] = tid
                     _publish_proposal(cfg, chat_id, meta, reply_to)
-        else:
-            follow = router.detect_bot_tags_in_reply(raw)
-            follow = [v for v in follow if v != voice]
-            if follow and depth < queue.MAX_LOOP_DEPTH and meta.get("allow_loop") and not meta.get("dm"):
-                nxt = follow[0]
-                context = (
-                    f"Thread continues. {voice} just said:\n{clean[:1500]}\n\n"
-                    f"You are {nxt}. Reply in-thread. "
-                    f"If the matter is settled, conclude briefly and do not ping others."
-                )
-                queue.enqueue(
-                    voice=nxt,
-                    prompt=context,
+            # Teammate asked someone who already spoke (or outside next) — queue a reply.
+            if not passed and depth < queue.MAX_LOOP_DEPTH:
+                _enqueue_agent_follows(
+                    cfg,
+                    job=job,
+                    meta=meta,
+                    voice=voice,
+                    clean=clean,
                     chat_id=chat_id,
                     reply_to=reply_to,
-                    source_message_id=source_mid,
-                    thread_id=job.get("thread_id"),
-                    depth=depth + 1,
-                    kind="speak",
-                    meta={"allow_loop": False, "from_voice": voice, "judge_user_id": meta.get("judge_user_id"), "judge_is_owner": bool(meta.get("judge_is_owner"))},
+                    source_mid=source_mid,
+                    depth=depth,
+                    skip=set(order[nxt_idx : nxt_idx + 1]) if nxt_idx < len(order) else set(),
                 )
+        elif not meta.get("dm") and not passed:
+            allow = bool(meta.get("allow_loop")) or bool(meta.get("team_chain"))
+            # Always allow one hop when a teammate is clearly asked a question.
+            _enqueue_agent_follows(
+                cfg,
+                job=job,
+                meta={**meta, "allow_loop": True if allow else meta.get("allow_loop")},
+                voice=voice,
+                clean=clean,
+                chat_id=chat_id,
+                reply_to=reply_to,
+                source_mid=source_mid,
+                depth=depth,
+                skip=set(),
+                force_question=True,
+            )
         queue.mark(jid, "done")
     except Exception:
         queue.mark(jid, "failed")

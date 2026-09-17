@@ -220,13 +220,15 @@ def speak_report(kind: str, text: str, dest: Path, *, intro: bool = False) -> di
     built = generate_wav(spoken, dest, voice=kokoro_voice_for(kind))
     built["agent"] = agent_for(kind)
     built["read"] = spoken
-    speak_body = str(built.get("speak") or built.get("script") or spoken)
-    try:
-        from apps.voice.speakable import speakable
+    # Prefer the exact script Kokoro spoke (already speakable once in generate.py).
+    speak_body = str(built.get("speak") or built.get("script") or "").strip()
+    if not speak_body:
+        try:
+            from apps.voice.speakable import speakable
 
-        speak_body = speakable(spoken)
-    except Exception:
-        speak_body = spoken
+            speak_body = speakable(spoken)
+        except Exception:
+            speak_body = spoken
     built["script"] = speak_body
     built["speak"] = speak_body
     if built.get("ok"):

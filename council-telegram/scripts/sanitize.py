@@ -93,6 +93,21 @@ SELF_VOCATIVE = {
         re.I,
     ),
 }
+# Greeting that wrongly treats the human as this agent ("Good morning, Ava!").
+SELF_GREET = {
+    "ava": re.compile(
+        r"(?i)^((?:good\s+)?(?:morning|afternoon|evening|night)|hi+|hello|hey|yo|morning)"
+        r"\s*,\s*(?:@?)?(?:ava(?:\s+ivy)?)\s*([,!.]?\s*)"
+    ),
+    "bruce": re.compile(
+        r"(?i)^((?:good\s+)?(?:morning|afternoon|evening|night)|hi+|hello|hey|yo|morning)"
+        r"\s*,\s*(?:@?)?(?:bruce(?:\s+monitor)?)\s*([,!.]?\s*)"
+    ),
+    "carly": re.compile(
+        r"(?i)^((?:good\s+)?(?:morning|afternoon|evening|night)|hi+|hello|hey|yo|morning)"
+        r"\s*,\s*(?:@?)?(?:carly(?:\s+mal)?|carla)\s*([,!.]?\s*)"
+    ),
+}
 
 
 def _looks_like_json_blob(text: str) -> bool:
@@ -159,6 +174,15 @@ def sanitize_outbound(
             if nxt == clean:
                 break
             clean = nxt.lstrip()
+    greet = SELF_GREET.get(v)
+    if greet:
+        m = greet.match(clean)
+        if m:
+            punct = (m.group(2) or "").strip() or "!"
+            if punct not in ".!?":
+                punct = "!"
+            rest = clean[m.end() :].lstrip()
+            clean = f"{m.group(1)}{punct}" + ((" " + rest) if rest else "")
     voc = SELF_VOCATIVE.get(v)
     if voc:
         clean = voc.sub("", clean)

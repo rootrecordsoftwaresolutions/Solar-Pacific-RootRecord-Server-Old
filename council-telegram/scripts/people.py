@@ -1,4 +1,4 @@
-"""Shared per-human dossiers. All three agents read and write the same file."""
+"""Shared dossiers for humans and agents. All three read and write the same file."""
 from __future__ import annotations
 
 import json
@@ -99,12 +99,15 @@ SKIP_NAMES = frozenset(
     }
 )
 NAME_IS = re.compile(
-    r"\b(?:my name is|call me|i(?:['’]m| am)|it(?:['’]s| is)|this is)\s+"
+    r"\b(?:my name is|call me|it(?:['’]s| is)|this is)\s+"
     r"([A-Za-z][A-Za-z\-']{1,30})\b",
     re.I,
 )
+NAME_IS_IM = re.compile(
+    r"\b(?:i(?:['’]m| am))\s+([A-Z][A-Za-z\-']{1,30})\b",
+)
 NAME_ISNT = re.compile(
-    r"\b(?:my name isn['’]?t|don['’]?t call me|stop calling me)\s+"
+    r"\b(?:my name isn['’]?t|don['’]?t call me|stop calling me|i(?:['’]m| am) not)\s+"
     r"([A-Za-z][A-Za-z\-']{1,30})\b",
     re.I,
 )
@@ -112,6 +115,7 @@ NOT_MY_NAME = re.compile(
     r"\b(?:that(?:['’]s| is) not my name|not my name)\b",
     re.I,
 )
+AGENT_NAMES = frozenset({"ava", "bruce", "carly", "carla", "avaivy"})
 PRONOUNS = re.compile(r"\b(?:pronouns?\s*(?:are|:)\s*)(she/her|he/him|they/them)\b", re.I)
 
 
@@ -367,10 +371,10 @@ def observe(user_id: int | str, text: str, *, username: str | None = None, displ
         uname = str(row.get("username") or "").lstrip("@")
         if cur and cur.lower() != uname.lower():
             _drop_name(row, cur)
-    m = NAME_IS.search(t)
+    m = NAME_IS.search(t) or NAME_IS_IM.search(t)
     if m and not NAME_ISNT.search(t):
         name = m.group(1).strip()
-        if name.lower() not in SKIP_NAMES:
+        if name.lower() not in SKIP_NAMES and name.lower() not in AGENT_NAMES:
             aliases = row.setdefault("aliases", [])
             if isinstance(aliases, list) and name not in aliases:
                 aliases.append(name)
@@ -526,6 +530,155 @@ def prompt_block(user_id: int | str | None, *, trust_line: str = "", cap: int = 
         lines.append(f"Address them as {name}.")
     blob = "\n".join(lines).strip()
     return blob[:cap]
+
+
+
+AGENT_SEED = {
+    "ava": {
+        "display_name": "Ava",
+        "aliases": ["Ava Ivy", "Ava Ivy Bot"],
+        "features": {
+            "role": "PR / public voice",
+            "how_to_address": "Ava",
+            "relationship": "agent",
+        },
+    },
+    "bruce": {
+        "display_name": "Bruce",
+        "aliases": ["Bruce Monitor"],
+        "features": {
+            "role": "ops / philosophy / academic",
+            "how_to_address": "Bruce",
+            "relationship": "agent",
+        },
+    },
+    "carly": {
+        "display_name": "Carly",
+        "aliases": ["Carly Mal", "Carla"],
+        "features": {
+            "role": "security / safety / strategy",
+            "how_to_address": "Carly",
+            "relationship": "agent",
+        },
+    },
+}
+
+
+def _blank_agent(voice: str) -> dict[str, Any]:
+    seed = AGENT_SEED.get(voice.lower(), {})
+    return {
+        "id": voice.lower(),
+        "display_name": str(seed.get("display_name") or voice.title()),
+        "aliases": list(seed.get("aliases") or []),
+        "features": dict(seed.get("features") or {}),
+        "notes": [],
+        "first_seen": _now(),
+        "last_seen": _now(),
+        "messages": 0,
+        "last_snippet": "",
+    }
+
+
+def ensure_agents() -> dict[str, Any]:
+    data = _load()
+    agents = data.setdefault("agents", {})
+    if not isinstance(agents, dict):
+        agents = {}
+        data["agents"] = agents
+    changed = False
+    for voice, seed in AGENT_SEED.items():
+        row = agents.get(voice)
+        if not isinstance(row, dict):
+            agents[voice] = _blank_agent(voice)
+            changed = True
+            continue
+        # Keep seed features if missing
+        feats = row.setdefault("features", {})
+        if not isinstance(feats, dict):
+            feats = {}
+            row["features"] = feats
+        for k, v in (seed.get("features") or {}).items():
+            if k not in feats:
+                feats[k] = v
+                changed = True
+        if not row.get("display_name"):
+            row["display_name"] = seed.get("display_name") or voice.title()
+            changed = True
+    if changed:
+        _save(data)
+    return data
+
+
+def agent_dossier(voice: str) -> dict[str, Any]:
+    data = ensure_agents()
+    v = (voice or "").lower()
+    row = (data.get("agents") or {}).get(v)
+    if not isinstance(row, dict):
+        return _blank_agent(v)
+    return row
+
+
+def observe_agent(voice: str, text: str) -> None:
+    """Light outbound observe — agents stored like users."""
+    v = (voice or "").lower()
+    if v not in AGENT_SEED:
+        return
+    data = ensure_agents()
+    agents = data.setdefault("agents", {})
+    row = agents.get(v)
+    if not isinstance(row, dict):
+        row = _blank_agent(v)
+    row["last_seen"] = _now()
+    row["messages"] = int(row.get("messages") or 0) + 1
+    clip = (text or "").strip().replace("\n", " ")[:160]
+    if clip:
+        row["last_snippet"] = clip
+    agents[v] = row
+    _save(data)
+
+
+def apply_agent_note(voice: str, note: str, *, from_voice: str) -> None:
+    v = (voice or "").lower()
+    if v not in AGENT_SEED:
+        return
+    body = _clean_val(note)
+    if not body or SECRET.search(body):
+        return
+    data = ensure_agents()
+    agents = data.setdefault("agents", {})
+    row = agents.get(v)
+    if not isinstance(row, dict):
+        row = _blank_agent(v)
+    _add_note(row, body, from_voice)
+    row["last_seen"] = _now()
+    agents[v] = row
+    _save(data)
+
+
+def agent_prompt_block(voice: str, *, cap: int = 450) -> str:
+    """Self + teammate dossiers for natural continuity."""
+    ensure_agents()
+    v = (voice or "").lower()
+    lines = [
+        "Agent files (same shape as people). Use them. Do not recite.",
+    ]
+    for name in ("ava", "bruce", "carly"):
+        row = agent_dossier(name)
+        label = "You" if name == v else str(row.get("display_name") or name.title())
+        role = ""
+        feats = row.get("features") if isinstance(row.get("features"), dict) else {}
+        if feats.get("role"):
+            role = f" — {feats.get('role')}"
+        bit = f"{label} ({name}){role}"
+        snip = str(row.get("last_snippet") or "").strip()
+        if snip and name != v:
+            bit += f". Last said: {snip[:100]}"
+        notes = row.get("notes") if isinstance(row.get("notes"), list) else []
+        recent = [n for n in notes[-2:] if isinstance(n, dict) and n.get("text")]
+        if recent:
+            bit += " Notes: " + "; ".join(str(n.get("text"))[:60] for n in recent)
+        lines.append(f"- {bit}")
+    return "\n".join(lines)[:cap]
 
 
 def strip_tags(text: str) -> str:

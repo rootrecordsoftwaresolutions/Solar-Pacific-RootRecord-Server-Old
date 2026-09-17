@@ -92,14 +92,39 @@ async def run(*, write_report: bool = True) -> dict:
 
             kind = desk_report_kind()
             # Local on-device path. Automation flags are advisory; no Grok.
+            # Once per HST day for prelims — readiness must not spam Telegram.
             if kind == "midday":
                 written = await asyncio.to_thread(
                     midday_report.write_midday_report, source="boot_prelims"
                 )
             else:
-                written = await asyncio.to_thread(
-                    boot_report.write_boot_report, source="boot_prelims"
-                )
+                from apps.core import config as _cfg
+                from datetime import datetime as _dt
+                from zoneinfo import ZoneInfo as _ZI
+
+                _day = _dt.now(_ZI("Pacific/Honolulu")).strftime("%Y-%m-%d")
+                _dated = _cfg.REPORTS_DIR / f"morning-boot-{_day}.md"
+                if _dated.is_file() and _dated.stat().st_size > 80:
+                    log.info(
+                        "boot prelims skip rewrite — %s already on disk",
+                        _dated.name,
+                    )
+                    written = {
+                        "ok": True,
+                        "skipped": True,
+                        "detail": "already_today",
+                        "kind": "morning",
+                        "dated": str(_dated),
+                        "current": str(_cfg.REPORTS_DIR / boot_report.CURRENT_NAME),
+                        "bytes": _dated.stat().st_size,
+                        "engine": "existing",
+                        "grok": False,
+                        "tts": False,
+                    }
+                else:
+                    written = await asyncio.to_thread(
+                        boot_report.write_boot_report, source="boot_prelims"
+                    )
             out["steps"]["boot_report"] = {
                 "ok": written.get("ok"),
                 "kind": kind,

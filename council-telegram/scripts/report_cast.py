@@ -157,6 +157,9 @@ def notify_report(
     kind = (kind or "report").strip().lower()
     if kind == "weather":
         kind = "nws"
+    # Boot files are catch-up only (boot_brief). Never spam from prelim rewrites.
+    if kind == "boot":
+        return {"ok": True, "skipped": True, "detail": "boot_catchup_only", "kind": kind}
     voice = poster_voice(kind)
     raw_t = (transcript or "").strip()
     if kind in {"solar", "kilauea", "remaining"} or ("\n" not in raw_t and "_" in raw_t):

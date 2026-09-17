@@ -130,16 +130,16 @@ def send_message(
             params["parse_mode"] = parse_mode
         if message_thread_id is not None:
             params["message_thread_id"] = int(message_thread_id)
-        last = api_call(token, "sendMessage", params, timeout=20)
+        last = api_call(token, "sendMessage", params, timeout=45)
         if not last.get("ok"):
             desc = str(last.get("description") or "").lower()
             retried = dict(params)
             if "message_thread_id" in retried and "thread" in desc:
                 retried.pop("message_thread_id", None)
-                last = api_call(token, "sendMessage", retried, timeout=20)
+                last = api_call(token, "sendMessage", retried, timeout=45)
             if not last.get("ok") and retried.get("reply_to_message_id") is not None:
                 retried.pop("reply_to_message_id", None)
-                last = api_call(token, "sendMessage", retried, timeout=20)
+                last = api_call(token, "sendMessage", retried, timeout=45)
         if not last.get("ok"):
             print(
                 f"telegram send fail {last.get('error_code')} {(last.get('description') or '')[:180]}",

@@ -16,9 +16,9 @@ from hawaiian_lexicon import lexicon_entries
 SAMPLE_RATE = 24000
 DEFAULT_VOICE = "af_heart"
 SPEEDS = {
-    "af_heart": 0.88,
-    "am_echo": 1.0,
-    "af_nova": 0.80,
+    "af_heart": 0.82,
+    "am_echo": 0.92,
+    "af_nova": 0.74,
 }
 VOICE_ALIASES = {
     "ara": "af_heart",
