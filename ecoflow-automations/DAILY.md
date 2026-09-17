@@ -75,3 +75,9 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1000** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 60 W | Current 5%
 
 > ◇ **1000** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1030** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 166W | total in 169W | Delta SOC 10%
+
+> ◇ **1030** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 60 W | Current 8%
+
+> ◇ **1030** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%

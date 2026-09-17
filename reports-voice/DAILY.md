@@ -4,7 +4,7 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1000** — WEATHER WINDOWS
+> ◇ **1030** — WEATHER WINDOWS
 
 > ◇ **0015** — WEATHER — NWS Hawaii by county, as of four three p.m. Hawaiian Standard Time. Honolulu County:
 
@@ -45,3 +45,7 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1000** — CHARGE STATUS — Charging | Host battery: 62% | CPU: 39% | RAM: 91% | Temp: 70C | iGPU: 1% | NPU:
 
 > ◇ **1000** — WEATHER — NWS Hawaii hazard update, as of nine thirty seven a.m. Hawaiian Standard Time.
+
+> ◇ **1030** — CHARGE STATUS — Battery | Host battery: 80% | CPU: 24% | RAM: 94% | Temp: 54C | iGPU: 1% | NPU:
+
+> ◇ **1030** — WEATHER — NWS Hawaii hazard update, as of nine thirty seven a.m. Hawaiian Standard Time.

@@ -21,3 +21,5 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **0943** — AVA STARTED
 
 > ◇ **1000** — CHARGE STATUS — Charging | Host battery: 62% | CPU: 39% | RAM: 91% | Temp: 70C | iGPU: 1% | NPU:
+
+> ◇ **1030** — CHARGE STATUS — Battery | Host battery: 80% | CPU: 24% | RAM: 94% | Temp: 54C | iGPU: 1% | NPU:

@@ -4,24 +4,6 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **0400** — WEATHER — NWS Hawaii by county, as of four three p.m. Hawaiian Standard Time. Honolulu County:
-
-> ◇ **0400** — Flood Watch. Hawaii County: Flood Watch. Maui County: Flood Watch. Kauai County: Flood Watch.
-
-> ◇ **0400** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
-
-> ◇ **0400** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
-
-> ◇ **0430** — WEATHER — NWS Hawaii by county, as of four three p.m. Hawaiian Standard Time. Honolulu County:
-
-> ◇ **0430** — Flood Watch. Hawaii County: Flood Watch. Maui County: Flood Watch. Kauai County: Flood Watch.
-
-> ◇ **0430** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
-
-> ◇ **0430** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
-
-> ◇ **0500** — WEATHER — NWS Hawaii by county, as of four three p.m. Hawaiian Standard Time. Honolulu County:
-
 > ◇ **0500** — Flood Watch. Hawaii County: Flood Watch. Maui County: Flood Watch. Kauai County: Flood Watch.
 
 > ◇ **0500** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
@@ -99,3 +81,21 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1000** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 60 W | Current 5%
 
 > ◇ **1000** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1030** — CHARGE STATUS — Battery | Host battery: 80% | CPU: 24% | RAM: 94% | Temp: 54C | iGPU: 1% | NPU:
+
+> ◇ **1030** — present | Uptime: 1h 2m
+
+> ◇ **1030** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 166W | total in 169W | Delta SOC 10%
+
+> ◇ **1030** — | River feed ACTIVE
+
+> ◇ **1030** — WEATHER — NWS Hawaii hazard update, as of nine thirty seven a.m. Hawaiian Standard Time.
+
+> ◇ **1030** — Honolulu County: Flood Watch. Hawaii County: Flood Watch, Flood Advisory. Maui County: Flood
+
+> ◇ **1030** — Watch. Kauai County: Flood Watch.
+
+> ◇ **1030** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 60 W | Current 8%
+
+> ◇ **1030** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
