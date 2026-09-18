@@ -4,9 +4,9 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1045** — WEATHER WINDOWS
+> ◇ **1145** — WEATHER WINDOWS
 
-> ◇ **1045** — KILAUEA PREDICTION
+> ◇ **1145** — KILAUEA PREDICTION
 
 > ◇ **1045** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 142W | total in 139W | Delta SOC 20%
 
@@ -19,3 +19,35 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1045** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 162 W | Current 21%
 
 > ◇ **1045** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1045** — REAR SHED STILL — latest panels frame 929m old (`ch1-20260918T051904Z.jpg`). Carly energy desk
+
+> ◇ **1045** — uses this still (no power cycle).
+
+> ◇ **1115** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 161W | total in 159W | Delta SOC 18%
+
+> ◇ **1115** — | River feed ACTIVE
+
+> ◇ **1115** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
+
+> ◇ **1115** — Honolulu, Hawaii, Maui, or Kauai counties.
+
+> ◇ **1115** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 153 W | Current 18%
+
+> ◇ **1115** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1115** — REAR SHED STILL — latest panels frame 959m old (`ch1-20260918T051904Z.jpg`). Carly energy desk
+
+> ◇ **1115** — uses this still (no power cycle).
+
+> ◇ **1145** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 145W | total in 143W | Delta SOC 16%
+
+> ◇ **1145** — | River feed ACTIVE
+
+> ◇ **1145** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
+
+> ◇ **1145** — Honolulu, Hawaii, Maui, or Kauai counties.
+
+> ◇ **1145** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 153 W | Current 16%
+
+> ◇ **1145** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%

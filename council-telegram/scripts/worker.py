@@ -506,6 +506,22 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
             allow_operator_name=owner_turn,
             forbid_names=forbid,
         )
+        # Anti-parrot: skip send if this voice already said nearly the same thing.
+        try:
+            from . import chatlog as _clog
+
+            prior = [
+                str(r.get("text") or "")
+                for r in _clog.recent_for_chat(chat_id, n=12)
+                if str(r.get("voice") or "") == voice and str(r.get("dir") or "") == "out"
+            ]
+            if prior and sanitize.is_near_duplicate(clean, prior):
+                print(f"near-dupe-skip {voice} job={jid}", flush=True)
+                queue.mark(jid, "done")
+                _react(cfg, chat_id, source_mid, None, voice=voice)
+                return True
+        except Exception:
+            pass
         passed = _is_pass(clean)
         if passed and not meta.get("allow_pass"):
             print(f"pass-retry {voice} job={jid}", flush=True)

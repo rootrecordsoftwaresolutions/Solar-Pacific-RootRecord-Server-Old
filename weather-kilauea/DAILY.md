@@ -4,8 +4,12 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1045** — WEATHER WINDOWS
+> ◇ **1145** — WEATHER WINDOWS
 
-> ◇ **1045** — KILAUEA PREDICTION
+> ◇ **1145** — KILAUEA PREDICTION
 
 > ◇ **1045** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
+
+> ◇ **1115** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
+
+> ◇ **1145** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for

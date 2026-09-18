@@ -8,6 +8,48 @@ from apps.core.services.speech_scrub import scrub_speech
 
 FALLBACK = "glitch — say that again?"
 
+# Model filler that ignores the latest ask and starts a canned lecture.
+CANNED_OPENER = re.compile(
+    r"^(?:alexander[,\s]+)?"
+    r"(?:"
+    r"(?:i(?:'m| am) glad you asked[^!.?]*[.!]\s*)+"
+    r"|thanks for asking about (?:the )?solar panels[^!.?]*[.!]\s*"
+    r"|(?:i was up to responding to some messages[^!.?]*[.!]\s*)+"
+    r")+",
+    re.IGNORECASE | re.DOTALL,
+)
+
+def _norm_for_dupe(text: str) -> str:
+    t = re.sub(r"\s+", " ", (text or "").lower()).strip()
+    t = re.sub(r"[^a-z0-9 ]+", "", t)
+    return t
+
+
+def is_near_duplicate(text: str, prior: list[str], *, threshold: float = 0.82) -> bool:
+    """True when text is ~the same as a recent outbound line (anti-parrot)."""
+    a = _norm_for_dupe(text)
+    if len(a) < 40:
+        return False
+    aset = set(a.split())
+    if not aset:
+        return False
+    for p in prior:
+        b = _norm_for_dupe(p)
+        if len(b) < 40:
+            continue
+        bset = set(b.split())
+        if not bset:
+            continue
+        inter = len(aset & bset)
+        union = len(aset | bset) or 1
+        if inter / union >= threshold:
+            return True
+        # prefix latch (same canned start)
+        if a[:80] == b[:80]:
+            return True
+    return False
+
+
 FILE_BLOCK = re.compile(
     r"<<<FILE\s+path=\"[^\"]*\"\s*>>>[\s\S]*?<<<END_FILE>>>",
     re.IGNORECASE,
@@ -184,6 +226,7 @@ def sanitize_outbound(
     clean = WRAP_LEAK.sub("", clean)
     clean = OLLAMA_LEAK.sub("", clean)
     clean = scrub_speech(clean)
+    clean = CANNED_OPENER.sub("", clean).lstrip()
     clean = PERSON_MARK.sub("", clean)
     clean = ANY_CHEVRON.sub("", clean)
     clean = CODE_FENCE.sub("", clean)

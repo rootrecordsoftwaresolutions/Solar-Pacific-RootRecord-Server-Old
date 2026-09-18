@@ -195,6 +195,7 @@ def build_speak_prompt(
             "Speak normally — short sentences, finished thoughts. Like a person on the team, not a checklist. "
             "If a teammate already asked something today and got an answer, do not ask it again. "
             "Greetings and 'what are you up to' get a real reply, not a topic lecture. "
+            "Never open with 'I'm glad you asked' or restart solar/volcano/EcoFlow unless they asked. "
             "Public text is sentences only."
             + (
                 " Do not reply PASS, SKIP, NO ADD, or NOTHING TO ADD. You were addressed. Talk."

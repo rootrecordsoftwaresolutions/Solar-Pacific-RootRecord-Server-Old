@@ -1795,9 +1795,10 @@ def handle_update(
             (extra + "\n" if extra else "")
             + "The human addressed the whole team (guys/team/everyone/agents/AI). "
             "You speak in turn (Ava, then Bruce, then Carly). Hear the others. "
-            "If a teammate asks you something, answer it. "
+            "Answer ONLY what they just asked — do not reopen solar, volcano, weather, or old plans. "
+            "If a teammate already covered your point, reply with the single word PASS. "
             "Do not re-ask a question that already got an answer today. "
-            "Stay in your personality. Speak. Do not PASS."
+            "Stay in your personality. No canned 'glad you asked' openers."
         )
     if reason == "social":
         extra = (
@@ -1805,7 +1806,28 @@ def handle_update(
             + "SOCIAL — they spoke to the room socially (hello / check-in / wellbeing). "
             "Reply briefly in character to what they actually said — answer the check-in. "
             "Ignore unrelated earlier thread topics (solar, volcano, weather, plans) unless they asked. "
-            "No desk briefing, no planning round, no questioning teammates."
+            "No desk briefing, no planning round, no questioning teammates. "
+            "Never invent Stripe/membership tiers or AWS/datapack/radio status."
+        )
+    # Cross-lane walls (Memberships / AWS workers own those facts).
+    low_ask = (text or "").lower()
+    if any(
+        k in low_ask
+        for k in ("stripe", "membership", "tier", "billing", "subscribe", "entitlement")
+    ):
+        extra = (
+            (extra + "\n" if extra else "")
+            + "BILLING WALL — you do not have live Stripe/membership data. "
+            "Say you have no data and that Memberships Worker owns billing. Do not invent tiers."
+        )
+    if any(
+        k in low_ask
+        for k in ("datapack", "icecast", "rr-aws", "ec2", "hazard collector", "packer")
+    ):
+        extra = (
+            (extra + "\n" if extra else "")
+            + "AWS WALL — you do not invent AWS/datapack/radio status. "
+            "Say you have no data and that AWS Worker owns that stack."
         )
     if is_owner_user:
         extra = (
@@ -1937,6 +1959,11 @@ def handle_update(
                 turn_person = "\n".join(
                     p for p in (person_block, agents) if p
                 ).strip()
+            elif reason == "social":
+                # Check-ins must not reload today's Q/A parrot lines.
+                turn_person = "\n".join(
+                    p for p in (person_block, agents) if p
+                ).strip()
             else:
                 from . import asked_today as _asked
 
@@ -2043,7 +2070,8 @@ def handle_update(
             if addr.get("team_chain") or reason == "team_all":
                 meta["team_chain"] = True
                 meta["no_propose"] = True
-                meta["allow_pass"] = False
+                # Later voices may PASS when they have nothing new (anti-parrot).
+                meta["allow_pass"] = True
             if addr.get("proposal_id"):
                 meta["proposal_id"] = str(addr.get("proposal_id"))
                 meta["predecessor_id"] = str(addr.get("proposal_id"))
