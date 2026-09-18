@@ -248,23 +248,49 @@ def _short(text: str, n: int) -> str:
     return s[: n - 1] + "…"
 
 
-def desk_facts_block(*, cap: int = 1500) -> str:
-    """Measured desk sources. Missing = No data. Never invent. No player counts."""
-    lines = [
-        "Desk live files (quote these or say No data):",
-        kilauea_prompt_block(cap=min(380, max(160, cap // 4))),
-    ]
+def _weather_section(*, row_cap: int = 220) -> list[str]:
     try:
         from apps.core.services.live_wx import weather_lines_sync
 
-        for row in weather_lines_sync():
-            lines.append(_short(row, 220))
+        return [_short(row, row_cap) for row in weather_lines_sync()]
     except Exception:
-        lines.append("Weather: No data")
-        lines.append("HI alerts: No data")
-        lines.append("Hurricanes: No data")
-    lines.append(_short(_nws_line(), 240))
-    lines.append(_short(_hurricane_desk_line(), 240))
+        return ["Weather: No data", "HI alerts: No data", "Hurricanes: No data"]
+
+
+def _ask_wants_weather(ask: str) -> bool:
+    t = (ask or "").lower().replace("ī", "i").replace("ʻ", "").replace("'", "")
+    return any(
+        k in t
+        for k in (
+            "weather",
+            "forecast",
+            "nws",
+            "rain",
+            "storm",
+            "thunder",
+            "flood",
+            "wind",
+            "tomorrow",
+            "tonight",
+            "humidity",
+            "temperature",
+            "how wet",
+            "how's the weather",
+            "how is the weather",
+        )
+    )
+
+
+def desk_facts_block(*, cap: int = 2200, ask: str = "") -> str:
+    """Measured desk sources. Missing = No data. Never invent. No player counts.
+
+    When the human ask is about weather, put weather/NWS first so prompt budgets
+    cannot truncate them behind Kīlauea.
+    """
+    wx = _weather_section()
+    wx.append(_short(_nws_line(), 240))
+    kilauea = kilauea_prompt_block(cap=min(380, max(160, cap // 5)))
+    storm_bits: list[str] = [_short(_hurricane_desk_line(), 240)]
     try:
         from pathlib import Path
         import sys as _sys
@@ -274,20 +300,29 @@ def desk_facts_block(*, cap: int = 1500) -> str:
             _sys.path.insert(0, str(_sp))
         from storm_plot import prompt_line as _storm_plot_line
 
-        lines.append(_short(_storm_plot_line(), 280))
+        storm_bits.append(_short(_storm_plot_line(), 280))
     except Exception:
-        lines.append("Storm plot: No data")
+        storm_bits.append("Storm plot: No data")
+    host_bits: list[str] = []
     try:
         from apps.core.services import db_facts
 
-        lines.append(_short(db_facts.ecoflow_line(), 280))
-        lines.append(_short(db_facts.host_line(), 180))
+        host_bits.append(_short(db_facts.ecoflow_line(), 280))
+        host_bits.append(_short(db_facts.host_line(), 180))
     except Exception:
-        lines.append("EcoFlow: No data")
-        lines.append("Host: No data")
-    lines.append(_sun_line())
-    lines.append(_minecraft_line())
-    lines.append(_due_line())
+        host_bits.extend(["EcoFlow: No data", "Host: No data"])
+    host_bits.extend([_sun_line(), _minecraft_line(), _due_line()])
+
+    if _ask_wants_weather(ask):
+        body = wx + [kilauea] + storm_bits + host_bits
+        rule = (
+            "Desk live files (quote these; never say you lack live weather when Weather/Next/NWS lines are here):"
+        )
+    else:
+        body = [kilauea] + wx + storm_bits + host_bits
+        rule = "Desk live files (quote these or say No data — never invent; never claim no live data when a line is present):"
+
+    lines = [rule, *body]
     blob = "\n".join(ln for ln in lines if ln)
     if len(blob) > cap:
         return blob[: cap - 1] + "…"
@@ -306,13 +341,8 @@ def brainstorm_desk_block(topic: str, *, cap: int = 400) -> str:
     chunks: list[str] = []
     if any(k in t for k in ("kilauea", "volcano", "hvo", "erupt")):
         chunks.append(kilauea_prompt_block(cap=min(380, cap)))
-    if any(k in t for k in ("weather", "nws", "rain", "wind", "forecast")):
-        try:
-            from apps.core.services.live_wx import weather_lines_sync
-
-            chunks.extend(_short(row, 220) for row in weather_lines_sync())
-        except Exception:
-            chunks.append("Weather: No data")
+    if any(k in t for k in ("weather", "nws", "rain", "wind", "forecast", "thunder", "tomorrow", "tonight")):
+        chunks.extend(_weather_section())
         chunks.append(_short(_nws_line(), 240))
     if any(k in t for k in ("hurricane", "storm", "cyclone", "typhoon")):
         chunks.append(_short(_hurricane_desk_line(), 240))

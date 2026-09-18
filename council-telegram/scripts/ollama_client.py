@@ -187,6 +187,12 @@ def _ensure_flm() -> None:
     if ollama_ctl.flm_is_up():
         return
     ollama_ctl.flm_start()
+    # First chat after map needs the NPU ready — do not npu-miss into silence.
+    deadline = time.monotonic() + 45.0
+    while time.monotonic() < deadline:
+        if ollama_ctl.flm_is_up():
+            return
+        time.sleep(1.0)
 
 
 def chat(
@@ -206,7 +212,13 @@ def chat(
     if _npu_chat_env() and "coder" not in (model or "").lower():
         unload_all(cfg)
         _ensure_flm()
-        npu = _flm_try(messages, timeout=min(float(timeout), 90.0), num_predict=num_predict)
+        wait = min(float(timeout), 90.0)
+        npu = _flm_try(messages, timeout=wait, num_predict=num_predict)
+        if not npu:
+            # One retry after a short settle — cold NPU map used to glitch the whole team.
+            time.sleep(2.0)
+            _ensure_flm()
+            npu = _flm_try(messages, timeout=wait, num_predict=num_predict)
         if npu:
             return npu
         print("npu miss — not mapping GGUF chat", flush=True)

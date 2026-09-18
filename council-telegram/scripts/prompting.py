@@ -85,18 +85,20 @@ def build_speak_prompt(
     pinned = thread_block(chat_id, n=pin_n)
     older = rows[:-pin_n] if len(rows) > pin_n else []
     history = chatlog.format_history(older, HISTORY_CHAR_CAP) if older else ""
-    core: list[str] = []
+    # must = never truncated. soft = drop first under budget. rest = drop next.
+    must: list[str] = []
+    soft: list[str] = []
     rest: list[str] = []
     if speaker_line:
-        core.append(speaker_line.rstrip(".") + ".")
+        must.append(speaker_line.rstrip(".") + ".")
     if private:
-        core.append(
+        must.append(
             f"Private Telegram DM. {display} is talking to you ({voice}) only. "
             "Answer like a person. Specialties color your take; they are not a gate."
         )
     else:
-        core.append(f"Telegram group. {display} addressed you ({voice}).")
-    core.append(
+        must.append(f"Telegram group. {display} addressed you ({voice}).")
+    must.append(
         f"You are {voice}. The person speaking is {display}. Address them as {display}. "
         "Never call a human Ava, Bruce, or Carly — those names are only the agents. "
         f"The other agents are {others_for(voice)}. "
@@ -114,8 +116,36 @@ def build_speak_prompt(
             else " If you truly have nothing in-lane, reply PASS and nothing else."
         )
     )
+    must.append(
+        "Desk live files below are the source of truth. Quote them. "
+        "Never say you lack live weather, alerts, Kīlauea, EcoFlow, or host data when those lines are present. "
+        "If a line says No data / DOWN, say that. Do not invent."
+    )
+    from . import desk_read
+
+    # Weather asks get a larger live block first so NWS/tomorrow survive the budget.
+    live_cap = 2400 if desk_read._ask_wants_weather(user_text) else 1800
+    live = desk_read.desk_facts_block(cap=live_cap, ask=user_text)
+    if live:
+        must.append(live)
+    try:
+        from . import conclusions as _conc
+
+        sealed = _conc.prompt_block(chat_id, user_text, cap=500)
+        if sealed:
+            must.append(sealed)
+    except Exception:
+        pass
+    soft.append(
+        "If ops or the operator corrects you, accept it in the next sentence. Do not argue. "
+        "Hawaiʻi is not Japan. West of Kauaʻi is toward Asia. Far WPAC storms are not local."
+    )
+    soft.append(
+        "Standing is private. Warmth is lived. Other people speak for themselves. "
+        "Speak the answer. Skip queue narration."
+    )
     if private:
-        core.append(
+        soft.append(
             "Hidden last line only (never spoken): "
             "<<<JUDGE delta=N reason=short>>> with N an integer from -3 to +3 (0 if no change). "
             "Greetings, check-ins, and small talk are 0. Never punish hi. "
@@ -123,11 +153,11 @@ def build_speak_prompt(
             "You set trust. No human does. Do not put JUDGE in the visible message."
         )
     else:
-        core.append(
+        soft.append(
             "This is public. Sentences only. No hidden tags and no trust math. "
             "You still set standing internally — never say so."
         )
-    core.append(
+    soft.append(
         "Keep their person file current when you learn something durable. Hidden tags (not spoken): "
         "<<<NOTE short fact>>> <<<FEATURE key=value>>> <<<FORGET key>>> <<<ALIAS name>>>. "
         "Feature keys: pronouns, island, place, locale, language, role, tone, nick, how_to_address, "
@@ -142,19 +172,6 @@ def build_speak_prompt(
         "Litecoin: wait for sync (blocks==headers) before any balance read. Never send or dump keys. "
         "External disks: River 2 Pro car 12V only, never AC. Starlink stays on Delta AC."
     )
-    core.append("Speak the answer. Skip queue narration.")
-    core.append(
-        "If ops or the operator corrects you, accept it in the next sentence. Do not argue. "
-        "Hawaiʻi is not Japan. West of Kauaʻi is toward Asia. Far WPAC storms are not local."
-    )
-    core.append(
-        "Standing is private. Warmth is lived. Other people speak for themselves."
-    )
-    from . import desk_read
-
-    live = desk_read.desk_facts_block(cap=1100)
-    if live:
-        core.append(live)
     try:
         from pathlib import Path
         import sys as _sys
@@ -166,7 +183,7 @@ def build_speak_prompt(
 
         goals = _goal_lines(cap=280)
         if goals:
-            core.append(goals)
+            soft.append(goals)
     except Exception:
         pass
     try:
@@ -174,18 +191,18 @@ def build_speak_prompt(
 
         fix = _opsfix.prompt_lines(cap=320)
         if fix:
-            core.append(fix)
+            soft.append(fix)
     except Exception:
         pass
     if person_block:
-        core.append(person_block.strip())
+        soft.append(person_block.strip())
     if catch_up:
-        core.append(
+        soft.append(
             "Catch-up: read the pinned chat first. Answer the latest human ask. "
             "No status ceremony. First sentence is substance, not that you just started."
         )
     if round_open:
-        core.append(
+        soft.append(
             "Thought-session opener: your take only. Stay on their ask. "
             f"If you ask a question, ask {others_for(voice)} — not yourself. "
             "Do not invent community programs, trivia nights, or new products. "
@@ -193,14 +210,12 @@ def build_speak_prompt(
             "Do not send files — Bruce files the proposal when you conclude."
         )
     if router.is_empathy(user_text) or (quote and router.is_empathy(quote)):
-        core.append("They are being kind or checking in — answer that; do not brush off.")
+        soft.append("They are being kind or checking in — answer that; do not brush off.")
     if skill_block:
         rest.append(skill_block.strip())
     if extra:
         rest.append(extra.strip())
-    from . import desk_read
-
-    snap = desk_read.snapshot_for_prompt(cap=1200)
+    snap = desk_read.snapshot_for_prompt(cap=900)
     if snap:
         rest.append(snap)
     if history:
@@ -210,19 +225,27 @@ def build_speak_prompt(
     user = f"Their message:\n{user_text}"
     pin_len = len(pinned) + 2 if pinned else 0
     budget = PROMPT_CHAR_CAP - len(user) - pin_len - 2
-    if budget < 200:
-        budget = 200
-        user = user[: PROMPT_CHAR_CAP - pin_len - 202]
+    if budget < 400:
+        budget = 400
+        user = user[: PROMPT_CHAR_CAP - pin_len - 402]
 
-    def _join(a: list[str], b: list[str]) -> str:
-        return "\n".join(p for p in (a + b) if p)
+    def _join(*parts: list[str]) -> str:
+        return "\n".join(p for group in parts for p in group if p)
 
-    head = _join(core, rest)
+    head = _join(must, soft, rest)
     while len(head) > budget and rest:
         rest.pop()
-        head = _join(core, rest)
+        head = _join(must, soft, rest)
+    while len(head) > budget and soft:
+        soft.pop()
+        head = _join(must, soft, rest)
     if len(head) > budget:
-        head = head[:budget]
+        # Last resort: keep must intact; never chop Desk live mid-block.
+        must_blob = _join(must)
+        if len(must_blob) <= budget:
+            head = must_blob
+        else:
+            head = must_blob[:budget]
     bits = [head]
     if pinned:
         bits.append(pinned)
@@ -301,7 +324,19 @@ def build_round_follow_prompt(
         pinned = thread_block(chat_id)
         pin = f"{pinned}\n\n" if pinned else ""
         soak = ""
-        facts = desk_read.desk_facts_block(cap=cap) + "\n"
+        facts = desk_read.desk_facts_block(cap=cap, ask=origin) + "\n"
+        try:
+            from . import conclusions as _conc
+
+            if chat_id is not None:
+                draft = _conc.draft_block(chat_id, origin, cap=420)
+                if draft:
+                    facts = draft + "\n" + facts
+                sealed = _conc.prompt_block(chat_id, origin, cap=360)
+                if sealed:
+                    facts = sealed + "\n" + facts
+        except Exception:
+            pass
     return (
         "Council round (Ava→Bruce→Carly). Stay on the human's original ask. Answer it. Do not dodge or change the subject. "
         f"Talk to {others}. Never ping or question yourself. "

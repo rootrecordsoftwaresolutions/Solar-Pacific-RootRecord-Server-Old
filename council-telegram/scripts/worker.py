@@ -118,6 +118,21 @@ def _enqueue_agent_follows(
         return
     if meta.get("dm"):
         return
+    if meta.get("conclusion_pointer"):
+        return
+    origin = str(meta.get("origin_text") or meta.get("user_text") or "")[:800]
+    try:
+        from . import conclusions as _conc
+
+        # Once a topic is sealed, do not ping-pong the same lecture agent→agent.
+        if origin and _conc.covers(chat_id, origin):
+            print("agent-follow skip — topic sealed", flush=True)
+            return
+        if clean and _conc.covers(chat_id, clean):
+            print("agent-follow skip — reply topic sealed", flush=True)
+            return
+    except Exception:
+        pass
     skip = set(skip or set())
     try:
         from . import asked_today
@@ -129,7 +144,6 @@ def _enqueue_agent_follows(
         if v not in targets:
             if force_question or "?" in clean:
                 targets.append(v)
-    origin = str(meta.get("origin_text") or meta.get("user_text") or "")[:800]
     for nxt in targets:
         if nxt in skip or nxt == voice:
             continue
@@ -299,6 +313,44 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
             queue.mark(jid, "done")
             return True
 
+        if meta.get("conclusion_pointer"):
+            from . import conclusions as _conc
+
+            _react(cfg, chat_id, source_mid, "⚡", voice=voice)
+            telegram.send_chat_action(cfg.token_for(voice), chat_id, "typing")
+            hit = meta.get("conclusion") if isinstance(meta.get("conclusion"), dict) else {}
+            display = "friend"
+            try:
+                from . import trust as _trust
+                from . import state as _state
+
+                uid = meta.get("judge_user_id")
+                if uid is not None:
+                    td = _trust.load_trust(cfg.trust_path)
+                    display = _trust.display_of(td, uid) or display
+            except Exception:
+                pass
+            if meta.get("judge_is_owner"):
+                display = "Alexander"
+            body = _conc.pointer_text(hit, voice=voice, display=display)
+            mid_out = _send(
+                cfg,
+                voice,
+                chat_id,
+                body,
+                reply_to=source_mid or reply_to,
+                job_id=jid,
+                is_owner_chat=bool(meta.get("judge_is_owner")),
+            )
+            feelings.apply_event("spoke", voice=voice)
+            _react(cfg, chat_id, source_mid, "✅", voice=voice)
+            print(
+                f"conclusion-pointer-sent voice={voice} mid={mid_out} bucket={hit.get('bucket')}",
+                flush=True,
+            )
+            queue.mark(jid, "done")
+            return True
+
         _react(cfg, chat_id, source_mid, "⚡", voice=voice)
         telegram.send_chat_action(cfg.token_for(voice), chat_id, "typing")
         predict_key = "speak" if kind in ("speak", "casual") else kind
@@ -391,7 +443,7 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
             )
             passed = _is_pass(clean)
         if not passed:
-            _send(
+            mid_out = _send(
                 cfg,
                 voice,
                 chat_id,
@@ -417,6 +469,37 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                 _asked.note_asks(voice, clean)
             except Exception:
                 print("agent-memory skip", flush=True)
+            try:
+                from . import conclusions as _conc
+
+                ask_for_seal = str(
+                    meta.get("origin_text") or meta.get("user_text") or ""
+                ).strip()
+                if ask_for_seal and mid_out:
+                    _conc.observe_reply(
+                        chat_id=chat_id,
+                        ask=ask_for_seal,
+                        voice=voice,
+                        text=clean,
+                        message_id=mid_out,
+                    )
+                    # Seal when the team chain finishes, or on a solo reply.
+                    seal_now = False
+                    if meta.get("team_chain") or meta.get("round"):
+                        order = list(meta.get("round_order") or router.ROUND_ORDER)
+                        idx = int(meta.get("round_index") or 0)
+                        seal_now = idx >= len(order) - 1
+                    else:
+                        seal_now = True
+                    if seal_now:
+                        _conc.seal(
+                            chat_id=chat_id,
+                            ask=ask_for_seal,
+                            voice=voice,
+                            message_id=mid_out,
+                        )
+            except Exception:
+                print("conclusion-seal skip", flush=True)
         if meta.get("dm") and not passed:
             try:
                 from . import dm_propose

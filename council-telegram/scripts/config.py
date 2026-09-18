@@ -54,8 +54,9 @@ NUM_PREDICT = {
     "mention": 420,
 }
 
-PROMPT_CHAR_CAP = 3800
-HISTORY_CHAR_CAP = 1500
+# Desk live facts must survive. Old 3800 chopped weather/NWS off the end of the system prompt.
+PROMPT_CHAR_CAP = 7200
+HISTORY_CHAR_CAP = 1800
 SEND_STAGGER_S = 1.4
 THREAD_PILEON_S = 15
 

@@ -1301,6 +1301,25 @@ def handle_update(
         addr["round"] = True
         addr["team_chain"] = True
         addr["round_order"] = round_order
+    conclusion_hit: dict[str, Any] | None = None
+    if not private and callouts:
+        try:
+            from . import conclusions as _conc
+
+            conclusion_hit = _conc.should_pointer(chat_id, text)
+            if conclusion_hit:
+                lead = str(conclusion_hit.get("lead_voice") or "ava")
+                if lead not in ("ava", "bruce", "carly"):
+                    lead = callouts[0]
+                callouts = [lead]
+                is_round = False
+                print(
+                    f"conclusion-pointer bucket={conclusion_hit.get('bucket')} lead={lead}",
+                    flush=True,
+                )
+        except Exception:
+            traceback.print_exc()
+            conclusion_hit = None
     thread = f"t{mid or int(time.time())}"
     print(f"addressed={','.join(callouts) or 'none'} reason={reason}", flush=True)
 
@@ -1560,6 +1579,19 @@ def handle_update(
             meta["user_text"] = text
         if nsfw:
             meta["nsfw"] = True
+        if conclusion_hit:
+            meta["conclusion_pointer"] = True
+            meta["conclusion"] = {
+                "summary": conclusion_hit.get("summary"),
+                "lead_voice": conclusion_hit.get("lead_voice"),
+                "bucket": conclusion_hit.get("bucket"),
+                "anchor_message_id": conclusion_hit.get("anchor_message_id"),
+                "ts": conclusion_hit.get("ts"),
+                "ask": conclusion_hit.get("ask"),
+            }
+            meta["origin_text"] = origin
+            meta["no_propose"] = True
+            meta["allow_loop"] = False
         if is_round:
             meta = {
                 "allow_loop": True,

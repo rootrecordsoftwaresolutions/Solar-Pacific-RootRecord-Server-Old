@@ -197,15 +197,44 @@ def hurricane_line() -> str:
     )
 
 
+def _period_start(periods: list[dict], hour: int) -> int:
+    if not periods:
+        return 0
+    picked = _pick_period(periods, hour)
+    if picked is None:
+        return 0
+    for i, p in enumerate(periods):
+        if p is picked:
+            return i
+    return 0
+
+
+def _wx_period_lines(periods: list[dict], stamp: str, *, hour: int, max_n: int = 3) -> list[str]:
+    """Current period plus the next ones (tonight / tomorrow) so 'tomorrow' asks have file facts."""
+    if not periods:
+        return [f"Weather ({stamp}): DOWN"]
+    start = _period_start(periods, hour)
+    chosen = periods[start : start + max(1, max_n)]
+    out: list[str] = []
+    for i, p in enumerate(chosen):
+        body = _period_line(p)
+        if i == 0:
+            out.append(f"Weather ({stamp}): {body}")
+        else:
+            out.append(f"Next: {body}")
+    return out
+
+
 def weather_lines_sync() -> list[str]:
     """No HTTP. Fresh cache if origin already fetched NWS; else the markdown on disk."""
     if _cache and (time.monotonic() - _cache[0]) < _CACHE_S:
         return _cache[1]
     hour = datetime.now(HST).hour
     periods, alerts, stamp = _from_md()
-    period = _pick_period(periods, hour)
-    wx = f"Weather ({stamp}): " + (_period_line(period) if period else "DOWN")
-    return [wx, _alert_line(alerts), hurricane_line()]
+    lines = _wx_period_lines(periods, stamp, hour=hour, max_n=3)
+    lines.append(_alert_line(alerts))
+    lines.append(hurricane_line())
+    return lines
 
 
 async def weather_lines() -> list[str]:
@@ -219,8 +248,8 @@ async def weather_lines() -> list[str]:
         periods, alerts, stamp = fetched
     else:
         periods, alerts, stamp = _from_md()
-    period = _pick_period(periods, hour)
-    wx = f"Weather ({stamp}): " + (_period_line(period) if period else "DOWN")
-    lines = [wx, _alert_line(alerts), hurricane_line()]
+    lines = _wx_period_lines(periods, stamp, hour=hour, max_n=3)
+    lines.append(_alert_line(alerts))
+    lines.append(hurricane_line())
     _cache = (now, lines)
     return lines
