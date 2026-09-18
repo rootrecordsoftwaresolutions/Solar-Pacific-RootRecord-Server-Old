@@ -64,10 +64,10 @@ def test_team_plus_named_bruce_only():
     assert not addr.get("round")
 
 
-def test_hey_guys_queues_all_three():
+def test_hey_guys_is_social_one_voice():
     addr = detect_addressing("hey guys")
-    assert addr["voices"] == ["ava", "bruce", "carly"]
-    assert addr["reason"] == "team_all"
+    assert addr["voices"] == ["ava"]
+    assert addr["reason"] == "social"
     assert not addr.get("round")
 
 
@@ -82,12 +82,15 @@ def test_agents_and_ai_keywords():
     for line in (
         "Agents, status?",
         "what do the AI think",
-        "ok everyone",
         "talk to the agents",
     ):
         addr = detect_addressing(line)
         assert addr["voices"] == ["ava", "bruce", "carly"], line
         assert addr["reason"] == "team_all", line
+    # Bare room ping — one voice (social), not full A→B→C
+    addr = detect_addressing("ok everyone")
+    assert addr["voices"] == ["ava"]
+    assert addr["reason"] == "social"
 
 
 def test_thought_session_ava_starts_round():
@@ -163,5 +166,20 @@ def test_good_job_everyone_thanks_carly():
         "It's important not to over spend. Much appreciated."
     )
     assert addr["group"] is True
-    assert addr["voices"] == ["ava", "bruce", "carly"]
+    # Named Carly wins over broad "everyone"
+    assert addr["voices"] == ["carly"]
+    assert addr["reason"] == "team_override"
+
+
+def test_check_in_guys_how_are_you():
+    addr = detect_addressing(
+        "Guys, I just modified your response methods. How are you doing?"
+    )
+    assert addr["reason"] == "social"
+    assert addr["voices"] == ["ava"]
+
+
+def test_ecoflow_guys_still_team_all():
+    addr = detect_addressing("guys, what's EcoFlow at?")
     assert addr["reason"] == "team_all"
+    assert addr["voices"] == ["ava", "bruce", "carly"]

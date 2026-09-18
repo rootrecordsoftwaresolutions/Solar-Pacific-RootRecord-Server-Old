@@ -1,53 +1,21 @@
 # Scheduler-adjacent hybrid stamps
 
-Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Reports/2026/September/September 17th, 2026/hybrid-manual-daily-report-2026-09-17.md`
+Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Reports/2026/September/September 18th, 2026/hybrid-manual-daily-report-2026-09-18.md`
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1615** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 0W | Delta SOC 99% |
+> ◇ **1045** — WEATHER WINDOWS
 
-> ◇ **1615** — River feed ACTIVE
+> ◇ **1045** — KILAUEA PREDICTION
 
-> ◇ **1615** — WEATHER — NWS Hawaii hazard update, as of three fifteen a.m. Hawaiian Standard Time. Honolulu
+> ◇ **1045** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 142W | total in 139W | Delta SOC 20%
 
-> ◇ **1615** — County: Flood Watch. Hawaii County: Flood Watch. Maui County: Flood Watch. Kauai County: Flood
+> ◇ **1045** — | River feed ACTIVE
 
-> ◇ **1615** — Watch.
+> ◇ **1045** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
 
-> ◇ **1615** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
+> ◇ **1045** — Honolulu, Hawaii, Maui, or Kauai counties.
 
-> ◇ **1615** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+> ◇ **1045** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 162 W | Current 21%
 
-> ◇ **1645** — WEATHER — NWS Hawaii hazard update, as of three fifteen a.m. Hawaiian Standard Time. Honolulu
-
-> ◇ **1645** — County: Flood Watch. Hawaii County: Flood Watch. Maui County: Flood Watch. Kauai County: Flood
-
-> ◇ **1645** — Watch.
-
-> ◇ **1645** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
-
-> ◇ **1645** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
-
-> ◇ **1715** — WEATHER — NWS Hawaii hazard update, as of five ten p.m. Hawaiian Standard Time. Honolulu County:
-
-> ◇ **1715** — Flood Watch. Hawaii County: Flood Watch, Flood Advisory. Maui County: Flood Watch. Kauai County:
-
-> ◇ **1715** — Flood Watch.
-
-> ◇ **1715** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
-
-> ◇ **1715** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
-
-> ◇ **1745** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 0W | Delta SOC 98% |
-
-> ◇ **1745** — River feed ACTIVE
-
-> ◇ **1745** — WEATHER — NWS Hawaii hazard update, as of five forty p.m. Hawaiian Standard Time. Honolulu
-
-> ◇ **1745** — County: Flood Watch. Hawaii County: Flood Watch, Flood Advisory. Maui County: Flood Watch. Kauai
-
-> ◇ **1745** — County: Flood Watch.
-
-> ◇ **1745** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
-
-> ◇ **1745** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+> ◇ **1045** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
