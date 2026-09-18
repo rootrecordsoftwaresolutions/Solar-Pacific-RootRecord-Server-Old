@@ -1,5 +1,5 @@
 /**
- * Reads host state from the public API tunnel (api.rootrecord.online).
+ * Reads host state from same-origin /api (proxied to origin.avaivy.cloud).
  * Desk dark / tunnel down → status OFFLINE. Never invents numbers.
  */
 

@@ -4,9 +4,9 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1415** — WEATHER WINDOWS
+> ◇ **1515** — WEATHER WINDOWS
 
-> ◇ **1415** — KILAUEA PREDICTION
+> ◇ **1515** — KILAUEA PREDICTION
 
 > ◇ **0015** — WEATHER — NWS Hawaii by county, as of four three p.m. Hawaiian Standard Time. Honolulu County:
 
@@ -53,3 +53,5 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1345** — WEATHER — NWS Hawaii hazard update, as of twelve thirty one p.m. Hawaiian Standard Time.
 
 > ◇ **1415** — WEATHER — NWS Hawaii hazard update, as of twelve thirty one p.m. Hawaiian Standard Time.
+
+> ◇ **1515** — WEATHER — NWS Hawaii hazard update, as of three fifteen a.m. Hawaiian Standard Time. Honolulu

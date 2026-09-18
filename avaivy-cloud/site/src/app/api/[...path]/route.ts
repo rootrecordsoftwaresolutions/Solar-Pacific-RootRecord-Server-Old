@@ -18,10 +18,13 @@ const PUBLIC_EXACT = new Set([
   "/api/kilauea",
   "/api/live",
   "/api/health",
+  "/api/media/public",
   "/api/mobile/kilauea-live-streams",
   "/api/mobile/kilauea-situation",
   "/api/news/global",
   "/api/photos/gallery",
+  "/api/reports",
+  "/api/reports/current",
   "/api/site-config",
   "/api/solar",
   "/api/solar/history",
@@ -36,7 +39,11 @@ function apiPath(segments: string[]) {
 }
 
 function allowed(path: string) {
-  return PUBLIC_EXACT.has(path) || path.startsWith("/api/photos/file/");
+  return (
+    PUBLIC_EXACT.has(path) ||
+    path.startsWith("/api/photos/file/") ||
+    path.startsWith("/api/media/public/")
+  );
 }
 
 async function proxy(req: Request, path: string) {

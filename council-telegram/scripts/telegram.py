@@ -227,6 +227,45 @@ def _send_multipart(
         return {"ok": False, "description": str(e)}
 
 
+def get_file(token: str, file_id: str) -> dict[str, Any]:
+    return api_call(token, "getFile", {"file_id": file_id}, timeout=30)
+
+
+def download_file(token: str, file_path: str, dest: Path, *, timeout: float = 120.0) -> Path | None:
+    """Download a Telegram file_path from getFile into dest. Returns dest or None."""
+    if not token or not file_path:
+        return None
+    url = f"{API}/file/bot{token}/{file_path.lstrip('/')}"
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    req = urllib.request.Request(url, method="GET")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout, context=_ctx()) as resp:
+            dest.write_bytes(resp.read())
+        return dest if dest.is_file() and dest.stat().st_size > 0 else None
+    except Exception:
+        return None
+
+
+def largest_photo_file_id(message: dict[str, Any]) -> str | None:
+    photos = message.get("photo")
+    if not isinstance(photos, list) or not photos:
+        return None
+    best = None
+    best_area = -1
+    for p in photos:
+        if not isinstance(p, dict):
+            continue
+        w = int(p.get("width") or 0)
+        h = int(p.get("height") or 0)
+        area = w * h
+        fid = str(p.get("file_id") or "")
+        if fid and area >= best_area:
+            best = fid
+            best_area = area
+    return best
+
+
 def send_document(
     token: str,
     chat_id: int | str,

@@ -120,6 +120,8 @@ def _enqueue_agent_follows(
         return
     if meta.get("conclusion_pointer"):
         return
+    if meta.get("summary_mode"):
+        return
     origin = str(meta.get("origin_text") or meta.get("user_text") or "")[:800]
     try:
         from . import conclusions as _conc

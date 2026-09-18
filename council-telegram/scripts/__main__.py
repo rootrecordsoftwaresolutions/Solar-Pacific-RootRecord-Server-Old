@@ -890,6 +890,8 @@ def handle_update(
     *,
     listen_voice: str = "ava",
     burst_flush: bool = False,
+    burst_parts: int = 0,
+    burst_summary: bool = False,
 ) -> None:
     from . import listen as _listen
 
@@ -940,6 +942,23 @@ def handle_update(
         return
     chat_type = chat.get("type") or ""
     text = _msg_text(message)
+    has_photo = bool(telegram.largest_photo_file_id(message))
+    vision_extra = ""
+    if has_photo:
+        try:
+            from . import vision as _vis
+
+            telegram.send_chat_action(cfg.token_for(listen_voice), chat_id, "typing")
+            row = _vis.handle_telegram_photo(cfg, message, chat_id=chat_id)
+            if row:
+                vision_extra = _vis.prompt_block(row)
+                if not text:
+                    text = "Look at this photo — what do you see?"
+        except Exception:
+            traceback.print_exc()
+            if not text:
+                text = "Look at this photo — what do you see?"
+            vision_extra = "Vision: analyze failed. Say you could not read the image."
     if not text:
         return
 
@@ -1292,6 +1311,11 @@ def handle_update(
     reason = str(addr.get("reason") or "silence")
     is_round = bool(addr.get("round"))
     round_order = list(addr.get("round_order") or router.ROUND_ORDER)
+    if has_photo and not callouts:
+        callouts = ["ava"]
+        reason = "photo"
+        addr["voices"] = callouts
+        addr["reason"] = reason
     # Whole-team hello: speak in order so later agents hear earlier ones,
     # and questions to each other can chain (Ava answers Bruce, etc.).
     if reason == "team_all" and not private:
@@ -1301,6 +1325,22 @@ def handle_update(
         addr["round"] = True
         addr["team_chain"] = True
         addr["round_order"] = round_order
+    # Multi-line / room chatter → one generalized summary, not a reply per line
+    # and not a full Ava→Bruce→Carly lecture on every fragment.
+    summary_mode = bool(burst_summary) or (
+        burst_flush and (int(burst_parts or 0) >= 2 or text.count("\n") >= 1 and text.count("?") + text.lower().count("guys") >= 2)
+    )
+    if not summary_mode and not private and "\n" in text.strip():
+        lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+        if len(lines) >= 2 and callouts:
+            summary_mode = True
+    if summary_mode and callouts and not private:
+        lead = "ava" if "ava" in callouts else callouts[0]
+        callouts = [lead]
+        is_round = False
+        addr["round"] = False
+        addr.pop("team_chain", None)
+        print(f"burst-summary lead={lead} parts={burst_parts}", flush=True)
     conclusion_hit: dict[str, Any] | None = None
     if not private and callouts:
         try:
@@ -1488,6 +1528,8 @@ def handle_update(
         feelings.apply_event("called", voice=voice, text=text)
         skill_ids = skillpack.match_read_skills(search_blob, voice=voice)
         skill_block = skillpack.inject_blocks(skill_ids, text=text)
+        if vision_extra:
+            skill_block = (skill_block + "\n\n" if skill_block else "") + vision_extra
         turn_extra = extra
         nsfw = False
         if uid is not None:
@@ -1550,6 +1592,15 @@ def handle_update(
             must_speak=True,
             private=private,
         )
+        if summary_mode:
+            prompt = (
+                prompt
+                + "\n\nSUMMARY MODE: Humans are talking in a pile of messages. "
+                "Do NOT answer each line. Do NOT ping Ava/Bruce/Carly. "
+                "One short generalized summary that covers the whole thread — "
+                "weather/ask/facts from desk live files, then stop. "
+                "If media/save was mentioned, acknowledge once. Be conclusive."
+            )
         if is_round and reason == "round_pass":
             prev = ""
             if quote:
@@ -1592,6 +1643,11 @@ def handle_update(
             meta["origin_text"] = origin
             meta["no_propose"] = True
             meta["allow_loop"] = False
+        if summary_mode:
+            meta["summary_mode"] = True
+            meta["no_propose"] = True
+            meta["allow_loop"] = False
+            meta["origin_text"] = origin
         if is_round:
             meta = {
                 "allow_loop": True,
@@ -1759,6 +1815,49 @@ def run_loop(cfg: Config) -> int:
                 msg_pre = upd.get("message") or upd.get("edited_message") or {}
                 inbound = str(msg_pre.get("text") or msg_pre.get("caption") or "")
                 slash_now = inbound.strip().startswith("/")
+                # While a reply is running, absorb more human group chatter into the
+                # burst instead of waiting then answering each line as its own round.
+                if st.get("busy") and not slash_now:
+                    chat_pre = msg_pre.get("chat") or {}
+                    frm_pre = msg_pre.get("from") or {}
+                    ctype = str(chat_pre.get("type") or "")
+                    if (
+                        ctype in ("group", "supergroup")
+                        and inbound.strip()
+                        and not bool(frm_pre.get("is_bot"))
+                    ):
+                        try:
+                            from . import burst as _burst
+                            from . import router as _router
+
+                            peek = _router.detect_addressing(
+                                inbound, msg_pre.get("entities")
+                            )
+                            speakish = bool(peek.get("voices")) or _burst.chat_has_pending(
+                                chat_pre.get("id")
+                            )
+                            if speakish or "guys" in inbound.lower() or "team" in inbound.lower():
+                                _burst.ingest(
+                                    chat_id=chat_pre.get("id"),
+                                    user_id=frm_pre.get("id") or 0,
+                                    listen_voice="ava",
+                                    private=False,
+                                    message=msg_pre,
+                                    text=inbound,
+                                    user=frm_pre,
+                                )
+                                print(
+                                    f"busy-absorb update={uid_upd} into burst "
+                                    f"from={frm_pre.get('username') or frm_pre.get('id')}",
+                                    flush=True,
+                                )
+                                offset = max(offset, uid_upd + 1)
+                                st["update_offset"] = offset
+                                st["update_offset_ava"] = offset
+                                state.save_state(st)
+                                continue
+                        except Exception:
+                            traceback.print_exc()
                 # Wait out busy instead of acking+dropping (silent chat bug).
                 # Slash commands skip the wait — /holdoff and /approve must work mid-round.
                 wait_i = 0

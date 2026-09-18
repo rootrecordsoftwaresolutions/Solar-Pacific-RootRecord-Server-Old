@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import { DIRECTORY } from "@/lib/publicReplies";
 
-const ORIGIN = process.env.AVA_ORIGIN_URL || "https://origin.avaivy.cloud";
+function originBase(): string {
+  const raw = (process.env.AVA_ORIGIN_URL || "").replace(/\/$/, "");
+  if (!raw || /api\.rootrecord\.online/i.test(raw)) {
+    return "https://origin.avaivy.cloud";
+  }
+  return raw;
+}
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
@@ -9,7 +15,7 @@ export async function POST(req: Request) {
   const surface = String(body.surface || "public");
 
   try {
-    const r = await fetch(`${ORIGIN}/api/chat`, {
+    const r = await fetch(`${originBase()}/api/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

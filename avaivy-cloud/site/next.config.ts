@@ -22,17 +22,15 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
-    const origin = process.env.AVA_ORIGIN_URL || process.env.AVA_PUBLIC_API || "https://api.rootrecord.online";
+    // Desk /api/* is handled by src/app/api/[...path]/route.ts → origin.avaivy.cloud.
+    // Do not rewrite to an external host here (retired api.rootrecord.online caused
+    // Vercel DNS_HOSTNAME_NOT_FOUND and skipped the App Router proxy entirely).
     return [
       { source: "/wiki", destination: "/wiki/index.html" },
       { source: "/wiki/", destination: "/wiki/index.html" },
       { source: "/wiki/build", destination: "/wiki/build.html" },
       { source: "/wiki/timeline", destination: "/wiki/timeline.html" },
       { source: "/wiki/events", destination: "/wiki/events.html" },
-      {
-        source: "/api/:path*",
-        destination: `${origin}/api/:path*`,
-      },
     ];
   },
 };

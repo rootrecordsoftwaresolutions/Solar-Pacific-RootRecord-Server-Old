@@ -25,33 +25,33 @@
   "votes": {
     "carly": {
       "action": "keep_mining",
-      "reason": "Not enough yet. Keep the pool filling.",
-      "source": "fallback"
+      "reason": "short",
+      "source": "ollama"
     },
     "bruce": {
       "action": "hold",
-      "reason": "The stack works. Park it in the main wallet.",
-      "source": "fallback"
+      "reason": "short",
+      "source": "ollama"
     },
     "ava": {
-      "action": "ops",
-      "reason": "Yes \u2014 our costs and upgrades. Not a user giveaway.",
-      "source": "fallback"
+      "action": "keep_mining",
+      "reason": "short",
+      "source": "ollama"
     }
   },
-  "passed": false,
-  "action": null,
+  "passed": true,
+  "action": "keep_mining",
   "counts": {
-    "keep_mining": 1,
+    "keep_mining": 2,
     "hold": 1,
-    "ops": 1,
+    "ops": 0,
     "goals": 0
   },
-  "split": true,
+  "split": false,
   "send_allowed": false,
   "user_payouts": false,
   "inbound_user_ltc": "future_to_council_goals",
-  "fetched_at": "2026-09-17T08:37:12.186596-10:00",
-  "fetched_at_unix": 1789670232,
+  "fetched_at": "2026-09-17T15:28:51.855801-10:00",
+  "fetched_at_unix": 1789694931,
   "path": "/home/rootrecord/.ollama/skills/ltc-node/state/earnings_vote.json"
 }
