@@ -2,77 +2,132 @@
   "skills": [
     {
       "id": "kilauea-glossary",
-      "description": "Kīlauea / Kiweh naming and brand facts — stop invention",
-      "voices": ["ava", "carly", "bruce"],
+      "description": "K\u012blauea / Kiweh naming and brand facts \u2014 stop invention",
+      "voices": [
+        "ava",
+        "carly",
+        "bruce"
+      ],
       "risk": "read",
-      "keywords": ["kilauea", "kīlauea", "kiweh", "kileau", "kilauea alerts"]
+      "keywords": [
+        "kilauea",
+        "k\u012blauea",
+        "kiweh",
+        "kileau",
+        "kilauea alerts"
+      ]
     },
     {
       "id": "hawaiian-glossary",
-      "description": "ʻŌlelo Hawaiʻi desk pack + local Wiktionary lookup — only when relevant",
-      "voices": ["ava", "bruce", "carly"],
+      "description": "\u02bb\u014clelo Hawai\u02bbi desk pack + local Wiktionary lookup \u2014 only when relevant",
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "read",
       "keywords": [
-        "ʻāina",
+        "\u02bb\u0101ina",
         "aina",
         "aloha",
         "mahalo",
         "mauka",
         "makai",
         "ohana",
-        "ʻohana",
+        "\u02bbohana",
         "olelo",
-        "ʻōlelo",
+        "\u02bb\u014dlelo",
         "kamaaina",
-        "kamaʻāina",
+        "kama\u02bb\u0101ina",
         "malihini",
         "wikiwiki",
         "kokua",
-        "kōkua"
+        "k\u014dkua"
       ]
     },
     {
       "id": "trust-ladder",
       "description": "Trust scores 40/75/90/100",
-      "voices": ["ava"],
+      "voices": [
+        "ava"
+      ],
       "risk": "read",
-      "keywords": ["trust ladder", "trust score", "trust 40", "what is trust"]
+      "keywords": [
+        "trust ladder",
+        "trust score",
+        "trust 40",
+        "what is trust"
+      ]
     },
     {
       "id": "feelings-howto",
       "description": "Mood words without number dumps",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "read",
-      "keywords": ["how do feelings", "mood word", "feelings system"]
+      "keywords": [
+        "how do feelings",
+        "mood word",
+        "feelings system"
+      ]
     },
     {
       "id": "addressing-rules",
       "description": "When bots speak in the group",
-      "voices": ["ava"],
+      "voices": [
+        "ava"
+      ],
       "risk": "read",
-      "keywords": ["when do you speak", "addressing rules", "vocative"]
+      "keywords": [
+        "when do you speak",
+        "addressing rules",
+        "vocative"
+      ]
     },
     {
       "id": "moderation-help",
       "description": "How moderation votes work",
-      "voices": ["carly", "ava"],
+      "voices": [
+        "carly",
+        "ava"
+      ],
       "risk": "read",
-      "keywords": ["how votes work", "moderation vote", "mute kick ban"]
+      "keywords": [
+        "how votes work",
+        "moderation vote",
+        "mute kick ban"
+      ]
     },
     {
       "id": "council-status",
-      "description": "Desk/council status script (ollama up, discussion) — no secrets",
-      "voices": ["bruce", "ava"],
+      "description": "Desk/council status script (ollama up, discussion) \u2014 no secrets",
+      "voices": [
+        "bruce",
+        "ava"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["run status script", "run the status script", "council-status", "once-status", "desk status script"]
+      "keywords": [
+        "run status script",
+        "run the status script",
+        "council-status",
+        "once-status",
+        "desk status script"
+      ]
     },
     {
       "id": "brainstorm-howto",
       "description": "Timed brainstorm: ask duration, wrap on time or stop",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "read",
       "keywords": [
         "brainstorm",
@@ -83,8 +138,12 @@
     },
     {
       "id": "desk-files",
-      "description": "Where live EcoFlow, proposals, and status files live — no secrets",
-      "voices": ["ava", "bruce", "carly"],
+      "description": "Where live EcoFlow, proposals, and status files live \u2014 no secrets",
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "read",
       "keywords": [
         "ecoflow",
@@ -106,7 +165,11 @@
     {
       "id": "desk-read",
       "description": "Read an allowlisted repo file (no secrets)",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
@@ -122,17 +185,28 @@
     {
       "id": "recycle-origin",
       "description": "Recycle Ava Core on :8787 (not a PC reboot)",
-      "voices": ["bruce", "carly"],
+      "voices": [
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["recycle origin", "recycle the core", "reboot the core terminal"]
+      "keywords": [
+        "recycle origin",
+        "recycle the core",
+        "reboot the core terminal"
+      ]
     },
     {
       "id": "handoff-zip",
       "description": "Copy allowlisted desk files and zip for manual/non-API use",
-      "voices": ["bruce", "ava", "carly"],
+      "voices": [
+        "bruce",
+        "ava",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
@@ -147,8 +221,11 @@
     },
     {
       "id": "report-publish",
-      "description": "Publish queued public reports — council, not the operator",
-      "voices": ["ava", "bruce"],
+      "description": "Publish queued public reports \u2014 council, not the operator",
+      "voices": [
+        "ava",
+        "bruce"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": true,
@@ -162,27 +239,47 @@
     {
       "id": "goals-desk",
       "description": "List or add council goals (DDR5, income, LTC node). No invented USD.",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["our goals", "list goals", "add a goal", "ddr5 goal"]
+      "keywords": [
+        "our goals",
+        "list goals",
+        "add a goal",
+        "ddr5 goal"
+      ]
     },
     {
       "id": "ltc-status",
       "description": "Litecoin node/disk status. Wait for sync. No send.",
-      "voices": ["bruce", "carly"],
+      "voices": [
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["litecoin", "ltc balance", "is the chain synced", "litecoin node"]
+      "keywords": [
+        "litecoin",
+        "ltc balance",
+        "is the chain synced",
+        "litecoin node"
+      ]
     },
     {
       "id": "disk-session",
       "description": "See if the external disk is present; River car DC for drives",
-      "voices": ["bruce", "carly"],
+      "voices": [
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": true,
@@ -201,7 +298,11 @@
     {
       "id": "panels-cam",
       "description": "Rear Shed solar panels still via Night Owl; River car 12V if dark",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": true,
@@ -238,75 +339,107 @@
     {
       "id": "web-facts",
       "description": "Allowlisted HTTPS fact fetch (NWS, USGS, Wikipedia, Litecoin docs)",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": true,
       "argv": [],
-      "keywords": ["look up nws", "fetch wikipedia", "web fact"]
+      "keywords": [
+        "look up nws",
+        "fetch wikipedia",
+        "web fact"
+      ]
     },
     {
       "id": "storm-plot",
-      "description": "Distance and bearing of the nearest cyclone vs Hawaiʻi. Not a map.",
-      "voices": ["ava", "bruce", "carly"],
+      "description": "Distance and bearing of the nearest cyclone vs Hawai\u02bbi. Not a map.",
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["storm plot", "how far is the storm", "storm bearing", "japan storm"]
+      "keywords": [
+        "storm plot",
+        "how far is the storm",
+        "storm bearing",
+        "japan storm"
+      ]
     },
     {
       "id": "radar-gif",
-      "description": "Latest Hawaiʻi weather radar GIF from RootRecord AWS ingest (Bruce)",
-      "voices": ["bruce"],
-      "risk": "exec",
+      "description": "STUB \u2014 radar GIF pull+post is AWS rr-radar/rr-chat; device must not exec",
+      "voices": [
+        "bruce"
+      ],
+      "risk": "read",
       "entrypoint": "run.py",
       "network": false,
       "timeout": 20,
       "argv": [],
-      "keywords": [
-        "radar",
-        "radar gif",
-        "weather radar",
-        "hawaii radar",
-        "hawaiʻi radar",
-        "hawai'i radar",
-        "nws radar",
-        "ridge radar",
-        "show radar",
-        "show the radar",
-        "latest radar"
-      ]
+      "keywords": []
     },
     {
       "id": "cooking-desk",
       "description": "List recipes or cook-from-pantry. Shared dishes save as user-submitted.",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["list recipes", "save this recipe", "cook from pantry", "what can we cook"]
+      "keywords": [
+        "list recipes",
+        "save this recipe",
+        "cook from pantry",
+        "what can we cook"
+      ]
     },
     {
       "id": "pantry-desk",
       "description": "Logged food stock. No invented counts.",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["pantry stock", "what's in the pantry", "what is in the pantry"]
+      "keywords": [
+        "pantry stock",
+        "what's in the pantry",
+        "what is in the pantry"
+      ]
     },
     {
       "id": "nutrition-desk",
       "description": "Nutrient-dense food database. Not milligrams. Not medical advice.",
-      "voices": ["ava", "bruce", "carly"],
+      "voices": [
+        "ava",
+        "bruce",
+        "carly"
+      ],
       "risk": "exec",
       "entrypoint": "run.py",
       "network": false,
       "argv": [],
-      "keywords": ["nutrient dense", "nutrition desk", "high nutrient food"]
+      "keywords": [
+        "nutrient dense",
+        "nutrition desk",
+        "high nutrient food"
+      ]
     }
   ]
 }

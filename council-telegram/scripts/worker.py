@@ -298,11 +298,36 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
             raw_out = str(out.get("text") or "no data")
             from .handoff import parse_zip_line
 
+            from pathlib import Path
+
             zip_path = parse_zip_line(raw_out)
             photo_path = None
+            radar_paths: list = []
+            radar_caption = ""
             shown_lines = []
+            aws_root = (
+                Path.home() / ".ollama" / "skills" / "rootrecord-aws" / "store"
+            ).resolve()
             for ln in raw_out.splitlines():
                 if ln.startswith("HANDOFF_ZIP="):
+                    continue
+                if ln.startswith("RADAR_CAPTION="):
+                    radar_caption = ln.split("=", 1)[1].strip()
+                    continue
+                if ln.startswith("RADAR_GIF="):
+                    from pathlib import Path as _P
+
+                    cand = _P(ln.split("=", 1)[1].strip())
+                    try:
+                        resolved = cand.resolve()
+                    except OSError:
+                        continue
+                    if (
+                        cand.is_file()
+                        and cand.suffix.lower() == ".gif"
+                        and str(resolved).startswith(str(aws_root) + "/")
+                    ):
+                        radar_paths.append(cand)
                     continue
                 if ln.startswith("PANELS_PHOTO="):
                     from pathlib import Path as _P
@@ -316,9 +341,22 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                         photo_path = cand
                     continue
                 shown_lines.append(ln)
-            shown = "\n".join(shown_lines)
-            body = sanitize.sanitize_outbound(shown or "no data", voice=voice)
-            _send(cfg, voice, chat_id, body, reply_to=reply_to, job_id=jid)
+            shown = "\n".join(shown_lines).strip()
+            # GIF caption is the reply when radar succeeds — skip empty/no-data text.
+            if radar_paths:
+                if shown and shown.lower() not in {"no data", "ok"}:
+                    body = sanitize.sanitize_outbound(shown, voice=voice)
+                    _send(cfg, voice, chat_id, body, reply_to=reply_to, job_id=jid)
+                for i, gif in enumerate(radar_paths):
+                    telegram.send_document(
+                        cfg.token_for(voice),
+                        chat_id,
+                        gif,
+                        caption=(radar_caption if i == 0 else ""),
+                    )
+            else:
+                body = sanitize.sanitize_outbound(shown or "no data", voice=voice)
+                _send(cfg, voice, chat_id, body, reply_to=reply_to, job_id=jid)
             if zip_path:
                 telegram.send_document(
                     cfg.token_for("bruce"),

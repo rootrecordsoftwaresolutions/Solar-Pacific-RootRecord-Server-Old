@@ -1587,6 +1587,27 @@ def handle_update(
         addr["voices"] = callouts
         addr["reason"] = reason
         is_round = False
+    # Solar / panels GIF+still: AWS rr-solar-cam (device only triggers). Prefer over local grab.
+    try:
+        from . import aws_solar as _aws_solar
+
+        if (not private) and _aws_solar.is_solar_ask(text):
+            mid_i = int(mid) if mid else None
+            res = _aws_solar.request_aws_post(chat_id=chat_id, reply_to=mid_i)
+            print(f"aws-solar-post {res}", flush=True)
+            if mid:
+                telegram.set_message_reaction(
+                    cfg.token_for(listen_voice),
+                    chat_id,
+                    int(mid),
+                    "✅" if res.get("ok") else "⚠️",
+                )
+            if res.get("ok"):
+                return
+            # fall through to local panels-cam on AWS miss
+    except Exception:
+        traceback.print_exc()
+
     # “Show me the camera/panels” without @Ava / guys — still run panels-cam.
     if (
         not callouts
@@ -1600,15 +1621,25 @@ def handle_update(
             addr["voices"] = callouts
             addr["reason"] = reason
             is_round = False
-    # Radar / weather radar / radar gif — Bruce without needing @Bruce.
-    if not callouts and not private:
-        radar = skillpack.match_exec_skill(text)
-        if radar and str(radar.get("id") or "") == "radar-gif":
-            callouts = ["bruce"]
-            reason = "radar_gif"
-            addr["voices"] = callouts
-            addr["reason"] = reason
-            is_round = False
+    # Radar GIF pull+post is AWS-only (rr-radar + radar_post_once). Device only triggers.
+    try:
+        from . import aws_radar as _aws_radar
+
+        if (not private) and _aws_radar.is_radar_ask(text):
+            mid_i = int(mid) if mid else None
+            res = _aws_radar.request_aws_post(chat_id=chat_id, reply_to=mid_i)
+            print(f"aws-radar-post {res}", flush=True)
+            if mid:
+                telegram.set_message_reaction(
+                    cfg.token_for(listen_voice),
+                    chat_id,
+                    int(mid),
+                    "✅" if res.get("ok") else "⚠️",
+                )
+            return
+    except Exception:
+        traceback.print_exc()
+
     # Whole-team hello: speak in order so later agents hear earlier ones,
     # and questions to each other can chain (Ava answers Bruce, etc.).
     if reason == "team_all" and not private:
@@ -1704,8 +1735,7 @@ def handle_update(
         "panels-cam",
         "web-facts",
         "storm-plot",
-        "radar-gif",
-        "cooking-desk",
+                "cooking-desk",
         "pantry-desk",
         "nutrition-desk",
     }

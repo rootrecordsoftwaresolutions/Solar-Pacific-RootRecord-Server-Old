@@ -232,10 +232,10 @@ def stop_serve(cfg: Config) -> bool:
 def _serve_env() -> dict[str, str]:
     env = os.environ.copy()
     env.setdefault("OLLAMA_HOST", "127.0.0.1:11434")
-    env["OLLAMA_KEEP_ALIVE"] = env.get("OLLAMA_KEEP_ALIVE") or "15m"
+    env["OLLAMA_KEEP_ALIVE"] = env.get("OLLAMA_KEEP_ALIVE") or "-1"
     env["OLLAMA_MAX_LOADED_MODELS"] = env.get("OLLAMA_MAX_LOADED_MODELS") or "1"
     env["OLLAMA_NUM_PARALLEL"] = env.get("OLLAMA_NUM_PARALLEL") or "1"
-    env["AVA_OLLAMA_CHAT_KEEP_ALIVE"] = env.get("AVA_OLLAMA_CHAT_KEEP_ALIVE") or "15m"
+    env["AVA_OLLAMA_CHAT_KEEP_ALIVE"] = env.get("AVA_OLLAMA_CHAT_KEEP_ALIVE") or "-1"
     return env
 
 
@@ -248,7 +248,7 @@ def warm_default(cfg: Config, timeout: float = 120) -> bool:
     if npu_chat_enabled() or flm_is_up():
         return True
     model = (os.getenv("AVA_OLLAMA_MODEL") or "llama3.2:3b-instruct-q4_K_M").strip()
-    keep = (os.getenv("AVA_OLLAMA_CHAT_KEEP_ALIVE") or "15m").strip() or "15m"
+    keep = (os.getenv("AVA_OLLAMA_CHAT_KEEP_ALIVE") or "-1").strip() or "-1"
     payload = json.dumps({"model": model, "keep_alive": keep}).encode("utf-8")
     req = urllib.request.Request(
         cfg.ollama_base.rstrip("/") + "/api/generate",

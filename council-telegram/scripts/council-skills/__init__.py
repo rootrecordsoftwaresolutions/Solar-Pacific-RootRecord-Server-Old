@@ -187,10 +187,7 @@ def match_exec_skill(text: str) -> dict[str, Any] | None:
         hit = get_skill("panels-cam")
         if hit and str(hit.get("risk") or "") == "exec":
             return hit
-    if _RADAR_ASK.search(text or ""):
-        hit = get_skill("radar-gif")
-        if hit and str(hit.get("risk") or "") == "exec":
-            return hit
+    # radar-gif exec removed — AWS rr-chat posts GIFs
     return None
 
 

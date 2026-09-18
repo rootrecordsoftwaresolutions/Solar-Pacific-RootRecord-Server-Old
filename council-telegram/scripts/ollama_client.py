@@ -116,7 +116,7 @@ def _once(
     num_predict: int,
     timeout: float,
     *,
-    keep_alive: int | str = "15m",
+    keep_alive: int | str = "-1",
 ) -> tuple[str, str]:
     payload: dict[str, Any] = {
         "model": model,
@@ -177,7 +177,7 @@ def _flm_try(messages: list[dict[str, str]], timeout: float = 2.0, num_predict: 
 
 
 def _ensure_flm() -> None:
-    """Map NPU for council speak. Skip under pytest. Idle-stop still unmaps at 15m."""
+    """Map NPU for council speak. Skip under pytest. Idle-stop unmaps when console closes."""
     if not _npu_chat_env():
         return
     if os.getenv("PYTEST_CURRENT_TEST"):
@@ -224,9 +224,9 @@ def chat(
         print("npu miss — not mapping GGUF chat", flush=True)
         return ""
     begin_turn(cfg, model, voice=voice)
-    keep = (os.getenv("AVA_OLLAMA_CHAT_KEEP_ALIVE") or os.getenv("OLLAMA_KEEP_ALIVE") or "15m").strip()
-    if keep in {"0", "0s", "0m"}:
-        keep = "15m"
+    keep = (os.getenv("AVA_OLLAMA_CHAT_KEEP_ALIVE") or os.getenv("OLLAMA_KEEP_ALIVE") or "-1").strip()
+    if keep in {"",}:
+        keep = "-1"
     try:
         # Stay mapped across continue retries. Unload only when keep_one_loaded is off.
         text, reason = _once(cfg, model, messages, num_predict, timeout, keep_alive=keep)

@@ -1,11 +1,13 @@
-# radar-gif
+# radar-gif (device stub)
 
-Bruce posts the latest Hawaiʻi weather radar GIF from RootRecord AWS ingest.
+**AWS-only media path.** OmniBook does not pull or post radar GIFs.
 
-Keywords: radar, radar gif, weather radar, Hawaiʻi radar, Hawaii radar, NWS radar.
+| Piece | Where |
+|-------|--------|
+| NWS pull → `Current.gif` | AWS `rr-radar` / `bin/radar_poll.py` |
+| Keyword → `sendDocument` + caption | AWS `rr-chat` / `bin/chat_poll.py` |
+| AI chat | OmniBook council (no GIF attach) |
 
-Files land at `rootrecord-aws/store/live/radar/` (timestamped `*-Current.gif` from each datapack). Archive copies stay under `rootrecord-aws/store/archive/*/radar/`.
-
-Caption:
+Caption (AWS):
 
 > Here's the latest radar and weather information for you. Let me know if theres anything else I can relay.

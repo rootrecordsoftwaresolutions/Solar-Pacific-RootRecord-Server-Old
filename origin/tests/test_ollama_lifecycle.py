@@ -140,3 +140,18 @@ def test_idle_stays_up_during_brainstorm(monkeypatch, tmp_path):
     out = life.tick_idle()
     assert out["stopped"] is False
     assert out["reason"] == "busy"
+
+
+def test_tick_idle_keep_warm_when_console_up(monkeypatch, tmp_path):
+    import apps.core.services.ollama_lifecycle as life
+    monkeypatch.setattr(life, "STATE_PATH", tmp_path / "life.json")
+    monkeypatch.setattr(life, "CONSOLE_UP", tmp_path / "ava-console-up")
+    life.CONSOLE_UP.write_text("up\n", encoding="utf-8")
+    monkeypatch.setattr(life, "play_clip", lambda kind: (_ for _ in ()).throw(AssertionError("clip")))
+    monkeypatch.setattr(
+        "apps.council.ollama_ctl.stop_serve",
+        lambda cfg: (_ for _ in ()).throw(AssertionError("stop")),
+    )
+    out = life.tick_idle()
+    assert out["stopped"] is False
+    assert out["reason"] == "keep_warm"

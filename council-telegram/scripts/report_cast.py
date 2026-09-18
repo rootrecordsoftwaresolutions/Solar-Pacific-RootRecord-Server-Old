@@ -257,6 +257,23 @@ def notify_report(
         f"report-cast kind={kind} sent={len(ids)} audio={bool(audio_path)} photo={bool(photo_path)}",
         flush=True,
     )
+    # Weather / NWS reports: attach latest AWS radar GIF (media path stays on rr-aws).
+    if kind in {"nws", "weather", "hurricane"} and ids:
+        try:
+            from . import aws_radar as _aws_radar
+
+            reply = next((i for i in ids if i), None)
+            radar = _aws_radar.request_aws_post(
+                chat_id=chat_id,
+                reply_to=reply,
+                force=True,
+                gif_only=True,
+            )
+            print(f"report-cast aws-radar {radar}", flush=True)
+        except Exception:
+            import traceback
+
+            traceback.print_exc()
     return {"ok": True, "kind": kind, "ids": ids, "skipped": False}
 
 

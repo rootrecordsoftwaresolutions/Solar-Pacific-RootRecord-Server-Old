@@ -4,10 +4,12 @@
 Requires RR_TELEGRAM_BOT_TOKEN and optional RR_WATCH_CHAT_IDS (comma-separated).
 Posts tiny trigger notices to RR_CONTROL_CHAT_ID when set (reply-now path).
 Does not run LLM speak — that stays on AVA-CORE.
+Radar GIF pull + post is AWS-only (rr-radar Current.gif + this poller).
 """
 from __future__ import annotations
 
 import json
+import re
 import logging
 import os
 import sys
@@ -23,6 +25,74 @@ log = logging.getLogger("rr.chat")
 API = "https://api.telegram.org"
 INTERVAL_S = 1.0
 OFFSET_PATH = WORK / "chatlogs" / "tg-offset.json"
+
+
+_RADAR_ASK = re.compile(
+    r"(?:"
+    r"\bradar\b"
+    r"|"
+    r"\b(?:weather|nws|ridge|hawaii|hawai[`'\u02bb]?i)\s+radar\b"
+    r"|"
+    r"\bradar\s+(?:gif|loop|image|images)\b"
+    r")",
+    re.I,
+)
+RADAR_CAPTION = (
+    "Here's the latest radar and weather information for you. "
+    "Let me know if theres anything else I can relay."
+)
+_RADAR_COOLDOWN_S = 90.0
+_last_radar_post: dict[str, float] = {}
+
+
+def _is_radar(text: str) -> bool:
+    return bool(_RADAR_ASK.search(text or ""))
+
+
+def _radar_token() -> str:
+    return (
+        (os.environ.get("RR_RADAR_BOT_TOKEN") or "").strip()
+        or (os.environ.get("TELEGRAM_BRUCE_TOKEN") or "").strip()
+        or _token()
+    )
+
+
+def _radar_chat_ok(chat_id: str) -> bool:
+    allowed = (os.environ.get("RR_RADAR_CHAT_ID") or "").strip()
+    if not allowed:
+        return True
+    return chat_id == allowed
+
+
+def _post_radar_gif(client: httpx.Client, chat_id: str, reply_to: int | None) -> bool:
+    """GIF + weather brief via radar_post_once (AWS media path)."""
+    import subprocess
+    from pathlib import Path as _P
+
+    script = _P(__file__).resolve().parent / "radar_post_once.py"
+    py = _P(__file__).resolve().parents[1] / "venv" / "bin" / "python"
+    if not py.is_file():
+        py = _P("/usr/bin/env")
+        cmd = ["python3", str(script), "--chat-id", str(chat_id)]
+    else:
+        cmd = [str(py), str(script), "--chat-id", str(chat_id)]
+    if reply_to:
+        cmd += ["--reply-to", str(int(reply_to))]
+    try:
+        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+    except Exception as exc:
+        log.warning("radar post failed: %s", exc)
+        return False
+    out = (proc.stdout or "").strip()
+    if proc.returncode == 0 and out in {"ok", "cooldown"}:
+        log.info("radar(+weather) posted chat=%s out=%s", chat_id, out)
+        return True
+    log.warning(
+        "radar post failed code=%s err=%s",
+        proc.returncode,
+        (proc.stderr or "")[:200],
+    )
+    return False
 
 
 def _token() -> str:
@@ -116,6 +186,8 @@ def poll_once(client: httpx.Client, token: str) -> int:
             "message_id": msg.get("message_id"),
         }
         append_jsonl(log_path, row)
+        if text and _is_radar(text) and _radar_chat_ok(chat_id):
+            _post_radar_gif(client, chat_id, msg.get("message_id"))
         if text and _is_trigger(text):
             trigger = {
                 "hst": now_hst().isoformat(),

@@ -41,3 +41,13 @@ Connection: `panels-cam/store/CONNECTION.json` (also under `look/store/camera-dv
 ## Offline
 
 If the frame stays black, turn River car DC on (camera power), wait, grab again. If still dark, check the BNC / corrosion — not a software path.
+
+
+## AWS solar-cam (Sep 2026)
+
+- Desk gateway `cam_gateway.py` on `127.0.0.1:8791` + path mux `solar_origin_mux.py` on `127.0.0.1:8787`.
+- Public: `https://origin.avaivy.cloud/<RR_SOLAR_PATH_SECRET>/…` (health, power-on/off, current.jpg).
+- Origin FastAPI should bind **8788** while mux owns 8787.
+- AWS `rr-solar-cam` polls every 10m → `work/solar-cam/Current.jpg|gif` (datapack via packer).
+- Council “show me solar / panels” → `aws_solar` → `solar_post_once.py` (Bruce token). Local grab is fallback only.
+- User units: `rr-solar-cam-gateway`, `rr-solar-origin-mux`.

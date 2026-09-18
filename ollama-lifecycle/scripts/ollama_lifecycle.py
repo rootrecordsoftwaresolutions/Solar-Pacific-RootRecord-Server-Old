@@ -1,7 +1,9 @@
-"""Wake local AI on inbound chat. After 15 minutes unused, stop Ollama serve.
+"""Wake local AI on inbound chat.
 
-FastFlowLM stays mapped while AVA Console is up. Idle-stop unmaps it on close.
-Brainstorm / queue busy keeps Ollama up. Does not run idle-stop.sh.
+While AVA Console is up (`state/store/ava-console-up`), keep Ollama and
+FastFlowLM ready — no mid-session 15-minute power-down. Idle-stop still
+unmaps everything when the console closes.
+Brainstorm / queue busy also keeps Ollama up. Does not run idle-stop.sh.
 Loading / power-down clips play on the down↔up edges only.
 """
 from __future__ import annotations
@@ -15,7 +17,8 @@ from typing import Any
 
 from apps.core import config
 
-IDLE_S = 15 * 60
+IDLE_S = 15 * 60  # only when console is down; console-up keeps warm
+CONSOLE_UP = Path.home() / ".ollama" / "skills" / "state" / "store" / "ava-console-up"
 STATE_PATH = config.STATE_DIR / "ollama-lifecycle.json"
 WORDS_DIR = config.ASSETS_DIR / "words"
 LOADING_NAME = "agents_are_loading.wav"
@@ -220,6 +223,10 @@ def tick_idle() -> dict[str, Any]:
     from apps.council import ollama_ctl
 
     cfg = _cfg()
+    # Console owns the desk: stay warm for chat (Ollama + NPU). Close → idle-stop.
+    if CONSOLE_UP.is_file():
+        touch(source="keep_warm")
+        return {"ok": True, "stopped": False, "reason": "keep_warm"}
     if _busy():
         touch(source="busy")
         return {"ok": True, "stopped": False, "reason": "busy"}
