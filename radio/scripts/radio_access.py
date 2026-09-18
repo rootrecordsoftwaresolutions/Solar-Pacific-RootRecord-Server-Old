@@ -34,7 +34,7 @@ _ME_TTL = 120.0
 
 
 def _path() -> Path:
-    return config.STATE_DIR / STATE_NAME
+    return config.DATA_DIR / "state" / STATE_NAME
 
 
 def _default() -> dict[str, Any]:
@@ -112,8 +112,24 @@ def fetch_portal_me(token: str) -> dict[str, Any] | None:
         return hit[1] if hit else None
 
 
+def _tier_is_paid(tier: str) -> bool:
+    t = (tier or "").strip().lower()
+    if not t:
+        return False
+    needles = ("monthly", "member", "pro", "life", "lifetime", "ava")
+    return any(n in t for n in needles)
+
+
+def _sub_is_active(sub: str) -> bool:
+    return (sub or "").strip().lower() in ("active", "trialing", "paid", "member")
+
+
 def member_from_me(me: dict[str, Any] | None) -> dict[str, Any]:
-    """Paid / lifetime member flag + display balance (whole Root Units)."""
+    """Paid / lifetime member flag + display balance (whole Root Units).
+
+    Broad paid detection so real paying users are never treated as guests.
+    Signed-in free accounts stay non-members.
+    """
     if not me or me.get("_auth") is False:
         return {
             "signed_in": False,
@@ -124,39 +140,79 @@ def member_from_me(me: dict[str, Any] | None) -> dict[str, Any]:
             "balance": 0,
         }
     access = me.get("access") if isinstance(me.get("access"), dict) else {}
+    billing = me.get("billing") if isinstance(me.get("billing"), dict) else {}
     raw = me.get("raw") if isinstance(me.get("raw"), dict) else {}
     raw_access = raw.get("access") if isinstance(raw.get("access"), dict) else {}
-    tier = str(
-        me.get("tier")
-        or me.get("plan")
-        or access.get("tier")
-        or raw.get("tier")
-        or raw_access.get("tier")
-        or ""
-    ).strip().lower()
+    raw_billing = raw.get("billing") if isinstance(raw.get("billing"), dict) else {}
+
+    def _pick_tier(*srcs: Any) -> str:
+        for src in srcs:
+            if not isinstance(src, dict):
+                continue
+            for key in ("tier", "plan", "plan_name", "product", "membership"):
+                v = src.get(key)
+                if v is None or v == "":
+                    continue
+                return str(v).strip().lower()
+        return ""
+
+    tier = _pick_tier(me, access, billing, raw, raw_access, raw_billing)
+
     lifetime = (
         _truthy(me.get("life_member"))
         or _truthy(me.get("lifeMember"))
         or _truthy(me.get("lifetime_member"))
         or _truthy(me.get("lifetime"))
         or _truthy(access.get("life_member"))
+        or _truthy(billing.get("life_member"))
         or _truthy(raw.get("life_member"))
         or _truthy(raw_access.get("life_member"))
+        or _truthy(raw_billing.get("life_member"))
         or tier in ("life", "lifetime")
+        or _tier_is_paid(tier) and ("life" in tier or "lifetime" in tier)
     )
+
     sub = str(
         me.get("subscription_status")
         or access.get("subscription_status")
+        or billing.get("subscription_status")
         or raw.get("subscription_status")
+        or raw_billing.get("subscription_status")
         or ""
     ).strip().lower()
-    paid = lifetime or sub in ("active", "trialing", "paid", "member") or tier in (
-        "monthly",
-        "member",
-        "pro",
-        "life",
-        "lifetime",
+
+    flag_paid = (
+        _truthy(me.get("member"))
+        or _truthy(me.get("is_member"))
+        or _truthy(me.get("paid"))
+        or _truthy(me.get("pro"))
+        or _truthy(me.get("pro_unlocked"))
+        or _truthy(access.get("member"))
+        or _truthy(access.get("is_member"))
+        or _truthy(access.get("pro"))
+        or _truthy(access.get("pro_unlocked"))
+        or _truthy(access.get("life_member"))
+        or _truthy(billing.get("life_member"))
+        or _truthy(raw.get("member"))
+        or _truthy(raw.get("is_member"))
+        or _truthy(raw.get("paid"))
+        or _truthy(raw.get("pro"))
+        or _truthy(raw.get("pro_unlocked"))
+        or _truthy(raw_access.get("member"))
+        or _truthy(raw_access.get("is_member"))
+        or _truthy(raw_access.get("pro"))
+        or _truthy(raw_access.get("pro_unlocked"))
+        or _truthy(raw_access.get("life_member"))
+        or _truthy(raw_billing.get("life_member"))
     )
+
+    paid = (
+        lifetime
+        or flag_paid
+        or _sub_is_active(sub)
+        or _tier_is_paid(tier)
+    )
+
     # Balance candidates — prefer whole units when values look like whole counts.
     bal = 0
     for key in (
@@ -166,7 +222,7 @@ def member_from_me(me: dict[str, Any] | None) -> dict[str, Any]:
         "root_units",
         "balance_display",
     ):
-        for src in (me, access, raw):
+        for src in (me, access, billing, raw):
             if not isinstance(src, dict):
                 continue
             v = src.get(key)
@@ -187,9 +243,11 @@ def member_from_me(me: dict[str, Any] | None) -> dict[str, Any]:
         me.get("account_id") or me.get("id") or me.get("user_id") or me.get("sub") or ""
     ).strip()[:120]
     email = str(me.get("email") or "").strip()[:160]
+    signed_in = bool(email or account_id)
     return {
-        "signed_in": bool(email or account_id),
-        "member": bool(paid and (email or account_id)),
+        "signed_in": signed_in,
+        # Never grant member just for signed-in free accounts.
+        "member": bool(paid and signed_in),
         "lifetime": lifetime,
         "account_id": account_id or email or "",
         "email": email,
