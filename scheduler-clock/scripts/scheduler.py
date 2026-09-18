@@ -865,6 +865,18 @@ class Scheduler:
                         return
                 except Exception:
                     pass
+                # RootRecord AWS soft-park: skill folder OFFLOADED → skip (do not delete trees)
+                try:
+                    from pathlib import Path as _P
+
+                    _skill_path = _SKILL_ASYNC_CRONS.get(name)
+                    if _skill_path is not None:
+                        _skill_root = _P(_skill_path).resolve().parent.parent
+                        if (_skill_root / "OFFLOADED").is_file():
+                            log.info("OFFLOADED skip cron %s (owned by rr-aws)", name)
+                            return
+                except Exception:
+                    pass
                 last = None
                 mod = None
                 skill = _SKILL_ASYNC_CRONS.get(name)

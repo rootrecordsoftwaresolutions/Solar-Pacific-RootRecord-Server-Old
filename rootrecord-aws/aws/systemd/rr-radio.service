@@ -1,0 +1,19 @@
+[Unit]
+Description=RootRecord Icecast radio stream (ffmpeg → Icecast)
+After=network-online.target rr-icecast.service
+Wants=network-online.target rr-icecast.service
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/rootrecord
+Environment=RR_ROOT=/home/ubuntu/rootrecord
+Environment=TZ=Pacific/Honolulu
+ExecStart=/bin/bash /home/ubuntu/rootrecord/bin/radio_stream.sh
+Restart=always
+RestartSec=5
+StandardOutput=append:/home/ubuntu/rootrecord/logs/radio.log
+StandardError=append:/home/ubuntu/rootrecord/logs/radio.log
+
+[Install]
+WantedBy=multi-user.target

@@ -121,6 +121,17 @@ if [ "${AVA_NPU_CHAT:-1}" != "0" ] && [ -x "$WAIT_FLM" ]; then
   fi
 fi
 
+# RootRecord: pull any packs missed while the desk was offline (Telegram → live → prep)
+RR_CATCHUP="$HOME/.ollama/skills/rootrecord-aws/local/catchup.sh"
+if [ -x "$RR_CATCHUP" ]; then
+  log "RootRecord catch-up (missed datapacks while offline)..."
+  bash "$RR_CATCHUP" >> "$LOG_DIR/rr-catchup.log" 2>&1 &
+fi
+# Reply-now trigger watch (gated on console flag)
+if command -v systemctl >/dev/null 2>&1; then
+  systemctl --user start rr-trigger-watch.service >/dev/null 2>&1 || true
+fi
+
 # Ollama stays for coder/vision only. Do not warm llama GGUF alongside the NPU.
 if ! pgrep -f "ollama serve" >/dev/null 2>&1; then
   log "Starting Ollama local server (coder/vision only)..."
