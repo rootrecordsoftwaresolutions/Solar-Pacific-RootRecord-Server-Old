@@ -430,7 +430,9 @@ class _WaveScheduler:
             return None
         func = args[0] if args else kwargs.get("func")
         rest = args[1:] if args else ()
-        cron_name = getattr(func, "__name__", "") if func is not None else ""
+        cron_name = ""
+        if func is not None:
+            cron_name = str(getattr(func, "_offload_name", None) or getattr(func, "__name__", "") or "")
         if cron_name and _skill_offloaded(cron_name):
             log.info(
                 "Not registering OFFLOADED cron %s (job_id=%s, owned by rr-aws)",
@@ -518,13 +520,17 @@ class Scheduler:
         # Local EQ WAV: on the hour + poll for new local M≥2.0
         s.add_job(self._run("earthquake_hourly"), CronTrigger(minute=8),
                   id="earthquake-hourly", name="Earthquake hourly local WAV", misfire_grace_time=180)
-        s.add_job(
-            self._eq_poll_m2,
-            IntervalTrigger(minutes=10),
-            id="earthquake-m2-poll",
-            name="Earthquake local M≥2 poll",
-            misfire_grace_time=120,
-        )
+        # M≥2 poll is local-only companion to earthquake-hourly — skip when AWS owns quakes
+        if not _skill_offloaded("earthquake_hourly"):
+            s.add_job(
+                self._eq_poll_m2,
+                IntervalTrigger(minutes=10),
+                id="earthquake-m2-poll",
+                name="Earthquake local M≥2 poll",
+                misfire_grace_time=120,
+            )
+        else:
+            log.info("Not registering earthquake-m2-poll (earthquake-hourly OFFLOADED → rr-aws)")
         s.add_job(
             self._run("council_quake"),
             IntervalTrigger(minutes=2),
@@ -792,6 +798,9 @@ class Scheduler:
 
     @staticmethod
     async def _eq_poll_m2():
+        if _skill_offloaded("earthquake_hourly"):
+            log.info("Not running earthquake-m2-poll (earthquake-hourly OFFLOADED → rr-aws)")
+            return
         from apps.core.services import earthquake_hourly
 
         await earthquake_hourly.run(reason="poll", force=False)
@@ -855,6 +864,7 @@ class Scheduler:
                     pass
 
         _job.__name__ = "fs_index"
+        _job._offload_name = "fs_index"  # type: ignore[attr-defined]
         return _job
 
     @staticmethod
@@ -934,6 +944,7 @@ class Scheduler:
                 except Exception:
                     pass  # never let DB logging kill the scheduler
         _job.__name__ = name
+        _job._offload_name = name  # type: ignore[attr-defined]
         return _job
 
     async def start(self):

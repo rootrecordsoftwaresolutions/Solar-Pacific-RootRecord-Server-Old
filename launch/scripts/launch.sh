@@ -176,11 +176,11 @@ elif [ -f "$BT_BRIDGE" ]; then
   fi
 fi
 
-# ── Kill any leftover processes on port 8787 ──────────────────────────────────
-if lsof -ti:8787 &>/dev/null; then
-  log "Stopping existing process on :8787..."
-  kill $(lsof -ti:8787) 2>/dev/null || true
-  sleep 1
+# ── Kill leftover Ava Core on :8788 (leave :8787 solar mux alone) ───────────
+if lsof -ti:8788 &>/dev/null; then
+  log "Stopping existing Ava Core on :8788..."
+  kill $(lsof -ti:8788) 2>/dev/null || true
+  sleep 0.5
 fi
 
 # Telegram council (Ava/Bruce/Carly) — desk discussion. Not OBS. Idle-stop kills it.
@@ -202,7 +202,7 @@ else
     fails=0
     for _ in $(seq 1 40); do
       kill -0 "$parent" 2>/dev/null || exit 0
-      if curl -fsS "http://127.0.0.1:8787/health" >/dev/null 2>&1; then
+      if curl -fsS "http://127.0.0.1:8788/health" >/dev/null 2>&1; then
         break
       fi
       sleep 1
@@ -245,7 +245,7 @@ if pgrep -x cloudflared >/dev/null 2>&1; then
 elif [ -f "$API_TUNNEL" ]; then
   (
     for _ in $(seq 1 40); do
-      if curl -fsS "http://127.0.0.1:8787/health" >/dev/null 2>&1; then
+      if curl -fsS "http://127.0.0.1:8788/health" >/dev/null 2>&1; then
         break
       fi
       sleep 1
@@ -260,7 +260,7 @@ fi
 # Non-zero uvicorn exit (recycle-origin SIGTERM) restarts origin without idle-stop.
 # Clean exit 0 (tests / orderly stop) does not loop.
 # Crash-loop cap: AVA_ORIGIN_RECYCLE_MAX (default 20) with linear backoff to 30s.
-log "Starting Ava Core on :8787..."
+log "Starting Ava Core on :8788 (solar mux owns :8787)..."
 echo ""
 ORIGIN_CODE=0
 ORIGIN_FAILS=0
@@ -274,14 +274,14 @@ while true; do
   if [ -x "$VENV/bin/uvicorn" ]; then
     "$VENV/bin/uvicorn" apps.core.main:app \
       --host 0.0.0.0 \
-      --port 8787 \
+      --port 8788 \
       --log-level info \
       --no-access-log \
       2>&1 | tee -a "$CONSOLE_LOG" "$LOG_DIR/ava-core.log"
   else
     "$PYTHON" -m uvicorn apps.core.main:app \
       --host 0.0.0.0 \
-      --port 8787 \
+      --port 8788 \
       --log-level info \
       --no-access-log \
       2>&1 | tee -a "$CONSOLE_LOG" "$LOG_DIR/ava-core.log"

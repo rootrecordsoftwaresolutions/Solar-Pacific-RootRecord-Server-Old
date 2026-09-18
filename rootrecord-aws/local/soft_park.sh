@@ -24,5 +24,12 @@ mark "$SKILLS/rr-kilauea"
 mark "$SKILLS/hurricane-fetch"
 mark "$SKILLS/hurricane-tracker"
 mark "$SKILLS/rr-noaa"
+
+mark "$SKILLS/panels-cam"
+mark "$SKILLS/official-weather-media"
+mark "$SKILLS/hurricane-desk"
+mark "$SKILLS/hurricane-obs"
+mark "$SKILLS/nhc-media"
+
 echo "EcoFlow left untouched."
 echo "NOTE: scheduler-clock does not register OFFLOADED skill crons (rr-aws owns them)."

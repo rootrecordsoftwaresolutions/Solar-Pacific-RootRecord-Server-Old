@@ -51,3 +51,15 @@ If the frame stays black, turn River car DC on (camera power), wait, grab again.
 - AWS `rr-solar-cam` polls every 10m → `work/solar-cam/Current.jpg|gif` (datapack via packer).
 - Council “show me solar / panels” → `aws_solar` → `solar_post_once.py` (Bruce token). Local grab is fallback only.
 - User units: `rr-solar-cam-gateway`, `rr-solar-origin-mux`.
+
+
+## automation-kb (AWS etc/)
+
+Durable shared KB at `/home/ubuntu/rootrecord/etc/automation-kb.json` (never wiped by packer).
+Sections: `site`, `sun`, `solar_cam`, `weather`, `noaa`, `radar`, `earthquake`, `hurricane`, `packer`.
+Solar polls only sunrise→sunset (Open-Meteo, Fern Forest coords). Other pollers call `automation_kb.touch_service`.
+
+
+## Soft-parked
+
+`OFFLOADED` — 15‑min local auto tick disabled. AWS `rr-solar-cam` owns stills/GIF. Desk keeps `cam_gateway` + mux for the tunnel. Manual `--show` remains as fallback if AWS post fails.
