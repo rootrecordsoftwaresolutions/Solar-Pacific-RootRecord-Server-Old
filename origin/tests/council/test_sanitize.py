@@ -173,3 +173,20 @@ def test_strips_self_name_greeting():
     # Other voices may still address Ava
     kept = sanitize_outbound("Good morning, Ava!", voice="bruce")
     assert "Ava" in kept
+
+
+def test_rewrites_cross_voice_identity_claim():
+    out = sanitize_outbound(
+        "Alexander, I'm Ava. I see you were addressed. Flood watch is up.",
+        voice="carly",
+        allow_operator_name=True,
+    )
+    low = out.lower()
+    assert "i'm carly" in low or "i'm carly." in low
+    assert "i'm ava" not in low
+    assert "flood watch" in low
+    carla = sanitize_outbound("Carla out. Packs look fine.", voice="carly")
+    assert "Carla" not in carla
+    assert "Carly" in carla
+    kept = sanitize_outbound("I'm Ava. Brand copy is ready.", voice="ava")
+    assert "I'm Ava" in kept

@@ -646,6 +646,28 @@ _FORBIDDEN = re.compile(
     re.I,
 )
 
+# Operator/instruction lines that must never be spoken in a public status.
+_INSTRUCTION_LEAK = re.compile(
+    r"(?im)^\s*(?:"
+    r"Missing numbers:.*|"
+    r"Measured facts only\.?|"
+    r"Do not invent(?:\s+numbers)?\.?|"
+    r"Pronounce K[īi]lauea.*|"
+    r"Advisory\s*/\s*not erupting.*|"
+    r"Prefer local phrase clips.*|"
+    r"Full report MP3 only when.*|"
+    r"No Aloha\.?|"
+    r"No the local stack\.?|"
+    r"Static GEO under.*|"
+    r"players_online is RootMC.*|"
+    r"null/missing means not live.*"
+    r")\s*$"
+)
+_INSTRUCTION_INLINE = re.compile(
+    r"(?i)\s*(?:Do not invent cloud cover\.?|Do not alarm\.?|"
+    r"Night:\s*PV\s*~0\s*W is expected\.\s*)"
+)
+
 
 _WALL_POWER_ADVICE = re.compile(
     r"(?i)(?<!never advise )(?<!never say )(?<!never say prefer )(?<!do not advise )\b("
@@ -672,6 +694,8 @@ def scrub_spoken(text: str) -> str:
     except Exception:
         out = (text or "").strip()
     out = _FORBIDDEN.sub("the local stack", out)
+    out = _INSTRUCTION_LEAK.sub("", out)
+    out = _INSTRUCTION_INLINE.sub(" ", out)
     out = re.sub(r"(?i)\baloha[,!]?\s*", "", out)
     out = re.sub(r"(?i)\bHP\b", "this host", out)
     # Ara spells all-caps AVA letter-by-letter. Never leave it as a TTS token.

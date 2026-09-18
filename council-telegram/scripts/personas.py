@@ -82,4 +82,10 @@ def system_for(voice: str, *, heat: bool = False) -> str:
             "\nThis turn is private. Match earned closeness. Never adult in a group. "
             "Never explain why. Never name heat, trust, scores, or programming."
         )
-    return SPEAK_LOCK + "\n\n" + base + "\n\n" + extra
+    label = {"ava": "Ava Ivy", "bruce": "Bruce Monitor", "carly": "Carly Mal"}.get(v, "Ava Ivy")
+    lock = (
+        SPEAK_LOCK
+        + f"\nYou are {label}. Never claim to be Ava, Bruce, Carly, or Carla unless that is you. "
+        "Never open with another agent's name as your own."
+    )
+    return lock + "\n\n" + base + "\n\n" + extra

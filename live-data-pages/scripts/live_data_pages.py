@@ -455,6 +455,111 @@ def build_context() -> dict[str, Any]:
     }
 
 
+def assemble_spoken_status(*, report_type: str = "late") -> str:
+    """Deterministic status text from measured live pages. No model, no rule parroting."""
+    kind = (report_type or "late").strip().lower() or "late"
+    now = datetime.now(HST)
+    weekday = now.strftime("%A, %B ") + str(now.day) + now.strftime(", %Y")
+    hour = now.hour % 12 or 12
+    minute = now.minute
+    about = f"{hour} {minute:02d}" if minute else f"{hour} o'clock"
+    parts: list[str] = [
+        f"**Ava Core Root Record Status — {weekday}, about {about} Hawaiian Standard Time**",
+        "",
+    ]
+
+    origin = build_origin() or {}
+    parts.append("**Origin Health**")
+    parts.append(
+        f"Origin {origin.get('origin') or 'unknown'}. "
+        f"On-device brain {origin.get('on_device_brain') or 'unknown'}"
+        + (f" ({origin.get('brain_detail')})." if origin.get("brain_detail") else ".")
+    )
+    host = origin.get("host") if isinstance(origin.get("host"), dict) else {}
+    if host:
+        bits = []
+        if host.get("cpu_pct") is not None:
+            bits.append(f"CPU {int(round(float(host['cpu_pct'])))}%")
+        if host.get("mem_pct") is not None:
+            bits.append(f"RAM {float(host['mem_pct'])}%")
+        if bits:
+            parts.append("Host sample: " + ", ".join(bits) + ".")
+    parts.append("")
+
+    power = build_power() or {}
+    parts.append("**Power / Solar**")
+    eco = str(power.get("ecoflow_line") or "").strip()
+    host_line = str(power.get("host_line") or "").strip()
+    if eco:
+        parts.append(eco)
+    if host_line:
+        parts.append(host_line)
+    if not eco and not host_line:
+        parts.append("Power numbers are not live.")
+    parts.append("")
+
+    weather = build_weather() or {}
+    parts.append("**Weather**")
+    wx_lines = [str(x).strip() for x in (weather.get("lines") or []) if str(x).strip()]
+    seen_wx: set[str] = set()
+    for line in wx_lines[:8]:
+        key = line.lower()
+        if key in seen_wx:
+            continue
+        seen_wx.add(key)
+        parts.append(line)
+    if not wx_lines:
+        parts.append("Weather is not live.")
+    hurricane = str(weather.get("hurricane") or "").strip()
+    if hurricane and hurricane.lower() not in seen_wx:
+        parts.append(hurricane)
+    parts.append("")
+
+    kil = build_kilauea() or {}
+    parts.append("**Kīlauea**")
+    if kil.get("on_file"):
+        level = kil.get("alert_level") or "unknown"
+        erupting = kil.get("erupting")
+        if erupting is True:
+            parts.append(f"{level} — erupting.")
+        elif erupting is False:
+            parts.append(f"{level} — not erupting.")
+        else:
+            parts.append(f"{level}.")
+        headline = str(kil.get("headline") or "").strip()
+        if headline:
+            parts.append(headline)
+    else:
+        parts.append("Kīlauea alert is not live.")
+    parts.append("")
+
+    chat = build_chat() or {}
+    parts.append("**Public Chat**")
+    parts.append(
+        f"On-device brain {chat.get('on_device_brain') or 'unknown'}."
+    )
+    parts.append("")
+
+    board = build_day_board() or {}
+    parts.append("**Day Board**")
+    rem = int(board.get("remaining_count") or 0)
+    if rem > 0:
+        parts.append(f"{rem} remaining job(s) on the day board.")
+    else:
+        parts.append("No remaining day-board jobs.")
+    parts.append("")
+
+    mc = build_minecraft() or {}
+    if mc.get("players_live") and mc.get("players_online") is not None:
+        count = int(mc["players_online"])
+        # Measured zero is fine; omit the section only when count is missing.
+        parts.append("**Minecraft Live**")
+        parts.append(f"RootMC players online: {count}.")
+        parts.append("")
+
+    parts.append("End of status.")
+    return "\n".join(parts).strip() + "\n"
+
 _BUILDERS: dict[str, Callable[[], dict[str, Any]]] = {
     "origin": build_origin,
     "power": build_power,

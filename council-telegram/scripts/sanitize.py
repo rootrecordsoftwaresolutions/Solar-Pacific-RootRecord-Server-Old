@@ -108,6 +108,16 @@ SELF_GREET = {
         r"\s*,\s*(?:@?)?(?:carly(?:\s+mal)?|carla)\s*([,!.]?\s*)"
     ),
 }
+VOICE_LABEL = {"ava": "Ava", "bruce": "Bruce", "carly": "Carly"}
+# "I'm Ava" / "This is Bruce" / "I speak as Carly" — catch cross-voice identity bleed.
+IDENTITY_CLAIM = re.compile(
+    r"(?is)(?:^|(?<=[.!?])\s*|(?<=\n)|(?<=,)\s*)"
+    r"(?:(?:hey|hi|yo)\s+)?"
+    r"(?:i(?:'m| am)|this is|i speak as)\s+"
+    r"(?:@?)?(ava(?:\s+ivy)?|bruce(?:\s+monitor)?|carly(?:\s+mal)?|carla)\b"
+    r"([^.\n!?]*)([.!?])?"
+)
+CARLA_TYPO = re.compile(r"\bCarla\b")
 
 
 def _looks_like_json_blob(text: str) -> bool:
@@ -119,6 +129,40 @@ def _looks_like_json_blob(text: str) -> bool:
         return True
     except json.JSONDecodeError:
         return False
+
+
+def _claimed_voice(name: str) -> str | None:
+    n = re.sub(r"\s+", " ", (name or "").strip().lower())
+    if n in {"ava", "ava ivy"}:
+        return "ava"
+    if n in {"bruce", "bruce monitor"}:
+        return "bruce"
+    if n in {"carly", "carly mal", "carla"}:
+        return "carly"
+    return None
+
+
+def _fix_identity_claims(text: str, voice: str) -> str:
+    """Rewrite or drop sentences where this voice claims to be someone else."""
+    v = (voice or "").strip().lower()
+    if v not in VOICE_LABEL:
+        return text
+    own = VOICE_LABEL[v]
+
+    def _sub(m: re.Match[str]) -> str:
+        claimed = _claimed_voice(m.group(1) or "")
+        if claimed is None or claimed == v:
+            return m.group(0)
+        rest = (m.group(2) or "").strip(" ,;:-")
+        punct = m.group(3) or "."
+        if rest:
+            return f"I'm {own}. {rest[0].upper()}{rest[1:]}{punct}"
+        return f"I'm {own}{punct}"
+
+    out = IDENTITY_CLAIM.sub(_sub, text)
+    if v == "carly":
+        out = CARLA_TYPO.sub("Carly", out)
+    return out
 
 
 def sanitize_outbound(
@@ -186,6 +230,7 @@ def sanitize_outbound(
     voc = SELF_VOCATIVE.get(v)
     if voc:
         clean = voc.sub("", clean)
+    clean = _fix_identity_claims(clean, v)
     clean = re.sub(r"\n{3,}", "\n\n", clean).strip()
     if not clean or _looks_like_json_blob(clean):
         return fallback

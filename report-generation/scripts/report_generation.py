@@ -1106,7 +1106,27 @@ def _generate_local(kind: str, *, offline: bool = False) -> dict:
             include_timestamp=not offline,
             offline=offline,
         )
-    from apps.core.services import boot_report, live_data_pages, ollama as ollama_svc
+    from apps.core.services import boot_report, live_data_pages
+
+    # Evening/late local: assemble measured pages only. NPU rewrite was parroting
+    # instruction rules ("Missing numbers: say not live") into the public status.
+    if kind in {"evening", "late"}:
+        if offline:
+            return {
+                "ok": True,
+                "engine": "offline_stub",
+                "text": f"This is the Ava Core Root Record {kind} status. End of status.\n",
+                "include_timestamp": False,
+            }
+        text = live_data_pages.assemble_spoken_status(report_type=kind)
+        return {
+            "ok": True,
+            "engine": "local_facts",
+            "text": boot_report.scrub_spoken(text),
+            "include_timestamp": True,
+        }
+
+    from apps.core.services import ollama as ollama_svc
 
     facts = live_data_pages.facts_block_for_report(report_type=kind)
     if offline:

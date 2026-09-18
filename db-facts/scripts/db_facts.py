@@ -18,7 +18,7 @@ from apps.core.services import energy
 
 log = logging.getLogger("ava.db_facts")
 
-from apps.core.services.data_layout import SN_LABELS, ecoflow_dir, ecoflow_sn_public, host_history_path
+from apps.core.services.data_layout import SN_LABELS, ecoflow_dir, ecoflow_sn_public, ecoflow_state_dir, host_history_path
 
 # Keep in sync with data_layout.SN_LABELS. Facts never print serials.
 _PACK_LABELS = SN_LABELS
@@ -145,7 +145,7 @@ def _night_note(*, ebatt: bool = False) -> str:
         return " Night: MPPT input is E-Batt (Ninebot 220 Wh nameplate), not solar."
     hour = datetime.now().hour
     if hour < 6 or hour >= 19:
-        return " Night: PV ~0 W is expected. Do not invent cloud cover."
+        return " Night: PV near 0 W is expected."
     return ""
 
 
@@ -377,7 +377,8 @@ def _ecoflow_from_sqlite() -> tuple[float | None, str | None]:
         live = _live_pack_from_row(
             sn,
             {
-                "source": src,
+                # 10s snapshots are the BLE poller store — empty source is still live BLE.
+                "source": src or "ble",
                 "soc": row["soc"],
                 "deviceOnline": row["online"],
                 "solarW": row["solar_w"],
@@ -425,7 +426,10 @@ def ecoflow_line() -> str:
             continue
         if line:
             try:
-                live = json.loads((config.STATE_DIR / "ecoflow-live.json").read_text(encoding="utf-8"))
+                live_path = ecoflow_state_dir() / "ecoflow-live.json"
+                if not live_path.is_file():
+                    live_path = config.STATE_DIR / "ecoflow-live.json"
+                live = json.loads(live_path.read_text(encoding="utf-8"))
                 card = str(live.get("card") or "").strip()
                 if card:
                     return f"{line} | {card}"
