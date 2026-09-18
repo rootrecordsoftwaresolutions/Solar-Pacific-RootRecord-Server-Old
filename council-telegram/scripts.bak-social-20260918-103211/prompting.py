@@ -196,9 +196,7 @@ def build_speak_prompt(
     from . import desk_read
 
     vision = (vision_block or "").strip()
-    # Group used to always inject desk — hellos became ops briefs.
-    # Same gate as DMs: desk only when the ask needs it (or photo turn).
-    need_desk = bool(vision) or ask_needs_desk(user_text)
+    need_desk = bool(vision) or (not private) or ask_needs_desk(user_text)
     price_ask = False
     if need_desk and not vision:
         try:

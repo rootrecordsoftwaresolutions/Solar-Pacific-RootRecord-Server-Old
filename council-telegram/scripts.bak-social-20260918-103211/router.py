@@ -184,27 +184,6 @@ def wants_all_voices(text: str) -> bool:
 def is_empathy(text: str) -> bool:
     return bool(EMPATHY.search(text or ""))
 
-_WORK_ASK = re.compile(
-    r"\b(?:check|look(?:\s+at)?|status|fix|deploy|implement|build|review|"
-    r"weigh\s+in|plan|report|debug|restart|ship|patch|update|monitor|"
-    r"what(?:'s|\s+is|\s+are)|how(?:'s|\s+is|\s+are)|why|when|where|"
-    r"can\s+you|could\s+you|please)\b",
-    re.I,
-)
-
-
-def is_social_room_ping(text: str) -> bool:
-    """Group addressed, but no question / work ask — one voice is enough."""
-    t = (text or "").strip()
-    if not t or not is_group_address(t):
-        return False
-    if is_direct_question(t) or wants_all_voices(t):
-        return False
-    if _WORK_ASK.search(t):
-        return False
-    return True
-
-
 
 def _voices_from_tags(text: str) -> list[str]:
     found: list[str] = []
@@ -437,11 +416,6 @@ def detect_addressing(
     if group and named and not BROAD_ALL.search(t):
         return _base_addr(voices=list(named), reason="team_override", group=True)
     if group:
-        if is_social_room_ping(t):
-            voice = "ava" if "ava" not in blocked else next(
-                (v for v in ("bruce", "carly") if v not in blocked), "ava"
-            )
-            return _base_addr(voices=[voice], reason="social", group=True)
         voices = [v for v in ("ava", "bruce", "carly") if v not in blocked]
         if not voices:
             return _base_addr(voices=[], reason="silence", group=True)

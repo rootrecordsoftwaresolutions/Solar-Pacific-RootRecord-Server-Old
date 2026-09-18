@@ -159,8 +159,11 @@ def _player_html(
     site_label: str = "RootRecord",
     live_src: str | None = None,
 ) -> str:
-    src = live_src or radio_svc.aws_upstream_url() or "/radio/live.mp3"
+    src = (live_src or "").strip() or radio_svc.aws_upstream_url() or "https://arthritis-travelling-reaches-regions.trycloudflare.com/rootrecord.mp3"
     return _player_html_fn(brand=brand, site_label=site_label, live_src=src)
+
+
+
 
 
 def _host(request: Request) -> str:

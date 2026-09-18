@@ -1799,13 +1799,6 @@ def handle_update(
             "Do not re-ask a question that already got an answer today. "
             "Stay in your personality. Speak. Do not PASS."
         )
-    if reason == "social":
-        extra = (
-            (extra + "\n" if extra else "")
-            + "SOCIAL — they spoke to the room socially. "
-            "Reply briefly in character to what they actually said. "
-            "No desk briefing, no planning round, no questioning teammates."
-        )
     if is_owner_user:
         extra = (
             (extra + "\n" if extra else "")
