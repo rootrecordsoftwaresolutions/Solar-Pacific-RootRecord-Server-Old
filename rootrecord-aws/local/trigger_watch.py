@@ -113,20 +113,36 @@ def tick(client: httpx.Client, token: str, control_chat: str) -> int:
 
 def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(message)s")
+    logging.getLogger("httpx").setLevel(logging.WARNING)
+    logging.getLogger("httpcore").setLevel(logging.WARNING)
     load_dotenv()
-    token = (os.environ.get("RR_DATAPACK_BOT_TOKEN") or os.environ.get("RR_TELEGRAM_BOT_TOKEN") or "").strip()
+    # NEVER share getUpdates with the datapack recv bot (Telegram 409 Conflict).
+    token = (
+        os.environ.get("RR_TRIGGER_BOT_TOKEN")
+        or os.environ.get("RR_TELEGRAM_BOT_TOKEN")
+        or ""
+    ).strip()
+    recv = (
+        os.environ.get("RR_DATAPACK_RECV_BOT_TOKEN")
+        or os.environ.get("RR_DATAPACK_BOT_TOKEN")
+        or ""
+    ).strip()
+    if token and recv and token == recv:
+        log.error("RR_TRIGGER_BOT_TOKEN must differ from datapack recv bot — idling")
+        token = ""
     control = (os.environ.get("RR_CONTROL_CHAT_ID") or "").strip()
     if not token:
-        log.error("no bot token — trigger watch idle")
+        log.error("no dedicated trigger bot token — trigger watch idle (datapack recv stays exclusive)")
         while True:
             time.sleep(60)
     log.info("RootRecord trigger watch (console-gated)")
     with httpx.Client() as client:
         while True:
             try:
-                tick(client, token, control)
+                if console_up():
+                    tick(client, token, control)
             except Exception as exc:
-                log.warning("tick failed: %s", exc)
+                log.warning("tick failed: %s", type(exc).__name__)
             time.sleep(1.0)
 
 

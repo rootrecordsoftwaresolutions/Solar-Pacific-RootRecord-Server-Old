@@ -206,7 +206,7 @@ export default function NewGoalPage() {
               <li>Every goal shows a progress bar</li>
             </ul>
             <div className={styles.modalActions}>
-              <a className={`${styles.btn} ${styles.btnGold}`} href="https://g.rootrecord.info/memberships">
+              <a className={`${styles.btn} ${styles.btnGold}`} href="https://rootrecord.cloud/billing">
                 Get membership to create goals
               </a>
               <a className={`${styles.btn} ${styles.btnGhost}`} href="/goals">

@@ -255,9 +255,18 @@ def run() -> dict:
     with httpx.Client() as client:
         try:
             packs = fetch_all_new_packs(client, token, chat, st)
+        except httpx.HTTPStatusError as exc:
+            # 409 = another getUpdates client on same bot; keep live tree
+            detail = f"fetch failed: {exc}"[:400]
+            out["detail"] = detail
+            out["action"] = "stale_pack"
+            out["ok"] = True
+            _save_state({**st, "last_ingest": out})
+            return out
         except Exception as exc:
             out["detail"] = f"fetch failed: {exc}"[:400]
             out["action"] = "stale_pack"
+            out["ok"] = True
             _save_state({**st, "last_ingest": out})
             return out
 

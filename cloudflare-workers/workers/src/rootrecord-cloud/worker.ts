@@ -26,6 +26,7 @@ import { storeOfflineFeedback } from "../shared/offlineInbox";
 import { feedbackPage } from "../shared/feedbackPage";
 import { statusJson, statusPage } from "../shared/statusPage";
 import { probeOrigin, readUptime } from "../shared/uptime";
+import { handleAwsRadio } from "../shared/awsRadio";
 import type { AvaEnv, ScheduledEvent } from "../shared/types";
 
 const ORIGIN = "https://origin.avaivy.cloud";
@@ -68,6 +69,12 @@ export default {
 
     if (isPrivatePath(path)) return gone(404);
     if (isHiddenPath(path)) return holding(404);
+
+    // Always-on radio from AWS Icecast (does not need AVA Console / origin wake).
+    {
+      const radio = await handleAwsRadio(request, env, path);
+      if (radio) return radio;
+    }
 
     if (path === "/ava/status.json" || path === "/status.json") {
       return statusJson(env);

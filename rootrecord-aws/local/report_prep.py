@@ -85,7 +85,12 @@ def _flm_available() -> bool:
 
 
 def _ai_narrative(facts: str) -> tuple[str | None, str]:
-    """Returns (text, status). Never invents numbers — only rewrites known facts."""
+    """Returns (text, status). Never invents numbers — only rewrites known facts.
+
+    Skipped when RR_PREP_AI=0 or FLM is down. Keeps prep facts-only after NPU pressure.
+    """
+    if (os.environ.get("RR_PREP_AI") or "1").strip() in ("0", "false", "no"):
+        return None, "ai_disabled"
     if not _flm_available():
         return None, "flm_offline"
     messages = [
@@ -114,9 +119,9 @@ def _ai_narrative(facts: str) -> tuple[str | None, str]:
                 "model": os.environ.get("AVA_FLM_MODEL") or "default",
                 "messages": messages,
                 "stream": False,
-                "max_tokens": 512,
+                "max_tokens": 256,
             },
-            timeout=90.0,
+            timeout=60.0,
         )
         if r.status_code != 200:
             return None, f"flm_http_{r.status_code}"
@@ -127,7 +132,7 @@ def _ai_narrative(facts: str) -> tuple[str | None, str]:
         text = str(text).strip()
         return (text or None), ("ok" if text else "flm_empty")
     except Exception as exc:
-        return None, f"flm_error:{exc}"[:80]
+        return None, f"flm_error:{type(exc).__name__}"
 
 
 def run() -> dict:

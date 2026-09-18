@@ -21,6 +21,8 @@ database_id = "9991d162-a07f-4931-aa2f-2fbe6edc33c0"
 [vars]
 # Same origin as origin.avaivy.cloud until the tunnel publishes origin.rootrecord.cloud.
 AVA_ORIGIN_URL = "https://origin.avaivy.cloud"
+# Always-on AWS Icecast (quick tunnel). Update after cloudflared restart if URL changes.
+RR_RADIO_UPSTREAM = "https://choice-cities-establishment-million.trycloudflare.com/rootrecord.mp3"
 
 # Probe the origin so the holding page knows when the desk was last seen.
 [triggers]

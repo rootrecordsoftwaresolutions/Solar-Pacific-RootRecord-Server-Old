@@ -109,6 +109,7 @@ def main() -> None:
                         "file": safe,
                         "bytes": dest.stat().st_size,
                         "updated_at": now_hst().isoformat(),
+                        "received_epoch": time.time(),
                     },
                 )
                 log.info("audio Current saved %s", safe)

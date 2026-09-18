@@ -1,69 +1,121 @@
-# RootRecord AWS operator notes
+# RootRecord AWS ↔ AVA-CORE — operator handbook
 
-## Host
-- SSH: `ssh rr-aws` (admin only — never for datapacks)
-- Tree: `/home/ubuntu/rootrecord/`
-- Relay channel: `Root Record Data Relay` `-1004353272998` (`https://t.me/c/4353272998/`)
+Last verified: **2026-09-17 ~23:40 HST** (live check on this PC + `rr-aws`).
 
-## What runs on AWS
-| Service | Role |
-|---------|------|
-| rr-weather / rr-earthquake / rr-radar | Hazard Current.* pollers |
-| rr-hurricane / rr-noaa | Tropical + NWS forecast |
-| rr-packer | Zip → Telegram → wipe → **restart all** at :10/:25/:40/:55 HST |
-| rr-dropins | Chronological `*.py` drop-ins + auto-pack assets |
-| rr-audio-recv | Local current_*.wav → work/audio/Current-* |
-| rr-icecast + rr-radio | Always-on MP3 mount `/rootrecord.mp3` |
-| rr-cloudflared | Public radio URL (quick or named tunnel) |
-| rr-youtube | Idle until `RR_YOUTUBE_RTMP_URL` set |
-| vsftpd | FileZilla Client drag-drop (user `rrftp`) |
+## What is true right now
 
-## Chronological drop-ins (no new processes)
+| Piece | Status |
+|-------|--------|
+| AVA Console | Open (`launch.sh` in **AVA Console** terminal). Owns the desk. |
+| FastFlowLM `:52625` | Starts with console; may restart after heavy NPU use |
+| Origin `:8787` | Healthy while console is up |
+| Local timers | `rr-ingest.timer` `:10/:25/:40/:55` · `rr-publish.timer` `:00/:15/:30/:45` · `Persistent=true` |
+| Offline catch-up | `local/catchup.sh` on console boot + any missed timer slots |
+| AWS pollers + packer | Active on `rr-aws` |
+| Radio + 65 music beds | `http://127.0.0.1:8000/rootrecord.mp3` on AWS |
+| Public radio | Cloudflare quick tunnel URL in AWS `etc/radio-public.url` (also in each zip `sysmon/`) |
+| Soft-parked local collectors + play | `OFFLOADED` markers — EcoFlow **not** offloaded |
+| AI report briefing | FastFlowLM when console+NPU up; facts-only if FLM down (`RR_PREP_AI=0` forces facts) |
+
+## Clock (HST)
+
+```
+AWS pack → Telegram   :10 :25 :40 :55
+Local ingest + prep   :10 :25 :40 :55   (Persistent — catches downtime)
+Local publish         :00 :15 :30 :45
+```
+
+After every successful AWS send: wipe work tree → restart stack (cloudflared skipped so the public URL stays stable).
+
+## Data path (no SSH for data)
+
+1. AWS writes `work/Current.*` + `sysmon/` (logs + free/df/ps).
+2. Packer zips non-`.py` files with timestamped names → channel `Root Record Data Relay`.
+3. Local `ingest.py` downloads **every** new zip since last offset, archives under `store/archive/<pack_id>/`, sets `store/live/` to newest.
+4. `report_prep.py` builds `store/prep/prep-*.md` (facts + optional FLM briefing).
+5. `publish.py` archives to `store/published/` on the mark (optional Telegram if `RR_PUBLISH_CHAT_ID` set).
+
+## Chronological drop-ins (AWS FileZilla / SFTP)
+
 ```
 /home/ubuntu/rootrecord/chronological/
-  always-on/*.py       # long-running loops
-  since-last-fire/*.py # interval pollers
-  on-time/*.py         # clocked near :00/:15/:30/:45 (+ pack slots)
-  assets/**            # non-.py auto-packed (also any non-.py under chrono/)
+  always-on/*.py
+  since-last-fire/*.py
+  on-time/*.py
+  assets/**          # and any non-.py / non-Current* under chronological/
 ```
-After each successful pack send, the whole stack restarts so new drop-ins load.
 
-## Drag-drop files (FileZilla Client)
-1. **SFTP (recommended):** host = Elastic IP, port 22, user `ubuntu`, key = `rootrecordkey.pem`
-2. **FTP:** host = Elastic IP, port 21, user `rrftp`, password in `/home/ubuntu/rootrecord/etc/ftp.password` on the box  
-   (Linux has no FileZilla *Server* package — vsftpd speaks FileZilla Client.)
+Music beds: `/home/ubuntu/rootrecord/radio/media/` (not wiped). Re-sync from desk:
 
-Browse `/home/ubuntu/rootrecord/` — edit folders and drop Python or assets freely.
-
-## Radio listen
-- Public (live): `https://choice-cities-establishment-million.trycloudflare.com/rootrecord.mp3`
-- Canonical copy of that URL: `/home/ubuntu/rootrecord/etc/radio-public.url` (also in every datapack under `sysmon/`)
-- SSH forward still works: `ssh -L 8000:127.0.0.1:8000 rr-aws` → `http://127.0.0.1:8000/rootrecord.mp3`
-- Music beds: `radio/media/` (65 mp3s, not wiped). Re-sync: `bash ~/.ollama/skills/rootrecord-aws/local/sync_music_to_aws.sh`
-- Quick-tunnel hostname changes if `rr-cloudflared` restarts — post-pack restarts skip it. For a permanent name, set `RR_CLOUDFLARED_TOKEN` and restart cloudflared once.
-
-## Local clock
-- Ingest+prep: `:10/:25/:40/:55` — publish: `:00/:15/:30/:45`
-- Soft-parked collectors: nws-hawaii, council-quake, earthquake-hourly, radar-archive, rr-kilauea, hurricane-fetch, hurricane-tracker, rr-noaa
-- Soft-park desk *play* (after AWS radio is live): `bash ~/.ollama/skills/rootrecord-aws/local/soft_park_audio.sh`
-- **Stays local:** EcoFlow BLE, NPU/AI speak, council LLM, origin/console
-
-## Every zip includes
-- All work Current.* (timestamped names in the zip)
-- `sysmon/` — process logs + free/df/ps/systemctl snapshot
-- Chronological non-.py assets
-- Never includes `.py` sources
-
-## YouTube go-live
-1. YouTube Studio → Go live → copy RTMP URL+key
-2. On AWS secrets: `RR_YOUTUBE_RTMP_URL=rtmp://a.rtmp.youtube.com/live2/YOURKEY`
-3. `ssh rr-aws 'sudo systemctl restart rr-youtube'`
-
-## Named Cloudflare tunnel (optional permanent hostname)
-Set `RR_CLOUDFLARED_TOKEN=` in secrets, then `sudo systemctl restart rr-cloudflared`.
-
-## Deploy
 ```bash
-bash ~/.ollama/skills/rootrecord-aws/aws/deploy.sh
 bash ~/.ollama/skills/rootrecord-aws/local/sync_music_to_aws.sh
 ```
+
+## Drag-drop
+
+Logins: `~/Documents/rootrecord-aws-filezilla.env` (chmod 600).
+
+- **SFTP (recommended):** host `3.16.29.76`, port 22, user `ubuntu`, key `~/.ssh/rootrecordkey.pem`
+- **FTP:** host `3.16.29.76`, port 21, user `rrftp`, password in that `.env`  
+  (Linux uses vsftpd — FileZilla *Client* connects; there is no FileZilla Server package on Ubuntu.)
+
+**AIs:** full server map in `references/AI-SERVER.md`.
+
+## Local commands
+
+```bash
+# Deploy AWS code
+bash ~/.ollama/skills/rootrecord-aws/aws/deploy.sh
+
+# Reinstall local timers
+bash ~/.ollama/skills/rootrecord-aws/local/install-local-timers.sh
+
+# Manual catch-up after long downtime
+bash ~/.ollama/skills/rootrecord-aws/local/catchup.sh
+
+# Soft-park collectors / desk play (already done)
+bash ~/.ollama/skills/rootrecord-aws/local/soft_park.sh
+bash ~/.ollama/skills/rootrecord-aws/local/soft_park_audio.sh
+```
+
+Console boot auto-runs catch-up in the background (`launch.sh` → `rr-catchup.log`).
+
+## Secrets (`local/etc/secrets.env`)
+
+| Key | Role |
+|-----|------|
+| `RR_DATAPACK_RECV_BOT_TOKEN` | Receiver bot only — **exclusive** `getUpdates` for zips |
+| `RR_DATAPACK_CHAT_ID` | Relay channel id |
+| `RR_TRIGGER_BOT_TOKEN` or `RR_TELEGRAM_BOT_TOKEN` | Reply-now watch — **must differ** from recv (else Telegram 409) |
+| `RR_CONTROL_CHAT_ID` | Trigger source chat |
+| `RR_PUBLISH_CHAT_ID` | Optional published report destination |
+
+## Soft-parked (no double collectors / no local radio play)
+
+Collectors: `nws-hawaii`, `council-quake`, `earthquake-hourly`, `radar-archive`, `rr-kilauea`, `hurricane-fetch`, `hurricane-tracker`, `rr-noaa`  
+
+Play: `morning-report-play`, `midday-report-play`, `evening-report-play`, `late-report-play`, `evening-report-audio`, `hurricane-radio`, `report-periodic-audio`, `hourly-chime`  
+
+Scheduler skips any skill folder with an `OFFLOADED` file.
+
+## Radio listen
+
+Open the public URL from the latest pack’s `sysmon/radio-public.url`, or:
+
+```bash
+ssh -L 8000:127.0.0.1:8000 rr-aws
+# http://127.0.0.1:8000/rootrecord.mp3
+```
+
+For a permanent hostname: set `RR_CLOUDFLARED_TOKEN` on AWS and restart `rr-cloudflared` once.
+
+## YouTube
+
+Idle until `RR_YOUTUBE_RTMP_URL` is set on AWS secrets.
+
+## Safety
+
+- EcoFlow BLE stays on AVA-CORE.
+- Closing AVA Console runs idle-stop — desk processes stop; PC stays on.
+- Never commit real bot tokens. If a token appeared in journal logs, rotate it in BotFather.
+- Datapath is Telegram zips only — SSH is admin deploy only.

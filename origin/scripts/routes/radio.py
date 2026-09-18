@@ -153,8 +153,14 @@ setInterval(wake, 12000);
 </html>"""
 
 
-def _player_html(*, brand: str = "Root Record Radio", site_label: str = "RootRecord") -> str:
-    return _player_html_fn(brand=brand, site_label=site_label)
+def _player_html(
+    *,
+    brand: str = "Root Record Radio",
+    site_label: str = "RootRecord",
+    live_src: str | None = None,
+) -> str:
+    src = live_src or radio_svc.aws_upstream_url() or "/radio/live.mp3"
+    return _player_html_fn(brand=brand, site_label=site_label, live_src=src)
 
 
 def _host(request: Request) -> str:
@@ -163,10 +169,10 @@ def _host(request: Request) -> str:
 
 @router.get("/radio", response_class=HTMLResponse)
 async def radio_home(request: Request):
-    brand, _ = _brand_for_host(_host(request))
+    brand, label = _brand_for_host(_host(request))
     st = radio_svc.status()
-    if st.get("on_air"):
-        return HTMLResponse(_player_html(brand=brand, site_label=_brand_for_host(_host(request))[1]))
+    if st.get("on_air") or st.get("aws_radio") or radio_svc.aws_radio_active():
+        return HTMLResponse(_player_html(brand=brand, site_label=label))
     return HTMLResponse(_banished_html(brand=brand))
 
 
@@ -174,14 +180,43 @@ async def radio_home(request: Request):
 async def radio_listen(request: Request):
     brand, label = _brand_for_host(_host(request))
     st = radio_svc.status()
-    if not st.get("on_air"):
-        return HTMLResponse(_banished_html(brand=brand))
-    return HTMLResponse(_player_html(brand=brand, site_label=label))
+    if st.get("on_air") or st.get("aws_radio") or radio_svc.aws_radio_active():
+        return HTMLResponse(_player_html(brand=brand, site_label=label))
+    return HTMLResponse(_banished_html(brand=brand))
 
 
 @router.get("/radio/live.mp3")
-async def radio_live_mp3():
-    """Continuous program bus MP3 (bed + report/chime inserts). On-air only."""
+async def radio_live_mp3(request: Request):
+    """Continuous program bus MP3. Prefers AWS Icecast when offloaded."""
+    import httpx
+
+    upstream = radio_svc.aws_upstream_url()
+    if upstream and radio_svc.aws_radio_active():
+        headers = {"User-Agent": "RootRecord-Origin-Radio/1.0", "Icy-MetaData": "0"}
+        range_h = request.headers.get("range")
+        if range_h:
+            headers["Range"] = range_h
+
+        async def aws_gen():
+            timeout = httpx.Timeout(connect=15.0, read=None, write=30.0, pool=15.0)
+            async with httpx.AsyncClient(timeout=timeout, follow_redirects=True) as client:
+                async with client.stream("GET", upstream, headers=headers) as resp:
+                    async for chunk in resp.aiter_bytes(chunk_size=16_384):
+                        if chunk:
+                            yield chunk
+
+        return StreamingResponse(
+            aws_gen(),
+            media_type="audio/mpeg",
+            headers={
+                "Cache-Control": "no-store, no-cache",
+                "X-Accel-Buffering": "no",
+                "Accept-Ranges": "none",
+                "Content-Disposition": "inline; filename=rootrecord-radio.mp3",
+                "X-RR-Radio-Source": "aws",
+            },
+        )
+
     st = radio_svc.status()
     if not st.get("on_air"):
         return Response(status_code=404)
@@ -216,6 +251,23 @@ def _bearer(request: Request) -> str:
 
 def _now_payload(request: Request | None = None) -> dict[str, Any]:
     st = radio_svc.status()
+    if radio_svc.aws_radio_active():
+        return {
+            "ok": True,
+            "on_air": True,
+            "aws_radio": True,
+            "src": "/radio/live.mp3",
+            "live": "/radio/live.mp3",
+            "title": "Root Record Radio",
+            "description": "Always-on from Hawaiʻi",
+            "name": "Root Record Radio",
+            "id": "aws-live",
+            "likes": 0,
+            "dislikes": 0,
+            "tags": "aws",
+            "skip_for_you": False,
+            "insert": False,
+        }
     if not st.get("on_air"):
         return {"ok": True, "on_air": False, "src": None, "title": None, "description": None}
     from apps.core.services import radio_encode
@@ -319,12 +371,8 @@ class RadioSkip(BaseModel):
 
 @router.post("/api/radio/skip")
 async def api_radio_skip(body: RadioSkip, request: Request):
-    identity = await asyncio.to_thread(
-        radio_access.resolve_identity, token=_bearer(request)
-    )
-    if not identity.get("member"):
-        return {"ok": False, "need_login": True, "detail": "member"}
-    return radio_access.blacklist_track(identity["account_id"], body.id)
+    # Skip removed — one continuous public stream (mute only on the player).
+    return {"ok": True, "accepted": False, "detail": "skip_disabled", "skip_disabled": True}
 
 
 @router.get("/api/radio/steering")
@@ -406,6 +454,8 @@ class RadioVote(BaseModel):
 @router.post("/api/radio/wake")
 async def api_radio_wake():
     radio_svc.wake()
+    if radio_svc.aws_radio_active():
+        radio_svc.patch(on_air=True, on_air_sticky=True)
     return radio_svc.status()
 
 

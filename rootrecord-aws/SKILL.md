@@ -1,13 +1,18 @@
 ---
 name: rootrecord-aws
 description: >-
-  RootRecord AWS collector: weather/quake/radar pollers, Telegram datapacks,
-  local clock ingest/publish. SSH admin-only. EcoFlow stays local.
+  RootRecord AWS always-on collector (rr-aws / 3.16.29.76): weather, quakes,
+  radar, hurricane, NOAA, Icecast radio, chronological drop-ins, Telegram
+  datapacks. Local ingest/publish clock. SSH admin-only; EcoFlow stays local.
+  AI reference: references/AI-SERVER.md. FileZilla: ~/Documents/rootrecord-aws-filezilla.env
 ---
 
 # rootrecord-aws
 
 This folder is the ops desk for the RootRecord AWS always-on collector.
+
+**AIs:** read `references/AI-SERVER.md` before changing pollers, timers, radio, or deploy.
+**Humans:** `references/OPERATOR.md`. FileZilla logins: `~/Documents/rootrecord-aws-filezilla.env`.
 
 ## Strict rules
 
@@ -20,7 +25,8 @@ This folder is the ops desk for the RootRecord AWS always-on collector.
 ## Layout
 
 - `aws/` — code deployed to `/home/ubuntu/rootrecord/` on EC2 (`rr-aws`)
-- `local/` — AVA-CORE ingest / prep / publish / trigger watch
+- `local/` — AVA-CORE ingest / prep / publish / trigger watch / catch-up
+- `references/AI-SERVER.md` — machine-oriented server map for agents
 - Host: `rr-aws` → `3.16.29.76` (Ubuntu, user `ubuntu`)
 
 ## Clock (HST)

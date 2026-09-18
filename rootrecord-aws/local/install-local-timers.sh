@@ -95,10 +95,36 @@ WorkingDirectory=$SKILL
 ExecStart=/bin/bash $SKILL/local/catchup.sh
 EOF
 
+# Push updated Current report wavs to AWS radio (Telegram RR_AUDIO)
+cat > "$UNIT_DIR/rr-audio-send.service" <<EOF
+[Unit]
+Description=RootRecord send current report wavs to AWS
+
+[Service]
+Type=oneshot
+Environment=TZ=Pacific/Honolulu
+WorkingDirectory=$SKILL
+ExecStart=$PY $SKILL/local/send_current_wav.py
+EOF
+
+cat > "$UNIT_DIR/rr-audio-send.timer" <<'EOF'
+[Unit]
+Description=RootRecord audio send every 5 min HST
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=5min
+Persistent=true
+Unit=rr-audio-send.service
+
+[Install]
+WantedBy=timers.target
+EOF
+
 systemctl --user daemon-reload
-systemctl --user enable --now rr-ingest.timer rr-publish.timer
+systemctl --user enable --now rr-ingest.timer rr-publish.timer rr-audio-send.timer
 # trigger-watch only stays up while console flag exists; enable unit for when console is up
 systemctl --user enable rr-trigger-watch.service
 systemctl --user start rr-trigger-watch.service 2>/dev/null || true
-systemctl --user list-timers --all | grep -E 'rr-(ingest|publish)' || true
+systemctl --user list-timers --all | grep -E 'rr-(ingest|publish|audio-send)' || true
 echo "Local RootRecord timers installed. Fill $SKILL/local/etc/secrets.env"

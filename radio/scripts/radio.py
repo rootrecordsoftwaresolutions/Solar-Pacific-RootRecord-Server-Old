@@ -103,8 +103,46 @@ def visitor_awake() -> bool:
 
 
 def serving_public() -> bool:
-    """Public program stream only when intentionally on air."""
+    """Public program stream when on air, or when AWS Icecast owns the board."""
+    if aws_radio_active():
+        return True
     return bool(load().get("on_air"))
+
+
+def aws_upstream_url() -> str:
+    """Always-on Icecast URL (Cloudflare tunnel to rr-aws). Empty if unset."""
+    env = (os.environ.get("RR_RADIO_UPSTREAM") or "").strip()
+    candidates = [
+        Path.home() / ".ollama" / "skills" / "rootrecord-aws" / "store" / "live" / "sysmon" / "radio-public.url",
+        Path.home() / ".ollama" / "skills" / "rootrecord-aws" / "etc" / "radio-public.url",
+        Path("/home/ubuntu/rootrecord/etc/radio-public.url"),
+    ]
+    raw = env
+    if not raw:
+        for p in candidates:
+            if p.is_file():
+                try:
+                    raw = p.read_text(encoding="utf-8", errors="replace").strip().splitlines()[0].strip()
+                except OSError:
+                    raw = ""
+                if raw:
+                    break
+    if not raw:
+        return ""
+    if raw.endswith(".mp3") or "/rootrecord.mp3" in raw:
+        return raw
+    return raw.rstrip("/") + "/rootrecord.mp3"
+
+
+def aws_radio_active() -> bool:
+    """True when RootRecord AWS radio is the public source (OFFLOADED desk play)."""
+    if (os.environ.get("RR_RADIO_AWS") or "1").strip().lower() in ("0", "false", "no"):
+        return False
+    # Soft-park marker means desk speakers/play are offloaded — public uses AWS.
+    park = Path.home() / ".ollama" / "skills" / "hurricane-radio" / "OFFLOADED"
+    if park.is_file() or aws_upstream_url():
+        return bool(aws_upstream_url())
+    return False
 
 
 def tool_status() -> dict[str, Any]:
@@ -212,11 +250,22 @@ def announce_program_file(path: Path | str, *, name: str = "", insert: bool = Fa
 def status() -> dict[str, Any]:
     st = load()
     tools = tool_status()
+    aws = aws_upstream_url()
+    aws_on = aws_radio_active()
+    # When AWS owns radio: public on-air, local speakers forced off.
+    if aws_on:
+        if st.get("local_playback") or not st.get("on_air") or not st.get("on_air_sticky"):
+            st = save({**st, "local_playback": False, "on_air": True, "on_air_sticky": True})
+        else:
+            st = {**st, "local_playback": False, "on_air": True, "on_air_sticky": True}
     return {
         "ok": True,
         **st,
-        "visitor_awake": visitor_awake(),
+        "visitor_awake": visitor_awake() or aws_on,
         "serving_public": serving_public(),
+        "aws_radio": aws_on,
+        "aws_upstream": aws or None,
+        "skip_disabled": True,
         "tools": tools,
         "listen_local": f"http://127.0.0.1:{config.AVA_PORT}/radio/listen",
         "events_local": f"http://127.0.0.1:{config.AVA_PORT}/radio/events",
