@@ -18,10 +18,14 @@ cat > "$ETC/icecast.xml" <<EOF
   <location>RootRecord</location>
   <admin>ops@rootrecord.cloud</admin>
   <limits>
-    <clients>32</clients>
+    <clients>64</clients>
     <sources>4</sources>
-    <queue-size>524288</queue-size>
-    <source-timeout>30</source-timeout>
+    <queue-size>2097152</queue-size>
+    <client-timeout>30</client-timeout>
+    <header-timeout>15</header-timeout>
+    <source-timeout>45</source-timeout>
+    <burst-on-connect>1</burst-on-connect>
+    <burst-size>196608</burst-size>
   </limits>
   <authentication>
     <source-password>${SRC_PASS}</source-password>

@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
-"""Deprecated — OFFLOADED skip is patched directly into scheduler-clock.
+"""Deprecated — OFFLOADED handling lives in scheduler-clock.
 
-Kept so soft_park.sh docs remain accurate.
+scheduler-clock/scripts/scheduler.py:
+  - _skill_offloaded() + _WaveScheduler.add_job → never register OFFLOADED skill crons
+  - _run() keeps a fire-time safety skip
+
+soft_park.sh / soft_park_audio.sh only write OFFLOADED markers (do not delete trees).
 """
-print("OFFLOADED skip lives in scheduler-clock/scripts/scheduler.py (_run)")
+print(
+    "OFFLOADED: not registered at boot "
+    "(scheduler-clock _WaveScheduler + _skill_offloaded)"
+)

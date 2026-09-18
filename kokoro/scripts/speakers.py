@@ -241,13 +241,49 @@ def speak_report(kind: str, text: str, dest: Path, *, intro: bool = False) -> di
     if built.get("ok"):
         dest.with_suffix(".read.txt").write_text(spoken.strip() + "\n", encoding="utf-8")
         dest.with_suffix(".speak.txt").write_text(speak_body.strip() + "\n", encoding="utf-8")
+        if is_current_audio(dest):
+            _push_aws_radio(dest)
     return built
+
+
+def _push_aws_radio(*paths: Path) -> None:
+    """Fire-and-forget: send brand-new Current wav(s) to AWS radio via Telegram."""
+    import os
+    import subprocess
+    import sys
+
+    script = (
+        Path.home()
+        / ".ollama"
+        / "skills"
+        / "rootrecord-aws"
+        / "local"
+        / "send_current_wav.py"
+    )
+    if not script.is_file():
+        return
+    wavs = [str(p) for p in paths if p.is_file() and p.suffix.lower() == ".wav"]
+    if not wavs:
+        return
+    py = Path.home() / ".ollama" / "skills" / "rootrecord-aws" / ".venv" / "bin" / "python"
+    exe = str(py) if py.is_file() else sys.executable
+    try:
+        subprocess.Popen(
+            [exe, str(script), *wavs],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True,
+            env=os.environ.copy(),
+        )
+    except OSError as exc:
+        log.warning("aws radio push spawn failed: %s", exc)
 
 
 def publish_current(src: Path, *currents: Path) -> None:
     if not src.is_file() or src.stat().st_size <= 0:
         return
     src = Path(src)
+    published: list[Path] = []
     for dest in currents:
         dest = Path(dest)
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -256,6 +292,7 @@ def publish_current(src: Path, *currents: Path) -> None:
             shutil.copy2(src, dest)
         except OSError:
             continue
+        published.append(dest)
         for kind in (".read.txt", ".speak.txt"):
             extra = src.with_suffix(kind)
             if extra.is_file():
@@ -269,3 +306,5 @@ def publish_current(src: Path, *currents: Path) -> None:
                 legacy.unlink()
             except OSError:
                 pass
+    # Prefer the published Current copies; fall back to the source wav
+    _push_aws_radio(*(published or [src]))

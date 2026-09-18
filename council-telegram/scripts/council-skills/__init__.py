@@ -38,6 +38,18 @@ _PANELS_CAM_ASK = re.compile(
     re.I | re.S,
 )
 
+# “radar / weather radar / Hawaiʻi radar gif” — natural asks, not only exact catalog strings.
+_RADAR_ASK = re.compile(
+    r"(?:"
+    r"\bradar\b"
+    r"|"
+    r"\b(?:weather|nws|ridge|hawaii|hawai[`'ʻ]?i)\s+radar\b"
+    r"|"
+    r"\bradar\s+(?:gif|loop|image|images)\b"
+    r")",
+    re.I,
+)
+
 def _load_catalog() -> dict[str, Any]:
     try:
         data = json.loads(CATALOG_PATH.read_text(encoding="utf-8"))
@@ -173,6 +185,10 @@ def match_exec_skill(text: str) -> dict[str, Any] | None:
     # Flexible panels / site camera asks (keyword list alone misses “solar panels”, “cameras”).
     if _PANELS_CAM_ASK.search(text or ""):
         hit = get_skill("panels-cam")
+        if hit and str(hit.get("risk") or "") == "exec":
+            return hit
+    if _RADAR_ASK.search(text or ""):
+        hit = get_skill("radar-gif")
         if hit and str(hit.get("risk") or "") == "exec":
             return hit
     return None

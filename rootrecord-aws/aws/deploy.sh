@@ -24,7 +24,8 @@ chmod +x "$ROOT"/bin/*.py "$ROOT"/bin/*.sh
 
 # Chronological drop-in layout (FileZilla / SFTP targets)
 mkdir -p "$ROOT"/chronological/{always-on,since-last-fire,on-time,assets} \
-         "$ROOT"/radio/media "$ROOT"/work/{weather,earthquakes,radar,hurricane,noaa,chatlogs,triggers,audio,sysmon,assets} \
+         "$ROOT"/radio/{media,fallback,chimes} \
+         "$ROOT"/work/{weather,earthquakes,radar,hurricane,noaa,chatlogs,triggers,audio,sysmon,assets} \
          "$ROOT"/logs "$ROOT"/out "$ROOT"/etc
 for d in always-on since-last-fire on-time assets; do
   f="$ROOT/chronological/$d/README.txt"

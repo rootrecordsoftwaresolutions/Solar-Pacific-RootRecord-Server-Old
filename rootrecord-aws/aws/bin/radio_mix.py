@@ -23,22 +23,34 @@ ROOT = Path(os.environ.get("RR_ROOT", "/home/ubuntu/rootrecord"))
 MEDIA = ROOT / "radio" / "media"
 AUDIO = ROOT / "work" / "audio"
 FALLBACK = ROOT / "radio" / "fallback"
+CHIMES = ROOT / "radio" / "chimes"
 VOICE_DONE = ROOT / "radio" / "voice-played"
 ETC = ROOT / "etc"
 LOGS = ROOT / "logs"
 PASS_FILE = ETC / "radio.source.password"
 META = AUDIO / "Current.meta.json"
 FALLBACK_STATE = AUDIO / "fallback-state.json"
+CHIME_STATE = AUDIO / "chime-state.json"
+try:
+    from zoneinfo import ZoneInfo
+
+    HST = ZoneInfo("Pacific/Honolulu")
+except Exception:  # pragma: no cover
+    HST = None
 ICE_HOST = os.environ.get("RR_ICE_HOST", "127.0.0.1")
 ICE_PORT = os.environ.get("RR_ICE_PORT", "8000")
 MOUNT = os.environ.get("RR_ICE_MOUNT", "/rootrecord.mp3")
 MUSIC_VOL = float(os.environ.get("RR_RADIO_MUSIC_VOL", "1.0"))
-DUCK_VOL = float(os.environ.get("RR_RADIO_DUCK_VOL", "0.5"))  # music under voice
-VOICE_VOL = float(os.environ.get("RR_RADIO_VOICE_VOL", "1.0"))
+# Music under voice — keep quiet so reports read clearly
+DUCK_VOL = float(os.environ.get("RR_RADIO_DUCK_VOL", "0.18"))
+# Voice boost (amix normalize=0 so this is not halved)
+VOICE_VOL = float(os.environ.get("RR_RADIO_VOICE_VOL", "2.2"))
 # No new report within this many seconds → play offline fallbacks only
 STALE_SEC = float(os.environ.get("RR_REPORT_STALE_SEC", str(int(1.5 * 3600))))
 # Seconds between offline fallback inserts while stale
 FALLBACK_EVERY_SEC = float(os.environ.get("RR_FALLBACK_EVERY_SEC", "900"))
+# How often to poll for a newly arrived Current while music plays
+POLL_SEC = float(os.environ.get("RR_RADIO_POLL_SEC", "0.35"))
 AGENTS = ("ava", "bruce", "carly")
 
 
@@ -144,15 +156,70 @@ def discard_stale_currents() -> int:
     return n
 
 
+def _load_chime_state() -> dict:
+    if not CHIME_STATE.is_file():
+        return {"last_mark": ""}
+    try:
+        data = json.loads(CHIME_STATE.read_text(encoding="utf-8"))
+        return {"last_mark": str(data.get("last_mark") or "")}
+    except (OSError, json.JSONDecodeError, TypeError, ValueError):
+        return {"last_mark": ""}
+
+
+def _save_chime_state(state: dict) -> None:
+    AUDIO.mkdir(parents=True, exist_ok=True)
+    tmp = CHIME_STATE.with_suffix(".tmp")
+    tmp.write_text(json.dumps(state) + "\n", encoding="utf-8")
+    tmp.replace(CHIME_STATE)
+
+
+def pending_chime() -> Path | None:
+    """Prebuilt pack clip for :00 / :30 HST — once per mark (date+HHMM)."""
+    if HST is None:
+        return None
+    from datetime import datetime
+
+    now = datetime.now(HST)
+    if now.minute not in (0, 30):
+        return None
+    mark = f"{now.strftime('%Y-%m-%d')}-{now.hour:02d}{now.minute:02d}"
+    state = _load_chime_state()
+    if state.get("last_mark") == mark:
+        return None
+    path = CHIMES / f"chime-{now.hour:02d}{now.minute:02d}.wav"
+    if not path.is_file() or path.stat().st_size < 44:
+        log(f"chime pack miss for {path.name}")
+        return None
+    return path
+
+
+def mark_chime_played(path: Path) -> None:
+    from datetime import datetime
+
+    now = datetime.now(HST) if HST is not None else None
+    if now is not None:
+        mark = f"{now.strftime('%Y-%m-%d')}-{now.hour:02d}{now.minute:02d}"
+    else:
+        mark = path.stem.replace("chime-", "")
+    _save_chime_state({"last_mark": mark, "played_at": time.time(), "file": path.name})
+
+
 def pending_voice() -> Path | None:
-    """Next live report insert, or None if stale / empty."""
+    """Newest live report insert (play ASAP). Older backlog archived unplayed."""
     if not reports_fresh():
         discard_stale_currents()
         return None
     cands = _list_current_audio()
     if not cands:
         return None
-    return sorted(cands, key=lambda p: p.stat().st_mtime)[0]
+    # Newest first — just-generated report cuts in immediately
+    ordered = sorted(cands, key=lambda p: p.stat().st_mtime, reverse=True)
+    newest = ordered[0]
+    # Drop older queued Currents so we don't reconnect Icecast dozens of times
+    for old in ordered[1:]:
+        log(f"skip older queued report {old.name} (playing newest)")
+        archive_voice(old)
+    return newest
 
 
 def _load_fallback_state() -> dict:
@@ -268,11 +335,18 @@ def stream_music_until_voice(url: str, beds: list[Path]) -> Path | None:
     proc = subprocess.Popen(cmd)
     try:
         while proc.poll() is None:
-            voice = pending_voice()
+            voice = pending_chime()
+            if voice is None:
+                voice = pending_voice()
             if voice is None:
                 voice = pending_fallback()
             if voice is not None:
-                kind = "fallback" if voice.parent == FALLBACK else "report"
+                if voice.parent.resolve() == CHIMES.resolve():
+                    kind = "chime"
+                elif voice.parent.resolve() == FALLBACK.resolve():
+                    kind = "fallback"
+                else:
+                    kind = "report"
                 log(f"{kind} insert detected {voice.name} — ducking music")
                 proc.terminate()
                 try:
@@ -280,7 +354,7 @@ def stream_music_until_voice(url: str, beds: list[Path]) -> Path | None:
                 except subprocess.TimeoutExpired:
                     proc.kill()
                 return voice
-            time.sleep(0.75)
+            time.sleep(POLL_SEC)
     finally:
         if proc.poll() is None:
             proc.terminate()
@@ -292,7 +366,15 @@ def stream_music_until_voice(url: str, beds: list[Path]) -> Path | None:
 
 
 def stream_ducked_insert(url: str, beds: list[Path], voice: Path) -> None:
-    """Play voice at full level over music ducked to DUCK_VOL; duration = voice length."""
+    """Play voice loud over music ducked hard; duration = voice length.
+
+    amix normalize=0 is required — default amix halves levels and buried reports.
+    """
+    vox_filter = (
+        f"volume={VOICE_VOL},"
+        "acompressor=threshold=-20dB:ratio=3:attack=15:release=200:makeup=2,"
+        "aformat=sample_rates=44100:channel_layouts=stereo"
+    )
     bed = beds[0] if beds else None
     if bed is None:
         cmd = [
@@ -304,7 +386,7 @@ def stream_ducked_insert(url: str, beds: list[Path], voice: Path) -> None:
             "-i",
             str(voice),
             "-filter:a",
-            f"volume={VOICE_VOL}",
+            vox_filter,
             "-ac",
             "2",
             "-ar",
@@ -337,8 +419,8 @@ def stream_ducked_insert(url: str, beds: list[Path], voice: Path) -> None:
         str(voice),
         "-filter_complex",
         f"[0:a]volume={DUCK_VOL},aformat=sample_rates=44100:channel_layouts=stereo[bed];"
-        f"[1:a]volume={VOICE_VOL},aformat=sample_rates=44100:channel_layouts=stereo[vox];"
-        f"[bed][vox]amix=inputs=2:duration=shortest:dropout_transition=0[a]",
+        f"[1:a]{vox_filter}[vox];"
+        f"[bed][vox]amix=inputs=2:duration=shortest:dropout_transition=0:normalize=0[a]",
         "-map",
         "[a]",
         "-ac",
@@ -389,11 +471,18 @@ def stream_quiet_bed(url: str) -> None:
 
 
 def _play_insert(url: str, beds: list[Path], voice: Path) -> None:
-    is_fb = voice.parent.resolve() == FALLBACK.resolve() if FALLBACK.is_dir() else False
-    label = "fallback" if is_fb else "report"
+    parent = voice.parent.resolve()
+    if CHIMES.is_dir() and parent == CHIMES.resolve():
+        label = "chime"
+    elif FALLBACK.is_dir() and parent == FALLBACK.resolve():
+        label = "fallback"
+    else:
+        label = "report"
     log(f"playing ducked {label} {voice.name}")
     stream_ducked_insert(url, beds, voice)
-    if is_fb:
+    if label == "chime":
+        mark_chime_played(voice)
+    elif label == "fallback":
         mark_fallback_played(voice)
     else:
         archive_voice(voice)
@@ -404,14 +493,18 @@ def main() -> None:
     AUDIO.mkdir(parents=True, exist_ok=True)
     MEDIA.mkdir(parents=True, exist_ok=True)
     FALLBACK.mkdir(parents=True, exist_ok=True)
+    CHIMES.mkdir(parents=True, exist_ok=True)
+    n_chimes = len(list(CHIMES.glob("chime-????.wav"))) if CHIMES.is_dir() else 0
     log(
-        f"radio_mix start (duck inserts; stale>{STALE_SEC:.0f}s → offline fallbacks "
-        f"every {FALLBACK_EVERY_SEC:.0f}s)"
+        f"radio_mix start (duck inserts; chimes={n_chimes}/48; "
+        f"stale>{STALE_SEC:.0f}s → offline fallbacks every {FALLBACK_EVERY_SEC:.0f}s)"
     )
     while True:
         beds = music_files()
         fresh = reports_fresh()
-        voice = pending_voice()
+        voice = pending_chime()
+        if voice is None:
+            voice = pending_voice()
         if voice is None and not fresh:
             voice = pending_fallback()
         if voice is not None:

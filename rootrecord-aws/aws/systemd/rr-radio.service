@@ -9,6 +9,9 @@ User=ubuntu
 WorkingDirectory=/home/ubuntu/rootrecord
 Environment=RR_ROOT=/home/ubuntu/rootrecord
 Environment=TZ=Pacific/Honolulu
+Environment=RR_RADIO_DUCK_VOL=0.18
+Environment=RR_RADIO_VOICE_VOL=2.2
+Environment=RR_RADIO_POLL_SEC=0.35
 ExecStart=/bin/bash /home/ubuntu/rootrecord/bin/radio_stream.sh
 Restart=always
 RestartSec=5

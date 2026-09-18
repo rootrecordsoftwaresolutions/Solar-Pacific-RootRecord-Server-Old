@@ -29,3 +29,4 @@ mark "$SKILLS/morning-report-play"
 # Desk speaker beds — browser stream only
 mark "$SKILLS/reports-voice"
 echo "Local desk radio/play soft-parked. EcoFlow untouched. Listen at https://rootrecord.cloud/radio"
+echo "NOTE: scheduler-clock does not register OFFLOADED skill crons (rr-aws radio owns them)."

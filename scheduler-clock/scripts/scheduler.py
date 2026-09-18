@@ -333,6 +333,17 @@ NIGHT_POLL = {
 }
 
 
+def _skill_offloaded(cron_name: str) -> bool:
+    """True when skill root has OFFLOADED (owned by rr-aws). Do not delete trees."""
+    skill = _SKILL_ASYNC_CRONS.get(cron_name)
+    if skill is None:
+        return False
+    try:
+        return (Path(skill).resolve().parent.parent / "OFFLOADED").is_file()
+    except Exception:
+        return False
+
+
 def night_sleeping() -> bool:
     try:
         from pathlib import Path
@@ -419,6 +430,14 @@ class _WaveScheduler:
             return None
         func = args[0] if args else kwargs.get("func")
         rest = args[1:] if args else ()
+        cron_name = getattr(func, "__name__", "") if func is not None else ""
+        if cron_name and _skill_offloaded(cron_name):
+            log.info(
+                "Not registering OFFLOADED cron %s (job_id=%s, owned by rr-aws)",
+                cron_name,
+                job_id or "?",
+            )
+            return None
 
         async def guarded(*a, **k):
             if night_sleeping() and job_id not in NIGHT_POLL:
@@ -638,8 +657,8 @@ class Scheduler:
                   id="overnight-relay", name="Late-night relay", misfire_grace_time=300)
 
         # OBS rotator + Kīlauea cam embeds are opt-in (Ava Ops obs). Not on boot.
-        s.add_job(self._run("minecraft_live"), IntervalTrigger(seconds=45),
-                  id="minecraft-live", name="Minecraft in-game detect", misfire_grace_time=30)
+        s.add_job(self._run("minecraft_live"), IntervalTrigger(minutes=10),
+                  id="minecraft-live", name="Minecraft in-game detect", misfire_grace_time=120)
 
         # Hurricane desk — staged so fetch / build / radio / OBS never share a minute
         # with chimes, clip reports, or morning/midday/evening generate+play.
@@ -865,18 +884,10 @@ class Scheduler:
                         return
                 except Exception:
                     pass
-                # RootRecord AWS soft-park: skill folder OFFLOADED → skip (do not delete trees)
-                try:
-                    from pathlib import Path as _P
-
-                    _skill_path = _SKILL_ASYNC_CRONS.get(name)
-                    if _skill_path is not None:
-                        _skill_root = _P(_skill_path).resolve().parent.parent
-                        if (_skill_root / "OFFLOADED").is_file():
-                            log.info("OFFLOADED skip cron %s (owned by rr-aws)", name)
-                            return
-                except Exception:
-                    pass
+                # Safety net: OFFLOADED skills should not register (see _WaveScheduler)
+                if _skill_offloaded(name):
+                    log.info("OFFLOADED skip cron %s (owned by rr-aws)", name)
+                    return
                 last = None
                 mod = None
                 skill = _SKILL_ASYNC_CRONS.get(name)

@@ -57,6 +57,16 @@ Console boot also runs `local/catchup.sh` in the background.
 | `rr-packer` | Zip → channel → wipe → `restart_all.sh` |
 | `rr-dropins` | Chronological `*.py` supervisor |
 | `rr-icecast` + `rr-radio` | Always-on MP3 mount `/rootrecord.mp3` |
+
+Radio voice rule: live `Current*` reports play only if a new report arrived
+within **1.5 hours** (`RR_REPORT_STALE_SEC`). Otherwise stale Currents are
+discarded unplayed and `radio/fallback/{ava,bruce,carly}-offline.wav` rotate
+in (every `RR_FALLBACK_EVERY_SEC`, default 15 min). Desk pushes Currents via
+local `rr-audio-send.timer` → `send_current_wav.py` → Telegram `RR_AUDIO`.
+
+Time chimes: 48 prebuilt clips in `radio/chimes/chime-HHMM.wav` (Ava/Bruce/Carly
+rotate across :00/:30). Mixer inserts the mark clip on HST :00/:30. Rebuild:
+`python local/build_chime_pack.py` then rsync `radio/chimes/` to AWS.
 | `rr-cloudflared` | Public radio tunnel (skipped on post-pack restart) |
 | `rr-youtube` | Idle until `RR_YOUTUBE_RTMP_URL` set |
 | `vsftpd` | FTP for FileZilla Client (`rrftp`) |

@@ -1600,6 +1600,15 @@ def handle_update(
             addr["voices"] = callouts
             addr["reason"] = reason
             is_round = False
+    # Radar / weather radar / radar gif — Bruce without needing @Bruce.
+    if not callouts and not private:
+        radar = skillpack.match_exec_skill(text)
+        if radar and str(radar.get("id") or "") == "radar-gif":
+            callouts = ["bruce"]
+            reason = "radar_gif"
+            addr["voices"] = callouts
+            addr["reason"] = reason
+            is_round = False
     # Whole-team hello: speak in order so later agents hear earlier ones,
     # and questions to each other can chain (Ava answers Bruce, etc.).
     if reason == "team_all" and not private:
@@ -1695,6 +1704,7 @@ def handle_update(
         "panels-cam",
         "web-facts",
         "storm-plot",
+        "radar-gif",
         "cooking-desk",
         "pantry-desk",
         "nutrition-desk",

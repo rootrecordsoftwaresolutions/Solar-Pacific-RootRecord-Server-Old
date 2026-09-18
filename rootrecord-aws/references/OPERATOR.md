@@ -107,6 +107,10 @@ ssh -L 8000:127.0.0.1:8000 rr-aws
 # http://127.0.0.1:8000/rootrecord.mp3
 ```
 
+Desk pushes report `*-current.wav` every 5 minutes (`rr-audio-send.timer` →
+`local/send_current_wav.py`). On AWS, if no new report arrives within **1.5 hours**,
+live reports stop and Ava/Bruce/Carly offline lines in `radio/fallback/` rotate in.
+
 For a permanent hostname: set `RR_CLOUDFLARED_TOKEN` on AWS and restart `rr-cloudflared` once.
 
 ## YouTube

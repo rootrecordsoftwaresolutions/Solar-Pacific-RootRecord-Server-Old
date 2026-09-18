@@ -256,6 +256,29 @@
       "keywords": ["storm plot", "how far is the storm", "storm bearing", "japan storm"]
     },
     {
+      "id": "radar-gif",
+      "description": "Latest Hawaiʻi weather radar GIF from RootRecord AWS ingest (Bruce)",
+      "voices": ["bruce"],
+      "risk": "exec",
+      "entrypoint": "run.py",
+      "network": false,
+      "timeout": 20,
+      "argv": [],
+      "keywords": [
+        "radar",
+        "radar gif",
+        "weather radar",
+        "hawaii radar",
+        "hawaiʻi radar",
+        "hawai'i radar",
+        "nws radar",
+        "ridge radar",
+        "show radar",
+        "show the radar",
+        "latest radar"
+      ]
+    },
+    {
       "id": "cooking-desk",
       "description": "List recipes or cook-from-pantry. Shared dishes save as user-submitted.",
       "voices": ["ava", "bruce", "carly"],

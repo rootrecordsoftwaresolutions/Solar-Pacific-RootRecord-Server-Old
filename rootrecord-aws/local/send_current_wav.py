@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Send live report Current audio to the Telegram relay for AWS radio.
 
-Only *-current.wav / *_current.wav style report files (see speakers.is_current_audio).
+Only *-current.wav / *_current.wav style report files.
 Never word-bank clips. Dedupes by sha so we only send when content changes.
+
+Usage:
+  send_current_wav.py              # scan known Current roots
+  send_current_wav.py PATH [PATH…] # send these wavs immediately (on-generate)
 """
 from __future__ import annotations
 
@@ -100,6 +104,23 @@ def _sha12(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()[:12]
 
 
+def resolve_targets(argv: list[str]) -> list[Path]:
+    if not argv:
+        return find_current_wavs()
+    out: list[Path] = []
+    for raw in argv:
+        p = Path(raw).expanduser().resolve()
+        if not p.is_file() or p.suffix.lower() != ".wav":
+            continue
+        if p.stat().st_size < 1000:
+            continue
+        # Allow explicit paths even if name is slightly off (on-generate)
+        if _is_current_audio(p) or "current" in p.stem.lower():
+            out.append(p)
+    # Newest first so AWS plays the just-generated report ASAP
+    return sorted(out, key=lambda p: p.stat().st_mtime, reverse=True)
+
+
 def main() -> None:
     load_dotenv()
     token = (
@@ -111,7 +132,7 @@ def main() -> None:
     if not token or not chat:
         print(json.dumps({"ok": False, "detail": "missing recv token or chat id"}))
         sys.exit(1)
-    wavs = find_current_wavs()
+    wavs = resolve_targets(sys.argv[1:])
     sent_state = _load_sent()
     hashes = sent_state.get("hashes") or {}
     to_send: list[Path] = []
@@ -121,7 +142,16 @@ def main() -> None:
             continue
         to_send.append(wav)
     if not to_send:
-        print(json.dumps({"ok": True, "sent": 0, "detail": "no new current report wavs", "known": len(wavs)}))
+        print(
+            json.dumps(
+                {
+                    "ok": True,
+                    "sent": 0,
+                    "detail": "no new current report wavs",
+                    "known": len(wavs),
+                }
+            )
+        )
         return
     sent = []
     with httpx.Client(timeout=180.0) as client:
@@ -134,7 +164,12 @@ def main() -> None:
                     files={"document": (wav.name, f)},
                 )
             ok = r.status_code == 200 and bool(r.json().get("ok"))
-            entry = {"file": wav.name, "ok": ok, "bytes": wav.stat().st_size, "sha12": _sha12(wav)}
+            entry = {
+                "file": wav.name,
+                "ok": ok,
+                "bytes": wav.stat().st_size,
+                "sha12": _sha12(wav),
+            }
             sent.append(entry)
             if ok:
                 hashes[wav.name] = entry["sha12"]
