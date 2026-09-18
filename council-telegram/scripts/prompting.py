@@ -251,6 +251,20 @@ def build_speak_prompt(
             soft.append(fix)
     except Exception:
         pass
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+
+        _n = _P.home() / ".ollama" / "skills" / "notes" / "scripts"
+        if str(_n) not in _sys.path:
+            _sys.path.insert(0, str(_n))
+        from notes import prompt_lines as _note_lines  # type: ignore
+
+        notes_blob = _note_lines(limit=8, cap=500)
+        if notes_blob and "No notes" not in notes_blob:
+            soft.append(notes_blob)
+    except Exception:
+        pass
     if person_block:
         soft.append(person_block.strip())
     if catch_up:

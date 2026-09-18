@@ -88,6 +88,26 @@ def for_chat(
     return rows
 
 
+def recent_humans(chat_id: int | str, n: int = 10) -> list[dict[str, Any]]:
+    """Last n inbound human lines in a chat (newest last). Skips empty/bot rows."""
+    want = max(1, int(n))
+    out: list[dict[str, Any]] = []
+    for r in reversed(for_chat(chat_id)):
+        if r.get("dir") != "in":
+            continue
+        text = str(r.get("text") or "").strip()
+        if not text:
+            continue
+        low = text.lower()
+        if low.startswith("photo shared") or low.startswith("photo album"):
+            continue
+        out.append(r)
+        if len(out) >= want:
+            break
+    out.reverse()
+    return out
+
+
 def recent_for_chat(chat_id: int | str, n: int = 8) -> list[dict[str, Any]]:
     return for_chat(chat_id)[-n:]
 

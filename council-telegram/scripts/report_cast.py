@@ -203,6 +203,7 @@ def notify_report(
     def send_audio_fn(path: Path, caption: str) -> dict[str, Any]:
         if poster:
             return poster("audio", str(path), caption)
+        # Prefer round voice bubble (send_audio → sendVoice); file only on convert miss.
         return telegram.send_audio(token, chat_id, path, caption=caption)
 
     def send_photo_fn(path: Path, caption: str) -> dict[str, Any]:
@@ -228,7 +229,7 @@ def notify_report(
 
     photo_mid = audio_mid
     if photo_path is not None:
-        raw = send_photo_fn(photo_path, cap if audio_mid is None else "Rear Shed panels")
+        raw = send_photo_fn(photo_path, cap if audio_mid is None else "Solar Panels")
         photo_mid = _mid(raw) if isinstance(raw, dict) else photo_mid
         if photo_mid and photo_mid not in ids:
             ids.append(photo_mid)

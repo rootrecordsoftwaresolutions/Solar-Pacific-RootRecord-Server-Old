@@ -63,7 +63,7 @@ def maybe_spark(cfg: Config) -> dict[str, Any] | None:
     data = queue.load()
     if any(j.get("status") == "running" for j in data.get("jobs") or []):
         return None
-    if not ollama_ctl.is_up(cfg):
+    if not ollama_ctl.voices_up(cfg):
         return None
     row = _load()
     day = _hst_day()

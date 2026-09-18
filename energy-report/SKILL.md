@@ -1,18 +1,19 @@
 ---
 name: energy-report
 description: >-
-  Carly energy desk: latest Rear Shed panels still + pack facts + vision
-  caption. Use for energy report, solar cam attach, or site security energy
-  watch. Does not cycle River car DC.
+  Carly energy desk: latest Solar Panels still + pack facts + ops vision read.
+  Use for energy report, solar cam attach, or site security energy watch.
+  Does not cycle River car DC.
 ---
 
 # energy-report
 
-Carly posts the **energy desk** — security cam of the solar panels plus live pack lines.
+Carly posts the **energy desk** — Solar Panels cam plus live pack lines. She already knows the wood-frame array and evening upright stow; speak ops deltas only.
 
 - Uses the **most recent** `panels-cam` still (no power cycle).
-- Vision (look model) adds weather/panel context for on-site observations.
+- Vision returns rain / angle / glare deltas — not tourist scenery.
 - Pack SOC / PV from BLE quota files only — no invented watts.
+- **Kokoro voice** as Carly (`af_nova`) — WAV attached with the Telegram post.
 - River car 12V left alone here. `panels-cam` owns the 15‑min grab cycle.
 
 ```bash
@@ -20,6 +21,4 @@ Carly posts the **energy desk** — security cam of the solar panels plus live p
   ~/.ollama/skills/energy-report/scripts/energy_report.py --post
 ```
 
-Scheduler: `energy-report` every 30 minutes (night-sleep gated). Speaker: Carly.
-
-Latest markdown: `store/energy-latest.md` · frame pointer: `store/LATEST_FRAME.txt`
+`--no-voice` skips WAV. Audio: `store/audio/energy-current.wav`

@@ -61,6 +61,14 @@ _SKILL_ASYNC_CRONS = {
         / "scripts"
         / "energy_report.py"
     ),
+    "council_health": (
+        Path.home()
+        / ".ollama"
+        / "skills"
+        / "council-health"
+        / "scripts"
+        / "job.py"
+    ),
     "kilauea": (
         Path.home() / ".ollama" / "skills" / "rr-kilauea" / "scripts" / "kilauea.py"
     ),
@@ -347,6 +355,7 @@ def _job_wave(job_id: str) -> int:
         "drive-automation",
         "panels-cam",
         "energy-report",
+        "council-health",
         "host-sample",
         "log-cleanup",
         "fs-index",
@@ -649,6 +658,9 @@ class Scheduler:
 
         s.add_job(self._run("energy_report"), IntervalTrigger(minutes=30),
                   id="energy-report", name="Carly energy desk + Rear Shed still", misfire_grace_time=180)
+
+        s.add_job(self._run("council_health"), IntervalTrigger(minutes=5),
+                  id="council-health", name="Ava/Bruce/Carly systems health", misfire_grace_time=90)
 
         s.add_job(self._run_fs_index(), IntervalTrigger(minutes=15),
                   id="fs-index", name="Live directory index", misfire_grace_time=90)
@@ -971,6 +983,42 @@ class Scheduler:
             "ok": True,
             "added": True,
             "id": "midday-report",
+            "next_run": job.next_run_time.isoformat() if job and job.next_run_time else None,
+        }
+
+    def ensure_council_health_job(self) -> dict:
+        """Hot path: register Ava/Bruce/Carly health check if missing."""
+        jid = "council-health"
+        if self._apscheduler.get_job(jid):
+            job = self._apscheduler.get_job(jid)
+            return {
+                "ok": True,
+                "added": False,
+                "id": jid,
+                "next_run": job.next_run_time.isoformat() if job and job.next_run_time else None,
+            }
+        need = _job_wave(jid)
+        if need > config.CRON_WAVE:
+            return {
+                "ok": False,
+                "added": False,
+                "id": jid,
+                "detail": f"wave {need} > AVA_CRON_WAVE={config.CRON_WAVE}",
+            }
+        self._apscheduler.add_job(
+            self._run("council_health"),
+            IntervalTrigger(minutes=5),
+            id=jid,
+            name="Ava/Bruce/Carly systems health",
+            misfire_grace_time=90,
+            replace_existing=True,
+        )
+        job = self._apscheduler.get_job(jid)
+        log.info("Hot-registered council-health next=%s", job.next_run_time if job else None)
+        return {
+            "ok": True,
+            "added": True,
+            "id": jid,
             "next_run": job.next_run_time.isoformat() if job and job.next_run_time else None,
         }
 

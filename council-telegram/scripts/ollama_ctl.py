@@ -46,6 +46,21 @@ def flm_is_up(timeout: float = 1.5) -> bool:
         return False
 
 
+def npu_chat_enabled() -> bool:
+    return os.getenv("AVA_NPU_CHAT", "1").strip().lower() not in {"0", "false", "off", "no"}
+
+
+def voices_up(cfg: Config, timeout: float = 2.0) -> bool:
+    """True when everyday council chat can run.
+
+    NPU chat uses FastFlowLM (:52625). Ollama GGUF may be down on purpose —
+    do not treat that as voices asleep.
+    """
+    if npu_chat_enabled() and flm_is_up(timeout=min(timeout, 1.5)):
+        return True
+    return is_up(cfg, timeout=timeout)
+
+
 def flm_stop() -> bool:
     """Unmap FastFlowLM (~9–11G RSS). Does not stop origin or council."""
     try:
@@ -225,12 +240,12 @@ def _serve_env() -> dict[str, str]:
 
 
 def _npu_chat() -> bool:
-    return os.getenv("AVA_NPU_CHAT", "1").strip().lower() not in {"0", "false", "off", "no"}
+    return npu_chat_enabled()
 
 
 def warm_default(cfg: Config, timeout: float = 120) -> bool:
     """Map llama3.2 GGUF. Skip when NPU chat is on — GGUF plus FastFlowLM OOMs this 16 GB box."""
-    if _npu_chat() or flm_is_up():
+    if npu_chat_enabled() or flm_is_up():
         return True
     model = (os.getenv("AVA_OLLAMA_MODEL") or "llama3.2:3b-instruct-q4_K_M").strip()
     keep = (os.getenv("AVA_OLLAMA_CHAT_KEEP_ALIVE") or "15m").strip() or "15m"

@@ -200,7 +200,7 @@ def _finish(
         _say(
             cfg,
             chat_id,
-            f"WAV is ready on disk as {wav.name}, but Telegram did not take the file.",
+            f"WAV is ready on disk as {wav.name}, but Telegram did not take the voice note ({sent.get('description') or 'fail'}).",
             reply_to=reply_to,
             thread_id=thread_id,
         )

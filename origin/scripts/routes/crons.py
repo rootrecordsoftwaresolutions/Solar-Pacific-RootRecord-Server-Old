@@ -63,6 +63,17 @@ async def ensure_midday():
     return sched.ensure_midday_job()
 
 
+@router.post("/ensure-council-health")
+async def ensure_council_health():
+    """Hot path: register council-health (every 5m) if the live scheduler lacks it."""
+    sched = get_scheduler()
+    if sched is None:
+        return {"ok": False, "detail": "scheduler not started"}
+    if not hasattr(sched, "ensure_council_health_job"):
+        return {"ok": False, "detail": "ensure_council_health_job missing — recycle origin once"}
+    return sched.ensure_council_health_job()
+
+
 @router.post("/{job_id}/run")
 async def run_cron(job_id: str):
     sched = get_scheduler()

@@ -307,7 +307,10 @@ def send_audio(
     file_path: Path,
     caption: str = "",
 ) -> dict[str, Any]:
-    """MP3/M4A via sendAudio; WAV and the rest as a document so Telegram still takes them."""
+    """Prefer a round voice bubble; fall back to sendAudio / document."""
+    voice_out = send_voice(token, chat_id, file_path, caption=caption)
+    if voice_out.get("ok"):
+        return voice_out
     path = Path(file_path)
     suf = path.suffix.lower()
     if suf in {".mp3", ".m4a"}:
@@ -317,6 +320,86 @@ def send_audio(
         if out.get("ok"):
             return out
     return send_document(token, chat_id, path, caption=caption)
+
+
+def _wav_to_ogg_opus(src: Path, dest: Path) -> Path | None:
+    """Telegram sendVoice wants OGG/Opus. Returns dest or None."""
+    import subprocess
+
+    dest = Path(dest)
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        subprocess.run(
+            [
+                "ffmpeg",
+                "-y",
+                "-i",
+                str(src),
+                "-c:a",
+                "libopus",
+                "-b:a",
+                "48k",
+                "-vbr",
+                "on",
+                "-application",
+                "voip",
+                str(dest),
+            ],
+            check=True,
+            capture_output=True,
+            timeout=180,
+        )
+    except Exception:
+        return None
+    return dest if dest.is_file() and dest.stat().st_size > 200 else None
+
+
+def _ogg_for_voice(path: Path) -> Path | None:
+    """Reuse sibling .ogg when newer-or-equal to source; else convert."""
+    path = Path(path)
+    if path.suffix.lower() in {".ogg", ".opus"}:
+        return path if path.is_file() else None
+    dest = path.with_suffix(".ogg")
+    try:
+        if dest.is_file() and dest.stat().st_mtime >= path.stat().st_mtime and dest.stat().st_size > 200:
+            return dest
+    except OSError:
+        pass
+    return _wav_to_ogg_opus(path, dest)
+
+
+def send_voice(
+    token: str,
+    chat_id: int | str,
+    file_path: Path,
+    *,
+    caption: str = "",
+) -> dict[str, Any]:
+    """Round voice bubble via sendVoice (OGG Opus). Converts WAV/MP3 when needed."""
+    path = Path(file_path)
+    if not path.is_file():
+        return {"ok": False, "description": "file missing"}
+    # Telegram voice notes are capped ~1 GiB in Bot API; keep a practical guard.
+    if path.stat().st_size > 20 * 1024 * 1024 and path.suffix.lower() not in {".ogg", ".opus"}:
+        # Still try convert — opus shrinks a lot — but bail if source is huge
+        if path.stat().st_size > 80 * 1024 * 1024:
+            return {"ok": False, "description": "audio_too_large_for_voice"}
+    ogg = _ogg_for_voice(path)
+    if ogg is None:
+        return {"ok": False, "description": "ogg_opus_convert_failed"}
+    # sendVoice has no caption in Bot API — follow with a short text when needed.
+    out = _send_multipart(
+        token, chat_id, ogg, method="sendVoice", field="voice", caption=""
+    )
+    if caption and out.get("ok"):
+        mid = ((out.get("result") or {}) if isinstance(out.get("result"), dict) else {}).get(
+            "message_id"
+        )
+        try:
+            send_message(token, chat_id, caption[:900], reply_to=mid)
+        except Exception:
+            pass
+    return out
 
 
 def get_chat_member(token: str, chat_id: int | str, user_id: int) -> dict[str, Any]:

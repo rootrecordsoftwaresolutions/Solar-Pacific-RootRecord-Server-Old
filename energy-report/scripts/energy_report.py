@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import sys
 import time
 from datetime import datetime
@@ -175,8 +176,67 @@ def _vision_still(path: Path) -> Path:
     return out if out.is_file() and out.stat().st_size > 400 else path
 
 
+def load_panels_context() -> dict[str, Any]:
+    path = STORE / "panels_context.json"
+    base: dict[str, Any] = {
+        "osd_name_preferred": "Solar Panels",
+        "osd_name_legacy": "Rear Shed",
+        "mount": "wood frame",
+        "evening_position": "upright",
+        "evening_note": "Upright on the wood frame is the normal evening stow position.",
+        "site": "Hawaiʻi outdoor solar panels in tall grass",
+        "operator_live_notes": [],
+    }
+    if path.is_file():
+        try:
+            raw = json.loads(path.read_text(encoding="utf-8"))
+            if isinstance(raw, dict):
+                base.update(raw)
+        except Exception:
+            pass
+    md = STORE / "PANELS_CONTEXT.md"
+    base["context_md"] = md.read_text(encoding="utf-8") if md.is_file() else ""
+    return base
+
+
+def set_operator_note(note: str) -> dict[str, Any]:
+    """Append a short live operator note (e.g. pouring rain, lightning)."""
+    ctx = load_panels_context()
+    notes = list(ctx.get("operator_live_notes") or [])
+    note = " ".join(str(note or "").split()).strip()
+    if note:
+        notes.append({"ts": time.time(), "text": note[:300]})
+        notes = notes[-12:]
+    ctx["operator_live_notes"] = notes
+    path = STORE / "panels_context.json"
+    path.write_text(json.dumps({k: v for k, v in ctx.items() if k != "context_md"}, indent=2) + "\n", encoding="utf-8")
+    return ctx
+
+
+def _blend_prompt(ctx: dict[str, Any]) -> str:
+    name = str(ctx.get("osd_name_preferred") or "Solar Panels")
+    mount = str(ctx.get("mount") or "wood frame")
+    evening = str(ctx.get("evening_note") or "")
+    live = []
+    for row in ctx.get("operator_live_notes") or []:
+        if isinstance(row, dict) and row.get("text"):
+            if time.time() - float(row.get("ts") or 0) < 7200:
+                live.append(str(row["text"]))
+    live_bit = (" Operator reports now: " + "; ".join(live) + ".") if live else ""
+    return (
+        f"This is OUR site cam on the {name} array in Hawaiʻi — ground-mounted on a {mount}. "
+        f"You already know that; do not introduce the scene like a tourist. {evening} "
+        "Return ONLY ops deltas as short clauses separated by semicolons, not full scenic sentences. "
+        "Allowed topics: panel angle (upright evening stow vs day tilt); rain/wet glare/fogged lens; "
+        "soaked ground; storm-dark vs bright overcast; debris or shade on panels; anything unsafe. "
+        "Forbidden: 'the image shows', 'rural setting', 'appears to be', 'likely a garden', "
+        "generic landscape filler, inventing lightning flashes, inventing watts or SOC."
+        f"{live_bit}"
+    )
+
+
 def caption_still(path: Path) -> str:
-    """Vision caption via look model. Facts only."""
+    """Vision caption via look model — ops deltas only, site already known."""
     try:
         from apps.core.services import ollama as ollama_svc
     except Exception:
@@ -185,33 +245,175 @@ def caption_still(path: Path) -> str:
             import ollama as ollama_svc  # type: ignore
         except Exception as e:
             return f"(vision offline: {type(e).__name__})"
-    prompt = (
-        "This is a live still from the Rear Shed security camera looking at solar panels "
-        "on site in Hawaiʻi. Describe only what is visible in three short factual sentences: "
-        "sky/weather look, panel/ground condition, anything that affects solar (shade, rain, "
-        "clouds, debris). If it is dark or blank, say that. Do not invent numbers or pack SOC."
-    )
+    ctx = load_panels_context()
+    prompt = _blend_prompt(ctx)
     thumb = _vision_still(path)
     try:
         cap = ollama_svc.look_sync(prompt, [thumb], timeout=120)
     except Exception as e:
         return f"(vision miss: {type(e).__name__})"
-    return (cap or "").strip() or "(no caption)"
+    text = (cap or "").strip() or "(no caption)"
+    low = text.lower()
+    if "metal" in low and "wood" not in low:
+        text += " (Site note: mount is wood frame.)"
+    return text
+
+
+def distill_cam_read(caption: str, *, ctx: dict[str, Any] | None = None) -> str:
+    """Turn vision prose into ops notes Carly already understands."""
+    ctx = ctx or load_panels_context()
+    raw = " ".join((caption or "").split()).strip()
+    if not raw or raw.startswith("("):
+        return ""
+    low = raw.lower()
+    bits: list[str] = []
+    # Position
+    if any(w in low for w in ("upright", "vertical", "evening stow", "stow")):
+        bits.append("panels in evening upright stow on the wood frame")
+    elif any(w in low for w in ("flat", "tilted toward", "day tilt", "angled toward the sky")):
+        bits.append("panels look day-tilted, not stowed upright")
+    # Weather / lens
+    if any(w in low for w in ("rain", "streak", "mist", "pouring", "spray")):
+        bits.append("rain on the lens or array")
+    if any(w in low for w in ("glare", "reflect", "washed", "fogged", "flare", "wet")):
+        bits.append("heavy wet glare — not clear-sun production light")
+    if any(w in low for w in ("soak", "mud", "standing water")):
+        bits.append("ground soaked")
+    if "overcast" in low or "storm" in low or "cloud" in low:
+        bits.append("overcast / storm light")
+    if "lightning" in low and "no" not in low.split("lightning")[0][-20:]:
+        # only if vision claimed a flash (rare)
+        if "no visible lightning" not in low and "no lightning" not in low:
+            bits.append("possible flash in frame")
+    # Mount confirmation
+    if "wood" in low:
+        bits.append("wood frame confirmed in frame")
+    # Operator live notes always win for weather narrative
+    live = [
+        str(r.get("text"))
+        for r in (ctx.get("operator_live_notes") or [])
+        if isinstance(r, dict) and r.get("text") and time.time() - float(r.get("ts") or 0) < 7200
+    ]
+    if live and not bits:
+        return "; ".join(live)
+    if not bits:
+        # strip tourist openers
+        cleaned = re.sub(
+            r"(?i)^(the image shows|this (is|shows|appears)|in (the|this) (image|photo|frame)[,:]?\s*)+",
+            "",
+            raw,
+        ).strip()
+        return cleaned[:280]
+    return "; ".join(bits)
+
+
+def _speak_pack_line(line: str) -> str:
+    """Delta 2 · 98% · PV 0 W · out 0 W · (ble, 88s) → Carly ops English."""
+    s = str(line)
+    s = re.sub(r"\s*\([^)]*\)\s*$", "", s)
+    parts = [p.strip() for p in s.split("·")]
+    if not parts:
+        return ""
+    name = parts[0]
+    soc = next((p for p in parts[1:] if "%" in p), "")
+    pv = next((p for p in parts[1:] if p.upper().startswith("PV")), "")
+    out = next((p for p in parts[1:] if p.lower().startswith("out")), "")
+    chunks = [name]
+    if soc:
+        chunks.append(f"at {soc.replace('%', ' percent').strip()}")
+    if pv:
+        w = re.sub(r"(?i)pv\s*", "", pv).strip()
+        w = re.sub(r"(?i)\s*w\b", " watts", w)
+        chunks.append(f"array in {w}" if "0" in w else f"array making {w}")
+    if out:
+        w = re.sub(r"(?i)out\s*", "", out).strip()
+        w = re.sub(r"(?i)\s*w\b", " watts", w)
+        chunks.append(f"output {w}")
+    return ", ".join(chunks)
+
+
+def spoken_script(*, caption: str, packs: list[str], weather: str | None) -> str:
+    """Carly ops voice — she already knows the site; no tourist narration."""
+    ctx = load_panels_context()
+    now = datetime.now(HST)
+    hour = now.hour
+    stow = "evening upright stow" if hour >= 17 or hour < 7 else "day tilt check"
+    parts = [
+        f"Energy desk, {now.strftime('%-I:%M %p')} Hawaiian Standard Time.",
+        f"Solar Panels cam — wood-frame ground array, expecting {stow}.",
+    ]
+    live = [
+        str(r.get("text"))
+        for r in (ctx.get("operator_live_notes") or [])
+        if isinstance(r, dict) and r.get("text") and time.time() - float(r.get("ts") or 0) < 7200
+    ]
+    if live:
+        parts.append("Operator: " + "; ".join(live).rstrip(".; ") + ".")
+
+    cam = distill_cam_read(caption, ctx=ctx)
+    if cam:
+        # Don't re-say wood frame / evening if we already framed it
+        cam = re.sub(r"(?i)\s*;?\s*wood frame confirmed in frame", "", cam).strip(" ;")
+        if "evening upright" in parts[1].lower() or "evening upright stow" in " ".join(parts).lower():
+            cam = re.sub(
+                r"(?i)\s*;?\s*panels in evening upright stow on the wood frame",
+                "",
+                cam,
+            ).strip(" ;")
+        if cam:
+            parts.append("Cam: " + cam.rstrip(".; ") + ".")
+
+    # Packs in known order — Delta bank + River car/loads
+    for line in packs:
+        spoken = _speak_pack_line(line)
+        if spoken:
+            parts.append(spoken + ".")
+
+    # Tie PV zero to storm when relevant
+    blob = " ".join(packs).lower() + " " + (caption or "").lower() + " " + " ".join(live).lower()
+    packed = blob.replace(" ", "")
+    if "pv0" in packed or "solar0" in packed:
+        if any(w in blob for w in ("rain", "storm", "overcast", "glare", "lightning", "pouring")):
+            parts.append("Zero array watts matches the storm cover — not a wiring fault from this still.")
+
+    if weather:
+        w = re.sub(r"[*_`#]", "", weather)
+        w = re.sub(r"(?i)^weather\s*\(\d+m\)\s*:\s*", "", w)
+        w = re.sub(r"\s+", " ", w).strip()
+        if w:
+            parts.append("NWS: " + w.rstrip(".; ") + ".")
+
+    parts.append("Carly, energy desk out.")
+    return " ".join(parts)
 
 
 def build_transcript(*, caption: str, packs: list[str], weather: str | None, frame: Path | None) -> str:
     now = datetime.now(HST)
+    ctx = load_panels_context()
+    name = str(ctx.get("osd_name_preferred") or "Solar Panels")
+    cam = distill_cam_read(caption, ctx=ctx) or caption
     lines = [
         f"Energy desk — {now.strftime('%Y-%m-%d %H:%M')} HST",
         "",
-        "Rear Shed security cam (latest still, no power cycle).",
+        f"{name} cam · wood-frame ground array · evening upright is normal stow.",
     ]
+    live = [
+        str(r.get("text"))
+        for r in (ctx.get("operator_live_notes") or [])
+        if isinstance(r, dict) and r.get("text") and time.time() - float(r.get("ts") or 0) < 7200
+    ]
+    if live:
+        lines.append("Operator: " + "; ".join(live))
     if frame:
         age_m = int((time.time() - frame.stat().st_mtime) / 60)
-        lines.append(f"Still age: {age_m} minute(s).")
+        lines.append(f"Still age: {age_m}m")
     lines.append("")
-    lines.append("Cam read:")
-    lines.append(caption)
+    lines.append("Cam (ops):")
+    lines.append(cam)
+    if caption and caption != cam and not caption.startswith("("):
+        lines.append("")
+        lines.append("Vision raw:")
+        lines.append(caption)
     lines.append("")
     if packs:
         lines.append("Packs:")
@@ -220,11 +422,27 @@ def build_transcript(*, caption: str, packs: list[str], weather: str | None, fra
     if weather:
         lines.append(weather)
         lines.append("")
-    lines.append("Carly — site security + energy watch. Reply with notes if this should be better.")
+    lines.append("Carly — energy / site security. Reply with notes if this should be better.")
     return "\n".join(lines).strip()
 
 
-def build_report(*, post: bool = True, vision: bool = True) -> dict[str, Any]:
+def render_voice(spoken: str) -> dict[str, Any]:
+    """Kokoro WAV as Carly (energy desk)."""
+    from apps.voice.speakers import publish_current, speak_report
+
+    stamp = datetime.now(HST).strftime("%Y%m%d-%H%M")
+    audio_dir = STORE / "audio"
+    audio_dir.mkdir(parents=True, exist_ok=True)
+    dest = audio_dir / f"energy-{stamp}.wav"
+    current = audio_dir / "energy-current.wav"
+    result = speak_report("energy", spoken, dest)
+    if result.get("ok") and dest.is_file():
+        publish_current(dest, current)
+        result["current"] = str(current)
+    return result
+
+
+def build_report(*, post: bool = True, vision: bool = True, voice: bool = True) -> dict[str, Any]:
     STORE.mkdir(parents=True, exist_ok=True)
     st = load_state()
     frame = latest_panels_frame()
@@ -236,12 +454,13 @@ def build_report(*, post: bool = True, vision: bool = True) -> dict[str, Any]:
         else ("(vision skipped)" if frame else "(no still on disk yet — run panels grab first)")
     )
     body = build_transcript(caption=caption, packs=packs, weather=weather, frame=frame)
+    spoken = spoken_script(caption=caption, packs=packs, weather=weather)
 
     out_md = STORE / f"energy-{datetime.now(HST).strftime('%Y%m%d-%H%M')}.md"
     out_md.write_text(body + "\n", encoding="utf-8")
-    # stable pointer for hybrid / solar attach
     latest_md = STORE / "energy-latest.md"
     latest_md.write_text(body + "\n", encoding="utf-8")
+    (STORE / "energy-latest.speak.txt").write_text(spoken + "\n", encoding="utf-8")
     if frame:
         pointer = STORE / "LATEST_FRAME.txt"
         pointer.write_text(str(frame) + "\n", encoding="utf-8")
@@ -252,8 +471,25 @@ def build_report(*, post: bool = True, vision: bool = True) -> dict[str, Any]:
         "frame": str(frame) if frame else None,
         "caption": caption,
         "packs": packs,
+        "spoken": spoken,
         "posted": False,
+        "voice": None,
     }
+
+    wav_path: Path | None = None
+    if voice:
+        try:
+            voice_out = render_voice(spoken)
+            report["voice"] = {
+                k: voice_out.get(k)
+                for k in ("ok", "skipped", "detail", "wav", "voice", "agent", "current")
+            }
+            if voice_out.get("ok") and voice_out.get("wav"):
+                wav_path = Path(str(voice_out["wav"]))
+            elif not voice_out.get("ok"):
+                report["voice_error"] = voice_out.get("detail") or "voice_failed"
+        except Exception as e:
+            report["voice_error"] = f"{type(e).__name__}: {e}"
 
     if post:
         try:
@@ -263,8 +499,9 @@ def build_report(*, post: bool = True, vision: bool = True) -> dict[str, Any]:
             cast = report_cast.notify_report(
                 "energy",
                 transcript=body,
-                title="Energy desk — Rear Shed",
+                title="Energy desk — Solar Panels",
                 photo=frame,
+                audio=wav_path if wav_path and wav_path.is_file() else None,
                 cfg=load_config(),
             )
             report["cast"] = {k: cast.get(k) for k in ("ok", "skipped", "detail", "ids", "kind")}
@@ -276,7 +513,9 @@ def build_report(*, post: bool = True, vision: bool = True) -> dict[str, Any]:
     st["last_ok"] = time.time() if report.get("ok") else st.get("last_ok")
     st["last_path"] = str(out_md)
     st["last_caption"] = caption[:500]
-    st["last_skip"] = None if report.get("ok") else (report.get("cast_error") or "failed")
+    st["last_spoken"] = spoken[:800]
+    st["last_wav"] = str(wav_path) if wav_path else None
+    st["last_skip"] = None if report.get("ok") else (report.get("cast_error") or report.get("voice_error") or "failed")
     st["last_frame"] = str(frame) if frame else None
     save_state(st)
     return report
@@ -287,11 +526,12 @@ async def run() -> None:
     if not st.get("auto", True):
         log.info("energy-report skipped auto_off")
         return
-    report = build_report(post=True, vision=True)
+    report = build_report(post=True, vision=True, voice=True)
     log.info(
-        "energy-report ok=%s posted=%s frame=%s",
+        "energy-report ok=%s posted=%s voice=%s frame=%s",
         report.get("ok"),
         report.get("posted"),
+        (report.get("voice") or {}).get("ok"),
         report.get("frame"),
     )
 
@@ -302,6 +542,8 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="Carly energy report (latest panels still).")
     p.add_argument("--post", action="store_true", help="Post to Telegram as Carly.")
     p.add_argument("--no-vision", action="store_true")
+    p.add_argument("--no-voice", action="store_true", help="Skip Kokoro WAV.")
+    p.add_argument("--note", default="", help="Operator live weather note (rain, lightning…).")
     p.add_argument("--auto", choices=("on", "off"))
     p.add_argument("--status", action="store_true")
     args = p.parse_args(argv)
@@ -314,7 +556,15 @@ def main(argv: list[str] | None = None) -> int:
     if args.status:
         print(json.dumps(load_state(), indent=2))
         return 0
-    report = build_report(post=bool(args.post), vision=not args.no_vision)
+    if args.note:
+        set_operator_note(args.note)
+    # --post implies voice+vision unless disabled; bare run still builds voice
+    want_post = bool(args.post)
+    report = build_report(
+        post=want_post,
+        vision=not args.no_vision,
+        voice=not args.no_voice,
+    )
     print(json.dumps(report, indent=2, default=str))
     return 0 if report.get("ok") else 1
 

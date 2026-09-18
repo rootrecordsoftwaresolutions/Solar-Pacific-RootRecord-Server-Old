@@ -102,14 +102,30 @@ def set_group_chat_id(state: dict[str, Any], chat_id: int | str, cfg: Config) ->
     return state
 
 
-def status_lines(state: dict[str, Any], cfg: Config, ollama_up: bool) -> str:
+def status_lines(
+    state: dict[str, Any],
+    cfg: Config,
+    ollama_up: bool,
+    *,
+    flm_up: bool | None = None,
+    voices_up: bool | None = None,
+) -> str:
     bound = owner_bound(state, cfg)
-    return (
-        f"discussion={state.get('discussion', 'on')}\n"
-        f"mode={state.get('mode', 'auto')}\n"
-        f"ollama-up={str(ollama_up).lower()}\n"
-        f"owner-bound={str(bound).lower()}\n"
-        f"auto_execute={str(bool(state.get('auto_execute'))).lower()}\n"
-        f"busy={str(bool(state.get('busy'))).lower()}\n"
-        f"group-chat-set={str(bool(state.get('group_chat_id') or cfg.telegram_group_chat_id)).lower()}"
+    lines = [
+        f"discussion={state.get('discussion', 'on')}",
+        f"mode={state.get('mode', 'auto')}",
+        f"ollama-up={str(ollama_up).lower()}",
+    ]
+    if flm_up is not None:
+        lines.append(f"flm-up={str(flm_up).lower()}")
+    if voices_up is not None:
+        lines.append(f"voices-up={str(voices_up).lower()}")
+    lines.extend(
+        [
+            f"owner-bound={str(bound).lower()}",
+            f"auto_execute={str(bool(state.get('auto_execute'))).lower()}",
+            f"busy={str(bool(state.get('busy'))).lower()}",
+            f"group-chat-set={str(bool(state.get('group_chat_id') or cfg.telegram_group_chat_id)).lower()}",
+        ]
     )
+    return "\n".join(lines)

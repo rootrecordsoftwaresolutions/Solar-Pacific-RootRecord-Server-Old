@@ -266,7 +266,7 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
 
         if _oc._npu_chat_env():
             ollama_ctl.flm_start()
-            if not ollama_ctl.flm_is_up() and not ollama_ctl.is_up(cfg):
+            if not ollama_ctl.voices_up(cfg):
                 ollama_ctl.start(cfg)
         elif not ollama_ctl.is_up(cfg):
             ollama_ctl.start(cfg)

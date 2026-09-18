@@ -432,8 +432,10 @@ def _handle_command(
 
     # /status — anyone can ask for high-level status (no secrets)
     if low.startswith("/status") or low == "status":
-        up = ollama_ctl.is_up(cfg)
-        lines = state.status_lines(st, cfg, up)
+        ollama_up = ollama_ctl.is_up(cfg)
+        flm_up = ollama_ctl.flm_is_up()
+        voices = ollama_ctl.voices_up(cfg)
+        lines = state.status_lines(st, cfg, ollama_up, flm_up=flm_up, voices_up=voices)
         if uid is not None:
             if is_owner:
                 trust.set_score(trust_data, uid, trust.OWNER_SCORE, is_owner=True)
@@ -1138,6 +1140,51 @@ def handle_update(
     trust_data.update(trust.load_trust(cfg.trust_path))
     trust.ensure_user(trust_data, uid, user.get("username"))
     trust.save_trust(trust_data)
+
+    # Log human inbound early so note capture / silence paths still have history.
+    mid_early = message.get("message_id")
+    display_early = trust.display_of(trust_data, uid) if uid is not None else "someone"
+    if uid is not None and state.is_owner(st, cfg, uid):
+        display_early = "Alexander"
+    if not burst_flush and text and not text.startswith("/"):
+        try:
+            chatlog.append(
+                {
+                    "dir": "in",
+                    "chat_id": str(chat_id),
+                    "from_id": uid,
+                    "username": user.get("username"),
+                    "display": display_early,
+                    "message_id": mid_early,
+                    "reply_to": (
+                        (message.get("reply_to_message") or {}).get("message_id")
+                        if isinstance(message.get("reply_to_message"), dict)
+                        else None
+                    ),
+                    "text": text[:1000],
+                }
+            )
+        except Exception:
+            traceback.print_exc()
+
+    # "note" / "notes" → read last ~10 human lines, save a generalized site note, ack.
+    if not burst_flush and text and not text.startswith("/"):
+        try:
+            from . import site_notes as _site_notes
+
+            if _site_notes.wants_note(text):
+                _site_notes.capture(
+                    cfg=cfg,
+                    chat_id=chat_id,
+                    text=text,
+                    display=display_early,
+                    username=str(user.get("username") or ""),
+                    message_id=mid_early,
+                    reply_voice=listen_voice if private else "ava",
+                )
+        except Exception:
+            traceback.print_exc()
+
     try:
         from . import people as _people
 
@@ -1392,14 +1439,14 @@ def handle_update(
                 )
             return
 
-    ollama_up = ollama_ctl.is_up(cfg)
-    if not ollama_up:
+    # Everyday chat = FastFlowLM when AVA_NPU_CHAT=1. Ollama is for vision/coder.
+    voices_up = ollama_ctl.voices_up(cfg)
+    if not voices_up:
         if has_photo:
-            # Vision needs Ollama; say so instead of silent drop.
             telegram.send_message(
                 cfg.token_for(listen_voice if private else "ava"),
                 chat_id,
-                "Saw the photo — vision is offline (Ollama down). Try again in a minute.",
+                "Saw the photo — vision is offline. Try again in a minute.",
                 reply_to=message.get("message_id"),
             )
             return
@@ -1407,8 +1454,18 @@ def handle_update(
             telegram.send_message(
                 cfg.token_for(listen_voice),
                 chat_id,
-                "Voices asleep (Ollama down). /resume in the group when you want us talking.",
+                "Voices asleep (NPU chat down). /resume in the group when you want us talking.",
             )
+        print("voices down — silent group drop", flush=True)
+        return
+    # Photos still need Ollama look; chat can proceed on FLM alone.
+    if has_photo and not ollama_ctl.is_up(cfg):
+        telegram.send_message(
+            cfg.token_for(listen_voice if private else "ava"),
+            chat_id,
+            "Saw the photo — vision is offline (Ollama down). Chat still works; retry the photo in a minute.",
+            reply_to=message.get("message_id"),
+        )
         return
 
     mid = message.get("message_id")
@@ -1418,19 +1475,7 @@ def handle_update(
     reply_msg = message.get("reply_to_message") if isinstance(message.get("reply_to_message"), dict) else {}
     reply_mid = reply_msg.get("message_id") if reply_msg else None
     quote = prompting.quoted_from_message(message)
-    if not burst_flush:
-        chatlog.append(
-            {
-                "dir": "in",
-                "chat_id": str(chat_id),
-                "from_id": uid,
-                "username": user.get("username"),
-                "display": display,
-                "message_id": mid,
-                "reply_to": reply_mid,
-                "text": text[:1000],
-            }
-        )
+    # Inbound already logged early (before voices/cooldown) for note capture.
     if state.is_owner(st, cfg, uid) and "cursor" in low:
         mins = re.search(r"(\d+)\s*mins?", low)
         if mins:
@@ -1977,8 +2022,10 @@ def once_status(cfg: Config) -> int:
         st["owner_id"] = str(cfg.alexander_telegram_id)
     if cfg.telegram_group_chat_id and not st.get("group_chat_id"):
         st["group_chat_id"] = str(cfg.telegram_group_chat_id)
-    up = ollama_ctl.is_up(cfg)
-    print(state.status_lines(st, cfg, up))
+    ollama_up = ollama_ctl.is_up(cfg)
+    flm_up = ollama_ctl.flm_is_up()
+    voices = ollama_ctl.voices_up(cfg)
+    print(state.status_lines(st, cfg, ollama_up, flm_up=flm_up, voices_up=voices))
     return 0
 
 
