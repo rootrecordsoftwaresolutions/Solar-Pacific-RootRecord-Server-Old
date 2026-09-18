@@ -882,6 +882,127 @@ def _welcome_new_member(
     _jw.announce(cfg, chat_id, name=display, score=score, username=uname)
 
 
+def deliver_vision_package(
+    cfg: Config,
+    st: dict[str, Any],
+    trust_data: dict[str, Any],
+    package: dict[str, Any],
+) -> None:
+    """After album flush: one Ava take (+ Bruce handoff) for already-analyzed rows."""
+    from . import vision as _vis
+    from . import prompting
+
+    rows = [r for r in (package.get("rows") or []) if isinstance(r, dict)]
+    if not rows:
+        return
+    chat_id = package.get("chat_id")
+    if chat_id is None:
+        return
+    n = len(rows)
+    text = (
+        f"Photo album ({n}) — use the Vision card."
+        if n > 1
+        else "Photo shared — use the Vision card."
+    )
+    vision_extra = (
+        _vis.prompt_block_multi(rows, for_voice="ava")
+        if n > 1
+        else _vis.prompt_block(rows[0], for_voice="ava")
+    )
+    uid = package.get("user_id")
+    display = "someone"
+    is_owner_user = False
+    if uid is not None:
+        try:
+            display = trust.display_of(trust_data, uid) or display
+            is_owner_user = bool(state.is_owner(st, cfg, uid))
+            if is_owner_user:
+                display = "Alexander"
+        except Exception:
+            pass
+    reply_to = package.get("reply_to")
+    telegram.send_chat_action(cfg.token_for("ava"), chat_id, "typing")
+    prompt = prompting.build_speak_prompt(
+        speaker_line=trust.speaker_line(
+            trust_data,
+            uid,
+            package.get("username"),
+            is_owner=is_owner_user,
+        )
+        if uid is not None
+        else "",
+        display=display,
+        voice="ava",
+        user_text=text,
+        chat_id=chat_id,
+        quote="",
+        extra="",
+        skill_block="",
+        vision_block=vision_extra,
+        must_speak=True,
+        private=False,
+    )
+    lead = rows[0]
+    meta: dict[str, Any] = {
+        "allow_loop": False,
+        "no_propose": True,
+        "vision_take": True,
+        "handoff_bruce": True,
+        "origin_text": text,
+        "judge_user_id": uid,
+        "judge_is_owner": is_owner_user,
+        "vision_row": {
+            "src": lead.get("src"),
+            "sorted": lead.get("sorted"),
+            "folder": lead.get("folder"),
+            "description": str(lead.get("description") or "")[:1200],
+            "verified": str(lead.get("verified") or "")[:600],
+            "caption": str(package.get("caption") or "")[:200],
+            "ok": bool(lead.get("ok")),
+            "filename": lead.get("filename"),
+        },
+    }
+    if n > 1:
+        meta["vision_album"] = True
+        meta["vision_rows"] = [
+            {
+                "src": r.get("src"),
+                "sorted": r.get("sorted"),
+                "folder": r.get("folder"),
+                "description": str(r.get("description") or "")[:500],
+                "verified": str(r.get("verified") or "")[:300],
+                "filename": r.get("filename"),
+                "ok": bool(r.get("ok")),
+            }
+            for r in rows[:8]
+        ]
+    job = queue.enqueue(
+        voice="ava",
+        prompt=prompt,
+        chat_id=chat_id,
+        reply_to=reply_to,
+        source_message_id=reply_to,
+        thread_id=f"vision-album-{package.get('group_id') or int(time.time())}",
+        depth=0,
+        kind="speak",
+        meta=meta,
+    )
+    print(
+        f"vision album deliver n={n} chat={chat_id} job={bool(job)}",
+        flush=True,
+    )
+
+
+def _flush_vision_albums(cfg: Config, st: dict[str, Any], trust_data: dict[str, Any]) -> None:
+    from . import vision as _vis
+
+    for package in _vis.flush_due_albums(cfg):
+        try:
+            deliver_vision_package(cfg, st, trust_data, package)
+        except Exception:
+            traceback.print_exc()
+
+
 def handle_update(
     cfg: Config,
     st: dict[str, Any],
@@ -945,17 +1066,52 @@ def handle_update(
     has_photo = bool(telegram.largest_photo_file_id(message))
     vision_extra = ""
     vision_row: dict[str, Any] | None = None
+    vision_rows: list[dict[str, Any]] | None = None
     if has_photo:
         try:
             from . import vision as _vis
 
             telegram.send_chat_action(cfg.token_for(listen_voice), chat_id, "typing")
-            row = _vis.handle_telegram_photo(cfg, message, chat_id=chat_id)
-            if row:
-                vision_row = row
-                vision_extra = _vis.prompt_block(row, for_voice="ava")
-                if not text:
-                    text = "Photo shared — use the Vision card."
+            got = _vis.ingest_photo(
+                cfg, message, chat_id=chat_id, user=user
+            )
+            status = str(got.get("status") or "")
+            if status == "buffered":
+                # Album still collecting — react and wait for flush_due_albums.
+                mid_photo = message.get("message_id")
+                if mid_photo:
+                    telegram.set_message_reaction(
+                        cfg.token_for(listen_voice),
+                        chat_id,
+                        int(mid_photo),
+                        "👀",
+                    )
+                n = int(got.get("n") or 0)
+                print(
+                    f"vision album held group={got.get('group')} n={n}",
+                    flush=True,
+                )
+                return
+            if status == "ready":
+                rows = got.get("rows") if isinstance(got.get("rows"), list) else []
+                rows = [r for r in rows if isinstance(r, dict)]
+                if rows:
+                    vision_rows = rows
+                    vision_row = rows[0]
+                    vision_extra = (
+                        _vis.prompt_block_multi(rows, for_voice="ava")
+                        if len(rows) > 1
+                        else _vis.prompt_block(rows[0], for_voice="ava")
+                    )
+                    if not text:
+                        text = (
+                            f"Photo album ({len(rows)}) — use the Vision card."
+                            if len(rows) > 1
+                            else "Photo shared — use the Vision card."
+                        )
+            elif not text:
+                text = "Photo shared — use the Vision card."
+                vision_extra = "Vision: analyze failed. Say you could not read the image."
         except Exception:
             traceback.print_exc()
             if not text:
@@ -1591,7 +1747,14 @@ def handle_update(
         skill_ids = skillpack.match_read_skills(search_blob, voice=voice)
         skill_block = skillpack.inject_blocks(skill_ids, text=text)
         turn_vision = vision_extra
-        if vision_row is not None:
+        if vision_rows and len(vision_rows) > 1:
+            try:
+                from . import vision as _vis
+
+                turn_vision = _vis.prompt_block_multi(vision_rows, for_voice=voice)
+            except Exception:
+                turn_vision = vision_extra
+        elif vision_row is not None:
             try:
                 from . import vision as _vis
 
@@ -1753,7 +1916,22 @@ def handle_update(
                 "verified": str(vision_row.get("verified") or "")[:600],
                 "caption": str(vision_row.get("caption") or "")[:200],
                 "ok": bool(vision_row.get("ok")),
+                "filename": vision_row.get("filename"),
             }
+            if vision_rows and len(vision_rows) > 1:
+                meta["vision_album"] = True
+                meta["vision_rows"] = [
+                    {
+                        "src": r.get("src"),
+                        "sorted": r.get("sorted"),
+                        "folder": r.get("folder"),
+                        "description": str(r.get("description") or "")[:500],
+                        "verified": str(r.get("verified") or "")[:300],
+                        "filename": r.get("filename"),
+                        "ok": bool(r.get("ok")),
+                    }
+                    for r in vision_rows[:8]
+                ]
             meta["origin_text"] = origin
             meta["no_propose"] = True
             meta["allow_loop"] = False
@@ -1869,15 +2047,32 @@ def run_loop(cfg: Config) -> int:
             try:
                 with _listen.HANDLE_LOCK:
                     _burst.tick(cfg, handle_update)
+                    try:
+                        _flush_vision_albums(
+                            cfg, st, trust.load_trust(cfg.trust_path)
+                        )
+                    except Exception:
+                        traceback.print_exc()
             except Exception:
                 traceback.print_exc()
             st = state.load_state(cfg.state_path)
             drain_jobs = bool(not st.get("busy") and queue.peek())
             # Timeout 0 while jobs are queued so slash commands are not starved.
+            # Also wake early when a photo album is about to flush.
+            album_wait = None
+            try:
+                from . import vision as _vis
+
+                album_wait = _vis.album_seconds_until_due()
+            except Exception:
+                album_wait = None
+            base_timeout = _burst.poll_timeout(25, drain=drain_jobs)
+            if album_wait is not None and album_wait >= 0:
+                base_timeout = max(0, min(base_timeout, int(album_wait + 0.35)))
             resp = telegram.get_updates(
                 cfg.telegram_ava_token,
                 offset=offset,
-                timeout=_burst.poll_timeout(25, drain=drain_jobs),
+                timeout=base_timeout,
             )
             if not resp.get("ok"):
                 desc = str(resp.get("description") or "")[:180]
@@ -1985,6 +2180,14 @@ def run_loop(cfg: Config) -> int:
             try:
                 with _listen.HANDLE_LOCK:
                     _burst.tick(cfg, handle_update)
+                    try:
+                        _flush_vision_albums(
+                            cfg,
+                            state.load_state(cfg.state_path),
+                            trust.load_trust(cfg.trust_path),
+                        )
+                    except Exception:
+                        traceback.print_exc()
             except Exception:
                 traceback.print_exc()
             try:

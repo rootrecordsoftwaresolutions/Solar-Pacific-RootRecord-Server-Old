@@ -313,11 +313,45 @@ def desk_facts_block(*, cap: int = 2200, ask: str = "") -> str:
         host_bits.extend(["EcoFlow: No data", "Host: No data"])
     host_bits.extend([_sun_line(), _minecraft_line(), _due_line()])
 
-    if _ask_wants_weather(ask):
-        body = wx + [kilauea] + storm_bits + host_bits
+    price_bits: list[str] = []
+    wants_prices = False
+    try:
+        from pathlib import Path
+        import sys as _sys
+
+        _pp = Path.home() / ".ollama" / "skills" / "product-prices" / "scripts"
+        if str(_pp) not in _sys.path:
+            _sys.path.insert(0, str(_pp))
+        import product_prices as _prices
+
+        wants_prices = bool(
+            _prices._ask_wants_prices(ask) or _ask_wants_prices_light(ask)
+        )
+        if wants_prices:
+            block = _prices.prompt_block(cap=min(520, max(200, cap // 3)), ask=ask)
+            if block:
+                price_bits.append(block)
+    except Exception:
+        pass
+
+    if wants_prices and price_bits and not _ask_wants_weather(ask):
+        # Price recall must not drown in weather/volcano — that is how Sour Patch
+        # asks got answered with forecast instead of $7.99.
+        body = price_bits
+        rule = (
+            "STORE PRICE ASK — quote the Store prices lines below. "
+            "Lead with the product and dollar amount. "
+            "Do not mention weather, flood watches, Kīlauea, EcoFlow, or host unless asked. "
+            "Never invent a price; if the product is missing, say you do not have it filed yet."
+        )
+    elif _ask_wants_weather(ask):
+        body = wx + [kilauea] + storm_bits + price_bits + host_bits
         rule = (
             "Desk live files (quote these; never say you lack live weather when Weather/Next/NWS lines are here):"
         )
+    elif price_bits:
+        body = price_bits + [kilauea] + wx + storm_bits + host_bits
+        rule = "Desk live files (quote these or say No data — never invent; never claim no live data when a line is present):"
     else:
         body = [kilauea] + wx + storm_bits + host_bits
         rule = "Desk live files (quote these or say No data — never invent; never claim no live data when a line is present):"
@@ -327,6 +361,49 @@ def desk_facts_block(*, cap: int = 2200, ask: str = "") -> str:
     if len(blob) > cap:
         return blob[: cap - 1] + "…"
     return blob
+
+
+def _ask_wants_prices_light(ask: str) -> bool:
+    low = (ask or "").lower()
+    if any(
+        k in low
+        for k in (
+            "price",
+            "prices",
+            "how much",
+            "shopping",
+            "grocery",
+            "on sale",
+            "cost of",
+            "cost last",
+            "what did",
+            "last time i went",
+            "at the store",
+            "shelf",
+        )
+    ):
+        return True
+    # Named products already filed from vision.
+    try:
+        from pathlib import Path
+        import sys as _sys
+
+        _pp = Path.home() / ".ollama" / "skills" / "product-prices" / "scripts"
+        if str(_pp) not in _sys.path:
+            _sys.path.insert(0, str(_pp))
+        import product_prices as _prices
+
+        for it in _prices.recent(24):
+            name = str(it.get("name") or "").lower()
+            if len(name) >= 4 and name in low:
+                return True
+            # partial brand tokens (sour patch, pringles, …)
+            toks = [t for t in re.findall(r"[a-z0-9]{4,}", name) if t not in {"kids", "original", "family"}]
+            if toks and all(t in low for t in toks[:2]):
+                return True
+    except Exception:
+        pass
+    return False
 
 
 def brainstorm_desk_block(topic: str, *, cap: int = 400) -> str:

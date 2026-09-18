@@ -17,6 +17,13 @@ INBOX = MEDIA_ROOT / "inbox"
 SORTED = MEDIA_ROOT / "sorted"
 LOG_PATH = CONFIG_DIR / "vision-log.jsonl"
 TAKES_PATH = CONFIG_DIR / "vision-takes.json"
+ALBUMS_PATH = CONFIG_DIR / "vision-albums.json"
+
+# Telegram albums arrive as many updates with one media_group_id.
+ALBUM_WAIT_S = 2.5
+MAX_PER_ALBUM = 8
+MAX_QUEUED_ALBUMS = 4
+
 
 # Folder tags from vision text (first match wins order below).
 SORT_RULES: list[tuple[str, tuple[str, ...]]] = [
@@ -77,18 +84,22 @@ SORT_RULES: list[tuple[str, tuple[str, ...]]] = [
 PROMPT = (
     "Describe this image in four short factual sentences. "
     "Name what it shows. Note any readable text. "
-    "Say the setting. Do not invent brand names you cannot read. "
+    "If this is a store shelf with price tags, name each product from the "
+    "packaging above or beside its tag — even when the tag itself has no name. "
+    "Say the setting. Do not invent brand names you cannot read on the package. "
     "Never output coordinate lists, bounding boxes, or lines like ids: [numbers]."
 )
 
 VERIFY_PROMPT = (
-    "Second pass — read sale tags and price stickers only. "
-    "Copy every dollar amount and discount phrase exactly as printed "
-    "(examples: $10 OFF, $10 off, Save $2, 2 for $5, $1.29). "
-    "Prefer large sale text like OFF / SALE over tiny shelf digits if both appear. "
-    "If a digit is hard to read, write Unclear — do not guess. "
-    "Do not describe the products or shelf. Numbers and discount words only. "
-    "Never output coordinate lists or ids: [numbers]."
+    "Second pass — pair every shelf price with the product it belongs to. "
+    "One line per DISTINCT tag — never repeat the same line. "
+    "Format: PRODUCT | $PRICE | SAVE $X or SAVE none. "
+    "PRODUCT = brand/name on the package above or beside that tag. "
+    "If the tag has no product name (price-only sticker), still use the package name. "
+    "If you cannot read any package name for that tag, write Unclear | $PRICE | SAVE none. "
+    "Copy dollar amounts and discounts exactly "
+    "(examples: $10 OFF, Save $2, 2 for $5, $1.29). "
+    "Do not invent names. Never output coordinate lists or ids: [numbers]."
 )
 
 # Moondream sometimes dumps detector coords instead of language — treat as a miss.
@@ -353,6 +364,38 @@ def analyze_and_sort(path: Path, *, caption: str = "") -> dict[str, Any]:
         "ok": bool(desc),
     }
     _log(row)
+    # Shopping desk: amend product-prices when dollar amounts appear.
+    if row.get("ok") and (
+        "$" in str(row.get("description") or "")
+        or "$" in str(row.get("verified") or "")
+        or "price" in str(row.get("description") or "").lower()
+    ):
+        try:
+            import sys as _sys
+
+            _pp = Path.home() / ".ollama" / "skills" / "product-prices" / "scripts"
+            if str(_pp) not in _sys.path:
+                _sys.path.insert(0, str(_pp))
+            import product_prices as _prices
+
+            recorded = _prices.from_vision_row(row, path=path if path.is_file() else None)
+            if recorded:
+                row["products"] = [
+                    {
+                        "id": r.get("id"),
+                        "name": r.get("name"),
+                        "price": r.get("price"),
+                        "save": r.get("save"),
+                    }
+                    for r in recorded
+                ]
+                print(
+                    f"product-prices recorded n={len(recorded)} "
+                    f"names={[r.get('name') for r in recorded[:4]]}",
+                    flush=True,
+                )
+        except Exception as exc:
+            print(f"product-prices skip {exc}", flush=True)
     return row
 
 
@@ -390,6 +433,20 @@ def prompt_block(row: dict[str, Any], *, cap: int = 900, for_voice: str = "ava")
     parts.append(f"Saved under: {sorted_to}")
     if row.get("filename"):
         parts.append(f"Filename: {row.get('filename')}")
+    products = row.get("products") if isinstance(row.get("products"), list) else []
+    if products:
+        bits = []
+        for p in products[:6]:
+            if not isinstance(p, dict):
+                continue
+            name = str(p.get("name") or p.get("id") or "?")
+            price = p.get("price")
+            if isinstance(price, (int, float)):
+                bits.append(f"{name} ${price:.2f}")
+            else:
+                bits.append(name)
+        if bits:
+            parts.append("Logged to product-prices: " + "; ".join(bits))
     parts.append(role)
     return "\n".join(parts)[:cap]
 
@@ -513,7 +570,10 @@ def handle_telegram_photo(
     *,
     chat_id: int | str | None = None,
 ) -> dict[str, Any] | None:
-    """Download → vision → verify → sort. Returns analyze row or None."""
+    """Download → vision → verify → sort. Returns analyze row or None.
+
+    Prefer ingest_photo() for Telegram — it buffers albums.
+    """
     del chat_id
     path = download_chat_photo(cfg, message)
     if path is None:
@@ -528,3 +588,229 @@ def handle_telegram_photo(
         flush=True,
     )
     return row
+
+
+def _load_albums() -> dict[str, Any]:
+    if not ALBUMS_PATH.is_file():
+        return {"groups": {}}
+    try:
+        data = json.loads(ALBUMS_PATH.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {"groups": {}}
+    groups = data.get("groups")
+    if not isinstance(groups, dict):
+        groups = {}
+    data["groups"] = groups
+    return data
+
+
+def _save_albums(data: dict[str, Any]) -> None:
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+    tmp = ALBUMS_PATH.with_suffix(".tmp")
+    tmp.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    tmp.replace(ALBUMS_PATH)
+
+
+def ingest_photo(
+    cfg: Config,
+    message: dict[str, Any],
+    *,
+    chat_id: int | str,
+    user: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Download now; buffer albums; analyze singles immediately.
+
+    Returns:
+      status=buffered — album still collecting (caller should not speak)
+      status=ready — rows ready (single photo analyzed)
+      status=miss — download/analyze failed
+    """
+    path = download_chat_photo(cfg, message)
+    if path is None:
+        return {"status": "miss"}
+    caption = str(message.get("caption") or "").strip()
+    mid = message.get("message_id")
+    group_id = str(message.get("media_group_id") or "").strip()
+    uid = (user or {}).get("id")
+
+    if not group_id:
+        print(f"vision analyze path={path}", flush=True)
+        row = analyze_and_sort(path, caption=caption)
+        print(
+            f"vision done ok={row.get('ok')} folder={row.get('folder')} "
+            f"chars={len(str(row.get('description') or ''))} "
+            f"verified={len(str(row.get('verified') or ''))}",
+            flush=True,
+        )
+        if not row.get("ok"):
+            return {"status": "miss", "row": row}
+        return {"status": "ready", "rows": [row], "album": False, "chat_id": str(chat_id)}
+
+    # Album: download only, wait for siblings, analyze later in flush_due_albums.
+    data = _load_albums()
+    groups = data["groups"]
+    # Cap how many open albums we keep (drop oldest idle).
+    if group_id not in groups and len(groups) >= MAX_QUEUED_ALBUMS:
+        oldest = sorted(
+            groups.items(),
+            key=lambda kv: float((kv[1] or {}).get("due") or 0),
+        )
+        for drop_id, _ in oldest[: max(0, len(groups) - MAX_QUEUED_ALBUMS + 1)]:
+            groups.pop(drop_id, None)
+            print(f"vision album drop overflow group={drop_id}", flush=True)
+
+    row = groups.get(group_id) if isinstance(groups.get(group_id), dict) else None
+    now = time.time()
+    if not row:
+        row = {
+            "group_id": group_id,
+            "chat_id": str(chat_id),
+            "user_id": uid,
+            "username": str((user or {}).get("username") or ""),
+            "parts": [],
+            "started": now,
+            "caption": caption,
+        }
+    parts = row.get("parts") if isinstance(row.get("parts"), list) else []
+    if len(parts) < MAX_PER_ALBUM:
+        parts.append(
+            {
+                "path": str(path),
+                "message_id": mid,
+                "caption": caption,
+                "ts": now,
+            }
+        )
+    else:
+        print(
+            f"vision album cap group={group_id} already={len(parts)} max={MAX_PER_ALBUM}",
+            flush=True,
+        )
+    if caption and not row.get("caption"):
+        row["caption"] = caption
+    row["parts"] = parts
+    row["due"] = now + ALBUM_WAIT_S
+    row["chat_id"] = str(chat_id)
+    groups[group_id] = row
+    data["groups"] = groups
+    _save_albums(data)
+    print(
+        f"vision album buffer group={group_id} n={len(parts)} "
+        f"wait={ALBUM_WAIT_S}s cap={MAX_PER_ALBUM}",
+        flush=True,
+    )
+    return {
+        "status": "buffered",
+        "n": len(parts),
+        "group": group_id,
+        "capped": len(parts) >= MAX_PER_ALBUM,
+        "chat_id": str(chat_id),
+    }
+
+
+def flush_due_albums(cfg: Config) -> list[dict[str, Any]]:
+    """Analyze due albums one photo at a time. Returns ready packages for speak."""
+    del cfg  # analyze uses ollama via look(); cfg reserved for future token use
+    data = _load_albums()
+    groups = data.get("groups") if isinstance(data.get("groups"), dict) else {}
+    if not groups:
+        return []
+    now = time.time()
+    ready_ids = [
+        gid
+        for gid, row in groups.items()
+        if isinstance(row, dict) and float(row.get("due") or 0) <= now
+    ]
+    if not ready_ids:
+        return []
+    # One album per tick so we never map 10× vision in one poll cycle.
+    ready_ids.sort(key=lambda g: float((groups.get(g) or {}).get("due") or 0))
+    gid = ready_ids[0]
+    row = dict(groups.pop(gid) or {})
+    data["groups"] = groups
+    _save_albums(data)
+
+    parts = row.get("parts") if isinstance(row.get("parts"), list) else []
+    parts = [p for p in parts if isinstance(p, dict)][:MAX_PER_ALBUM]
+    album_caption = str(row.get("caption") or "")
+    rows: list[dict[str, Any]] = []
+    print(
+        f"vision album flush group={gid} n={len(parts)} chat={row.get('chat_id')}",
+        flush=True,
+    )
+    for i, part in enumerate(parts, start=1):
+        path = Path(str(part.get("path") or ""))
+        if not path.is_file():
+            continue
+        cap = str(part.get("caption") or album_caption or "")
+        print(f"vision album analyze {i}/{len(parts)} path={path}", flush=True)
+        analyzed = analyze_and_sort(path, caption=cap)
+        analyzed["album_index"] = i
+        analyzed["album_total"] = len(parts)
+        analyzed["photo_message_id"] = part.get("message_id")
+        rows.append(analyzed)
+    if not rows:
+        return []
+    return [
+        {
+            "album": True,
+            "group_id": gid,
+            "chat_id": row.get("chat_id"),
+            "user_id": row.get("user_id"),
+            "username": row.get("username"),
+            "caption": album_caption,
+            "rows": rows,
+            "reply_to": parts[-1].get("message_id") if parts else None,
+        }
+    ]
+
+
+def album_seconds_until_due() -> float | None:
+    data = _load_albums()
+    groups = data.get("groups") if isinstance(data.get("groups"), dict) else {}
+    soon: float | None = None
+    now = time.time()
+    for row in groups.values():
+        if not isinstance(row, dict):
+            continue
+        due = float(row.get("due") or 0) - now
+        if soon is None or due < soon:
+            soon = due
+    return soon
+
+
+def prompt_block_multi(rows: list[dict[str, Any]], *, cap: int = 1400, for_voice: str = "ava") -> str:
+    """One vision card for an album — numbered, budgeted."""
+    if not rows:
+        return "Vision: album empty."
+    n = len(rows)
+    voice = (for_voice or "ava").lower()
+    lines = [
+        f"Vision album ({n} photo{'s' if n != 1 else ''} — quote these; do not invent):",
+    ]
+    per = max(120, min(280, (cap - 200) // max(1, n)))
+    for i, row in enumerate(rows, start=1):
+        desc = str(row.get("description") or "")[:per]
+        verified = str(row.get("verified") or "")[:120]
+        folder = str(row.get("folder") or "unsorted")
+        name = str(row.get("filename") or Path(str(row.get("sorted") or "")).name)
+        bit = f"{i}/{n} [{folder}] {desc}"
+        if verified:
+            bit += f" | prices: {verified}"
+        if name:
+            bit += f" | file: {name}"
+        lines.append(bit)
+    if voice == "ava":
+        lines.append(
+            "This is YOUR first take before Bruce. Short visitor-facing summary of the set. "
+            "Call out the clearest price/sale if any. "
+            f"End with exactly: {CORRECT_FOOTER}"
+        )
+    elif voice == "bruce":
+        lines.append(
+            "Ava covered the album. Brief ops note only — do not re-list every photo. "
+            "Prefer verified prices. No correction footer."
+        )
+    else:
+        lines.append("Safety/privacy only if relevant.")
+    return "\n".join(lines)[:cap]

@@ -4,16 +4,6 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1245** — Honolulu County: Flood Watch. Hawaii County: Flood Watch, Flood Advisory. Maui County: Flood
-
-> ◇ **1245** — Watch. Kauai County: Flood Watch.
-
-> ◇ **1245** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 73 W | Current 16%
-
-> ◇ **1245** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
-
-> ◇ **1315** — CHARGE STATUS — Charging | Host battery: 74% | CPU: 12% | RAM: 50% | Temp: 63C | iGPU: 0% | NPU:
-
 > ◇ **1315** — present | Uptime: 2h 29m
 
 > ◇ **1315** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 121W | total in 121W | Delta SOC 19%
@@ -99,3 +89,13 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1615** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
 
 > ◇ **1615** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1645** — WEATHER — NWS Hawaii hazard update, as of three fifteen a.m. Hawaiian Standard Time. Honolulu
+
+> ◇ **1645** — County: Flood Watch. Hawaii County: Flood Watch. Maui County: Flood Watch. Kauai County: Flood
+
+> ◇ **1645** — Watch.
+
+> ◇ **1645** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
+
+> ◇ **1645** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%

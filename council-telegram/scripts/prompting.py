@@ -117,7 +117,28 @@ def build_speak_prompt(
             else " If you truly have nothing in-lane, reply PASS and nothing else."
         )
     )
+    from . import desk_read
+
     vision = (vision_block or "").strip()
+    price_ask = False
+    if not vision:
+        try:
+            price_ask = bool(
+                desk_read._ask_wants_prices_light(user_text)
+            )
+            if not price_ask:
+                from pathlib import Path
+                import sys as _sys
+
+                _pp = Path.home() / ".ollama" / "skills" / "product-prices" / "scripts"
+                if str(_pp) not in _sys.path:
+                    _sys.path.insert(0, str(_pp))
+                import product_prices as _prices
+
+                price_ask = bool(_prices._ask_wants_prices(user_text))
+        except Exception:
+            price_ask = desk_read._ask_wants_prices_light(user_text)
+
     if vision:
         must.append(
             "PHOTO TURN — the Vision card below is the subject. "
@@ -126,37 +147,52 @@ def build_speak_prompt(
             "Do not invent details beyond the Vision card."
         )
         must.append(vision)
+    elif price_ask and not desk_read._ask_wants_weather(user_text):
+        must.append(
+            "STORE PRICE ASK — the Store prices desk lines are the subject. "
+            "Answer with the product name and dollar amount from those lines. "
+            "Do not pivot to weather, flood watches, Kīlauea, EcoFlow, or host. "
+            "If the product is not listed, say you do not have a filed price yet."
+        )
     must.append(
         "Desk live files below are the source of truth. Quote them. "
-        "Never say you lack live weather, alerts, Kīlauea, EcoFlow, or host data when those lines are present. "
-        "If a line says No data / DOWN, say that. Do not invent."
+        + (
+            "Never say you lack live weather, alerts, Kīlauea, EcoFlow, or host data when those lines are present. "
+            if not (price_ask and not vision and not desk_read._ask_wants_weather(user_text))
+            else "For this ask, Store prices are enough — ignore other desks. "
+        )
+        + "If a line says No data / DOWN, say that. Do not invent."
         + (
             " On a PHOTO TURN, desk lines are background only — do not lead with them."
             if vision
             else ""
         )
     )
-    from . import desk_read
 
     # Weather asks get a larger live block first so NWS/tomorrow survive the budget.
     # Photo turns keep desk tiny so the Vision card stays the answer.
+    # Price asks keep a tight Store prices-only desk (see desk_facts_block).
     if vision:
         live_cap = 400
     elif desk_read._ask_wants_weather(user_text):
         live_cap = 2400
+    elif price_ask:
+        live_cap = 700
     else:
         live_cap = 1800
     live = desk_read.desk_facts_block(cap=live_cap, ask=user_text)
     if live:
         must.append(live)
-    try:
-        from . import conclusions as _conc
+    # Price asks stay on Store prices — sealed weather/ops stickies hijack the answer.
+    if not (price_ask and not vision and not desk_read._ask_wants_weather(user_text)):
+        try:
+            from . import conclusions as _conc
 
-        sealed = _conc.prompt_block(chat_id, user_text, cap=500)
-        if sealed:
-            must.append(sealed)
-    except Exception:
-        pass
+            sealed = _conc.prompt_block(chat_id, user_text, cap=500)
+            if sealed:
+                must.append(sealed)
+        except Exception:
+            pass
     soft.append(
         "If ops or the operator corrects you, accept it in the next sentence. Do not argue. "
         "Hawaiʻi is not Japan. West of Kauaʻi is toward Asia. Far WPAC storms are not local."

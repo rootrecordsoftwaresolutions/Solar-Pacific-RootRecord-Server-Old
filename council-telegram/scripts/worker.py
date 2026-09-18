@@ -477,11 +477,21 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                     print(f"vision-take registered mid={mid_out}", flush=True)
                     if meta.get("handoff_bruce") and depth < queue.MAX_LOOP_DEPTH:
                         vrow = dict(meta.get("vision_row") or {})
+                        album_rows = meta.get("vision_rows")
+                        if isinstance(album_rows, list) and len(album_rows) > 1:
+                            vblock = _vis.prompt_block_multi(
+                                [r for r in album_rows if isinstance(r, dict)],
+                                for_voice="bruce",
+                            )
+                            origin_bit = f"Photo album ({len(album_rows)})"
+                        else:
+                            vblock = _vis.prompt_block(vrow, for_voice="bruce")
+                            origin_bit = "Photo shared"
                         bruce_prompt = prompting.build_speak_prompt(
                             speaker_line="",
                             display="Alexander" if meta.get("judge_is_owner") else "friend",
                             voice="bruce",
-                            user_text=str(meta.get("origin_text") or "Photo shared"),
+                            user_text=str(meta.get("origin_text") or origin_bit),
                             chat_id=chat_id,
                             quote="",
                             extra=(
@@ -491,7 +501,7 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                                 f"Ava's take:\n{clean[:900]}"
                             ),
                             skill_block="",
-                            vision_block=_vis.prompt_block(vrow, for_voice="bruce"),
+                            vision_block=vblock,
                             must_speak=True,
                             private=False,
                         )
