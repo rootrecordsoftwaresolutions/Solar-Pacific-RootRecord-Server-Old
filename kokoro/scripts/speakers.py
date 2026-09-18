@@ -78,6 +78,7 @@ KIND_AGENT = {
     "official": "ava",
     "boot": "ava",
     "solar": "bruce",
+    "energy": "carly",
     "system": "bruce",
     "remaining": "bruce",
     "hourly": "bruce",
@@ -140,8 +141,8 @@ def is_live(kind: str, text: str) -> bool:
         return False
     if key in {"chime"}:
         return bool(re.search(r"\d", raw) or "o'clock" in raw.lower() or "noon" in raw.lower())
-    if key in {"solar"}:
-        return bool(re.search(r"\d+\s*%", raw) or re.search(r"\d+\s*w\b", raw, re.I))
+    if key in {"solar", "energy"}:
+        return bool(re.search(r"\d+\s*%", raw) or re.search(r"\d+\s*w\b", raw, re.I) or "rear shed" in raw.lower())
     if key in {"system", "hourly"}:
         return bool(re.search(r"(cpu|ram|memory|npu|gpu).{0,12}\d+\s*%", raw, re.I) or re.search(r"\d+\s*%", raw))
     if key in {"weather", "nws", "official"}:

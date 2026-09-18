@@ -44,7 +44,7 @@ Off-grid. No wall outlet.
 | --- | --- | --- |
 | Starlink | **Delta 2 AC** | Nobody. Permanent. Never PUT/BLE AC off. |
 | River USB-C in (~100 W DC) | **Delta 2 USB** | 400 W total-PV gate (day only) |
-| External drives | **River 2 Pro car 12V** | `ecoflow-river-car` `drive_automation.py` (ops / owner / Cursor). Default off. Copy stub. |
+| External drives + Rear Shed panels cam | **River 2 Pro car 12V** | `ecoflow-river-car` (drives) + `panels-cam` (15‑min still / “show me the panels”). Default off. |
 | Laptop | **River 2 Pro AC** | Nobody. Leave on (~1 W idle). |
 
 `STARLINK_SN` must equal `DELTA_SN` in `ecoflow_ble_store.py`.
@@ -117,7 +117,8 @@ Same job as weather: `solar-notes-quarter-hour` (30 min). EcoFlow 15-minute In/O
 | `ecoflow-ble-poller/store/history/{SN}.jsonl` | Public history |
 | `ecoflow-ble-poller/store/state/night-mode.json` | Sleep + Starlink on Delta AC |
 | `ecoflow-ble-poller/store/state/ecoflow-ac-solar-gate.json` | USB gate decision |
-| `ecoflow-ble-poller/store/state/river-car-dc.json` | River car DC (external drives) |
+| `ecoflow-ble-poller/store/state/river-car-dc.json` | River car DC (external drives + panels cam) |
+| `ecoflow-ble-poller/store/state/panels-cam.json` | Panels still auto (15 min) |
 | `ecoflow-ble-poller/store/state/drive-automation.json` | Drive automation auto/copy-job flags |
 | `ecoflow-ble-poller/store/state/ble-poller.own` | Poller PID |
 | `ecoflow-ble-poller/store/state/ecoflow-live.json` | Sanitized generator card |

@@ -77,6 +77,8 @@ def _skill_exec_argv(sid: str, text: str, *, execute: bool = False) -> list[str]
         return _web_facts_argv(text)
     if sid == "disk-session":
         return skillpack.disk_session_argv(text, execute=execute)
+    if sid == "panels-cam":
+        return ["--show"]
     if sid == "goals-desk" and re.search(r"\badd (?:a )?goal\b", text or "", re.I):
         rest = re.split(r"\badd (?:a )?goal\b", text or "", maxsplit=1, flags=re.I)
         title = (rest[1] if len(rest) > 1 else "").strip()
@@ -1625,6 +1627,7 @@ def handle_update(
         "goals-desk",
         "ltc-status",
         "disk-session",
+        "panels-cam",
         "web-facts",
         "storm-plot",
         "cooking-desk",

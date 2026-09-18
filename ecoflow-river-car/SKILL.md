@@ -10,7 +10,7 @@ description: >-
 
 This folder **is** the switch. Do not dump serials.
 
-External drives ride **River 2 Pro car / 12V DC** only. Default is **off**. Starlink stays on Delta AC. River AC stays on for the laptop. Do not call AC APIs from this skill.
+External drives **and** the Rear Shed panels camera ride **River 2 Pro car / 12V DC**. Default is **off**. If car DC is **already on**, automations leave it on (manual always-on for camera or drives). `panels-cam` turns car on briefly every 15 min only when it was off, then off again. `energy-report` (Carly) attaches the latest still without cycling power. Starlink stays on Delta AC. River AC stays on for the laptop. Do not call AC APIs from this skill.
 
 ## Executable automation
 

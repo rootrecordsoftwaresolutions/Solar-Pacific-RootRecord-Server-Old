@@ -35,6 +35,7 @@ TITLES = {
     "boot": "Boot status",
     "hurricane": "Hurricane desk",
     "earthquake": "Earthquake",
+    "energy": "Energy desk",
 }
 
 
@@ -149,6 +150,7 @@ def notify_report(
     *,
     transcript: str,
     audio: str | Path | None = None,
+    photo: str | Path | None = None,
     title: str | None = None,
     cfg: Config | None = None,
     poster=None,
@@ -162,16 +164,23 @@ def notify_report(
         return {"ok": True, "skipped": True, "detail": "boot_catchup_only", "kind": kind}
     voice = poster_voice(kind)
     raw_t = (transcript or "").strip()
-    if kind in {"solar", "kilauea", "remaining"} or ("\n" not in raw_t and "_" in raw_t):
-        text = readable_script(raw_t)
+    if kind in {"solar", "kilauea", "remaining", "energy"} or ("\n" not in raw_t and "_" in raw_t):
+        text = readable_script(raw_t) if kind != "energy" else raw_t
     else:
         text = raw_t
     audio_path = Path(audio) if audio else None
     if audio_path is not None and not audio_path.is_file():
         audio_path = None
-    if not text and audio_path is None:
+    photo_path = Path(photo) if photo else None
+    if photo_path is not None and not photo_path.is_file():
+        photo_path = None
+    if not text and audio_path is None and photo_path is None:
         return {"ok": False, "detail": "empty"}
     digest = _digest(kind, text, audio_path)
+    if photo_path is not None:
+        digest = hashlib.sha256(
+            (digest + "\0" + str(photo_path) + "\0" + str(int(photo_path.stat().st_mtime))).encode()
+        ).hexdigest()
     data = _load()
     last = data.setdefault("last", {})
     if str(last.get(kind) or "") == digest:
@@ -196,6 +205,12 @@ def notify_report(
             return poster("audio", str(path), caption)
         return telegram.send_audio(token, chat_id, path, caption=caption)
 
+    def send_photo_fn(path: Path, caption: str) -> dict[str, Any]:
+        if poster:
+            return poster("photo", str(path), caption)
+        # sendDocument keeps EXIF/orientation; works for jpg stills
+        return telegram.send_document(token, chat_id, path, caption=caption)
+
     def send_text_fn(msg: str, reply_to: int | None) -> dict[str, Any]:
         if poster:
             return poster("text", msg, reply_to)
@@ -211,8 +226,18 @@ def notify_report(
         elif isinstance(raw, dict) and raw.get("ok") is False and poster is None:
             print(f"report-cast audio fail {kind} {raw.get('description')}", flush=True)
 
+    photo_mid = audio_mid
+    if photo_path is not None:
+        raw = send_photo_fn(photo_path, cap if audio_mid is None else "Rear Shed panels")
+        photo_mid = _mid(raw) if isinstance(raw, dict) else photo_mid
+        if photo_mid and photo_mid not in ids:
+            ids.append(photo_mid)
+            _touch()
+        elif isinstance(raw, dict) and raw.get("ok") is False and poster is None:
+            print(f"report-cast photo fail {kind} {raw.get('description')}", flush=True)
+
     if body:
-        raw = send_text_fn(body, audio_mid)
+        raw = send_text_fn(body, photo_mid)
         text_mid = _mid(raw) if isinstance(raw, dict) else None
         if text_mid:
             ids.append(text_mid)
@@ -227,7 +252,10 @@ def notify_report(
         _remember(data, mid if mid else None, kind, digest)
     last[kind] = digest
     _save(data)
-    print(f"report-cast kind={kind} sent={len(ids)} audio={bool(audio_path)}", flush=True)
+    print(
+        f"report-cast kind={kind} sent={len(ids)} audio={bool(audio_path)} photo={bool(photo_path)}",
+        flush=True,
+    )
     return {"ok": True, "kind": kind, "ids": ids, "skipped": False}
 
 

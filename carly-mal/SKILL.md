@@ -11,7 +11,11 @@ This folder **is** the agent desk. System prompt is `prompt.md`.
 
 Telegram: `@carlymal_bot`. Voice key `carly`. Token name `TELEGRAM_CARLY_TOKEN` in `~/.config/ava-council/secrets.env` — never print it.
 
-Root Record Agent Gamma — cybersecurity, safety, defence, strategy. Defensive only. Never exploits. Kokoro Nova. Spoken desks: earthquake, Kīlauea, hurricane, hourly security, hourly bandwidth.
+Root Record Agent Gamma — cybersecurity, safety, defence, strategy. Defensive only. Never exploits. Kokoro Nova. Spoken desks: earthquake, Kīlauea, hurricane, hourly security, hourly bandwidth, **energy desk** (Rear Shed panels still + pack facts).
+
+## Energy desk
+
+Carly owns `energy-report` — latest security-cam still of the solar panels (no power cycle), vision caption, live pack lines. Scheduler every 30 minutes.
 
 ## Post
 

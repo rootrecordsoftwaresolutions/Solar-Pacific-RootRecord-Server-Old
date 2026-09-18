@@ -28,6 +28,10 @@ _LOOK = re.compile(
 _KILAUEA = re.compile(r"\b(kilauea|kīlauea|volcano|lava|cam|camera|crater|halema|v1|v2|v3)\b", re.I)
 _NHC = re.compile(r"\b(nhc|hurricane|outlook|satellite|cone|storm map|epac|cpac)\b", re.I)
 _PACK = re.compile(r"\b(pack screen|ecoflow screen|lcd|display on the pack)\b", re.I)
+_PANELS = re.compile(
+    r"\b(panels?|solar panel|rear shed|energy desk|site cam|shed cam)\b",
+    re.I,
+)
 
 USGS = (
     ("V1 West Halemaʻumaʻu", "https://volcanoes.usgs.gov/observatories/hvo/cams/V1cam/images/M.jpg"),
@@ -124,7 +128,21 @@ def _pack_screens() -> list[tuple[str, Path]]:
     return found
 
 
+def _panels() -> list[tuple[str, Path]]:
+    root = Path.home() / ".ollama" / "skills" / "panels-cam" / "store" / "frames"
+    if not root.is_dir():
+        return []
+    jpgs = sorted(root.glob("ch*.jpg"), key=lambda p: p.stat().st_mtime, reverse=True)
+    if not jpgs:
+        return []
+    return [("Rear Shed panels", jpgs[0])]
+
+
 def _pick(asked: str) -> list[tuple[str, Path]]:
+    if _PANELS.search(asked or ""):
+        shots = _panels()
+        if shots:
+            return shots
     if _PACK.search(asked or ""):
         shots = _pack_screens()
         return shots
@@ -133,6 +151,8 @@ def _pick(asked: str) -> list[tuple[str, Path]]:
     if _KILAUEA.search(asked or "") or wants_look(asked):
         if _NHC.search(asked or ""):
             return _nhc()[:1] + _usgs(asked)[:1]
+        if _PANELS.search(asked or ""):
+            return _panels()[:1] + _usgs(asked)[:1]
         return _usgs(asked)
     return []
 

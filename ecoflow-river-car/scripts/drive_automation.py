@@ -159,19 +159,23 @@ def power_off(*, execute: bool = False) -> dict[str, Any]:
 
 
 def session(*, execute: bool = False, hold: bool | None = None, wait_s: int = 20) -> dict[str, Any]:
-    """Power on, optional copy stub, power off unless hold."""
+    """Power on, optional copy stub, power off unless hold or car was already on."""
     cfg = load_config()
     hold_on = bool(cfg.get("hold_car_on") if hold is None else hold)
     fh = _try_lock()
     if fh is None:
         return {"ok": False, "blocked": "in_progress"}
     try:
+        from river_car_dc import car_already_on
+
+        was_on = car_already_on() is True
         on = power_on(execute=bool(execute), wait_s=wait_s)
         report: dict[str, Any] = {
             "ok": bool(on.get("ok")),
             "phase": "session",
             "execute": bool(execute),
             "hold": hold_on,
+            "was_already_on": was_on,
             "power_on": on,
             "copy": None,
             "power_off": None,
@@ -190,7 +194,10 @@ def session(*, execute: bool = False, hold: bool | None = None, wait_s: int = 20
             return report
         copy = run_copy_jobs()
         report["copy"] = copy
-        if not hold_on:
+        if hold_on or was_on:
+            report["power_off"] = {"ok": True, "skipped": "hold" if hold_on else "already_on"}
+            report["left_on"] = True
+        else:
             off = power_off(execute=True)
             report["power_off"] = off
             report["ok"] = bool(report["ok"] and off.get("ok"))

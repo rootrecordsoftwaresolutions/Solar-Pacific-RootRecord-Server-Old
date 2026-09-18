@@ -4,10 +4,6 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **0400** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
-
-> ◇ **0400** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
-
 > ◇ **0430** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
 
 > ◇ **0430** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
@@ -99,3 +95,7 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1645** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
 
 > ◇ **1645** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1715** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
+
+> ◇ **1715** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%

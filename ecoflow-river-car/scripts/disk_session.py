@@ -110,5 +110,7 @@ def prepare(*, execute: bool = False, wait_s: int = 20) -> dict[str, Any]:
     return snap
 
 
-def release(*, execute: bool = False) -> dict[str, Any]:
-    return set_car(want_on=False, execute=bool(execute))
+def release(*, execute: bool = False, force: bool = False) -> dict[str, Any]:
+    """Turn car DC off. Default force=True for explicit owner 'turn off the drives'."""
+    # Explicit off command should cut power; automation sessions pass force only when they powered from off.
+    return set_car(want_on=False, execute=bool(execute), force=True if force or execute else False)

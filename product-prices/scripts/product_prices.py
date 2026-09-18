@@ -199,6 +199,10 @@ def _name_ok(name: str) -> bool:
         return False
     if re.fullmatch(r"(save|savings?|off|sale|deal)(\s+\d+(?:\.\d+)?)?", low):
         return False
+    if re.search(r"\bsave\s*\$?none\b|\bor save\b", low):
+        return False
+    if re.match(r"^(or|and)\s+", low):
+        return False
     stripped = _SAVE_RE.sub(" ", name)
     stripped = _PRICE_RE.sub(" ", stripped)
     stripped = re.sub(r"\b\d+(?:\.\d+)?\b", " ", stripped)
@@ -318,16 +322,20 @@ def _iter_pipe_chunks(text: str) -> list[str]:
     text = (text or "").strip()
     if not text:
         return []
-    # Newlines / semicolons first.
     parts = [p.strip() for p in re.split(r"[\n;/]+", text) if p.strip()]
     out: list[str] = []
     for part in parts:
         matches = list(_PIPE_ROW_RE.finditer(part))
-        if len(matches) >= 2:
-            for i, m in enumerate(matches):
-                start = m.start()
-                end = matches[i + 1].start() if i + 1 < len(matches) else len(part)
-                out.append(part[start:end].strip(" |"))
+        if matches:
+            for m in matches:
+                name = m.group(1).strip()
+                price = m.group(2).strip()
+                save = (m.group(3) or "SAVE none").strip()
+                if not name or re.match(r"^save\b", name, re.I):
+                    continue
+                if not price.startswith("$"):
+                    price = f"${price}"
+                out.append(f"{name} | {price} | {save}")
         elif "|" in part:
             out.append(part)
         else:
@@ -607,8 +615,18 @@ def record_sightings(
         if prev is None:
             prev = {}
         hist = list(prev.get("history") if isinstance(prev.get("history"), list) else [])
-        # Same photo + same price already filed → skip (no sighting inflation).
-        if img and _history_has(hist, image=img, price=price_f, ts=""):
+        prev_price = prev.get("price")
+        try:
+            prev_f = float(prev_price) if prev_price is not None else None
+        except (TypeError, ValueError):
+            prev_f = None
+        # Same photo + same price already current → skip (no sighting inflation).
+        if (
+            img
+            and prev_f is not None
+            and prev_f == price_f
+            and _history_has(hist, image=img, price=price_f, ts="")
+        ):
             row = dict(prev)
             row["id"] = sid
             row["name"] = _prefer_name(str(prev.get("name") or ""), name)[:80]
@@ -626,11 +644,6 @@ def record_sightings(
             "source": source,
         }
         hist = (hist + [entry])[-MAX_HISTORY_PER:]
-        prev_price = prev.get("price")
-        try:
-            prev_f = float(prev_price) if prev_price is not None else None
-        except (TypeError, ValueError):
-            prev_f = None
         changed = prev_f is not None and prev_f != price_f
         save_val = prod.get("save")
         if save_val is None:

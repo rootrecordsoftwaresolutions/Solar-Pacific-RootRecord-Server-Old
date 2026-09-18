@@ -45,6 +45,22 @@ _SKILL_ASYNC_CRONS = {
         / "scripts"
         / "drive_automation.py"
     ),
+    "panels_cam": (
+        Path.home()
+        / ".ollama"
+        / "skills"
+        / "panels-cam"
+        / "scripts"
+        / "panels_grab.py"
+    ),
+    "energy_report": (
+        Path.home()
+        / ".ollama"
+        / "skills"
+        / "energy-report"
+        / "scripts"
+        / "energy_report.py"
+    ),
     "kilauea": (
         Path.home() / ".ollama" / "skills" / "rr-kilauea" / "scripts" / "kilauea.py"
     ),
@@ -329,6 +345,8 @@ def _job_wave(job_id: str) -> int:
         "rr-kilauea",
         "ecoflow-quota",
         "drive-automation",
+        "panels-cam",
+        "energy-report",
         "host-sample",
         "log-cleanup",
         "fs-index",
@@ -625,6 +643,12 @@ class Scheduler:
 
         s.add_job(self._run("drive_automation"), IntervalTrigger(minutes=30),
                   id="drive-automation", name="River car DC drive session", misfire_grace_time=120)
+
+        s.add_job(self._run("panels_cam"), IntervalTrigger(minutes=15),
+                  id="panels-cam", name="Panels cam still (River car DC)", misfire_grace_time=120)
+
+        s.add_job(self._run("energy_report"), IntervalTrigger(minutes=30),
+                  id="energy-report", name="Carly energy desk + Rear Shed still", misfire_grace_time=180)
 
         s.add_job(self._run_fs_index(), IntervalTrigger(minutes=15),
                   id="fs-index", name="Live directory index", misfire_grace_time=90)

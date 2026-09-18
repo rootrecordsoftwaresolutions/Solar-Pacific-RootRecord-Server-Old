@@ -299,9 +299,24 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
             from .handoff import parse_zip_line
 
             zip_path = parse_zip_line(raw_out)
-            shown = "\n".join(
-                ln for ln in raw_out.splitlines() if not ln.startswith("HANDOFF_ZIP=")
-            )
+            photo_path = None
+            shown_lines = []
+            for ln in raw_out.splitlines():
+                if ln.startswith("HANDOFF_ZIP="):
+                    continue
+                if ln.startswith("PANELS_PHOTO="):
+                    from pathlib import Path as _P
+
+                    cand = _P(ln.split("=", 1)[1].strip())
+                    if (
+                        cand.is_file()
+                        and cand.suffix.lower() in {".jpg", ".jpeg", ".png"}
+                        and "panels-cam" in str(cand.resolve())
+                    ):
+                        photo_path = cand
+                    continue
+                shown_lines.append(ln)
+            shown = "\n".join(shown_lines)
             body = sanitize.sanitize_outbound(shown or "no data", voice=voice)
             _send(cfg, voice, chat_id, body, reply_to=reply_to, job_id=jid)
             if zip_path:
@@ -310,6 +325,13 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                     chat_id,
                     zip_path,
                     caption="Handoff zip — copies only. No secrets. For manual / non-API use.",
+                )
+            if photo_path:
+                telegram.send_document(
+                    cfg.token_for(voice),
+                    chat_id,
+                    photo_path,
+                    caption="Rear Shed panels",
                 )
             _react(cfg, chat_id, source_mid, "✅", voice=voice)
             queue.mark(jid, "done")

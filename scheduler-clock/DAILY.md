@@ -4,16 +4,6 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1436** — AVA STARTED
-
-> ◇ **1458** — AVA STARTED
-
-> ◇ **1515** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 0W | Delta SOC 100% |
-
-> ◇ **1515** — River feed ACTIVE
-
-> ◇ **1515** — WEATHER — NWS Hawaii hazard update, as of three fifteen a.m. Hawaiian Standard Time. Honolulu
-
 > ◇ **1515** — County: Flood Watch. Hawaii County: Flood Watch. Maui County: Flood Watch. Kauai County: Flood
 
 > ◇ **1515** — Watch.
@@ -51,3 +41,13 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1645** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
 
 > ◇ **1645** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1715** — WEATHER — NWS Hawaii hazard update, as of five ten p.m. Hawaiian Standard Time. Honolulu County:
+
+> ◇ **1715** — Flood Watch. Hawaii County: Flood Watch, Flood Advisory. Maui County: Flood Watch. Kauai County:
+
+> ◇ **1715** — Flood Watch.
+
+> ◇ **1715** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 0 W | Current 99%
+
+> ◇ **1715** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%

@@ -10,6 +10,7 @@ from __future__ import annotations
 import json
 import re
 import textwrap
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -714,7 +715,44 @@ def update_hybrid_daily_report(now: datetime | None = None) -> dict:
     from zoneinfo import ZoneInfo
 
     now = now or datetime.now(ZoneInfo("Pacific/Honolulu"))
-    return update_solar_notes(now, path=ensure_hybrid_daily_report(now))
+    out = update_solar_notes(now, path=ensure_hybrid_daily_report(now))
+    try:
+        _attach_panels_still(now, out.get("path"))
+    except Exception:
+        pass
+    return out
+
+
+def _attach_panels_still(now: datetime, report_path: str | None) -> dict:
+    """Pointer to latest Rear Shed still — no power cycle. For Carly energy desk."""
+    frames = Path.home() / ".ollama" / "skills" / "panels-cam" / "store" / "frames"
+    energy = Path.home() / ".ollama" / "skills" / "energy-report" / "store"
+    energy.mkdir(parents=True, exist_ok=True)
+    latest = None
+    if frames.is_dir():
+        jpgs = sorted(frames.glob("ch*.jpg"), key=lambda p: p.stat().st_mtime, reverse=True)
+        if jpgs:
+            latest = jpgs[0]
+    pointer = energy / "LATEST_FRAME.txt"
+    if latest:
+        pointer.write_text(str(latest) + "\n", encoding="utf-8")
+    # Soft insert into hybrid notebook when we have a still
+    if not report_path or not latest:
+        return {"ok": False, "detail": "no_still"}
+    target = Path(report_path)
+    if not target.is_file() or SOLAR_NOTES_CUTOFF not in target.read_text(encoding="utf-8", errors="replace"):
+        return {"ok": False, "detail": "no_report"}
+    body = target.read_text(encoding="utf-8", errors="replace")
+    age_m = int((time.time() - latest.stat().st_mtime) / 60)
+    stamp = now.strftime("%H%M")
+    line = _automated_lines(
+        stamp,
+        f"REAR SHED STILL — latest panels frame {age_m}m old (`{latest.name}`). Carly energy desk uses this still (no power cycle).",
+    )
+    updated, inserted = _append_report_inserts(body, [line])
+    if inserted:
+        target.write_text(updated, encoding="utf-8", newline="\n")
+    return {"ok": True, "detail": "inserted" if inserted else "already_present", "frame": str(latest)}
 
 
 def update_hybrid_charge_status(now: datetime | None = None) -> dict:

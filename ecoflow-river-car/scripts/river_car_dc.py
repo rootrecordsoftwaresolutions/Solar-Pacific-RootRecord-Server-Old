@@ -14,8 +14,10 @@ from typing import Any
 from urllib import error, request
 
 OPS = Path.home() / ".ollama" / "skills" / "ecoflow-ble-poller" / "store"
+BLE_SCRIPTS = Path.home() / ".ollama" / "skills" / "ecoflow-ble-poller" / "scripts"
 AVA = Path.home() / "RootRecord" / "Ava-Core"
 sys.path.insert(0, str(OPS))
+sys.path.insert(0, str(BLE_SCRIPTS))
 sys.path.insert(0, str(AVA))
 
 from ecoflow_ble_store import RIVER_SN  # noqa: E402
@@ -223,19 +225,54 @@ def status(*, live: bool = False) -> dict[str, Any]:
     return out
 
 
-def set_car(*, want_on: bool, execute: bool = False) -> dict[str, Any]:
-    """Turn River car DC. Never AC. execute=False is dry-run."""
+def car_already_on() -> bool | None:
+    """True if River car 12V is already on (quota or live). None if unknown."""
+    on = disk_car_on()
+    if on is True:
+        return True
+    try:
+        _load_env()
+        q = _quota_all()
+        data = q.get("data") if q.get("ok") else {}
+        live, _ = car_state(data if isinstance(data, dict) else {})
+        if live is True:
+            return True
+        if live is False:
+            return False
+    except Exception:
+        pass
+    return on
+
+
+def set_car(*, want_on: bool, execute: bool = False, force: bool = False) -> dict[str, Any]:
+    """Turn River car DC. Never AC. execute=False is dry-run.
+
+    Manual always-on: if want_on is False and car was already on and force is
+    False, leave it on (camera / drives left powered by the operator).
+    """
     _load_env()
     st = load_state()
-    st["wanted"] = bool(want_on)
-    st["purpose"] = PURPOSE
+    already = car_already_on()
     report: dict[str, Any] = {
         "ok": True,
         "wanted": want_on,
         "execute": bool(execute),
         "would": "car_on" if want_on else "car_off",
         "backup_job": False,
+        "already_on": already,
     }
+    if not want_on and already is True and not force:
+        st["wanted"] = True
+        st["last_action"] = "leave_on_manual"
+        st["last_action_at"] = time.time()
+        save_state(st)
+        report["action"] = "leave_on_manual"
+        report["left_on"] = True
+        report["would"] = "leave_on"
+        log.info("river car DC leave ON (was already on)")
+        return report
+    st["wanted"] = bool(want_on)
+    st["purpose"] = PURPOSE
     if not execute:
         st["last_action"] = f"dry_run_{'on' if want_on else 'off'}"
         save_state(st)
@@ -267,7 +304,7 @@ def set_car(*, want_on: bool, execute: bool = False) -> dict[str, Any]:
     st["last_skip_reason"] = None
     save_state(st)
     report["action"] = st["last_action"]
-    log.info("river car DC %s (drives)", "ON" if want_on else "OFF")
+    log.info("river car DC %s (drives/panels)", "ON" if want_on else "OFF")
     return report
 
 
