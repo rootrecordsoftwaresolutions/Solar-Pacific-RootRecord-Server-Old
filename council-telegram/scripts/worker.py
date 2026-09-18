@@ -327,12 +327,19 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                     caption="Handoff zip — copies only. No secrets. For manual / non-API use.",
                 )
             if photo_path:
-                telegram.send_document(
+                sent = telegram.send_photo(
                     cfg.token_for(voice),
                     chat_id,
                     photo_path,
                     caption="Rear Shed panels",
                 )
+                if not sent.get("ok"):
+                    telegram.send_document(
+                        cfg.token_for(voice),
+                        chat_id,
+                        photo_path,
+                        caption="Rear Shed panels",
+                    )
             _react(cfg, chat_id, source_mid, "✅", voice=voice)
             queue.mark(jid, "done")
             return True
@@ -388,23 +395,34 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
             pass
         use_heat = bool(meta.get("nsfw") or meta.get("heat")) and voice in ("ava", "carly")
         dm = bool(meta.get("dm"))
-        # Private Ava/Carly DMs: always Dolphin heat model + heat tone (chatbot style).
+        # Private Ava/Carly DMs: heat/trust tone on NPU. Never swap to Dolphin GGUF.
         if dm and voice in ("ava", "carly"):
             use_heat = True
         model = cfg.model_for(voice, dm=dm)
         from . import heat as heat_mod
 
         if not heat_mod.model_installed(cfg, model):
-            print(f"voice-model missing {model} voice={voice} — stay {cfg.chat_model}", flush=True)
-            model = cfg.chat_model
-        if use_heat:
+            # Tags miss is fine — NPU path does not need the GGUF listed.
+            print(f"voice-model tags-miss {model} voice={voice} — keep for NPU", flush=True)
+        # Never swap speak onto Dolphin GGUF while NPU chat is on — that is Ollama/iGPU
+        # and OOMs beside FastFlowLM. Heat/trust stay prompt-only on the NPU model.
+        import os as _os
+
+        npu_chat = _os.getenv("AVA_NPU_CHAT", "1").strip().lower() not in {
+            "0",
+            "false",
+            "off",
+            "no",
+        }
+        if use_heat and not dm and not npu_chat:
             want = str(getattr(cfg, "heat_model", "") or HEAT_MODEL_DEFAULT)
             if heat_mod.model_installed(cfg, want):
                 model = want
                 print(f"heat-model {want} voice={voice} dm={dm} job={jid}", flush=True)
             else:
-                use_heat = False
-                print(f"heat-model missing {want} — stay {model}", flush=True)
+                print(f"heat-model missing {want} — stay {model} (tone only)", flush=True)
+        elif use_heat and npu_chat:
+            print(f"heat-tone npu voice={voice} dm={dm} job={jid}", flush=True)
         sys_prompt = system_for(voice, heat=use_heat)
         raw = ollama_client.chat(
             cfg,

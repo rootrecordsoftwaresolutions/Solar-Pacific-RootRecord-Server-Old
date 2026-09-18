@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -22,6 +23,20 @@ EXEC_TIMEOUT_S = 20
 READ_SKILL_CAP = 1000
 DISK_SESSION_FLAGS = ("--status", "--prepare", "--on", "--off", "--execute", "--session", "--hold")
 MAX_EXEC_TIMEOUT_S = 90
+
+# “show me the camera(s) / solar panels / night owl” — not only exact keyword strings.
+_PANELS_CAM_ASK = re.compile(
+    r"(?:"
+    r"\b(?:show|see|look(?:\s+at)?|check|grab|pull|get)\b.{0,48}\b"
+    r"(?:panels?|solar\s+panels?|cameras?|cams?|night\s*owl|rear\s+shed|shed\s+cam|site\s+cam)\b"
+    r"|"
+    r"\b(?:panels?|solar\s+panels?|rear\s+shed|night\s*owl|shed|site)\b.{0,40}\b"
+    r"(?:cam|cams|camera|cameras|still|picture|photo)\b"
+    r"|"
+    r"\b(?:panel|panels|shed|site)\s+cameras?\b"
+    r")",
+    re.I | re.S,
+)
 
 def _load_catalog() -> dict[str, Any]:
     try:
@@ -155,6 +170,11 @@ def match_exec_skill(text: str) -> dict[str, Any] | None:
         kws = [str(k).lower() for k in (s.get("keywords") or [])]
         if any(k and k in low for k in kws):
             return s
+    # Flexible panels / site camera asks (keyword list alone misses “solar panels”, “cameras”).
+    if _PANELS_CAM_ASK.search(text or ""):
+        hit = get_skill("panels-cam")
+        if hit and str(hit.get("risk") or "") == "exec":
+            return hit
     return None
 
 

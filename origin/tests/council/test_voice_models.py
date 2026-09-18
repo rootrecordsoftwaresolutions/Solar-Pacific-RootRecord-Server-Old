@@ -19,21 +19,9 @@ def test_general_queries_stay_on_fast_chat_model():
     assert cfg.model_for("ava", full_thought=False) == DEFAULT_CHAT_MODEL
     assert cfg.model_for("bruce", full_thought=False) == DEFAULT_CHAT_MODEL
     assert cfg.model_for("carly", full_thought=False) == DEFAULT_CHAT_MODEL
-    # Bruce DMs stay everyday; Ava/Carly DMs use Dolphin heat model
+    # DMs stay on the same NPU chat model (heat/trust is prompt-only).
+    assert cfg.model_for("ava", dm=True, full_thought=False) == DEFAULT_CHAT_MODEL
     assert cfg.model_for("bruce", dm=True, full_thought=False) == DEFAULT_CHAT_MODEL
-
-
-def test_ava_carly_dms_use_dolphin_heat_model():
-    from apps.council.config import HEAT_MODEL_DEFAULT
-
-    cfg = Config(
-        keep_one_loaded=True,
-        chat_model=DEFAULT_CHAT_MODEL,
-        heat_model=HEAT_MODEL_DEFAULT,
-    )
-    assert "dolphin" in cfg.model_for("ava", dm=True).lower()
-    assert "dolphin" in cfg.model_for("carly", dm=True).lower()
-    assert cfg.model_for("ava", dm=False) == DEFAULT_CHAT_MODEL
 
 
 def test_brainstorm_stays_on_fast_chat_model():

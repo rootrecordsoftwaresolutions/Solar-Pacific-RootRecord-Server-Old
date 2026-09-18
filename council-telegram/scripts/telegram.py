@@ -301,6 +301,22 @@ def send_document(
     )
 
 
+def send_photo(
+    token: str,
+    chat_id: int | str,
+    file_path: Path,
+    caption: str = "",
+) -> dict[str, Any]:
+    """Inline photo bubble (preferred for cam stills). Falls back to document."""
+    path = Path(file_path)
+    out = _send_multipart(
+        token, chat_id, path, method="sendPhoto", field="photo", caption=caption
+    )
+    if out.get("ok"):
+        return out
+    return send_document(token, chat_id, path, caption=caption)
+
+
 def send_audio(
     token: str,
     chat_id: int | str,

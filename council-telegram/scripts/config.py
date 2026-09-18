@@ -167,15 +167,12 @@ class Config:
             return False
 
     def model_for(self, voice: str, *, dm: bool = False, full_thought: bool | None = None) -> str:
-        """Group chat stays on the fast instruct model (NPU path).
+        """Everyday speak (group + DM) stays on the fast chat model → FastFlowLM NPU.
 
-        Ava/Carly private DMs use the Dolphin heat model — chatbot-style, chatty,
-        closeness follows heat + trust. Bruce DMs stay on the everyday chat model.
+        Dolphin GGUF is never selected for speak — it would fall off the NPU into
+        Ollama RAM and OOM this 16 GB box. DM chatty/heat tone is prompt-only.
         """
-        del full_thought
-        v = (voice or "").lower()
-        if dm and v in ("ava", "carly"):
-            return self._safe_model(self.heat_model or HEAT_MODEL_DEFAULT)
+        del voice, dm, full_thought
         return self._safe_model(self.chat_model)
 
     def token_for(self, voice: str) -> str:
