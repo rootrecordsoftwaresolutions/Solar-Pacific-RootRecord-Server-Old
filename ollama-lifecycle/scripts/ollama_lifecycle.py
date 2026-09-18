@@ -65,6 +65,16 @@ def play_clip(kind: str) -> bool:
     ffplay = shutil.which("ffplay")
     if not ffplay:
         return False
+    # One lifecycle clip at a time — never stack Popen ffplays over the director.
+    try:
+        subprocess.run(
+            ["pkill", "-f", f"ffplay.*{path.name}"],
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError:
+        pass
     try:
         subprocess.Popen(
             [ffplay, "-nodisp", "-autoexit", "-loglevel", "quiet", str(path)],
@@ -135,10 +145,14 @@ def on_message(*, source: str) -> dict[str, Any]:
     touch(source=source)
     if flm_up:
         row = _load()
+        # Edge = desk was not already marked up on NPU. Do not key off Ollama:
+        # vision/coder flaps leave Ollama down while FLM chat is fine, and that
+        # used to Popen a fresh loading clip on every inbound message.
+        already_up = row.get("powered") == "up" and row.get("engine") == "npu"
         row["powered"] = "up"
         row["engine"] = "npu"
         _save(row)
-        if was_up:
+        if already_up or was_up:
             return {"ok": True, "started": False, "played": False, "engine": "npu"}
         play_clip("loading")
         try:

@@ -1177,7 +1177,8 @@ def handle_update(
         and not trust.can_contribute(trust_data, uid)
     ):
         peek = router.detect_addressing(text, message.get("entities"))
-        if str(peek.get("reason") or "") not in ("tag", "vocative", "handoff", "team_override"):
+        reason = str(peek.get("reason") or "")
+        if reason not in ("tag", "vocative", "handoff", "team_override") and not has_photo:
             return
 
     if not private and not burst_flush and not state.is_owner(st, cfg, uid):
@@ -1186,7 +1187,7 @@ def handle_update(
         blocked, left = trust.on_cooldown(
             trust_data, uid, int(getattr(cfg, "user_cooldown_s", 90) or 90)
         )
-        if blocked and not _burst.has_pending(chat_id, uid, listen_voice):
+        if blocked and not _burst.has_pending(chat_id, uid, listen_voice) and not has_photo:
             if message.get("message_id"):
                 telegram.set_message_reaction(
                     cfg.token_for(listen_voice), chat_id, int(message["message_id"]), "⏳"
@@ -1195,6 +1196,15 @@ def handle_update(
 
     ollama_up = ollama_ctl.is_up(cfg)
     if not ollama_up:
+        if has_photo:
+            # Vision needs Ollama; say so instead of silent drop.
+            telegram.send_message(
+                cfg.token_for(listen_voice if private else "ava"),
+                chat_id,
+                "Saw the photo — vision is offline (Ollama down). Try again in a minute.",
+                reply_to=message.get("message_id"),
+            )
+            return
         if private or (state.is_owner(st, cfg, uid) and ("@" in text or text.startswith("/"))):
             telegram.send_message(
                 cfg.token_for(listen_voice),
@@ -1245,8 +1255,12 @@ def handle_update(
     if not burst_flush:
         from . import burst as _burst
 
+        # Photos speak now (vision card already in hand). Do not park in burst —
+        # flush would re-download/re-run moondream and drop the card.
         speakish = bool(private)
-        if not speakish:
+        if has_photo:
+            speakish = False
+        elif not speakish:
             peek = router.detect_addressing(text, message.get("entities"))
             peek = router.apply_reply_context(
                 peek,
