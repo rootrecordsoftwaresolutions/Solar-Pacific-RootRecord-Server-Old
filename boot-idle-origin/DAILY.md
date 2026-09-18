@@ -4,4 +4,10 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-_No hybrid lines yet today._
+> ◇ **1149** — AVA STARTED
+
+> ◇ **1149** — AVA STOPPED
+
+> ◇ **1150** — AVA STARTED
+
+> ◇ **1150** — AVA STOPPED
