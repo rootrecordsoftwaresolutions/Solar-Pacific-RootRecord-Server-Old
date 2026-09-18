@@ -12,9 +12,11 @@ from typing import Any
 from .config import CONFIG_DIR, Config
 from . import telegram
 
-MEDIA_ROOT = Path.home() / "Media" / "public" / "images" / "chat-vision"
+# Telegram photos stay under Media/private — never Media/public.
+MEDIA_ROOT = Path.home() / "Media" / "private" / "chat-vision"
 INBOX = MEDIA_ROOT / "inbox"
 SORTED = MEDIA_ROOT / "sorted"
+_LEGACY_PUBLIC = Path.home() / "Media" / "public" / "images" / "chat-vision"
 LOG_PATH = CONFIG_DIR / "vision-log.jsonl"
 TAKES_PATH = CONFIG_DIR / "vision-takes.json"
 ALBUMS_PATH = CONFIG_DIR / "vision-albums.json"
@@ -23,6 +25,28 @@ ALBUMS_PATH = CONFIG_DIR / "vision-albums.json"
 ALBUM_WAIT_S = 2.5
 MAX_PER_ALBUM = 8
 MAX_QUEUED_ALBUMS = 4
+
+
+def _resolve_media_path(raw: str | Path | None) -> Path:
+    """Map legacy Media/public/images/chat-vision paths onto the private root."""
+    p = Path(str(raw or ""))
+    if not p.parts:
+        return p
+    text = str(p)
+    legacy = str(_LEGACY_PUBLIC)
+    if text.startswith(legacy):
+        mapped = MEDIA_ROOT / text[len(legacy) :].lstrip("/")
+        if mapped.is_file() or not p.is_file():
+            return mapped
+    return p
+
+
+def ensure_media_dirs() -> None:
+    from . import chatlog as _chatlog
+
+    _chatlog.assert_private_store(MEDIA_ROOT)
+    INBOX.mkdir(parents=True, exist_ok=True)
+    SORTED.mkdir(parents=True, exist_ok=True)
 
 
 # Folder tags from vision text (first match wins order below).
@@ -244,7 +268,7 @@ def download_chat_photo(cfg: Config, message: dict[str, Any]) -> Path | None:
     ext = Path(remote).suffix.lower() or ".jpg"
     if ext not in {".jpg", ".jpeg", ".png", ".webp", ".gif"}:
         ext = ".jpg"
-    INBOX.mkdir(parents=True, exist_ok=True)
+    ensure_media_dirs()
     dest = INBOX / f"{_now()}-{digest}{ext}"
     return telegram.download_file(token, remote, dest)
 
@@ -542,7 +566,7 @@ def apply_correction(
         if len(label) > 80:
             label = f"{vis.get('description') or ''} {correction}".strip()
         for key_path in ("src", "sorted"):
-            p = Path(str(vis.get(key_path) or ""))
+            p = _resolve_media_path(str(vis.get(key_path) or ""))
             if p.is_file():
                 renamed = rename_to_description(p, label, caption=correction[:60])
                 vis[key_path] = str(renamed)

@@ -37,8 +37,17 @@ def capture(
     reply_voice: str = "ava",
     extra_rows: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    """Read recent human chat, save one generalized note, ack in Telegram."""
+    """Read recent human chat, save one generalized note, ack in Telegram.
+
+    Callers must not invoke this for private DMs — site notes are group-facing.
+    """
     from . import chatlog, telegram
+
+    try:
+        if int(chat_id) > 0:
+            return {"ok": False, "skipped": "private_dm"}
+    except (TypeError, ValueError):
+        pass
 
     key = str(chat_id)
     now = time.time()

@@ -25,6 +25,60 @@ def others_for(voice: str) -> str:
     return "Bruce and Carly"
 
 
+def ask_needs_desk(ask: str) -> bool:
+    """True when a private DM should load live desk / snapshot / sealed ops."""
+    from . import desk_read
+
+    t = (ask or "").lower().replace("ī", "i").replace("ʻ", "").replace("'", "")
+    if desk_read._ask_wants_weather(t) or desk_read._ask_wants_prices_light(t):
+        return True
+    try:
+        from pathlib import Path
+        import sys as _sys
+
+        _pp = Path.home() / ".ollama" / "skills" / "product-prices" / "scripts"
+        if str(_pp) not in _sys.path:
+            _sys.path.insert(0, str(_pp))
+        import product_prices as _prices
+
+        if _prices._ask_wants_prices(t):
+            return True
+    except Exception:
+        pass
+    return any(
+        k in t
+        for k in (
+            "kilauea",
+            "volcano",
+            "erupt",
+            "ecoflow",
+            "battery",
+            "solar",
+            "host",
+            "uptime",
+            "desk",
+            "nws",
+            "hurricane",
+            "cyclone",
+            "flood watch",
+            "quake",
+            "earthquake",
+            "minecraft",
+            "status page",
+            "ops",
+            "power",
+            "starlink",
+            "xmrig",
+            "miner",
+            "litecoin",
+            "ltc",
+            "adsense",
+            "stripe",
+            "membership",
+        )
+    )
+
+
 def thread_block(chat_id: int | str | None, *, n: int = MIN_THREAD) -> str:
     """Last n chat lines. Always returned; never empty-padded."""
     if chat_id is None:
@@ -95,33 +149,56 @@ def build_speak_prompt(
     if private:
         must.append(
             f"Private Telegram DM. {display} is talking to you ({voice}) only. "
-            "Answer like a person. Specialties color your take; they are not a gate."
+            "Answer like a person. Specialties color your take; they are not a gate. "
+            "This thread is sealed from the group and from other DMs — never quote, "
+            "summarize, or continue another chat here. Person-file memory of this "
+            "human is fine to use."
         )
     else:
         must.append(f"Telegram group. {display} addressed you ({voice}).")
-    must.append(
-        f"You are {voice}. The person speaking is {display}. Address them as {display}. "
-        "Never call a human Ava, Bruce, or Carly — those names are only the agents. "
-        f"The other agents are {others_for(voice)}. "
-        "Never address yourself. Never @ your own bot. Never ask yourself a question. "
-        "You are a team: Ava (PR / public), Bruce (ops / philosophy / academic), Carly (security / safety / strategy). "
-        "Read this message. Answer their latest question first, in your own personality. "
-        "Do not dodge. Do not change the subject. Do not copy the others. "
-        "Speak normally — short sentences, finished thoughts. Like a person on the team, not a checklist. "
-        "If a teammate already asked something today and got an answer, do not ask it again. "
-        "Greetings and 'what are you up to' get a real reply, not a topic lecture. "
-        "Public text is sentences only."
-        + (
-            " Do not reply PASS, SKIP, NO ADD, or NOTHING TO ADD. You were addressed. Talk."
-            if must_speak
-            else " If you truly have nothing in-lane, reply PASS and nothing else."
+    if private:
+        must.append(
+            f"You are {voice}. The person speaking is {display}. Address them as {display}. "
+            "Never call a human Ava, Bruce, or Carly — those names are only the agents. "
+            f"The other agents are {others_for(voice)}. "
+            "Never address yourself. Never @ your own bot. Never ask yourself a question. "
+            "Read this message. Answer their latest question first, in your own personality. "
+            "Do not dodge. Do not change the subject. Do not copy group chat or desk lectures. "
+            "Speak normally — short sentences, finished thoughts. "
+            "Greetings, check-ins, and 'how are you' get a warm real reply — never a PR, "
+            "public-statements, brand-voice, or ops briefing unless they asked for that. "
+            "Do not invent quotes from Bruce, Carly, or desk files."
+            + (
+                " Do not reply PASS, SKIP, NO ADD, or NOTHING TO ADD. You were addressed. Talk."
+                if must_speak
+                else " If you truly have nothing to say, reply PASS and nothing else."
+            )
         )
-    )
+    else:
+        must.append(
+            f"You are {voice}. The person speaking is {display}. Address them as {display}. "
+            "Never call a human Ava, Bruce, or Carly — those names are only the agents. "
+            f"The other agents are {others_for(voice)}. "
+            "Never address yourself. Never @ your own bot. Never ask yourself a question. "
+            "You are a team: Ava (PR / public), Bruce (ops / philosophy / academic), Carly (security / safety / strategy). "
+            "Read this message. Answer their latest question first, in your own personality. "
+            "Do not dodge. Do not change the subject. Do not copy the others. "
+            "Speak normally — short sentences, finished thoughts. Like a person on the team, not a checklist. "
+            "If a teammate already asked something today and got an answer, do not ask it again. "
+            "Greetings and 'what are you up to' get a real reply, not a topic lecture. "
+            "Public text is sentences only."
+            + (
+                " Do not reply PASS, SKIP, NO ADD, or NOTHING TO ADD. You were addressed. Talk."
+                if must_speak
+                else " If you truly have nothing in-lane, reply PASS and nothing else."
+            )
+        )
     from . import desk_read
 
     vision = (vision_block or "").strip()
+    need_desk = bool(vision) or (not private) or ask_needs_desk(user_text)
     price_ask = False
-    if not vision:
+    if need_desk and not vision:
         try:
             price_ask = bool(
                 desk_read._ask_wants_prices_light(user_text)
@@ -147,52 +224,53 @@ def build_speak_prompt(
             "Do not invent details beyond the Vision card."
         )
         must.append(vision)
-    elif price_ask and not desk_read._ask_wants_weather(user_text):
+    elif need_desk and price_ask and not desk_read._ask_wants_weather(user_text):
         must.append(
             "STORE PRICE ASK — the Store prices desk lines are the subject. "
             "Answer with the product name and dollar amount from those lines. "
             "Do not pivot to weather, flood watches, Kīlauea, EcoFlow, or host. "
             "If the product is not listed, say you do not have a filed price yet."
         )
-    must.append(
-        "Desk live files below are the source of truth. Quote them. "
-        + (
-            "Never say you lack live weather, alerts, Kīlauea, EcoFlow, or host data when those lines are present. "
-            if not (price_ask and not vision and not desk_read._ask_wants_weather(user_text))
-            else "For this ask, Store prices are enough — ignore other desks. "
+    if need_desk:
+        must.append(
+            "Desk live files below are the source of truth. Quote them. "
+            + (
+                "Never say you lack live weather, alerts, Kīlauea, EcoFlow, or host data when those lines are present. "
+                if not (price_ask and not vision and not desk_read._ask_wants_weather(user_text))
+                else "For this ask, Store prices are enough — ignore other desks. "
+            )
+            + "If a line says No data / DOWN, say that. Do not invent."
+            + (
+                " On a PHOTO TURN, desk lines are background only — do not lead with them."
+                if vision
+                else ""
+            )
         )
-        + "If a line says No data / DOWN, say that. Do not invent."
-        + (
-            " On a PHOTO TURN, desk lines are background only — do not lead with them."
-            if vision
-            else ""
-        )
-    )
 
-    # Weather asks get a larger live block first so NWS/tomorrow survive the budget.
-    # Photo turns keep desk tiny so the Vision card stays the answer.
-    # Price asks keep a tight Store prices-only desk (see desk_facts_block).
-    if vision:
-        live_cap = 400
-    elif desk_read._ask_wants_weather(user_text):
-        live_cap = 2400
-    elif price_ask:
-        live_cap = 700
-    else:
-        live_cap = 1800
-    live = desk_read.desk_facts_block(cap=live_cap, ask=user_text)
-    if live:
-        must.append(live)
-    # Price asks stay on Store prices — sealed weather/ops stickies hijack the answer.
-    if not (price_ask and not vision and not desk_read._ask_wants_weather(user_text)):
-        try:
-            from . import conclusions as _conc
+        # Weather asks get a larger live block first so NWS/tomorrow survive the budget.
+        # Photo turns keep desk tiny so the Vision card stays the answer.
+        # Price asks keep a tight Store prices-only desk (see desk_facts_block).
+        if vision:
+            live_cap = 400
+        elif desk_read._ask_wants_weather(user_text):
+            live_cap = 2400
+        elif price_ask:
+            live_cap = 700
+        else:
+            live_cap = 1800
+        live = desk_read.desk_facts_block(cap=live_cap, ask=user_text)
+        if live:
+            must.append(live)
+        # Price asks stay on Store prices — sealed weather/ops stickies hijack the answer.
+        if not (price_ask and not vision and not desk_read._ask_wants_weather(user_text)):
+            try:
+                from . import conclusions as _conc
 
-            sealed = _conc.prompt_block(chat_id, user_text, cap=500)
-            if sealed:
-                must.append(sealed)
-        except Exception:
-            pass
+                sealed = _conc.prompt_block(chat_id, user_text, cap=500)
+                if sealed:
+                    must.append(sealed)
+            except Exception:
+                pass
     soft.append(
         "If ops or the operator corrects you, accept it in the next sentence. Do not argue. "
         "Hawaiʻi is not Japan. West of Kauaʻi is toward Asia. Far WPAC storms are not local."
@@ -229,42 +307,45 @@ def build_speak_prompt(
         "Litecoin: wait for sync (blocks==headers) before any balance read. Never send or dump keys. "
         "External disks: River 2 Pro car 12V only, never AC. Starlink stays on Delta AC."
     )
-    try:
-        from pathlib import Path
-        import sys as _sys
+    if need_desk:
+        try:
+            from pathlib import Path
+            import sys as _sys
 
-        _g = Path.home() / ".ollama" / "skills" / "goals" / "scripts"
-        if str(_g) not in _sys.path:
-            _sys.path.insert(0, str(_g))
-        from council_goals import prompt_lines as _goal_lines
+            _g = Path.home() / ".ollama" / "skills" / "goals" / "scripts"
+            if str(_g) not in _sys.path:
+                _sys.path.insert(0, str(_g))
+            from council_goals import prompt_lines as _goal_lines
 
-        goals = _goal_lines(cap=280)
-        if goals:
-            soft.append(goals)
-    except Exception:
-        pass
-    try:
-        from . import ops_corrections as _opsfix
+            goals = _goal_lines(cap=280)
+            if goals:
+                soft.append(goals)
+        except Exception:
+            pass
+        try:
+            from . import ops_corrections as _opsfix
 
-        fix = _opsfix.prompt_lines(cap=320)
-        if fix:
-            soft.append(fix)
-    except Exception:
-        pass
-    try:
-        import sys as _sys
-        from pathlib import Path as _P
+            fix = _opsfix.prompt_lines(cap=320)
+            if fix:
+                soft.append(fix)
+        except Exception:
+            pass
+    # Site / group notes never enter private DMs — that is cross-chat bleed.
+    if not private:
+        try:
+            import sys as _sys
+            from pathlib import Path as _P
 
-        _n = _P.home() / ".ollama" / "skills" / "notes" / "scripts"
-        if str(_n) not in _sys.path:
-            _sys.path.insert(0, str(_n))
-        from notes import prompt_lines as _note_lines  # type: ignore
+            _n = _P.home() / ".ollama" / "skills" / "notes" / "scripts"
+            if str(_n) not in _sys.path:
+                _sys.path.insert(0, str(_n))
+            from notes import prompt_lines as _note_lines  # type: ignore
 
-        notes_blob = _note_lines(limit=8, cap=500)
-        if notes_blob and "No notes" not in notes_blob:
-            soft.append(notes_blob)
-    except Exception:
-        pass
+            notes_blob = _note_lines(limit=8, cap=500)
+            if notes_blob and "No notes" not in notes_blob:
+                soft.append(notes_blob)
+        except Exception:
+            pass
     if person_block:
         soft.append(person_block.strip())
     if catch_up:
@@ -286,9 +367,10 @@ def build_speak_prompt(
         rest.append(skill_block.strip())
     if extra:
         rest.append(extra.strip())
-    snap = desk_read.snapshot_for_prompt(cap=900)
-    if snap:
-        rest.append(snap)
+    if need_desk:
+        snap = desk_read.snapshot_for_prompt(cap=900)
+        if snap:
+            rest.append(snap)
     if history:
         rest.append("Earlier thread (oldest first):\n" + history)
     if quote:

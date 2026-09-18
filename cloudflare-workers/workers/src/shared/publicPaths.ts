@@ -40,6 +40,7 @@ const PUBLIC_EXACT = new Set([
   "/api/radio/now",
   "/api/radio/steering",
   "/api/radio/session",
+  "/api/radio/status",
   "/api/hurricane/desk",
   "/api/radio/hurricane",
 ]);

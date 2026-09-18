@@ -387,19 +387,21 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
         except Exception:
             pass
         use_heat = bool(meta.get("nsfw") or meta.get("heat")) and voice in ("ava", "carly")
-        # DMs stay on Mistral (Carly's model) for all voices. Heat is prompt-only there.
         dm = bool(meta.get("dm"))
+        # Private Ava/Carly DMs: always Dolphin heat model + heat tone (chatbot style).
+        if dm and voice in ("ava", "carly"):
+            use_heat = True
         model = cfg.model_for(voice, dm=dm)
         from . import heat as heat_mod
 
         if not heat_mod.model_installed(cfg, model):
             print(f"voice-model missing {model} voice={voice} — stay {cfg.chat_model}", flush=True)
             model = cfg.chat_model
-        if use_heat and not dm:
+        if use_heat:
             want = str(getattr(cfg, "heat_model", "") or HEAT_MODEL_DEFAULT)
             if heat_mod.model_installed(cfg, want):
                 model = want
-                print(f"heat-model {want} voice={voice} job={jid}", flush=True)
+                print(f"heat-model {want} voice={voice} dm={dm} job={jid}", flush=True)
             else:
                 use_heat = False
                 print(f"heat-model missing {want} — stay {model}", flush=True)
@@ -525,7 +527,7 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                             skill_block="",
                             vision_block=vblock,
                             must_speak=True,
-                            private=False,
+                            private=bool(meta.get("dm")),
                         )
                         queue.enqueue(
                             voice="bruce",

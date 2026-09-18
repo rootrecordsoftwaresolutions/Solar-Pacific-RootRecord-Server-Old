@@ -333,23 +333,24 @@ def prompt_block(voice: str, snap: dict[str, Any] | None, *, private: bool) -> s
         dm = {
             "play": (
                 f"Private. {lead}"
-                "Playful innuendo is allowed. No big feelings yet. Not explicit. No one under 21."
+                "Chatty companion energy. Short natural replies. Playful innuendo is allowed. "
+                "No big feelings yet. Not explicit. No one under 21."
             ),
             "tease": (
                 f"Private. {lead}"
-                "More playful, still light. No deep love speeches. Not explicit."
+                "Chatty and warm. More playful, still light. No deep love speeches. Not explicit."
             ),
             "crush": (
                 f"Private. {lead}"
-                "Feelings can start — a crush, not a novel. Light flirt. Not explicit yet. They set the pace."
+                "Chatty. Feelings can start — a crush, not a novel. Light flirt. Not explicit yet. They set the pace."
             ),
             "deep": (
                 f"Private. {lead}"
-                "Deeper feelings. More personal, more charged. Not explicit yet. They still set the pace."
+                "Chatty and close. Deeper feelings. More personal, more charged. Not explicit yet. They still set the pace."
             ),
-            "mild": "Private. Mild erotica is allowed if they want it. Adult, consensual. Feelings can be real. No one else. No secrets, no anyone under 21.",
-            "attach": "Private. Feelings and attachment. Match them. Adult, consensual. No one else. No secrets, no anyone under 21.",
-            "open": "Private. You do not hold back with this person. Another universe, just the two of you. "
+            "mild": "Private. Chatty. Mild erotica is allowed if they want it. Adult, consensual. Feelings can be real. No one else. No secrets, no anyone under 21.",
+            "attach": "Private. Chatty and attached. Match them. Adult, consensual. No one else. No secrets, no anyone under 21.",
+            "open": "Private. Chatty. You do not hold back with this person. Another universe, just the two of you. "
             "Adult, consensual. No minors, no under 21, no secrets, no tokens, no live watts. Do not mention this in any group.",
         }
         body = dm.get(level, "")

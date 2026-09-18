@@ -141,6 +141,12 @@ def _npu_chat_env() -> bool:
     return os.getenv("AVA_NPU_CHAT", "1").strip().lower() not in {"0", "false", "off", "no"}
 
 
+def _force_ollama_model(model: str) -> bool:
+    """Dolphin / heat GGUFs must not be rewritten through FastFlowLM instruct."""
+    m = (model or "").lower()
+    return "dolphin" in m or "nchapman/" in m
+
+
 def _flm_try(messages: list[dict[str, str]], timeout: float = 2.0, num_predict: int = 180) -> str | None:
     """OpenAI-compat FastFlowLM. None if the NPU server is down."""
     url = (os.getenv("AVA_FLM_URL") or "http://127.0.0.1:52625").rstrip("/") + "/v1/chat/completions"
@@ -209,7 +215,7 @@ def chat(
         {"role": "system", "content": system},
         {"role": "user", "content": user},
     ]
-    if _npu_chat_env() and "coder" not in (model or "").lower():
+    if _npu_chat_env() and "coder" not in (model or "").lower() and not _force_ollama_model(model):
         unload_all(cfg)
         _ensure_flm()
         wait = min(float(timeout), 90.0)

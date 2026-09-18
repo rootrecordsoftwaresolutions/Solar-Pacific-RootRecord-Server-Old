@@ -1,4 +1,8 @@
-"""Append-only council chat log (for debug + follow-ups)."""
+"""Append-only council chat log (for debug + follow-ups).
+
+Stays under ~/.config/ava-council only. Never copy or publish DMs or group
+transcripts under Media/public or any site/public tree.
+"""
 from __future__ import annotations
 
 import json
@@ -9,9 +13,27 @@ from typing import Any
 from .config import CONFIG_DIR
 
 LOG = CONFIG_DIR / "chat.jsonl"
+_PUBLIC_MARKERS = (
+    "/Media/public/",
+    "/site/public/",
+    "/public/images/chat-vision",
+    "/public/documents/telegram",
+    "/public/images/telegram",
+)
+
+
+def assert_private_store(path: Path | str) -> None:
+    """Raise if a caller tries to place chat content on a public media path."""
+    text = str(path).replace("\\", "/")
+    for mark in _PUBLIC_MARKERS:
+        if mark in text:
+            raise RuntimeError(
+                f"refusing public chat path: {path} (DMs and group chats stay private)"
+            )
 
 
 def append(event: dict[str, Any]) -> None:
+    assert_private_store(LOG)
     CONFIG_DIR.mkdir(parents=True, exist_ok=True)
     row = dict(event)
     row["ts"] = int(time.time())

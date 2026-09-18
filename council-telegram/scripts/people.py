@@ -655,8 +655,14 @@ def apply_agent_note(voice: str, note: str, *, from_voice: str) -> None:
     _save(data)
 
 
-def agent_prompt_block(voice: str, *, cap: int = 450) -> str:
-    """Self + teammate dossiers for natural continuity."""
+def agent_prompt_block(
+    voice: str, *, cap: int = 450, include_last_said: bool = True
+) -> str:
+    """Self + teammate dossiers for natural continuity.
+
+    include_last_said=False strips recent utterance clips so group chat lines
+    cannot steer a private DM. Roles, features, and durable notes still load.
+    """
     ensure_agents()
     v = (voice or "").lower()
     lines = [
@@ -670,9 +676,10 @@ def agent_prompt_block(voice: str, *, cap: int = 450) -> str:
         if feats.get("role"):
             role = f" — {feats.get('role')}"
         bit = f"{label} ({name}){role}"
-        snip = str(row.get("last_snippet") or "").strip()
-        if snip and name != v:
-            bit += f". Last said: {snip[:100]}"
+        if include_last_said:
+            snip = str(row.get("last_snippet") or "").strip()
+            if snip and name != v:
+                bit += f". Last said: {snip[:100]}"
         notes = row.get("notes") if isinstance(row.get("notes"), list) else []
         recent = [n for n in notes[-2:] if isinstance(n, dict) and n.get("text")]
         if recent:

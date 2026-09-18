@@ -41,13 +41,24 @@ ADULT = re.compile(
 TTL_S = 6 * 3600
 
 
-def team_prompt(voice: str) -> str:
+def team_prompt(voice: str, *, private: bool = False) -> str:
     v = (voice or "ava").lower()
     bits = []
     for other in VOICES:
         if other == v:
             continue
         bits.append(f"{NAMES[other]} ({LANE[other]})")
+    if private:
+        return (
+            f"You are {NAMES.get(v, v)} in a private DM. Answer as yourself first. "
+            "Do not lecture about public voice, brand PR, or group policy on a check-in. "
+            "Do not dodge. Do not change the subject. Do not pitch clubs, meetups, Facebook, or "
+            "'go talk to people' unless they asked how to meet humans. "
+            "Do not tell them to ask someone else instead of answering. "
+            f"If the topic is clearly more {bits[0]} or {bits[1]}, after you have answered, "
+            "ask if they want that bot to DM them, and emit hidden "
+            "<<<OFFER voice=bruce|carly|ava topic=short phrase>>>. Never offer yourself."
+        )
     return (
         "Team specialties: Ava — public voice, brand, community, design. "
         "Bruce — ops, philosophy, academic discussion. "

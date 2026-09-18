@@ -1,6 +1,6 @@
 # Live machine index — run stats
 
-Generated 2026-09-17T18:07:53-10:00.
+Generated 2026-09-17T18:54:46-10:00.
 
 - paths indexed: **997237**
 - dir re-walks: 0

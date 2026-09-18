@@ -76,7 +76,12 @@ def test_carly_round_may_curse(monkeypatch):
     assert "Ava and Bruce" in p
 
 
-def test_speak_prompt_forbids_dodge():
+def test_speak_prompt_forbids_dodge(monkeypatch):
+    monkeypatch.setattr(
+        "apps.council.desk_read.desk_facts_block",
+        lambda **_k: "Desk live files (quote these):\nKīlauea: WATCH\nNWS Hawaii: quiet",
+    )
+    monkeypatch.setattr("apps.council.desk_read.snapshot_for_prompt", lambda **_k: "")
     p = build_speak_prompt(
         speaker_line="Speaker: kai",
         display="kai",
@@ -100,7 +105,6 @@ def test_speak_prompt_forbids_dodge():
     assert "<<<JUDGE" not in p
     assert "This is public" in p
     assert "Desk live files" in p
-    assert "Desk live files" in p
     assert "NWS Hawaii" in p
     dm = build_speak_prompt(
         speaker_line="Speaker: wildecho94",
@@ -115,6 +119,45 @@ def test_speak_prompt_forbids_dodge():
     assert "not a gate" in dm
     assert "<<<JUDGE" in dm
     assert "Greetings, check-ins, and small talk are 0" in dm
+    assert "Desk live files" not in dm
+    assert "sealed from the group" in dm
+    assert "public-statements" in dm or "PR" in dm
+
+    checkin = build_speak_prompt(
+        speaker_line="Speaker: Alexander",
+        display="Alexander",
+        voice="ava",
+        user_text="It's good. How's my favorite agent?",
+        chat_id=8589077731,
+        private=True,
+    )
+    assert "Private Telegram DM" in checkin
+    assert "Desk live files" not in checkin
+    assert "Kīlauea" not in checkin and "Kilauea" not in checkin
+    assert "NWS Hawaii" not in checkin
+    assert "public-statements" in checkin or "brand-voice" in checkin
+    # Weather ask in DM still gets desk.
+    wx = build_speak_prompt(
+        speaker_line="Speaker: Alexander",
+        display="Alexander",
+        voice="ava",
+        user_text="What's the weather tonight?",
+        chat_id=8589077731,
+        private=True,
+    )
+    assert "Desk live files" in wx
+
+
+def test_chatlog_refuses_public_path(tmp_path, monkeypatch):
+    from apps.council import chatlog as cl
+
+    bad = tmp_path / "Media" / "public" / "leak.jsonl"
+    monkeypatch.setattr(cl, "LOG", bad)
+    try:
+        cl.append({"dir": "in", "text": "secret"})
+        raise AssertionError("expected RuntimeError")
+    except RuntimeError as e:
+        assert "public" in str(e).lower() or "private" in str(e).lower()
 
 
 def test_speak_prompt_pins_last_three(monkeypatch):
@@ -125,6 +168,8 @@ def test_speak_prompt_pins_last_three(monkeypatch):
         {"dir": "in", "display": "Kai", "text": "four extra"},
     ]
     monkeypatch.setattr("apps.council.chatlog.recent_for_chat", lambda *_a, **_k: rows)
+    monkeypatch.setattr("apps.council.desk_read.desk_facts_block", lambda **_k: "")
+    monkeypatch.setattr("apps.council.desk_read.snapshot_for_prompt", lambda **_k: "")
     p = build_speak_prompt(
         speaker_line="Speaker: Kai",
         display="Kai",

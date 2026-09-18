@@ -176,7 +176,9 @@ export default {
       path.startsWith("/radio/") ||
       radioPath === "/api/radio/now" ||
       radioPath === "/api/radio/steering" ||
-      radioPath === "/api/radio/session"
+      radioPath === "/api/radio/session" ||
+      radioPath === "/api/radio/status" ||
+      radioPath === "/api/radio/hurricane"
     ) {
       return proxyToOrigin(request, {
         originUrl: origin,

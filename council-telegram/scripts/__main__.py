@@ -925,6 +925,10 @@ def deliver_vision_package(
         except Exception:
             pass
     reply_to = package.get("reply_to")
+    try:
+        private = int(chat_id) > 0
+    except (TypeError, ValueError):
+        private = False
     telegram.send_chat_action(cfg.token_for("ava"), chat_id, "typing")
     prompt = prompting.build_speak_prompt(
         speaker_line=trust.speaker_line(
@@ -944,7 +948,7 @@ def deliver_vision_package(
         skill_block="",
         vision_block=vision_extra,
         must_speak=True,
-        private=False,
+        private=private,
     )
     lead = rows[0]
     meta: dict[str, Any] = {
@@ -980,6 +984,9 @@ def deliver_vision_package(
             }
             for r in rows[:8]
         ]
+    if private:
+        meta["dm"] = True
+        meta["no_propose"] = True
     job = queue.enqueue(
         voice="ava",
         prompt=prompt,
@@ -1167,8 +1174,8 @@ def handle_update(
         except Exception:
             traceback.print_exc()
 
-    # "note" / "notes" → read last ~10 human lines, save a generalized site note, ack.
-    if not burst_flush and text and not text.startswith("/"):
+    # "note" / "notes" → group only. Never lift DM or private threads into site notes.
+    if not private and not burst_flush and text and not text.startswith("/"):
         try:
             from . import site_notes as _site_notes
 
@@ -1180,7 +1187,7 @@ def handle_update(
                     display=display_early,
                     username=str(user.get("username") or ""),
                     message_id=mid_early,
-                    reply_voice=listen_voice if private else "ava",
+                    reply_voice="ava",
                 )
         except Exception:
             traceback.print_exc()
@@ -1755,16 +1762,20 @@ def handle_update(
             "Stay entirely in your own personality. Do not speak as the other agents. "
             "Do not PASS on a real question. Answer it. Use the person file. "
             "Hi / hey / what are you up to are conversation, not a policy fail. Reply in character. "
+            "Be chatty and present — short natural back-and-forth, not a desk briefing. "
+            "Match closeness from the private tone block (heat) and their standing with you (trust). "
             "Do not lecture them onto your specialty. Do not deduct trust for small talk. "
             "If you like an idea here — yours or theirs — and it is fit for the public group, "
             "end with hidden <<<PROPOSE one-sentence pitch>>> and tell them you are taking it to the group. "
             "If they ask you to suggest it to the others, you must PROPOSE it. "
-            "Never dump the private chat. Never name the bound operator. No adult ideas. No secrets. "
+            "Never dump the private chat. Never name the bound operator to anyone else. No secrets. "
+            "Use their person file and durable notes — that is memory, not a chat leak. "
+            "Do not quote or continue another chat. "
             "If they ask about another member, refuse. Do not invent their life or job."
         )
         from . import refer as _refer
 
-        extra += "\n" + _refer.team_prompt(listen_voice)
+        extra += "\n" + _refer.team_prompt(listen_voice, private=True)
         pend = _refer.pending_prompt(uid)
         if pend:
             extra += "\n" + pend
@@ -1776,10 +1787,14 @@ def handle_update(
     _people.ensure_agents()
     if uid is not None:
         person_block = _people.prompt_block(uid)
-        try:
-            _asked_mod.note_asks(str(uid), text)
-        except Exception:
-            pass
+        # asked_today is live Q/A across chats — do not record DM lines into it
+        # (that would leak private asks into group prompts). Person files still
+        # observe every DM via people.observe above.
+        if not private:
+            try:
+                _asked_mod.note_asks(str(uid), text)
+            except Exception:
+                pass
 
     origin = text
     if is_round and not router.is_round_start(text):
@@ -1811,6 +1826,7 @@ def handle_update(
                 turn_vision = vision_extra
         turn_extra = extra
         nsfw = False
+        heat_turn = False
         if uid is not None:
             try:
                 from . import heat as _heat
@@ -1828,6 +1844,12 @@ def handle_update(
                 if tone:
                     turn_extra = (turn_extra + "\n" if turn_extra else "") + tone
                 nsfw = bool(snap.get("nsfw") and private)
+                # Private Ava/Carly DMs always carry heat tone + Dolphin path when trust allows.
+                if private and voice in ("ava", "carly") and snap.get("reason") not in (
+                    "blocked",
+                    "trust",
+                ):
+                    heat_turn = True
                 if snap.get("penalty") and not is_owner_user:
                     from . import judgment as _judge
 
@@ -1842,14 +1864,25 @@ def handle_update(
                     trust.save_trust(trust_data)
             except Exception:
                 traceback.print_exc()
+                if private and voice in ("ava", "carly") and is_owner_user:
+                    heat_turn = True
         try:
-            from . import asked_today as _asked
+            agents = _people.agent_prompt_block(
+                voice, include_last_said=not private
+            )
+            if private:
+                # Keep person + agent dossiers. Skip asked_today — that is live
+                # cross-chat Q/A, not durable user memory.
+                turn_person = "\n".join(
+                    p for p in (person_block, agents) if p
+                ).strip()
+            else:
+                from . import asked_today as _asked
 
-            mem = _asked.prompt_block(voice)
-            agents = _people.agent_prompt_block(voice)
-            turn_person = "\n".join(
-                p for p in (person_block, agents, mem) if p
-            ).strip()
+                mem = _asked.prompt_block(voice)
+                turn_person = "\n".join(
+                    p for p in (person_block, agents, mem) if p
+                ).strip()
         except Exception:
             turn_person = person_block
         prompt = prompting.build_speak_prompt(
@@ -1910,6 +1943,8 @@ def handle_update(
             meta["user_text"] = text
         if nsfw:
             meta["nsfw"] = True
+        if heat_turn:
+            meta["heat"] = True
         if conclusion_hit:
             meta["conclusion_pointer"] = True
             meta["conclusion"] = {

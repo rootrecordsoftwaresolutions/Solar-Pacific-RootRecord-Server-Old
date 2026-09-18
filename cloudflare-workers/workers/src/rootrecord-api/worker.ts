@@ -124,6 +124,39 @@ export default {
       });
     }
 
+    // Root Record Radio — player + stream + desk APIs (same as ava-api).
+    const radioPath = path.replace(/\/+$/, "") || "/";
+    if (
+      radioPath === "/radio" ||
+      radioPath === "/radio/listen" ||
+      path.startsWith("/radio/") ||
+      radioPath === "/api/radio/now" ||
+      radioPath === "/api/radio/steering" ||
+      radioPath === "/api/radio/session" ||
+      radioPath === "/api/radio/status" ||
+      radioPath === "/api/radio/hurricane" ||
+      radioPath === "/api/radio/wake" ||
+      radioPath === "/api/radio/vote" ||
+      radioPath === "/api/radio/heartbeat" ||
+      radioPath === "/api/radio/skip"
+    ) {
+      const { isRadioStreamPath, isPublicWrite, isReadMethod } = await import("../shared/publicPaths");
+      if (
+        !isReadMethod(request.method) &&
+        !isPublicWrite(request.method, radioPath) &&
+        !isPublicWrite(request.method, path)
+      ) {
+        return new Response(null, { status: 405 });
+      }
+      return proxyToOrigin(request, {
+        originUrl: origin,
+        path: path,
+        timeoutMs: isRadioStreamPath(radioPath) || isRadioStreamPath(path) ? 0 : 15000,
+        noTimeout: isRadioStreamPath(radioPath) || isRadioStreamPath(path),
+        offlineFallback: () => maintenancePage(),
+      });
+    }
+
     if (isPrivatePath(path)) {
       return new Response(null, { status: 404 });
     }

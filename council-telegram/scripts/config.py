@@ -167,8 +167,15 @@ class Config:
             return False
 
     def model_for(self, voice: str, *, dm: bool = False, full_thought: bool | None = None) -> str:
-        """One 3B for every voice. 7B/8B specialists do not fit beside FastFlowLM RSS."""
-        del voice, dm, full_thought
+        """Group chat stays on the fast instruct model (NPU path).
+
+        Ava/Carly private DMs use the Dolphin heat model — chatbot-style, chatty,
+        closeness follows heat + trust. Bruce DMs stay on the everyday chat model.
+        """
+        del full_thought
+        v = (voice or "").lower()
+        if dm and v in ("ava", "carly"):
+            return self._safe_model(self.heat_model or HEAT_MODEL_DEFAULT)
         return self._safe_model(self.chat_model)
 
     def token_for(self, voice: str) -> str:
