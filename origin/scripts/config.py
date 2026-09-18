@@ -379,7 +379,7 @@ OLLAMA_URL   = os.getenv("AVA_OLLAMA_URL",   "http://127.0.0.1:11434").strip()
 OLLAMA_MODEL = os.getenv("AVA_OLLAMA_MODEL", "llama3.2:3b-instruct-q4_K_M").strip()
 OLLAMA_EMBED_MODEL = os.getenv("AVA_OLLAMA_EMBED_MODEL", "nomic-embed-text").strip()
 OLLAMA_CODER_MODEL = os.getenv("AVA_OLLAMA_CODER_MODEL", "llama3.2:3b-instruct-q4_K_M").strip()
-OLLAMA_VISION_MODEL = os.getenv("AVA_OLLAMA_VISION_MODEL", "moondream:latest").strip()
+OLLAMA_VISION_MODEL = os.getenv("AVA_OLLAMA_VISION_MODEL", "qwen2.5vl:3b").strip()
 # llama3.2 defaulted to 2048 unless we send options.num_ctx. Cap 8192 on 16 GB.
 OLLAMA_NUM_CTX = min(8192, max(2048, _env_int("AVA_OLLAMA_NUM_CTX", 4096)))
 # FastFlowLM on the XDNA NPU. Chat default. Coder/vision stay on Ollama/iGPU.

@@ -82,6 +82,30 @@ def send_chat_action(token: str, chat_id: int | str, action: str = "typing") -> 
     )
 
 
+def edit_message_text(
+    token: str,
+    chat_id: int | str,
+    message_id: int,
+    text: str,
+    *,
+    parse_mode: str | None = None,
+) -> dict[str, Any]:
+    """Edit a message Ava (or another voice) already posted. Caps at one Telegram chunk."""
+    body = (text or "").strip()
+    if not body:
+        return {"ok": False, "description": "empty"}
+    if len(body) > 3500:
+        body = body[:3497] + "..."
+    params: dict[str, Any] = {
+        "chat_id": chat_id,
+        "message_id": int(message_id),
+        "text": body,
+    }
+    if parse_mode:
+        params["parse_mode"] = parse_mode
+    return api_call(token, "editMessageText", params, timeout=45)
+
+
 def split_chunks(text: str, cap: int = 3500) -> list[str]:
     raw = (text or "").strip()
     if not raw:

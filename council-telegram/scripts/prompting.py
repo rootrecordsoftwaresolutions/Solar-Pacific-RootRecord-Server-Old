@@ -73,6 +73,7 @@ def build_speak_prompt(
     quote: str = "",
     extra: str = "",
     skill_block: str = "",
+    vision_block: str = "",
     round_open: bool = False,
     person_block: str = "",
     must_speak: bool = True,
@@ -116,15 +117,35 @@ def build_speak_prompt(
             else " If you truly have nothing in-lane, reply PASS and nothing else."
         )
     )
+    vision = (vision_block or "").strip()
+    if vision:
+        must.append(
+            "PHOTO TURN — the Vision card below is the subject. "
+            "Lead with a short take on what the image shows. "
+            "Do not pivot to weather, flood watches, volcano, or EcoFlow unless the image is clearly about that. "
+            "Do not invent details beyond the Vision card."
+        )
+        must.append(vision)
     must.append(
         "Desk live files below are the source of truth. Quote them. "
         "Never say you lack live weather, alerts, Kīlauea, EcoFlow, or host data when those lines are present. "
         "If a line says No data / DOWN, say that. Do not invent."
+        + (
+            " On a PHOTO TURN, desk lines are background only — do not lead with them."
+            if vision
+            else ""
+        )
     )
     from . import desk_read
 
     # Weather asks get a larger live block first so NWS/tomorrow survive the budget.
-    live_cap = 2400 if desk_read._ask_wants_weather(user_text) else 1800
+    # Photo turns keep desk tiny so the Vision card stays the answer.
+    if vision:
+        live_cap = 400
+    elif desk_read._ask_wants_weather(user_text):
+        live_cap = 2400
+    else:
+        live_cap = 1800
     live = desk_read.desk_facts_block(cap=live_cap, ask=user_text)
     if live:
         must.append(live)

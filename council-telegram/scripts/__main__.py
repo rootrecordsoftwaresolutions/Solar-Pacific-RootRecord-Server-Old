@@ -944,6 +944,7 @@ def handle_update(
     text = _msg_text(message)
     has_photo = bool(telegram.largest_photo_file_id(message))
     vision_extra = ""
+    vision_row: dict[str, Any] | None = None
     if has_photo:
         try:
             from . import vision as _vis
@@ -951,13 +952,14 @@ def handle_update(
             telegram.send_chat_action(cfg.token_for(listen_voice), chat_id, "typing")
             row = _vis.handle_telegram_photo(cfg, message, chat_id=chat_id)
             if row:
-                vision_extra = _vis.prompt_block(row)
+                vision_row = row
+                vision_extra = _vis.prompt_block(row, for_voice="ava")
                 if not text:
-                    text = "Look at this photo — what do you see?"
+                    text = "Photo shared — use the Vision card."
         except Exception:
             traceback.print_exc()
             if not text:
-                text = "Look at this photo — what do you see?"
+                text = "Photo shared — use the Vision card."
             vision_extra = "Vision: analyze failed. Say you could not read the image."
     if not text:
         return
@@ -1163,6 +1165,44 @@ def handle_update(
         ):
             return
 
+    # Reply-to Ava's photo take → edit her message (first editing skill).
+    if (
+        not has_photo
+        and report_reply_id
+        and text
+        and not text.startswith("/")
+    ):
+        try:
+            from . import vision as _vis
+
+            take = _vis.lookup_take(chat_id, int(report_reply_id))
+            if take:
+                telegram.send_chat_action(cfg.token_for("ava"), chat_id, "typing")
+                got = _vis.apply_correction(
+                    cfg,
+                    chat_id=chat_id,
+                    take=take,
+                    correction=text.strip(),
+                )
+                ack = (
+                    "Updated — thanks for the correction."
+                    if got.get("ok")
+                    else f"Couldn't edit that ({got.get('detail') or 'miss'})."
+                )
+                telegram.send_message(
+                    cfg.token_for("ava"),
+                    chat_id,
+                    ack,
+                    reply_to=message.get("message_id"),
+                )
+                print(
+                    f"vision-correct ok={got.get('ok')} mid={report_reply_id}",
+                    flush=True,
+                )
+                return
+        except Exception:
+            traceback.print_exc()
+
     if st.get("discussion", "on") != "on" and not private:
         return
 
@@ -1330,6 +1370,13 @@ def handle_update(
         reason = "photo"
         addr["voices"] = callouts
         addr["reason"] = reason
+    # Photo: Ava's take first (editing path). Bruce gets a short pass after she posts.
+    if has_photo:
+        callouts = ["ava"]
+        reason = "photo"
+        addr["voices"] = callouts
+        addr["reason"] = reason
+        is_round = False
     # Whole-team hello: speak in order so later agents hear earlier ones,
     # and questions to each other can chain (Ava answers Bruce, etc.).
     if reason == "team_all" and not private:
@@ -1356,7 +1403,8 @@ def handle_update(
         addr.pop("team_chain", None)
         print(f"burst-summary lead={lead} parts={burst_parts}", flush=True)
     conclusion_hit: dict[str, Any] | None = None
-    if not private and callouts:
+    # Photos are a new subject — never answer with a sealed flood/folders pointer.
+    if not private and callouts and not has_photo:
         try:
             from . import conclusions as _conc
 
@@ -1542,8 +1590,14 @@ def handle_update(
         feelings.apply_event("called", voice=voice, text=text)
         skill_ids = skillpack.match_read_skills(search_blob, voice=voice)
         skill_block = skillpack.inject_blocks(skill_ids, text=text)
-        if vision_extra:
-            skill_block = (skill_block + "\n\n" if skill_block else "") + vision_extra
+        turn_vision = vision_extra
+        if vision_row is not None:
+            try:
+                from . import vision as _vis
+
+                turn_vision = _vis.prompt_block(vision_row, for_voice=voice)
+            except Exception:
+                turn_vision = vision_extra
         turn_extra = extra
         nsfw = False
         if uid is not None:
@@ -1601,6 +1655,7 @@ def handle_update(
             quote=quote,
             extra=turn_extra,
             skill_block=skill_block,
+            vision_block=turn_vision,
             round_open=bool(is_round and reason == "round_start"),
             person_block=turn_person,
             must_speak=True,
@@ -1687,6 +1742,21 @@ def handle_update(
                 meta.pop("no_propose", None)
         if nsfw:
             meta["nsfw"] = True
+        if vision_row is not None and voice == "ava":
+            meta["vision_take"] = True
+            meta["handoff_bruce"] = True
+            meta["vision_row"] = {
+                "src": vision_row.get("src"),
+                "sorted": vision_row.get("sorted"),
+                "folder": vision_row.get("folder"),
+                "description": str(vision_row.get("description") or "")[:1200],
+                "verified": str(vision_row.get("verified") or "")[:600],
+                "caption": str(vision_row.get("caption") or "")[:200],
+                "ok": bool(vision_row.get("ok")),
+            }
+            meta["origin_text"] = origin
+            meta["no_propose"] = True
+            meta["allow_loop"] = False
         job = queue.enqueue(
             voice=voice,
             prompt=prompt,

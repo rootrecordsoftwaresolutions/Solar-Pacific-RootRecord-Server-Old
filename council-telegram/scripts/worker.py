@@ -456,6 +456,67 @@ def _process_one_locked(cfg: Config, st: dict[str, Any]) -> bool:
                 forbid_names=forbid,
             )
             feelings.apply_event("spoke", voice=voice)
+            if (
+                mid_out
+                and voice == "ava"
+                and meta.get("vision_take")
+                and isinstance(meta.get("vision_row"), dict)
+            ):
+                try:
+                    from . import vision as _vis
+                    from . import prompting
+
+                    _vis.register_take(
+                        chat_id=chat_id,
+                        message_id=int(mid_out),
+                        vision_row=dict(meta.get("vision_row") or {}),
+                        body=clean,
+                        photo_message_id=int(source_mid) if source_mid is not None else None,
+                        from_user_id=meta.get("judge_user_id"),
+                    )
+                    print(f"vision-take registered mid={mid_out}", flush=True)
+                    if meta.get("handoff_bruce") and depth < queue.MAX_LOOP_DEPTH:
+                        vrow = dict(meta.get("vision_row") or {})
+                        bruce_prompt = prompting.build_speak_prompt(
+                            speaker_line="",
+                            display="Alexander" if meta.get("judge_is_owner") else "friend",
+                            voice="bruce",
+                            user_text=str(meta.get("origin_text") or "Photo shared"),
+                            chat_id=chat_id,
+                            quote="",
+                            extra=(
+                                "Ava already posted her first take on this photo (below). "
+                                "Add a brief ops/context note only. Prefer verified prices. "
+                                "Do not repeat her correction footer.\n\n"
+                                f"Ava's take:\n{clean[:900]}"
+                            ),
+                            skill_block="",
+                            vision_block=_vis.prompt_block(vrow, for_voice="bruce"),
+                            must_speak=True,
+                            private=False,
+                        )
+                        queue.enqueue(
+                            voice="bruce",
+                            prompt=bruce_prompt,
+                            chat_id=chat_id,
+                            reply_to=mid_out,
+                            source_message_id=source_mid,
+                            thread_id=job.get("thread_id"),
+                            depth=depth + 1,
+                            kind="speak",
+                            meta={
+                                "allow_loop": False,
+                                "no_propose": True,
+                                "vision_bruce_pass": True,
+                                "origin_text": meta.get("origin_text"),
+                                "judge_user_id": meta.get("judge_user_id"),
+                                "judge_is_owner": bool(meta.get("judge_is_owner")),
+                                "from_voice": "ava",
+                            },
+                        )
+                        print("vision-take handoff bruce queued", flush=True)
+                except Exception:
+                    print("vision-take register/handoff skip", flush=True)
             try:
                 from . import brainstorm as _bs
 

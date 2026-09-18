@@ -29,7 +29,17 @@ def _chat_keep_alive(explicit=None):
 
 def _coder_or_vision(model: str | None) -> bool:
     want = (model or "").lower()
-    return "coder" in want or "moondream" in want or "llava" in want
+    return (
+        "coder" in want
+        or "moondream" in want
+        or "llava" in want
+        or "qwen2.5vl" in want
+        or "qwen2.5-vl" in want
+        or "qwen3-vl" in want
+        or "qwen3vl" in want
+        or "minicpm-v" in want
+        or "vision" in want
+    )
 
 
 def use_npu_chat(model: str | None = None) -> bool:
