@@ -1,10 +1,22 @@
-/** Public desk API for Vercel. Tunnel down → OFFLINE, never invented numbers. */
+/** Public desk API for Vercel. Tunnel down → OFFLINE, never invented numbers.
+ * Browser uses same-origin `/api/*` (Next proxy → origin). Server may hit origin directly.
+ */
 
-export const PUBLIC_API = (
-  process.env.NEXT_PUBLIC_AVA_API ||
-  process.env.AVA_PUBLIC_API ||
-  "https://api.rootrecord.online"
-).replace(/\/$/, "");
+const ORIGIN = (process.env.AVA_ORIGIN_URL || "https://origin.avaivy.cloud").replace(/\/$/, "");
+
+/** Empty in browser = same-origin. Absolute origin only on the server when needed. */
+export function publicApiBase(): string {
+  if (typeof window !== "undefined") return "";
+  const fromEnv = (process.env.NEXT_PUBLIC_AVA_API || process.env.AVA_PUBLIC_API || "").replace(
+    /\/$/,
+    "",
+  );
+  // Dead / wrong host — never use api.rootrecord.online
+  if (!fromEnv || /api\.rootrecord\.online/i.test(fromEnv)) return ORIGIN;
+  return fromEnv;
+}
+
+export const PUBLIC_API = publicApiBase();
 
 export const OFFLINE = "OFFLINE";
 
@@ -16,7 +28,8 @@ export function isOffline(data: unknown): boolean {
 }
 
 export async function fetchDeskJson(path: string, timeoutMs = 8000): Promise<DeskPayload> {
-  const url = path.startsWith("http") ? path : `${PUBLIC_API}${path.startsWith("/") ? path : `/${path}`}`;
+  const rel = path.startsWith("/") ? path : `/${path}`;
+  const url = path.startsWith("http") ? path : `${publicApiBase()}${rel}`;
   try {
     const res = await fetch(url, {
       cache: "no-store",

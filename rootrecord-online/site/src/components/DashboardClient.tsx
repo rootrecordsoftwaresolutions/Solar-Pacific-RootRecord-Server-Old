@@ -56,6 +56,18 @@ export default function DashboardClient({ initial }: Props) {
   return (
     <div className={styles.wrap}>
       <div className={styles.content}>
+        <p style={{ margin: "0 0 1rem", fontSize: "0.95rem" }}>
+          <a href="/status" style={{ color: "inherit", fontWeight: 600 }}>
+            Full status desk →
+          </a>
+          <span style={{ opacity: 0.65 }}>
+            {" "}
+            ·{" "}
+            <a href="https://rootrecord.cloud/radio" style={{ color: "inherit" }}>
+              Radio
+            </a>
+          </span>
+        </p>
         {/* Status row */}
         <div className={styles.topRow}>
           <StatTile

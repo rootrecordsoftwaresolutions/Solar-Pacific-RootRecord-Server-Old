@@ -7,6 +7,7 @@ import { goalsFetch } from "@/lib/goals-api";
 const NAV = [
   { href: "/", label: "Live" },
   { href: "/status", label: "Status" },
+  { href: "https://rootrecord.cloud/radio", label: "Radio" },
   { href: "/blog", label: "Blog" },
   { href: "/reports", label: "Auto Reports" },
   { href: "/timeline", label: "Timeline" },

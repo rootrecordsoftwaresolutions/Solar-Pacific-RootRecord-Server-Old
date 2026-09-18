@@ -4,24 +4,6 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **0015** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 0W | Delta SOC 62% |
-
-> ◇ **0015** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 77 W | Current 63%
-
-> ◇ **0015** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
-
-> ◇ **0100** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 0W | Delta SOC 53% |
-
-> ◇ **0100** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 76 W | Current 54%
-
-> ◇ **0100** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
-
-> ◇ **0130** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 0W | Delta SOC 48% |
-
-> ◇ **0130** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 70 W | Current 49%
-
-> ◇ **0130** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
-
 > ◇ **0200** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
 
 > ◇ **0200** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
@@ -81,3 +63,39 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1030** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 60 W | Current 8%
 
 > ◇ **1030** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1145** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 81W | total in 81W | Delta SOC 14% |
+
+> ◇ **1145** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 62 W | Current 14%
+
+> ◇ **1145** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1215** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 163W | total in 164W | Delta SOC 14%
+
+> ◇ **1215** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 7 W | Current 14%
+
+> ◇ **1215** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1245** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 183W | total in 184W | Delta SOC 18%
+
+> ◇ **1245** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 73 W | Current 16%
+
+> ◇ **1245** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1315** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 121W | total in 121W | Delta SOC 19%
+
+> ◇ **1315** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 102 W | Current 19%
+
+> ◇ **1315** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1345** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 703W | Delta SOC 49% |
+
+> ◇ **1345** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 641 W / 0 W | Current 38%
+
+> ◇ **1345** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+
+> ◇ **1415** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 709W | Delta SOC 77% |
+
+> ◇ **1415** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 671 W / 0 W | Current 64%
+
+> ◇ **1415** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%

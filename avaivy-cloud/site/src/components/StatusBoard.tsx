@@ -1,18 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchDeskJson, isOffline, OFFLINE, PUBLIC_API } from "@/lib/desk-api";
+import { fetchDeskJson, isOffline, OFFLINE } from "@/lib/desk-api";
 
-const ORIGIN_BOARD = `${PUBLIC_API.replace("api.rootrecord.online", "origin.avaivy.cloud")}/status`;
+const ORIGIN_BOARD = "https://origin.avaivy.cloud/status";
+
+type Phase = "loading" | "live" | "offline";
 
 export default function StatusBoard({ title }: { title: string }) {
-  const [offline, setOffline] = useState(false);
+  const [phase, setPhase] = useState<Phase>("loading");
 
   useEffect(() => {
     let stop = false;
     const tick = async () => {
       const data = await fetchDeskJson("/api/status", 6000);
-      if (!stop) setOffline(isOffline(data));
+      if (!stop) setPhase(isOffline(data) ? "offline" : "live");
     };
     void tick();
     const iv = setInterval(() => void tick(), 30_000);
@@ -22,10 +24,51 @@ export default function StatusBoard({ title }: { title: string }) {
     };
   }, []);
 
-  if (offline) {
+  if (phase === "loading") {
     return (
-      <main style={{ minHeight: "100dvh", background: "#0a0e14", color: "#f4efe6", padding: "3rem 1.25rem", fontFamily: "Georgia, serif" }}>
-        <p style={{ letterSpacing: "0.12em", textTransform: "uppercase", fontSize: "0.72rem", color: "#ff6a2a" }}>
+      <main
+        style={{
+          minHeight: "100dvh",
+          background: "#0a0e14",
+          color: "#f4efe6",
+          padding: "3rem 1.25rem",
+          fontFamily: "Georgia, serif",
+        }}
+      >
+        <p
+          style={{
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            fontSize: "0.72rem",
+            color: "#8a9bb0",
+          }}
+        >
+          {title}
+        </p>
+        <h1 style={{ fontWeight: 500, fontSize: "2.2rem" }}>Checking desk…</h1>
+      </main>
+    );
+  }
+
+  if (phase === "offline") {
+    return (
+      <main
+        style={{
+          minHeight: "100dvh",
+          background: "#0a0e14",
+          color: "#f4efe6",
+          padding: "3rem 1.25rem",
+          fontFamily: "Georgia, serif",
+        }}
+      >
+        <p
+          style={{
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            fontSize: "0.72rem",
+            color: "#ff6a2a",
+          }}
+        >
           {title}
         </p>
         <h1 style={{ fontWeight: 500, fontSize: "2.2rem" }}>{OFFLINE}</h1>

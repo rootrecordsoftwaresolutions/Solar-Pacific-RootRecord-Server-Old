@@ -14,6 +14,17 @@ log() {
   printf '%s %s\n' "$(date -Iseconds)" "$*" | tee -a "$LOG_DIR/idle-stop.log"
 }
 
+# Refuse if a *different* live AVA Console owns the desk. Stops a dying console's
+# trap/reaper from tearing down a newer launch that already claimed the pid file.
+LIVE_OWNER="$(cat "$STATE_DIR/ava-console.pid" 2>/dev/null || true)"
+REQ_OWNER="${IDLE_STOP_OWNER_PID:-}"
+if [ -n "$LIVE_OWNER" ] && kill -0 "$LIVE_OWNER" 2>/dev/null; then
+  if [ -z "$REQ_OWNER" ] || [ "$REQ_OWNER" != "$LIVE_OWNER" ]; then
+    log "idle-stop: refused — live AVA Console pid $LIVE_OWNER still owns the desk"
+    exit 0
+  fi
+fi
+
 if [ "$DRY_RUN" != "1" ]; then
   python3 "$HOME/.ollama/skills/xmrig/scripts/xmrig_ctl.py" stop >/dev/null 2>&1 || true
 fi

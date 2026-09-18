@@ -143,6 +143,13 @@ const LIVE_REPOS = [
     defaultBranch: "main",
     alsoDev: false,
   },
+  {
+    id: "rootmc",
+    dir: path.join(SKILLS, "rootmc", "site"),
+    remoteUrl: "https://github.com/Ava-Core-Dev/RootMC-Net.git",
+    defaultBranch: "main",
+    alsoDev: false,
+  },
 ];
 
 /**

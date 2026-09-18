@@ -64,8 +64,24 @@ export function readToken(): string {
 
 export function writeToken(token: string) {
   if (typeof window === "undefined") return;
-  if (token) localStorage.setItem(TOKEN_KEY, token);
-  else localStorage.removeItem(TOKEN_KEY);
+  if (token) {
+    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem("rootrecord_portal_token", token);
+    try {
+      const maxAge = 60 * 60 * 24 * 30;
+      document.cookie = `ava_session=${encodeURIComponent(token)}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+    } catch {
+      /* ignore */
+    }
+  } else {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem("rootrecord_portal_token");
+    try {
+      document.cookie = "ava_session=; path=/; max-age=0; SameSite=Lax; Secure";
+    } catch {
+      /* ignore */
+    }
+  }
 }
 
 export async function goalsFetch(path: string, init: RequestInit = {}) {

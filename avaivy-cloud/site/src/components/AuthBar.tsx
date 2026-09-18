@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./AuthBar.module.css";
 
-const TOKEN_KEY = "rootrecord_portal_token";
+const PORTAL_TOKEN_KEY = "rootrecord_portal_token";
+const GOALS_TOKEN_KEY = "rr_goals_token";
 const DEVICE_KEY = "rootrecord_portal_device_id";
-const API_BASE = "https://rootrecord-api-account.rootrecord.workers.dev";
+/** Prefer *.rootrecord.info so credentialed CORS + SSO cookie can work. */
+const API_BASE =
+  process.env.NEXT_PUBLIC_ACCOUNT_API || "https://api.rootrecord.info";
 
 type Me = { email?: string; account_id?: string } | null;
 
@@ -20,6 +23,31 @@ function deviceId(): string {
     localStorage.setItem(DEVICE_KEY, id);
   }
   return id;
+}
+
+function writeAllTokens(tok: string) {
+  localStorage.setItem(PORTAL_TOKEN_KEY, tok);
+  localStorage.setItem(GOALS_TOKEN_KEY, tok);
+  try {
+    const maxAge = 60 * 60 * 24 * 30;
+    document.cookie = `ava_session=${encodeURIComponent(tok)}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+  } catch {
+    /* ignore */
+  }
+}
+
+function clearAllTokens() {
+  localStorage.removeItem(PORTAL_TOKEN_KEY);
+  localStorage.removeItem(GOALS_TOKEN_KEY);
+  try {
+    document.cookie = "ava_session=; path=/; max-age=0; SameSite=Lax; Secure";
+  } catch {
+    /* ignore */
+  }
+}
+
+function readAnyToken(): string {
+  return localStorage.getItem(PORTAL_TOKEN_KEY) || localStorage.getItem(GOALS_TOKEN_KEY) || "";
 }
 
 type Props = {
@@ -37,18 +65,12 @@ export function AuthBar({ brandLabel, studioHref, onAccountOk }: Props) {
   const [status, setStatus] = useState("");
 
   async function refresh() {
-    const t = localStorage.getItem(TOKEN_KEY);
+    const t = readAnyToken();
     if (!t) {
       setMe(null);
       return;
     }
-    // Keep chat gate cookie in sync for already-signed-in visitors.
-    try {
-      const maxAge = 60 * 60 * 24 * 30;
-      document.cookie = `ava_session=${encodeURIComponent(t)}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
-    } catch {
-      /* ignore */
-    }
+    writeAllTokens(t);
     try {
       const r = await fetch(`${API_BASE}/api/auth/me`, {
         headers: {
@@ -94,16 +116,7 @@ export function AuthBar({ brandLabel, studioHref, onAccountOk }: Props) {
         return;
       }
       const tok = j.token || j.access_token || j.session_token;
-      if (tok) {
-        localStorage.setItem(TOKEN_KEY, tok);
-        // Origin chat gate looks for ava_session cookie (Bearer also accepted).
-        try {
-          const maxAge = 60 * 60 * 24 * 30;
-          document.cookie = `ava_session=${encodeURIComponent(tok)}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
-        } catch {
-          /* ignore */
-        }
-      }
+      if (tok) writeAllTokens(tok);
       if (onAccountOk) {
         try {
           await onAccountOk(email.trim(), password);
@@ -121,12 +134,7 @@ export function AuthBar({ brandLabel, studioHref, onAccountOk }: Props) {
   }
 
   function logout() {
-    localStorage.removeItem(TOKEN_KEY);
-    try {
-      document.cookie = "ava_session=; path=/; max-age=0; SameSite=Lax; Secure";
-    } catch {
-      /* ignore */
-    }
+    clearAllTokens();
     setMe(null);
   }
 

@@ -33,9 +33,15 @@ ava_console_stop() {
   fi
   _AVA_STOPPING=1
   trap - EXIT INT TERM HUP
+  # If a newer launch already claimed ava-console.pid, do not tear their desk down.
+  _owner="$(cat "$AVA_STATE_DIR/ava-console.pid" 2>/dev/null || true)"
+  if [ -n "${_owner}" ] && [ "${_owner}" != "$$" ]; then
+    log "AVA Console stopping — skip idle-stop (desk owned by pid ${_owner})"
+    return 0
+  fi
   log "AVA Console stopping — idle-stop"
   if [ -x "$IDLE_STOP" ] || [ -f "$IDLE_STOP" ]; then
-    bash "$IDLE_STOP" || true
+    IDLE_STOP_OWNER_PID=$$ bash "$IDLE_STOP" || true
   fi
 }
 
@@ -82,7 +88,8 @@ date -Iseconds > "$AVA_STATE_DIR/ava-console-up"
 echo $$ > "$AVA_STATE_DIR/ava-console.pid"
 
 # If the window is killed hard enough that the EXIT trap misses, this session
-# still runs idle-stop once the launch PID is gone.
+# still runs idle-stop once the launch PID is gone — but only if we still own
+# the desk (a newer console may have overwritten ava-console.pid).
 if [ "${AVA_CONSOLE_IDLE_STOP:-1}" != "0" ]; then
   AVA_LAUNCH_PID=$$
   setsid bash -c "
@@ -90,7 +97,11 @@ if [ "${AVA_CONSOLE_IDLE_STOP:-1}" != "0" ]; then
     while kill -0 ${AVA_LAUNCH_PID} 2>/dev/null; do
       sleep 1
     done
-    exec bash '${IDLE_STOP}'
+    owner=\$(cat '${AVA_STATE_DIR}/ava-console.pid' 2>/dev/null || true)
+    if [ -n \"\$owner\" ] && [ \"\$owner\" != '${AVA_LAUNCH_PID}' ]; then
+      exit 0
+    fi
+    exec env IDLE_STOP_OWNER_PID='${AVA_LAUNCH_PID}' bash '${IDLE_STOP}'
   " </dev/null >/dev/null 2>&1 &
 fi
 
@@ -162,25 +173,59 @@ if lsof -ti:8787 &>/dev/null; then
 fi
 
 # Telegram council (Ava/Bruce/Carly) — desk discussion. Not OBS. Idle-stop kills it.
-# If the user unit is enabled, systemd owns the process.
+# If the user unit is enabled, systemd owns the process. Otherwise this console
+# supervises a child and restarts it while we still own ava-console.pid.
 COUNCIL_LOG="$LOG_DIR/ava-council.log"
+COUNCIL_RECYCLE_MAX="${AVA_COUNCIL_RECYCLE_MAX:-20}"
+COUNCIL_PARENT_PID=$$
 if systemctl --user is-enabled ava-council.service >/dev/null 2>&1; then
   log "Telegram council owned by systemd — starting unit if needed"
   systemctl --user start ava-council.service >/dev/null 2>&1 || true
-elif ! pgrep -f "python.*-m apps.council" >/dev/null 2>&1; then
+else
+  # Drop orphans so we never skip start because a dying leftover matched pgrep.
+  pkill -f 'python.*-m apps\.council' 2>/dev/null || true
+  pkill -f 'python.*apps\.council' 2>/dev/null || true
+  sleep 0.5
   (
+    parent=$COUNCIL_PARENT_PID
+    fails=0
     for _ in $(seq 1 40); do
+      kill -0 "$parent" 2>/dev/null || exit 0
       if curl -fsS "http://127.0.0.1:8787/health" >/dev/null 2>&1; then
         break
       fi
       sleep 1
     done
-    log "Starting Telegram council (Ava/Bruce/Carly)..."
-    cd "$AVA_ROOT"
-    exec "$PYTHON" -m apps.council >> "$COUNCIL_LOG" 2>&1
+    while kill -0 "$parent" 2>/dev/null; do
+      owner="$(cat "$AVA_STATE_DIR/ava-console.pid" 2>/dev/null || true)"
+      if [ -n "$owner" ] && [ "$owner" != "$parent" ]; then
+        exit 0
+      fi
+      log "Starting Telegram council (Ava/Bruce/Carly)..."
+      cd "$AVA_ROOT"
+      "$PYTHON" -m apps.council >> "$COUNCIL_LOG" 2>&1 &
+      cpid=$!
+      echo "$cpid" > "$AVA_STATE_DIR/ava-council.pid"
+      wait "$cpid" || true
+      rm -f "$AVA_STATE_DIR/ava-council.pid"
+      kill -0 "$parent" 2>/dev/null || exit 0
+      owner="$(cat "$AVA_STATE_DIR/ava-console.pid" 2>/dev/null || true)"
+      if [ -n "$owner" ] && [ "$owner" != "$parent" ]; then
+        exit 0
+      fi
+      fails=$((fails + 1))
+      if [ "$fails" -ge "$COUNCIL_RECYCLE_MAX" ]; then
+        log "Telegram council recycle cap ${COUNCIL_RECYCLE_MAX} reached — not restarting"
+        exit 1
+      fi
+      delay=$((fails * 2))
+      if [ "$delay" -gt 30 ]; then
+        delay=30
+      fi
+      log "Telegram council exited — restarting in ${delay}s (attempt ${fails}/${COUNCIL_RECYCLE_MAX})"
+      sleep "$delay"
+    done
   ) &
-else
-  log "Telegram council already running."
 fi
 
 API_TUNNEL="$HOME/.ollama/skills/public-edge/scripts/api-tunnel.sh"

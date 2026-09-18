@@ -35,6 +35,6 @@ export async function POST(req: Request) {
   return NextResponse.json({
     reply: DIRECTORY,
     brain: "directory",
-    login: "https://rootmc.net/login/",
+    login: "https://avaivy.cloud/login",
   });
 }

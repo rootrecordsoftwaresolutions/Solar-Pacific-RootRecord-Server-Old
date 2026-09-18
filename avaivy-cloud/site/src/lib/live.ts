@@ -1,4 +1,4 @@
-import { PUBLIC_API } from "./desk-api";
+import { publicApiBase } from "./desk-api";
 
 export interface LiveStatus {
   ok: boolean;
@@ -29,7 +29,7 @@ export const FALLBACK_LIVE: LiveStatus = {
 
 export async function getLiveStatus(revalidateSeconds = 10): Promise<LiveStatus> {
   try {
-    const res = await fetch(`${PUBLIC_API}/api/live`, {
+    const res = await fetch(`${publicApiBase()}/api/live`, {
       next: { revalidate: revalidateSeconds },
       signal: AbortSignal.timeout(6000),
     });

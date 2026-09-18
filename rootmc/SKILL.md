@@ -7,6 +7,9 @@ description: Maps Minecraft live detect, player economy (Gold), D1 cache, plugin
 
 Carla. Stay in this folder. Lead with what the live code does now.
 
+Public site: `site/` (`site/.git` → `Ava-Core-Dev/RootMC-Net`, Vercel project `rootmc-net`).
+Edit and publish from `site/` only. `play.rootmc.net` stays on the game host; `api.rootmc.net` stays on the Worker; `app.rootmc.net` is Pages.
+
 ## Keep current
 
 After changing this topic, from Ava-Core run:

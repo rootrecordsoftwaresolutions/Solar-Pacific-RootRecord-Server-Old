@@ -18,6 +18,8 @@ export function allowedWebCredentialOrigin(origin: string | null): string | null
     if (host.endsWith(".rootrecord.info")) return o;
     if (host === "alexrs94.site" || host === "www.alexrs94.site") return o;
     if (host === "avaivy.cloud" || host.endsWith(".avaivy.cloud")) return o;
+    if (host === "rootrecord.online" || host.endsWith(".rootrecord.online")) return o;
+    if (host === "rootrecord.cloud" || host.endsWith(".rootrecord.cloud")) return o;
     if (host === "rootmc.net" || host.endsWith(".rootmc.net")) return o;
     if (host.endsWith(".pages.dev")) return o;
   } catch {

@@ -4,7 +4,7 @@ Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Rep
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1030** — WEATHER WINDOWS
+> ◇ **1415** — WEATHER WINDOWS
 
 > ◇ **0015** — WEATHER — NWS Hawaii by county, as of four three p.m. Hawaiian Standard Time. Honolulu County:
 
@@ -49,3 +49,19 @@ Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those 
 > ◇ **1030** — CHARGE STATUS — Battery | Host battery: 80% | CPU: 24% | RAM: 94% | Temp: 54C | iGPU: 1% | NPU:
 
 > ◇ **1030** — WEATHER — NWS Hawaii hazard update, as of nine thirty seven a.m. Hawaiian Standard Time.
+
+> ◇ **1145** — WEATHER — NWS Hawaii hazard update, as of eleven fourteen a.m. Hawaiian Standard Time. Honolulu
+
+> ◇ **1215** — WEATHER — NWS Hawaii hazard update, as of twelve twenty one p.m. Hawaiian Standard Time.
+
+> ◇ **1245** — WEATHER — NWS Hawaii hazard update, as of twelve thirty one p.m. Hawaiian Standard Time.
+
+> ◇ **1315** — CHARGE STATUS — Charging | Host battery: 74% | CPU: 12% | RAM: 50% | Temp: 63C | iGPU: 0% | NPU:
+
+> ◇ **1315** — WEATHER — NWS Hawaii hazard update, as of twelve thirty one p.m. Hawaiian Standard Time.
+
+> ◇ **1345** — CHARGE STATUS — Battery | Host battery: 80% | CPU: 22% | RAM: 61% | Temp: 75C | iGPU: 1% | NPU:
+
+> ◇ **1345** — WEATHER — NWS Hawaii hazard update, as of twelve thirty one p.m. Hawaiian Standard Time.
+
+> ◇ **1415** — WEATHER — NWS Hawaii hazard update, as of twelve thirty one p.m. Hawaiian Standard Time.
