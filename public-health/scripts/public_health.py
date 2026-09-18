@@ -156,10 +156,10 @@ def _console_up() -> bool:
 def _fetch(
     url: str,
     *,
-    timeout: float = 12.0,
+    timeout: float = 6.0,
     method: str = "GET",
     data: bytes | None = None,
-    retries: int = 2,
+    retries: int = 1,
 ) -> tuple[int, bytes, str]:
     last: tuple[int, bytes, str] = (0, b"", "")
     for attempt in range(max(1, retries + 1)):
@@ -311,6 +311,34 @@ def _radio_heal_local() -> dict[str, Any]:
     return out
 
 
+def _local_origin_ok() -> bool:
+    code, _, _ = _fetch("http://127.0.0.1:8787/health", timeout=3.0, retries=0)
+    return code == 200
+
+
+def _recycle_origin() -> dict[str, Any]:
+    """Ask launch to restart a wedged :8787 (console recycle loop)."""
+    script = Path.home() / ".ollama" / "skills" / "recycle-origin" / "scripts" / "recycle-origin.sh"
+    if not script.is_file():
+        return {"ok": False, "detail": "no_script"}
+    try:
+        completed = subprocess.run(  # noqa: S603
+            ["bash", str(script)],
+            timeout=20,
+            capture_output=True,
+            text=True,
+        )
+        # launch.sh restarts uvicorn on non-zero exit; boot needs a few seconds.
+        time.sleep(8.0)
+        return {
+            "ok": completed.returncode == 0,
+            "code": completed.returncode,
+            "healthy_after": _local_origin_ok(),
+        }
+    except Exception as e:  # noqa: BLE001
+        return {"ok": False, "detail": f"{type(e).__name__}: {e}"}
+
+
 def _cloudflared_up() -> bool:
     try:
         return subprocess.call(["pgrep", "-x", "cloudflared"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL) == 0
@@ -362,9 +390,49 @@ def _alert(env: dict[str, str], text: str) -> dict[str, Any]:
 
 def check(*, alert: bool = True, heal: bool = True) -> dict[str, Any]:
     console = _console_up()
+    recycle_out: dict[str, Any] | None = None
+    local_ok = True
+    if console:
+        local_ok = _local_origin_ok()
+        # Wedged accept-queue on :8787 takes the whole public door with it.
+        # recycle-origin only kills listeners; launch.sh brings uvicorn back.
+        if heal and not local_ok:
+            recycle_out = _recycle_origin()
+            local_ok = bool(recycle_out.get("healthy_after")) or _local_origin_ok()
+
     results: list[dict[str, Any]] = []
+    just_recycled = bool(recycle_out and recycle_out.get("ok"))
     for row in CHECKS:
         if row.get("console_only") and not console:
+            continue
+        url = str(row.get("url") or "")
+        # Do not pile HTTPS probes onto a dark tunnel — that is how Recv-Q fills.
+        if console and not local_ok and (
+            "origin.avaivy.cloud" in url or url.startswith("http://127.0.0.1:8787")
+        ):
+            results.append(
+                {
+                    "id": row["id"],
+                    "url": url,
+                    "ok": False,
+                    "detail": "origin_down",
+                    "critical": bool(row.get("critical")),
+                    "bytes": 0,
+                }
+            )
+            continue
+        # Right after a recycle, skip public cloud probes this cycle — boot is busy.
+        if just_recycled and url.startswith("https://") and "127.0.0.1" not in url:
+            results.append(
+                {
+                    "id": row["id"],
+                    "url": url,
+                    "ok": True,
+                    "detail": "skipped_post_recycle",
+                    "critical": bool(row.get("critical")),
+                    "bytes": 0,
+                }
+            )
             continue
         results.append(_probe(row))
 
@@ -380,7 +448,7 @@ def check(*, alert: bool = True, heal: bool = True) -> dict[str, Any]:
     ]
 
     heal_out = None
-    if heal and console:
+    if heal and console and local_ok:
         try:
             heal_out = _radio_heal_local()
         except Exception as e:  # noqa: BLE001
@@ -400,12 +468,15 @@ def check(*, alert: bool = True, heal: bool = True) -> dict[str, Any]:
             for r in results
             if not r.get("ok") and r.get("critical")
         ]
+    if recycle_out is not None:
+        heal_out = {"recycle_origin": recycle_out, **(heal_out or {})}
 
     ok = not problems
     report: dict[str, Any] = {
         "ok": ok,
         "ts": time.time(),
         "console": console,
+        "local_ok": local_ok,
         "results": results,
         "problems": problems,
         "soft": soft,

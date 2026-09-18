@@ -1587,6 +1587,19 @@ def handle_update(
         addr["voices"] = callouts
         addr["reason"] = reason
         is_round = False
+    # “Show me the camera/panels” without @Ava / guys — still run panels-cam.
+    if (
+        not callouts
+        and not private
+        and re.search(r"\b(?:show|see|look\s+at)\b.{0,48}\b(?:panels?|cameras?|cams?)\b", text or "", re.I | re.S)
+    ):
+        cam = skillpack.match_exec_skill(text)
+        if cam and str(cam.get("id") or "") == "panels-cam":
+            callouts = ["ava"]
+            reason = "panels_cam"
+            addr["voices"] = callouts
+            addr["reason"] = reason
+            is_round = False
     # Whole-team hello: speak in order so later agents hear earlier ones,
     # and questions to each other can chain (Ava answers Bruce, etc.).
     if reason == "team_all" and not private:

@@ -11,6 +11,17 @@ const nextConfig: NextConfig = {
       { source: "/index", destination: "/media", permanent: false },
       { source: "/chat", destination: "/#talk", permanent: false },
       { source: "/chat/", destination: "/#talk", permanent: false },
+      // Radio lives on the Cloudflare door (rootrecord.cloud). Vercel has no /radio page.
+      {
+        source: "/radio",
+        destination: "https://rootrecord.cloud/radio",
+        permanent: false,
+      },
+      {
+        source: "/radio/:path*",
+        destination: "https://rootrecord.cloud/radio/:path*",
+        permanent: false,
+      },
     ];
   },
   async headers() {

@@ -232,6 +232,25 @@ def check(*, alert: bool = True, probe_chat: bool = True) -> dict[str, Any]:
     console = _console_up()
     pids = _council_pids()
     origin_ok, _ = _http_json("http://127.0.0.1:8787/health", timeout=3)
+    recycle_out: dict[str, Any] | None = None
+    if console and not origin_ok:
+        script = Path.home() / ".ollama" / "skills" / "recycle-origin" / "scripts" / "recycle-origin.sh"
+        if script.is_file():
+            try:
+                completed = subprocess.run(  # noqa: S603
+                    ["bash", str(script)],
+                    timeout=20,
+                    capture_output=True,
+                    text=True,
+                )
+                time.sleep(4.0)
+                origin_ok, _ = _http_json("http://127.0.0.1:8787/health", timeout=3)
+                recycle_out = {
+                    "ok": completed.returncode == 0,
+                    "healthy_after": bool(origin_ok),
+                }
+            except Exception as e:  # noqa: BLE001
+                recycle_out = {"ok": False, "detail": f"{type(e).__name__}: {e}"[:120]}
     flm_ok, _ = _http_json(
         (os.getenv("AVA_FLM_URL") or "http://127.0.0.1:52625").rstrip("/") + "/v1/models",
         timeout=3,
@@ -292,6 +311,7 @@ def check(*, alert: bool = True, probe_chat: bool = True) -> dict[str, Any]:
         "console": console,
         "council_pids": pids,
         "origin": origin_ok,
+        "recycle_origin": recycle_out,
         "flm": flm_ok,
         "ollama": ollama_ok,
         "voices": voices_ok,

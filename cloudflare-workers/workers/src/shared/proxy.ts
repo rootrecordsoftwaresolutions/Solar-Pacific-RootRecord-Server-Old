@@ -93,25 +93,37 @@ export async function proxyToOrigin(
 
   let lastFail: Response | null = null;
   for (let i = 0; i < attempts; i++) {
+    // AbortController alone can hang on a wedged tunnel; race a hard deadline
+    // so visitors get the holding page instead of a blank browser spin.
     const controller = noTimeout ? null : new AbortController();
-    const timer =
-      controller && timeoutMs > 0
-        ? setTimeout(() => controller.abort(), timeoutMs)
-        : null;
+    const budget = !noTimeout && timeoutMs > 0 ? timeoutMs : 0;
+    let timer: ReturnType<typeof setTimeout> | null = null;
     try {
-      const res = await fetch(target, {
+      const fetchPromise = fetch(target, {
         method,
         headers: outboundHeaders(request, true),
         body: typeof payload === "string" ? payload : payload,
         signal: controller?.signal,
         redirect: "manual",
       });
+      const res =
+        budget > 0
+          ? await Promise.race([
+              fetchPromise,
+              new Promise<never>((_, reject) => {
+                timer = setTimeout(() => {
+                  controller?.abort();
+                  reject(new Error("origin_timeout"));
+                }, budget);
+              }),
+            ])
+          : await fetchPromise;
       if (timer) clearTimeout(timer);
 
       if ([502, 503, 522, 523, 524, 530].includes(res.status)) {
         lastFail = (await offlineFallback?.()) ?? offlineResponse();
         if (i + 1 < attempts) {
-          await new Promise((r) => setTimeout(r, 700));
+          await new Promise((r) => setTimeout(r, 400));
           continue;
         }
         return lastFail;
@@ -121,7 +133,7 @@ export async function proxyToOrigin(
       if (timer) clearTimeout(timer);
       lastFail = (await offlineFallback?.()) ?? offlineResponse();
       if (i + 1 < attempts) {
-        await new Promise((r) => setTimeout(r, 700));
+        await new Promise((r) => setTimeout(r, 400));
         continue;
       }
       return lastFail;

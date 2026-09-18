@@ -100,7 +100,7 @@ export default {
       }
       return proxyToOrigin(request, {
         originUrl: origin,
-        timeoutMs: chat ? 60000 : 8000,
+        timeoutMs: chat ? 45000 : 8000,
         // Desk recycle blips: one quiet retry before the offline stub.
         retries: chat ? 1 : 0,
         bodyText: chat ? JSON.stringify(snapshot) : undefined,
@@ -163,12 +163,19 @@ export default {
       return proxyToOrigin(request, {
         originUrl: origin,
         path: path.startsWith("/ava") ? "/status" : path.replace(/\/+$/, "") || "/status",
-        timeoutMs: 8000,
-        offlineFallback: path.replace(/\/+$/, "") === "/feedback" ? () => feedbackPage() : holdingPage,
+        timeoutMs: 5000,
+        offlineFallback:
+          path.replace(/\/+$/, "") === "/feedback"
+            ? () => feedbackPage()
+            : async () => {
+                const { statusPage } = await import("../shared/statusPage");
+                return statusPage(env, { degraded: true });
+              },
       });
     }
 
     // Radio — same origin player on avaivy.cloud/radio (not the Pages shell).
+    // When DNS still lands on Vercel, send visitors to the Cloudflare door.
     const radioPath = path.replace(/\/+$/, "") || "/";
     if (
       radioPath === "/radio" ||
@@ -183,9 +190,14 @@ export default {
       return proxyToOrigin(request, {
         originUrl: origin,
         path: path,
-        timeoutMs: isRadioStreamPath(radioPath) || isRadioStreamPath(path) ? 0 : 15000,
+        timeoutMs: isRadioStreamPath(radioPath) || isRadioStreamPath(path) ? 0 : 5000,
         noTimeout: isRadioStreamPath(radioPath) || isRadioStreamPath(path),
-        offlineFallback: holdingPage,
+        offlineFallback: async () => {
+          if (radioPath === "/radio" || radioPath === "/radio/listen") {
+            return Response.redirect("https://rootrecord.cloud" + path, 302);
+          }
+          return holdingPage();
+        },
       });
     }
 

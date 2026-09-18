@@ -9,7 +9,7 @@
  */
 
 import { maintenancePage } from "../shared/maintenancePage";
-import { fetchFrontend, proxyToOrigin } from "../shared/proxy";
+import { fetchFrontend, offlineApiJson, proxyToOrigin, wantsJson } from "../shared/proxy";
 import {
   isHiddenPath,
   isPrivatePath,
@@ -24,6 +24,7 @@ import {
 } from "../shared/publicPaths";
 import { storeOfflineFeedback } from "../shared/offlineInbox";
 import { feedbackPage } from "../shared/feedbackPage";
+import { statusJson, statusPage } from "../shared/statusPage";
 import { probeOrigin, readUptime } from "../shared/uptime";
 import type { AvaEnv, ScheduledEvent } from "../shared/types";
 
@@ -33,6 +34,11 @@ const AVAIVY_PAGES = "https://avaivy-cloud.pages.dev";
 
 /** Landing page. Product home. Status desk is /status. */
 const HOME_PAGE = "/";
+
+/** Fail over to holding before browsers and CF give up with a blank hang. */
+const PAGE_TIMEOUT_MS = 5000;
+const WRITE_TIMEOUT_MS = 8000;
+const GEO_TIMEOUT_MS = 6000;
 
 function gone(status: number): Response {
   return new Response(null, { status });
@@ -63,6 +69,10 @@ export default {
     if (isPrivatePath(path)) return gone(404);
     if (isHiddenPath(path)) return holding(404);
 
+    if (path === "/ava/status.json" || path === "/status.json") {
+      return statusJson(env);
+    }
+
     if (isPublicWrite(request.method, path)) {
       let snapshot: Record<string, unknown> = {};
       try {
@@ -73,7 +83,7 @@ export default {
       return proxyToOrigin(request, {
         originUrl: origin,
         path,
-        timeoutMs: 8000,
+        timeoutMs: WRITE_TIMEOUT_MS,
         offlineFallback: async () => {
           try {
             const stored = await storeOfflineFeedback(env, snapshot);
@@ -103,6 +113,16 @@ export default {
       return Response.redirect(dest.toString(), 301);
     }
 
+    // Status desk: try origin, but never leave visitors on a blank hang.
+    if (path === "/status" || path === "/ava/status") {
+      return proxyToOrigin(request, {
+        originUrl: origin,
+        path: "/status",
+        timeoutMs: PAGE_TIMEOUT_MS,
+        offlineFallback: () => statusPage(env, { degraded: true }),
+      });
+    }
+
     // Context / GEO stay on the static pack when origin flaps — not holding HTML.
     const geoPath =
       path === "/context" ||
@@ -117,7 +137,7 @@ export default {
       return proxyToOrigin(request, {
         originUrl: origin,
         path,
-        timeoutMs: 15000,
+        timeoutMs: GEO_TIMEOUT_MS,
         offlineFallback: async () => {
           if (path === "/api/context") {
             return Response.json(
@@ -151,9 +171,13 @@ export default {
       return proxyToOrigin(request, {
         originUrl: origin,
         path: originPath,
-        timeoutMs: isRadioStreamPath(path) ? 0 : 15000,
+        timeoutMs: isRadioStreamPath(path) ? 0 : PAGE_TIMEOUT_MS,
         noTimeout: isRadioStreamPath(path),
-        offlineFallback: () => (path === "/feedback" ? feedbackPage() : holding()),
+        offlineFallback: async () => {
+          if (path === "/feedback") return feedbackPage();
+          if (wantsJson(request, path)) return offlineApiJson();
+          return holding();
+        },
       });
     }
 

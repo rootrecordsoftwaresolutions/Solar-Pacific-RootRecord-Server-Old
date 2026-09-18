@@ -12,7 +12,8 @@ Every 5 minutes (scheduler) verifies the council stack while AVA Console is up:
 - Exactly one `apps.council` process
 - Telegram `getMe` for Ava / Bruce / Carly
 - FastFlowLM (`:52625`) models + short chat probe (everyday voices)
-- Origin `:8787` health
+- Origin `:8787` health — while the console is up, a failed probe runs
+  `recycle-origin` so launch can restart uvicorn before the public door hangs.
 - Recent `ava-council.log` for getUpdates 409 conflicts
 
 Ollama GGUF may be down on purpose — chat uses the NPU. Failures alert the

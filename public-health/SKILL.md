@@ -15,6 +15,10 @@ Every 5 minutes (scheduler) probes:
 - Origin tunnel radio page + `/api/radio/status`
 - Local origin `:8787` status/radio when AVA Console is up
 
+When the console is up and local `:8787/health` fails, heal runs `recycle-origin`
+(launch restarts uvicorn) and skips tunnel pile-on probes until the desk answers
+again. That is the usual cause of a blank public hang.
+
 `/api/radio/status` on cloud stays soft until the edge Workers are redeployed
 with the updated public path whitelist. Local CF tokens today only reach the
 legacy RootRecord accounts — Workers live on account `d2daf263…` and need a
