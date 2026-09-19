@@ -1,53 +1,37 @@
 # Scheduler-adjacent hybrid stamps
 
-Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Reports/2026/September/September 18th, 2026/hybrid-manual-daily-report-2026-09-18.md`
+Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Reports/2026/September/September 19th, 2026/hybrid-manual-daily-report-2026-09-19.md`
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1115** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
+> ◇ **1245** — WEATHER WINDOWS
 
-> ◇ **1115** — Honolulu, Hawaii, Maui, or Kauai counties.
+> ◇ **1245** — KILAUEA PREDICTION
 
-> ◇ **1115** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 153 W | Current 18%
+> ◇ **0345** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 0W | total in 0W | Delta SOC 4% |
 
-> ◇ **1115** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+> ◇ **0345** — River feed ACTIVE
 
-> ◇ **1115** — REAR SHED STILL — latest panels frame 959m old (`ch1-20260918T051904Z.jpg`). Carly energy desk
+> ◇ **0345** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
 
-> ◇ **1115** — uses this still (no power cycle).
+> ◇ **0345** — Honolulu, Hawaii, Maui, or Kauai counties.
 
-> ◇ **1145** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 145W | total in 143W | Delta SOC 16%
+> ◇ **0345** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 69 W | Current 4%
 
-> ◇ **1145** — | River feed ACTIVE
+> ◇ **0345** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
 
-> ◇ **1145** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
+> ◇ **0345** — REAR SHED STILL — latest panels frame 1954m old (`ch1-20260918T051904Z.jpg`). Carly energy desk
 
-> ◇ **1145** — Honolulu, Hawaii, Maui, or Kauai counties.
+> ◇ **0345** — uses this still (no power cycle).
 
-> ◇ **1145** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 153 W | Current 16%
+> ◇ **1245** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 19W | total in 19W | Delta SOC 4% |
 
-> ◇ **1145** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+> ◇ **1245** — River feed ACTIVE
 
-> ◇ **1145** — REAR SHED STILL — latest panels frame 989m old (`ch1-20260918T051904Z.jpg`). Carly energy desk
+> ◇ **1245** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
 
-> ◇ **1145** — uses this still (no power cycle).
+> ◇ **1245** — Honolulu, Hawaii, Maui, or Kauai counties.
 
-> ◇ **1149** — AVA STARTED
+> ◇ **1245** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
 
-> ◇ **1149** — AVA STOPPED
-
-> ◇ **1150** — AVA STARTED
-
-> ◇ **1150** — AVA STOPPED
-
-> ◇ **1215** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 208W | total in 209W | Delta SOC 12%
-
-> ◇ **1215** — | River feed ACTIVE
-
-> ◇ **1215** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
-
-> ◇ **1215** — Honolulu, Hawaii, Maui, or Kauai counties.
-
-> ◇ **1215** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 149 W | Current 13%
-
-> ◇ **1215** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+> ◇ **1245** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting

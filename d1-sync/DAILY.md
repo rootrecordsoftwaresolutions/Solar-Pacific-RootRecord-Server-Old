@@ -1,29 +1,29 @@
 # d1-sync — hybrid notebook pointer
 
-Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Reports/2026/September/September 18th, 2026/hybrid-manual-daily-report-2026-09-18.md`
+Hybrid daily notebook: `/home/rootrecord/.ollama/skills/hybrid-reports/store/Reports/2026/September/September 19th, 2026/hybrid-manual-daily-report-2026-09-19.md`
 
 Same `> ◇ **HHMM** —` inserts as the hybrid report. Numbers only from those inserts.
 
-> ◇ **1145** — REAR SHED STILL — latest panels frame 989m old (`ch1-20260918T051904Z.jpg`). Carly energy desk
+> ◇ **0345** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
 
-> ◇ **1145** — uses this still (no power cycle).
+> ◇ **0345** — Honolulu, Hawaii, Maui, or Kauai counties.
 
-> ◇ **1149** — AVA STARTED
+> ◇ **0345** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 69 W | Current 4%
 
-> ◇ **1149** — AVA STOPPED
+> ◇ **0345** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
 
-> ◇ **1150** — AVA STARTED
+> ◇ **0345** — REAR SHED STILL — latest panels frame 1954m old (`ch1-20260918T051904Z.jpg`). Carly energy desk
 
-> ◇ **1150** — AVA STOPPED
+> ◇ **0345** — uses this still (no power cycle).
 
-> ◇ **1215** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 208W | total in 209W | Delta SOC 12%
+> ◇ **1245** — POWER AUTOMATION — DELTA 2 USB AUTO ON | status: ON | input 19W | total in 19W | Delta SOC 4% |
 
-> ◇ **1215** — | River feed ACTIVE
+> ◇ **1245** — River feed ACTIVE
 
-> ◇ **1215** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
+> ◇ **1245** — WEATHER — NWS Hawaii by county. No active National Weather Service watches or warnings for
 
-> ◇ **1215** — Honolulu, Hawaii, Maui, or Kauai counties.
+> ◇ **1245** — Honolulu, Hawaii, Maui, or Kauai counties.
 
-> ◇ **1215** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out 0 W / 149 W | Current 13%
+> ◇ **1245** — ECOFLOW STATUS - DELTA 2: Average 15-minute In/Out Waiting / Waiting | Current Waiting
 
-> ◇ **1215** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out 0 W / 64 W | Current 1%
+> ◇ **1245** — ECOFLOW STATUS - RIVER 2 PRO: Average 15-minute In/Out Waiting / Waiting | Current Waiting
