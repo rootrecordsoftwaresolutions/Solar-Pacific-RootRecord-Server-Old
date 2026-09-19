@@ -1,0 +1,13 @@
+{
+  "current": "Current.json",
+  "nhc_storm_count": 0,
+  "ok": true,
+  "sha256_16": "f461397644a3d3ac",
+  "sources": {
+    "jtwc_abio": true,
+    "jtwc_abpw": true,
+    "nhc": true,
+    "rammb": true
+  },
+  "updated_at": "2026-09-18T22:45:10.239643-10:00"
+}

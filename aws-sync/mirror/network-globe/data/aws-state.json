@@ -1,0 +1,6 @@
+{
+  "ok": false,
+  "checkedAt": 1789793087544,
+  "reason": "spawn aws ENOENT",
+  "region": "us-east-1"
+}

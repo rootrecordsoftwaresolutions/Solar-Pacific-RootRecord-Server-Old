@@ -1,0 +1,11 @@
+{
+  "alert_level": "watch",
+  "bytes": 4260,
+  "current": "Current.json",
+  "erupting": false,
+  "notice_id": "DOI-USGS-HVO-2026-09-18T18:18:44+00:00",
+  "ok": true,
+  "sha256_16": "a7acbd991ddbef45",
+  "updated_at": "2026-09-18T22:45:09.172934-10:00",
+  "usgs_event_count": 20
+}

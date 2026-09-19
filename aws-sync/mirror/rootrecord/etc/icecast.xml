@@ -1,0 +1,43 @@
+<icecast>
+  <location>RootRecord</location>
+  <admin>ops@rootrecord.cloud</admin>
+  <limits>
+    <clients>64</clients>
+    <sources>4</sources>
+    <queue-size>2097152</queue-size>
+    <client-timeout>30</client-timeout>
+    <header-timeout>15</header-timeout>
+    <source-timeout>45</source-timeout>
+    <burst-on-connect>1</burst-on-connect>
+    <burst-size>196608</burst-size>
+  </limits>
+  <authentication>
+    <source-password>e5a6a8d094b940ec3eed33ec</source-password>
+    <relay-password>e5a6a8d094b940ec3eed33ec</relay-password>
+    <admin-user>admin</admin-user>
+    <admin-password>f86a3945345d20ff2aef109f</admin-password>
+  </authentication>
+  <hostname>localhost</hostname>
+  <listen-socket>
+    <port>8000</port>
+    <bind-address>127.0.0.1</bind-address>
+  </listen-socket>
+  <http-headers>
+    <header name="Access-Control-Allow-Origin" value="*" />
+  </http-headers>
+  <paths>
+    <basedir>/usr/share/icecast2</basedir>
+    <logdir>/home/ubuntu/rootrecord/logs</logdir>
+    <webroot>/usr/share/icecast2/web</webroot>
+    <adminroot>/usr/share/icecast2/admin</adminroot>
+    <alias source="/" destination="/status.xsl"/>
+  </paths>
+  <logging>
+    <accesslog>icecast-access.log</accesslog>
+    <errorlog>icecast-error.log</errorlog>
+    <loglevel>3</loglevel>
+  </logging>
+  <security>
+    <chroot>0</chroot>
+  </security>
+</icecast>

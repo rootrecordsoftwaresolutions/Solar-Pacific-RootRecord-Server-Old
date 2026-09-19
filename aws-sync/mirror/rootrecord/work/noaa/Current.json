@@ -1,0 +1,72 @@
+{
+  "ok": true,
+  "updated_at": "2026-09-18T22:40:08.901507-10:00",
+  "point": "https://api.weather.gov/points/19.5429,-155.0372",
+  "forecast": [
+    {
+      "name": "Tonight",
+      "temperature": 69,
+      "unit": "F",
+      "shortForecast": "Scattered Rain Showers",
+      "windSpeed": "8 mph",
+      "windDirection": "NNW"
+    },
+    {
+      "name": "Saturday",
+      "temperature": 77,
+      "unit": "F",
+      "shortForecast": "Scattered Rain Showers",
+      "windSpeed": "9 to 14 mph",
+      "windDirection": "NNE"
+    },
+    {
+      "name": "Saturday Night",
+      "temperature": 70,
+      "unit": "F",
+      "shortForecast": "Scattered Rain Showers",
+      "windSpeed": "7 mph",
+      "windDirection": "NW"
+    },
+    {
+      "name": "Sunday",
+      "temperature": 78,
+      "unit": "F",
+      "shortForecast": "Scattered Rain Showers then Partly Sunny",
+      "windSpeed": "13 mph",
+      "windDirection": "NNE"
+    },
+    {
+      "name": "Sunday Night",
+      "temperature": 70,
+      "unit": "F",
+      "shortForecast": "Scattered Rain Showers",
+      "windSpeed": "12 mph",
+      "windDirection": "N"
+    },
+    {
+      "name": "Monday",
+      "temperature": 79,
+      "unit": "F",
+      "shortForecast": "Scattered Rain Showers",
+      "windSpeed": "10 mph",
+      "windDirection": "N"
+    },
+    {
+      "name": "Monday Night",
+      "temperature": 71,
+      "unit": "F",
+      "shortForecast": "Occasional Rain Showers",
+      "windSpeed": "8 mph",
+      "windDirection": "NNW"
+    },
+    {
+      "name": "Tuesday",
+      "temperature": 77,
+      "unit": "F",
+      "shortForecast": "Occasional Rain Showers",
+      "windSpeed": "10 mph",
+      "windDirection": "NNE"
+    }
+  ],
+  "alert_feature_count": 0
+}

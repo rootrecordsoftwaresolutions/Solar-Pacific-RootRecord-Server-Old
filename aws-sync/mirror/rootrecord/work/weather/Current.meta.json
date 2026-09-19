@@ -1,0 +1,9 @@
+{
+  "bytes": 219,
+  "current": "Current.json",
+  "feature_count": 0,
+  "ok": true,
+  "sha256_16": "a750010ae89f295a",
+  "source": "https://api.weather.gov/alerts/active?area=HI",
+  "updated_at": "2026-09-18T22:46:08.227864-10:00"
+}
