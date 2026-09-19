@@ -14,7 +14,7 @@ const SOURCE_REGION = process.env.SOURCE_REGION || 'local-hawaii';
 const AWS_USER = process.env.AWS_USER || 'ubuntu';
 const AWS_HOST = process.env.AWS_HOST || '3.139.100.162';
 const AWS_REMOTE_DIR = process.env.AWS_REMOTE_DIR || '/home/ubuntu/network-globe/network-globe';
-const SSH_KEY = process.env.SSH_KEY || '';
+const SSH_KEY = process.env.SSH_KEY || '/home/rootrecord/.ssh/rootrecordkey.pem';
 const SSH_CONNECT_TIMEOUT = Number(process.env.SSH_CONNECT_TIMEOUT || 8);
 const OUTBOX = process.env.OUTBOX || path.join(__dirname, 'data', 'outbox.ndjson');
 const ORIGIN_LABEL = process.env.ORIGIN_LABEL || 'Hawaii';
@@ -243,9 +243,21 @@ function queueRecord(record) {
 }
 
 function sshArgs() {
-  const args = ['-T', '-o', 'BatchMode=yes', '-o', `ConnectTimeout=${SSH_CONNECT_TIMEOUT}`, '-o', 'ServerAliveInterval=15', '-o', 'ServerAliveCountMax=3'];
+  const remoteFile = AWS_REMOTE_DIR + '/data/hawaii.ndjson';
+  const readyMarker = '__NETWORK_GLOBE_SSH_READY__';
+  const args = [
+    '-T',
+    '-o', 'BatchMode=yes',
+    '-o', `ConnectTimeout=${SSH_CONNECT_TIMEOUT}`,
+    '-o', 'ServerAliveInterval=15',
+    '-o', 'ServerAliveCountMax=3',
+    '-o', 'StrictHostKeyChecking=accept-new'
+  ];
   if (SSH_KEY) args.push('-i', SSH_KEY);
-  args.push(`${AWS_USER}@${AWS_HOST}`, `mkdir -p ${shellQuote(AWS_REMOTE_DIR + '/data')} && cat >> ${shellQuote(AWS_REMOTE_DIR + '/data/hawaii.ndjson')}`);
+  args.push(
+    `${AWS_USER}@${AWS_HOST}`,
+    `mkdir -p ${shellQuote(AWS_REMOTE_DIR + '/data')} && printf '%s\\n' '${readyMarker}' && exec cat >> ${shellQuote(remoteFile)}`
+  );
   return args;
 }
 
@@ -253,19 +265,69 @@ function shellQuote(s) { return `'${String(s).replace(/'/g, `'\\''`)}'`; }
 
 function connectSsh() {
   if (shuttingDown || sshProc || sshConnecting) return;
+
   sshConnecting = true;
-  const p = spawn('ssh', sshArgs(), { stdio: ['pipe', 'ignore', 'ignore'] });
+  const p = spawn('ssh', sshArgs(), { stdio: ['pipe', 'pipe', 'pipe'] });
   sshProc = p;
-  p.on('spawn', () => {
-    sshConnecting = false;
-    sshReady = true;
-    const pending = buffer.splice(0);
-    for (const line of pending) {
-      try { if (p.stdin.writable) p.stdin.write(line); else { buffer.unshift(...pending.slice(pending.indexOf(line))); break; } } catch { buffer.unshift(...pending.slice(pending.indexOf(line))); break; }
+
+  let stdoutBuffer = '';
+
+  p.stdin.on('error', () => {
+    sshReady = false;
+  });
+
+  p.stdout.setEncoding('utf8');
+  p.stdout.on('data', chunk => {
+    stdoutBuffer += chunk;
+
+    if (!sshReady && stdoutBuffer.includes('__NETWORK_GLOBE_SSH_READY__')) {
+      sshReady = true;
+      stdoutBuffer = '';
+
+      const pending = buffer.splice(0);
+      for (const line of pending) {
+        try {
+          if (p.stdin.writable) p.stdin.write(line);
+          else {
+            buffer.push(line);
+            break;
+          }
+        } catch {
+          buffer.push(line);
+          break;
+        }
+      }
+
+      console.log('SSH stream ready → AWS');
     }
   });
-  p.on('error', () => { sshReady = false; sshConnecting = false; });
-  p.on('close', () => { sshReady = false; sshConnecting = false; if (sshProc === p) sshProc = null; if (!shuttingDown) setTimeout(connectSsh, 2000); });
+
+  p.stderr.setEncoding('utf8');
+  p.stderr.on('data', chunk => {
+    const msg = chunk.trim();
+    if (msg) console.error(`SSH: ${msg}`);
+  });
+
+  p.on('spawn', () => {
+    sshConnecting = false;
+  });
+
+  p.on('error', err => {
+    sshReady = false;
+    sshConnecting = false;
+    console.error(`SSH process error: ${err.message}`);
+  });
+
+  p.on('close', (code, signal) => {
+    sshReady = false;
+    sshConnecting = false;
+    if (sshProc === p) sshProc = null;
+
+    if (!shuttingDown) {
+      console.error(`SSH stream closed (code=${code}, signal=${signal || 'none'})`);
+      setTimeout(connectSsh, 2000);
+    }
+  });
 }
 
 async function collect() {
