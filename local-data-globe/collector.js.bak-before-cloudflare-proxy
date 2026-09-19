@@ -254,11 +254,6 @@ function sshArgs() {
     '-o', 'StrictHostKeyChecking=accept-new'
   ];
   if (SSH_KEY) args.push('-i', SSH_KEY);
-  if (AWS_HOST === 'ssh.rootrecord.cloud') {
-    args.push(
-      '-o', 'ProxyCommand=/home/rootrecord/.local/bin/cloudflared access ssh --hostname %h'
-    );
-  }
   args.push(
     `${AWS_USER}@${AWS_HOST}`,
     `mkdir -p ${shellQuote(AWS_REMOTE_DIR + '/data')} && printf '%s\\n' '${readyMarker}' && exec cat >> ${shellQuote(remoteFile)}`
