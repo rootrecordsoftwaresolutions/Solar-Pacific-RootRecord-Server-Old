@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Network Activity</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      overflow: hidden;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    #globe {
+      width: 100vw;
+      height: 100vh;
+    }
+    .label {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #aaa;
+      font-size: 13px;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+      user-select: none;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e;
+    }
+  </style>
+</head>
+<body>
+  <div id="globe"></div>
+  <div class="label">
+    <div class="dot"></div>
+    LIVE NETWORK ACTIVITY
+  </div>
+
+  <script src="//unpkg.com/globe.gl"></script>
+  <script>
+    const globe = Globe()
+      (document.getElementById('globe'))
+      .globeImageUrl('//unpkg.com/three-globe/example/img/earth-night.jpg')
+      .backgroundColor('#000011')
+      .showAtmosphere(true)
+      .atmosphereColor('#3a1c71')
+      .atmosphereAltitude(0.18)
+      .arcColor(d => d.color || ['#ff6b9d', '#ffffff'])
+      .arcAltitude(0.18)
+      .arcStroke(0.6)
+      .arcDashLength(0.4)
+      .arcDashGap(0.2)
+      .arcDashAnimateTime(1800)
+      .arcDashInitialGap(() => Math.random())
+      .pointColor(() => '#ff6b9d')
+      .pointAltitude(0.01)
+      .pointRadius(0.35)
+      .pointsMerge(true);
+
+    // mild auto-rotate
+    globe.controls().autoRotate = true;
+    globe.controls().autoRotateSpeed = 0.35;
+    globe.controls().enableZoom = true;
+
+    // WebSocket connection
+    let ws;
+    function connect() {
+      ws = new WebSocket(`ws://${location.hostname}:8080`);
+
+      ws.onopen = () => console.log('Connected to live feed');
+      ws.onclose = () => {
+        console.log('Disconnected – retrying in 2s…');
+        setTimeout(connect, 2000);
+      };
+      ws.onerror = () => ws.close();
+
+      ws.onmessage = (event) => {
+        try {
+          const payload = JSON.parse(event.data);
+          if (payload.arcs) globe.arcsData(payload.arcs);
+          if (payload.points) globe.pointsData(payload.points);
+        } catch (e) {
+          console.warn('Bad payload', e);
+        }
+      };
+    }
+    connect();
+  </script>
+</body>
+</html>
