@@ -1,7 +1,7 @@
 {
   "type": "network-globe",
   "version": 2,
-  "ts": 1789783847820,
+  "ts": 1789786804249,
   "origin": {
     "lat": 21.30694,
     "lng": -157.85833,
@@ -34,7 +34,7 @@
       "bytes": 0,
       "packetsPerSec": 0,
       "bytesPerSec": 0,
-      "ageSec": 148.021
+      "ageSec": 54.009
     }
   ],
   "points": [
@@ -52,16 +52,16 @@
     }
   ],
   "stats": {
-    "activeFlows": 31,
+    "activeFlows": 37,
     "mappedFlows": 1,
     "endpoints": 1,
     "packetRate": 0,
     "bytesPerSec": 0,
-    "queue": 22,
-    "geoCached": 83,
+    "queue": 20,
+    "geoCached": 158,
     "collector": "ss",
     "privileged": false,
     "hostname": "RootRecord",
-    "updated": 1789783847820
+    "updated": 1789786804249
   }
 }
