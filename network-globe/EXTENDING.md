@@ -1,84 +1,30 @@
-# Extending to Real Traffic
+# Extending the real collector
 
-## 1. Localhost – Real Connections
+## Add additional machines
 
-### Option A: Parse `ss` or `netstat`
+For a multi-node deployment, run one collector on each machine and forward normalized flow records to a central WebSocket/API service.
 
-```bash
-ss -tunsrc | head
-```
+Recommended event shape:
 
-You can spawn this from Node and parse the output, then map remote IPs to approximate locations.
-
-### Option B: Instrument your own applications
-
-Have your services emit events:
-
-```js
-// example event
+```json
 {
-  "src": "10.0.0.5",
-  "dst": "8.8.8.8",
-  "bytes": 1234,
-  "protocol": "tcp"
+  "sourceNode": "ava-core",
+  "sourceLat": 21.3,
+  "sourceLng": -157.8,
+  "remoteIp": "203.0.113.10",
+  "protocol": "tcp",
+  "remotePort": 443,
+  "process": "python",
+  "packets": 120,
+  "bytes": 88442,
+  "ts": 1789782620123
 }
 ```
 
-Then convert to the arc format.
+## AWS/VPC
 
-### Option C: Use a library
+The next production collector can consume VPC Flow Logs, load balancer flow data, CloudWatch metrics, or an observability pipeline and emit the same normalized event shape.
 
-- `systeminformation` (Node)
-- `psutil` (Python)
+## Offline geolocation
 
-## 2. IP → Latitude / Longitude
-
-You need a GeoIP database or service:
-
-- **MaxMind GeoLite2** (free, requires signup)
-- **ip-api.com** (free tier, rate limited)
-- **ipinfo.io**
-- Self-hosted: `geoip-lite` npm package (less accurate but zero external calls)
-
-Example with a simple in-memory cache:
-
-```js
-const geoCache = new Map();
-
-async function ipToLatLng(ip) {
-  if (geoCache.has(ip)) return geoCache.get(ip);
-  // fetch from MaxMind or API…
-  const result = { lat: …, lng: … };
-  geoCache.set(ip, result);
-  return result;
-}
-```
-
-## 3. AWS Version (high level)
-
-Recommended path:
-
-1. Enable **VPC Flow Logs** (or use CloudWatch metrics / X-Ray).
-2. Stream logs to **Kinesis** or **CloudWatch Logs**.
-3. Lambda function parses the logs, resolves IPs → lat/lng, and pushes to a WebSocket API.
-4. Frontend connects to the API Gateway WebSocket endpoint instead of `ws://localhost:8080`.
-
-Alternative simpler path for low volume:
-
-- Run a small Node/Python agent on an EC2 / ECS task that polls connections and pushes to the same WebSocket protocol.
-
-## 4. Minimal Code Change to Accept Real Data
-
-In `server.js`, replace the body of `generateTraffic()` (or the interval) with real data collection. The rest of the frontend can stay exactly the same.
-
-## 5. Adding Controls (optional)
-
-Useful UI additions:
-
-- Pause / resume
-- Speed multiplier
-- Filter by region or protocol
-- Show connection count
-- Toggle atmosphere / rotation
-
-These can be added as simple HTML buttons that call methods on the `globe` instance.
+For environments that must avoid an external geolocation API, replace `lookupIp()` with a local MaxMind/DB-IP-style database reader and retain the same `{ lat, lng, city, country, asn, org }` record shape.

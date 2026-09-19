@@ -1,14 +1,12 @@
-# Live Network Activity Globe
+# Live Network Activity Globe — Real Data Edition
 
-A minimal, self-contained live network traffic visualization inspired by Starlink-style globe animations.
+This version removes the original simulated city-to-city traffic generator.
 
-**Goal:** Show real-time (or simulated) network connections as animated arcs and points on a 3D dark Earth globe.
+The server continuously observes the local machine's network sockets with `ss`, maps public remote IP addresses to approximate geographic coordinates, and pushes live arcs to the browser over WebSocket.
 
-This project is designed so that another AI assistant (Cursor, Codex, Grok, etc.) or a human developer can pick it up with full context.
+When launched with root privileges, it also starts `tcpdump` in metadata-only mode to count observed packets and payload lengths. It does **not** save packet payload contents.
 
----
-
-## Quick Start
+## Run
 
 ```bash
 cd network-globe
@@ -16,132 +14,105 @@ npm install
 npm start
 ```
 
-Open: **http://localhost:8080**
+Then open:
 
-You should see a dark rotating globe with pink glowing arcs updating every ~1.8 seconds.
-
----
-
-## Project Structure
-
-```
-network-globe/
-├── index.html          # Frontend – globe.gl visualization + WebSocket client
-├── server.js           # Backend – HTTP server + WebSocket + traffic generator
-├── package.json        # Dependencies (only `ws`)
-├── README.md           # This file – full context & documentation
-├── ARCHITECTURE.md     # Deeper technical design notes
-├── EXTENDING.md        # How to plug in real localhost / AWS traffic
-└── FUTURE.md           # Ideas for Cursor / Codex / Grok to continue
+```text
+http://localhost:8081
 ```
 
----
+For packet-rate and byte-rate telemetry as well as socket/process visibility where permitted:
 
-## Current Behavior
-
-- Uses **globe.gl** (Three.js based) for the 3D globe.
-- Night Earth texture + soft purple atmosphere.
-- Pink/magenta arcs with animated dashes.
-- Points at connection endpoints.
-- Auto-rotation enabled.
-- WebSocket connection on port 8080.
-- Server generates **simulated** traffic between major cities every 1.8 s.
-- Frontend automatically reconnects if the WebSocket drops.
-
----
-
-## Dependencies
-
-Only one production dependency:
-
-- `ws` – WebSocket server
-
-Everything else (globe.gl, Three.js) is loaded from CDN in the browser.
-
----
-
-## How the Data Flows
-
-```
-server.js
-  └── generateTraffic()  →  creates array of arcs + points
-  └── broadcasts JSON every 1.8s over WebSocket
-
-index.html
-  └── WebSocket onmessage
-  └── globe.arcsData(...) + globe.pointsData(...)
+```bash
+./start-full-telemetry.sh
 ```
 
-Expected payload shape:
+The full mode uses `sudo` only for the local collector so `tcpdump` can inspect packet metadata.
 
-```json
-{
-  "arcs": [
-    {
-      "startLat": 37.77,
-      "startLng": -122.42,
-      "endLat": 51.51,
-      "endLng": -0.13,
-      "color": ["#ff6b9d", "#ffffff"]
-    }
-  ],
-  "points": [
-    { "lat": 37.77, "lng": -122.42 },
-    { "lat": 51.51, "lng": -0.13 }
-  ]
-}
+## Automatic data storage
+
+The server creates and continuously updates:
+
+```text
+network-globe/data/state.json
+network-globe/data/geo-cache.json
+network-globe/data/history.json
 ```
 
----
+`state.json` is the latest globe state. `geo-cache.json` prevents repeated geolocation requests for the same IP. `history.json` stores a rolling history of recent snapshots.
 
-## Design Decisions (for future AI context)
+## What is being collected
 
-1. **Why globe.gl?**  
-   Closest out-of-the-box match to the visual style the user liked (dark globe, glowing arcs, live feel). Very little boilerplate.
+- Active TCP/UDP network sockets reported by Linux `ss`.
+- Local endpoint and remote endpoint IP/port.
+- Protocol and, when the process table is visible, the owning process name.
+- Approximate packet counts and observed payload lengths in full telemetry mode.
+- Remote IP geography, ASN, organization, city/country when returned by the geolocation service.
 
-2. **Why simulated traffic first?**  
-   User was still uploading a large file and waiting. Getting a beautiful working visual first was higher priority than real metrics.
+Local/private destinations are filtered out of the globe so the map emphasizes external network flows.
 
-3. **Why single port (8080)?**  
-   Serves both the static HTML and the WebSocket. Simplest possible setup for localhost.
+## Important geography limitation
 
-4. **Why no build step?**  
-   Zero-config. Just `npm start`. Easy for any AI or human to run immediately.
+IP geolocation is approximate. It represents the network registration/estimated location of an IP and should not be interpreted as the physical location of an individual or exact server.
 
-5. **Color palette**  
-   Main accent: `#ff6b9d` (pink/magenta) to match the reference animation the user shared. Occasional purple for variety.
+The default geolocation integration uses ipapi.co because it provides an HTTPS JSON endpoint for IPv4/IPv6 geolocation. The collector caches results so the same IP is not repeatedly looked up.
 
----
+## Optional origin override
 
-## Known Limitations (intentional for v1)
+To avoid automatic public-IP discovery, set a fixed origin yourself:
 
-- Traffic is currently **fake** (random city pairs).
-- No authentication / security on the WebSocket.
-- No persistence or historical data.
-- No clustering or performance optimizations for very high connection counts.
-- IP → geolocation is not implemented yet.
+```bash
+ORIGIN_LAT=21.3 ORIGIN_LNG=-157.8 ORIGIN_LABEL="Network Core" npm start
+```
 
-These are documented so the next AI knows what still needs work.
+Or run with:
 
----
+```bash
+PUBLIC_IP=1.2.3.4 npm start
+```
 
-## What the User Originally Wanted
+## Embed the globe
 
-- Liked a specific “LIVE NETWORK ACTIVITY” globe animation (dark background, pink/white dots + arcs).
-- Wants to run something similar on **localhost** and later on **AWS**.
-- Context: user was in the middle of uploading a large 10 GB archive and discussing rate-limit frustrations with Grok.
+The same page can be used in an iframe:
 
----
+```html
+<iframe
+  src="http://YOUR-HOST:8081/?embed=1"
+  width="100%"
+  height="700"
+  style="border:0"
+  loading="lazy"
+></iframe>
+```
 
-## Next Logical Steps (see also EXTENDING.md and FUTURE.md)
+The `embed=1` flag hides the on-screen HUD while leaving the live globe active.
 
-1. Replace `generateTraffic()` with real data sources.
-2. Add a simple IP-to-lat/lng lookup (MaxMind GeoLite2 or a free API).
-3. Create an AWS version (VPC Flow Logs → Lambda → WebSocket / API Gateway).
-4. Optional: add controls (pause, speed, filter by region, etc.).
+## Architecture
 
----
+```text
+Linux sockets / packet metadata
+          |
+          v
+       server.js
+          |
+   +------+-------+
+   |              |
+   v              v
+  ss            tcpdump
+   |              |
+   +------+-------+
+          v
+     flow state
+          |
+     IP geolocation
+          |
+          v
+     WebSocket JSON
+          |
+          v
+      index.html
+          |
+          v
+       globe.gl
+```
 
-## License
-
-MIT – do whatever you want with it.
+No random city generator remains in the runtime.

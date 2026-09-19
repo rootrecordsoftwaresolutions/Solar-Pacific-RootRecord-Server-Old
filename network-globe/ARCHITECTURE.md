@@ -1,88 +1,21 @@
-# Architecture Notes
+# Architecture
 
-## High-Level Diagram
+## Runtime flow
 
-```
-┌────────────────────┐
-│   Browser          │
-│  (index.html)      │
-│                    │
-│  globe.gl instance │
-│  WebSocket client  │
-└─────────┬──────────┘
-          │ ws://localhost:8080
-          ▼
-┌────────────────────┐
-│   Node.js Server   │
-│  (server.js)       │
-│                    │
-│  HTTP static       │
-│  WebSocketServer   │
-│  Traffic generator │
-└────────────────────┘
-```
+1. `server.js` discovers local addresses with `ip -j addr`.
+2. The server discovers the public-network origin using the configured origin or ipapi.co.
+3. `ss -H -tun` is polled every `POLL_MS` milliseconds.
+4. Public remote peers are retained as candidate globe endpoints.
+5. Previously unseen endpoints are queued for IP geolocation and cached locally.
+6. In root/full-telemetry mode, `tcpdump` observes packet metadata to add packet and byte activity.
+7. The server builds a `{ type, origin, arcs, points, stats }` payload and broadcasts it over WebSocket.
+8. The browser renders the payload with globe.gl.
+9. The same payload is persisted to `data/state.json` and a rolling `data/history.json`.
 
-## Frontend (`index.html`)
+## Privacy model
 
-- Single HTML file, no build tools.
-- Loads `globe.gl` from unpkg CDN.
-- Creates a full-viewport globe.
-- Key visual settings:
-  - `globeImageUrl`: night Earth texture
-  - `atmosphereColor`: soft purple
-  - `arcColor`, `arcDashLength`, `arcDashAnimateTime` for the moving arc effect
-  - `pointColor` / `pointRadius` for the glowing dots
-- Auto-rotate is enabled via `globe.controls()`.
-- WebSocket logic includes automatic reconnection.
+Payload contents are never written to disk. Private/local IPs do not become globe destinations. The browser receives approximate geographic endpoint data, not raw remote IPs as a required part of the visual model.
 
-## Backend (`server.js`)
+## Geo cache
 
-- Uses only the built-in `http` module + `ws`.
-- Serves `index.html` on `/`.
-- Maintains a list of ~15 major cities with lat/lng.
-- Every 1.8 seconds:
-  - Picks 12–25 random city pairs
-  - Builds arc + point objects
-  - Broadcasts to all connected WebSocket clients
-- On new connection, immediately sends one payload so the globe is never empty.
-
-## Data Contract
-
-The only thing the frontend cares about is this shape:
-
-```ts
-interface Payload {
-  arcs: Array<{
-    startLat: number;
-    startLng: number;
-    endLat: number;
-    endLng: number;
-    color?: string | string[];
-  }>;
-  points: Array<{
-    lat: number;
-    lng: number;
-  }>;
-}
-```
-
-Any future real-data source only needs to emit objects matching this interface.
-
-## Performance Notes
-
-- globe.gl handles hundreds of arcs reasonably well.
-- For thousands of concurrent connections you would want:
-  - Arc clustering / sampling
-  - Points merge (already enabled)
-  - Possibly switch to a custom Three.js shader for particles
-
-## Security / Production Notes
-
-Current version is **localhost-only friendly**:
-
-- No CORS restrictions beyond defaults
-- No auth on WebSocket
-- No rate limiting
-- No HTTPS
-
-When moving to AWS these will need to be addressed (API Gateway WebSocket + auth, or a proper backend).
+`data/geo-cache.json` stores resolved endpoint metadata. Entries are reused for `GEO_TTL_MS` to avoid unnecessary API traffic.

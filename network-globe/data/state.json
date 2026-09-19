@@ -1,0 +1,67 @@
+{
+  "type": "network-globe",
+  "version": 2,
+  "ts": 1789783847820,
+  "origin": {
+    "lat": 21.30694,
+    "lng": -157.85833,
+    "label": "Honolulu, United States",
+    "ip": "2605:59c8:3ed7:cc08:45b7:be9f:4df5:d0b4",
+    "asn": "AS14593",
+    "org": "Space Exploration Technologies Corporation"
+  },
+  "arcs": [
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 45.8272,
+      "endLng": -119.7206,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.16904051999999997,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Amazon.com, Inc.",
+      "city": "Boardman",
+      "country": "United States",
+      "asn": "AS16509",
+      "org": "Amazon.com, Inc.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 148.021
+    }
+  ],
+  "points": [
+    {
+      "lat": 21.30694,
+      "lng": -157.85833,
+      "type": "origin",
+      "label": "Honolulu, United States"
+    },
+    {
+      "lat": 45.8272,
+      "lng": -119.7206,
+      "type": "remote",
+      "label": "Boardman, United States · Amazon.com, Inc."
+    }
+  ],
+  "stats": {
+    "activeFlows": 31,
+    "mappedFlows": 1,
+    "endpoints": 1,
+    "packetRate": 0,
+    "bytesPerSec": 0,
+    "queue": 22,
+    "geoCached": 83,
+    "collector": "ss",
+    "privileged": false,
+    "hostname": "RootRecord",
+    "updated": 1789783847820
+  }
+}

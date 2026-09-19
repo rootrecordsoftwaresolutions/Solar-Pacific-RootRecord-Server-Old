@@ -1,12 +1,11 @@
 {
   "name": "network-globe",
-  "version": "1.0.0",
-  "description": "Minimal live network activity globe",
+  "version": "2.0.0",
+  "description": "Live network activity globe driven by real local network observations",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "start:full": "./start-full-telemetry.sh"
   },
-  "dependencies": {
-    "ws": "^8.18.0"
-  }
+  "dependencies": {}
 }
