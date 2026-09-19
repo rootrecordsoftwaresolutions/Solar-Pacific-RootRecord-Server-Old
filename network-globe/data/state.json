@@ -1,7 +1,7 @@
 {
   "type": "network-globe",
   "version": 2,
-  "ts": 1789789528697,
+  "ts": 1789791644915,
   "origin": {
     "lat": 21.30694,
     "lng": -157.85833,
@@ -14,19 +14,19 @@
     {
       "startLat": 21.30694,
       "startLng": -157.85833,
-      "endLat": 37.38605,
-      "endLng": -122.08385,
+      "endLat": 40.713192,
+      "endLng": -74.006065,
       "color": [
         "#ff6b9d",
         "#ffffff"
       ],
       "stroke": 0.594,
-      "altitude": 0.15215821999999998,
+      "altitude": 0.158812504,
       "process": "unknown",
       "protocol": "udp",
       "port": 443,
       "endpoint": "Google LLC",
-      "city": "Mountain View",
+      "city": "New York City",
       "country": "United States",
       "asn": "AS15169",
       "org": "Google LLC",
@@ -34,24 +34,24 @@
       "bytes": 0,
       "packetsPerSec": 0,
       "bytesPerSec": 0,
-      "ageSec": 678.127
+      "ageSec": 25.992
     },
     {
       "startLat": 21.30694,
       "startLng": -157.85833,
-      "endLat": 37.38605,
-      "endLng": -122.08385,
+      "endLat": 40.713192,
+      "endLng": -74.006065,
       "color": [
         "#ff6b9d",
         "#ffffff"
       ],
       "stroke": 0.594,
-      "altitude": 0.15215821999999998,
+      "altitude": 0.158812504,
       "process": "unknown",
       "protocol": "udp",
       "port": 443,
       "endpoint": "Google LLC",
-      "city": "Mountain View",
+      "city": "New York City",
       "country": "United States",
       "asn": "AS15169",
       "org": "Google LLC",
@@ -59,7 +59,57 @@
       "bytes": 0,
       "packetsPerSec": 0,
       "bytesPerSec": 0,
-      "ageSec": 660.124
+      "ageSec": 25.992
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 45.8272,
+      "endLng": -119.7206,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.16904051999999997,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Amazon.com, Inc.",
+      "city": "Boardman",
+      "country": "United States",
+      "asn": "AS16509",
+      "org": "Amazon.com, Inc.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 25.992
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 37.3924,
+      "endLng": -121.9623,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.15217092,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Amazon.com, Inc.",
+      "city": "Santa Clara",
+      "country": "United States",
+      "asn": "AS16509",
+      "org": "Amazon.com, Inc.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 24.003
     },
     {
       "startLat": 21.30694,
@@ -84,7 +134,107 @@
       "bytes": 0,
       "packetsPerSec": 0,
       "bytesPerSec": 0,
-      "ageSec": 300.052
+      "ageSec": 172.012
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 49.24082,
+      "endLng": -123.116713,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.17586775999999998,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "MEGA Privacy Kft.",
+      "city": "Vancouver",
+      "country": "Canada",
+      "asn": "AS205809",
+      "org": "MEGA Privacy Kft.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 4.001
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 49.24082,
+      "endLng": -123.116713,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.17586775999999998,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "MEGA Privacy Kft.",
+      "city": "Vancouver",
+      "country": "Canada",
+      "asn": "AS205809",
+      "org": "MEGA Privacy Kft.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 1
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 49.24082,
+      "endLng": -123.116713,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.17586775999999998,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "MEGA Privacy Kft.",
+      "city": "Vancouver",
+      "country": "Canada",
+      "asn": "AS205809",
+      "org": "MEGA Privacy Kft.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 1
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 49.24082,
+      "endLng": -123.116713,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.17586775999999998,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "MEGA Privacy Kft.",
+      "city": "Vancouver",
+      "country": "Canada",
+      "asn": "AS205809",
+      "org": "MEGA Privacy Kft.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 1
     },
     {
       "startLat": 21.30694,
@@ -109,7 +259,7 @@
       "bytes": 0,
       "packetsPerSec": 0,
       "bytesPerSec": 0,
-      "ageSec": 482.093
+      "ageSec": 18.003
     },
     {
       "startLat": 21.30694,
@@ -134,7 +284,157 @@
       "bytes": 0,
       "packetsPerSec": 0,
       "bytesPerSec": 0,
-      "ageSec": 302.052
+      "ageSec": 21.997
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 49.24082,
+      "endLng": -123.116713,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.17586775999999998,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "MEGA Privacy Kft.",
+      "city": "Vancouver",
+      "country": "Canada",
+      "asn": "AS205809",
+      "org": "MEGA Privacy Kft.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 12.007
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 45.8272,
+      "endLng": -119.7206,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.16904051999999997,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Amazon.com, Inc.",
+      "city": "Boardman",
+      "country": "United States",
+      "asn": "AS16509",
+      "org": "Amazon.com, Inc.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 98.007
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 52.19546,
+      "endLng": 1.37424,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.18177704,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Telegram Messenger Inc",
+      "city": "Framlingham",
+      "country": "United Kingdom",
+      "asn": "AS59930",
+      "org": "Telegram Messenger Inc",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 24.003
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 37.77493,
+      "endLng": -122.41942,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.15293598,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Cloudflare, Inc.",
+      "city": "San Francisco",
+      "country": "United States",
+      "asn": "AS13335",
+      "org": "Cloudflare, Inc.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 24.003
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 47.604309,
+      "endLng": -122.329845,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.172594738,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Amazon.com, Inc.",
+      "city": "Seattle",
+      "country": "United States",
+      "asn": "AS16509",
+      "org": "Amazon.com, Inc.",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 166.016
+    },
+    {
+      "startLat": 21.30694,
+      "startLng": -157.85833,
+      "endLat": 52.19546,
+      "endLng": 1.37424,
+      "color": [
+        "#ff6b9d",
+        "#ffffff"
+      ],
+      "stroke": 0.594,
+      "altitude": 0.18177704,
+      "process": "unknown",
+      "protocol": "tcp",
+      "port": 443,
+      "endpoint": "Telegram Messenger Inc",
+      "city": "Framlingham",
+      "country": "United Kingdom",
+      "asn": "AS59930",
+      "org": "Telegram Messenger Inc",
+      "packets": 0,
+      "bytes": 0,
+      "packetsPerSec": 0,
+      "bytesPerSec": 0,
+      "ageSec": 24.003
     }
   ],
   "points": [
@@ -145,29 +445,65 @@
       "label": "Honolulu, United States"
     },
     {
-      "lat": 37.38605,
-      "lng": -122.08385,
+      "lat": 40.713192,
+      "lng": -74.006065,
       "type": "remote",
-      "label": "Mountain View, United States · Google LLC"
+      "label": "New York City, United States · Google LLC"
+    },
+    {
+      "lat": 45.8272,
+      "lng": -119.7206,
+      "type": "remote",
+      "label": "Boardman, United States · Amazon.com, Inc."
+    },
+    {
+      "lat": 37.3924,
+      "lng": -121.9623,
+      "type": "remote",
+      "label": "Santa Clara, United States · Amazon.com, Inc."
     },
     {
       "lat": 39.0373,
       "lng": -77.4805,
       "type": "remote",
       "label": "Ashburn, United States · Amazon.com, Inc."
+    },
+    {
+      "lat": 49.24082,
+      "lng": -123.116713,
+      "type": "remote",
+      "label": "Vancouver, Canada · MEGA Privacy Kft."
+    },
+    {
+      "lat": 52.19546,
+      "lng": 1.37424,
+      "type": "remote",
+      "label": "Framlingham, United Kingdom · Telegram Messenger Inc"
+    },
+    {
+      "lat": 37.77493,
+      "lng": -122.41942,
+      "type": "remote",
+      "label": "San Francisco, United States · Cloudflare, Inc."
+    },
+    {
+      "lat": 47.604309,
+      "lng": -122.329845,
+      "type": "remote",
+      "label": "Seattle, United States · Amazon.com, Inc."
     }
   ],
   "stats": {
-    "activeFlows": 33,
-    "mappedFlows": 5,
+    "activeFlows": 126,
+    "mappedFlows": 17,
     "endpoints": 1,
     "packetRate": 0,
     "bytesPerSec": 0,
-    "queue": 14,
-    "geoCached": 237,
+    "queue": 83,
+    "geoCached": 542,
     "collector": "ss",
     "privileged": false,
     "hostname": "RootRecord",
-    "updated": 1789789528697
+    "updated": 1789791644915
   }
 }
