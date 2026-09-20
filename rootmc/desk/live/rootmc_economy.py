@@ -1,1 +1,0 @@
-../../../rootmc-economy/scripts/rootmc_economy.py

@@ -1,1 +1,0 @@
-../../../android-sdk/scripts/android-env.sh

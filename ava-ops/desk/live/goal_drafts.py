@@ -1,1 +1,0 @@
-../../../goals/scripts/goal_drafts.py

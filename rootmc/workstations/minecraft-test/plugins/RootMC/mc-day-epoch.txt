@@ -1,2 +1,0 @@
-1489331
-# Absolute McDayClock day id = local day 0. Delete to re-anchor.

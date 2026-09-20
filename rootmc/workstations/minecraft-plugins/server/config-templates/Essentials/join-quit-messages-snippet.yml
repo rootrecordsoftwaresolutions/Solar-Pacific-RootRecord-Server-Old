@@ -1,5 +1,0 @@
-# Essentials join/quit — paste into plugins/Essentials/config.yml
-# EssentialsX join messages use {PLAYER}, not {DISPLAYNAME} (chat-only placeholder).
-
-custom-join-message: "&8[&2+&8] &f{PLAYER} &7joined &2RootMC"
-custom-quit-message: "&8[&c-&8] &f{PLAYER} &7left &2RootMC"

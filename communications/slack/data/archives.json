@@ -1,0 +1,145 @@
+{
+  "channels": {
+    "C0BMCPMDDQR": {
+      "name": "development-feed",
+      "messages": 9,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:39:41.491Z"
+    },
+    "C0BLMGBVAMD": {
+      "name": "feedback",
+      "messages": 5,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:39:48.511Z"
+    },
+    "C0BLMHKTCTH": {
+      "name": "crons-automation",
+      "messages": 3,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:39:48.946Z"
+    },
+    "C0BLQ5C342F": {
+      "name": "new-channel",
+      "messages": 4,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:39:49.428Z"
+    },
+    "C0BLT3B9RQV": {
+      "name": "social",
+      "messages": 4,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:39:49.795Z"
+    },
+    "C0BLTNDJB4M": {
+      "name": "plugins",
+      "messages": 28,
+      "threads": 25,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:39:50.176Z"
+    },
+    "C0BLV24TVP0": {
+      "name": "ops-feed",
+      "messages": 8,
+      "threads": 1,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:02.349Z"
+    },
+    "C0BLWBTUCR0": {
+      "name": "all-rootmc",
+      "messages": 10,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:03.159Z"
+    },
+    "C0BLY49H13M": {
+      "name": "server-reports",
+      "messages": 11,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:03.701Z"
+    },
+    "C0BLYV4SA6M": {
+      "name": "decisions",
+      "messages": 5,
+      "threads": 2,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:04.209Z"
+    },
+    "C0BLZCVAC3X": {
+      "name": "plugin-sales",
+      "messages": 8,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:05.531Z"
+    },
+    "C0BM0N1MUJY": {
+      "name": "work-log",
+      "messages": 4,
+      "threads": 1,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:05.935Z"
+    },
+    "C0BM4B4RT8S": {
+      "name": "overview",
+      "messages": 5,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:06.825Z"
+    },
+    "C0BM4P3GVDX": {
+      "name": "new-plugin-development-plans",
+      "messages": 4,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:07.313Z"
+    },
+    "C0BM4QT5U0Z": {
+      "name": "discord-channels",
+      "messages": 3,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:07.769Z"
+    },
+    "C0BM6HN0WMA": {
+      "name": "api-description",
+      "messages": 4,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:08.217Z"
+    },
+    "C0BM6KVFS0L": {
+      "name": "automated-reports",
+      "messages": 3,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:08.653Z"
+    },
+    "C0BMDLAS5QS": {
+      "name": "--general-chat--",
+      "messages": 38,
+      "threads": 1,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:09.161Z"
+    },
+    "C0BMRPDUH0Q": {
+      "name": "shockbyte-status",
+      "messages": 6,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:10.076Z"
+    },
+    "C0BMX0QKSTS": {
+      "name": "server-logs",
+      "messages": 67,
+      "threads": 0,
+      "complete": true,
+      "archivedAt": "2026-08-01T22:40:10.509Z"
+    }
+  },
+  "updatedAt": 1785624010905
+}

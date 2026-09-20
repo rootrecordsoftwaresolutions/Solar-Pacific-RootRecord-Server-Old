@@ -1,1 +1,0 @@
-../../../python-drop-runner/scripts/python_drop_runner.py

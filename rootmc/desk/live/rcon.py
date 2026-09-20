@@ -1,1 +1,0 @@
-../../../rcon/scripts/rcon.py

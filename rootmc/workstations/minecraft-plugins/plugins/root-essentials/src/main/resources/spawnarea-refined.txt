@@ -1,3 +1,0 @@
-# Default empty — hosts set spawnarea-refined.txt under plugins/RootMC/
-world=world
----

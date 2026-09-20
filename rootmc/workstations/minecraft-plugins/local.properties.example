@@ -1,9 +1,0 @@
-﻿# Copy to local.properties (gitignored). Gen 1 26 â€” live production only.
-
-java.version=25
-# org.gradle.java.home=C:/Program Files/Eclipse Adoptium/jdk-21.0.6.7-hotspot
-
-rootmc.generation=gen1
-# Must be Server Handoffs\2. RootMC - Towny/plugins â€” NEVER gen2-27/
-# rootmc.live.plugins.dir=F:/RootMC Workspace/Server Handoffs\2. RootMC - Towny/plugins
-# rootmc.workspace.handoff.plugins.dir=F:/RootMC Workspace/Server Handoffs\2. RootMC - Towny/plugins

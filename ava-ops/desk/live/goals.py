@@ -1,1 +1,0 @@
-../../../goals/scripts/goals.py

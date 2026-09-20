@@ -1,1 +1,0 @@
-../../../media-library/scripts/consolidate_media.sh

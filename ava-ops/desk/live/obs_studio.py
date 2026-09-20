@@ -1,1 +1,0 @@
-../../../obs-studio/scripts/obs_studio.py

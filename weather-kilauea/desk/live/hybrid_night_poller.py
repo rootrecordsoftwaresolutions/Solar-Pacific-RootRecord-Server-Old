@@ -1,1 +1,0 @@
-../../../hybrid-night-poller/scripts/hybrid_night_poller.py

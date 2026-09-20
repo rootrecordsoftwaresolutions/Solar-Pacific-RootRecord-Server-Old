@@ -1,1 +1,0 @@
-../../android/settings.gradle.kts

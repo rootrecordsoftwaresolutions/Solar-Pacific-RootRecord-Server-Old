@@ -1,7 +1,0 @@
-{
-  "name": "rootrecord-ava",
-  "private": true,
-  "scripts": {
-    "deploy": "wrangler deploy"
-  }
-}

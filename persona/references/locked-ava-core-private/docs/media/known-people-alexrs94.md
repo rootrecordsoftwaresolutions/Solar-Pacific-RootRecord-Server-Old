@@ -1,1 +1,0 @@
-../known-people-alexrs94.md

@@ -1,6 +1,0 @@
-name: RootRecordTemplate
-version: '${version}'
-main: com.rootrecord.minecraft.template.TemplatePlugin
-api-version: '26.1'
-description: Starter Paper plugin — copy plugin-template into plugins/ and rename.
-author: Root Record

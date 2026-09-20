@@ -6,7 +6,7 @@ description: >-
 
 # merged-morning
 
-This folder **is** the runtime. Do not invent watts.
+This folder **is** the runtime.
 
 ## How it fires
 

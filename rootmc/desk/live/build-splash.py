@@ -1,1 +1,0 @@
-../../scripts/build-splash.py

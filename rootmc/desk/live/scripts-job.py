@@ -1,1 +1,0 @@
-../../../account-import/scripts/job.py

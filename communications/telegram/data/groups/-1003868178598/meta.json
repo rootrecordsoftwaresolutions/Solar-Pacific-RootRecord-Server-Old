@@ -1,0 +1,20 @@
+{
+  "chatId": "-1003868178598",
+  "title": "Fern Forest Operations",
+  "chatType": "supergroup",
+  "joinedAt": 1785718490298,
+  "installApproved": true,
+  "installApprovedAt": 1785720099517,
+  "installApprovedBy": "6644482344",
+  "installBrief": "Narrowed 2026-08-02: light utility only (solar/weather/Kilauea-on-ask). Gardening companion / do-everything digs deprioritized. Main-server priority restored.",
+  "updatedAt": 1785731870276,
+  "lastEvent": "group_update",
+  "lastFromId": "6574408926",
+  "profileId": "fern-forest-hawaii-v1",
+  "communityLabel": "Fern Forest Hawaii",
+  "installAskSent": true,
+  "pendingInstallBrief": "manual deep-scan install ask 2026-08-02",
+  "installScopes": "light-utility",
+  "priority": "light-utility",
+  "deprioritizedAt": 1785722408937
+}

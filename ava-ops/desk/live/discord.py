@@ -1,1 +1,0 @@
-../../../discord/scripts/discord.py

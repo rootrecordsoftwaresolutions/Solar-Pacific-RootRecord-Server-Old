@@ -1,1 +1,0 @@
-../../../../origin/tests/test_hybrid_report_format.py

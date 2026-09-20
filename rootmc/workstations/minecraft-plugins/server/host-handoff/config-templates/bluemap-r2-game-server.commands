@@ -1,8 +1,0 @@
-# Run on Shockbyte AFTER uploading fixed BlueMap configs from config-templates/BlueMap/
-# and AFTER map tiles are on R2 (map.rootmc.net). Removes render load from the game JVM.
-
-# Optional: delete local tile blobs on the host (FileZilla) — keep bluemap/web/lang + index if present:
-#   plugins/BlueMap/bluemap/web/maps/
-
-bluemap freeze world
-bluemap reload

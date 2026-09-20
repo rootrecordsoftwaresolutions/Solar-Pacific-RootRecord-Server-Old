@@ -1,0 +1,76 @@
+# Secrets and env — never commit
+.env
+.env.*
+!.env.example
+!.env.local.example
+*.token
+*.pem
+*.p12
+*.jks
+*.keystore
+credentials.env
+credentials.env.*
+google-services.json
+
+# Python / Node build & deps
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+node_modules/
+.next/
+out/
+dist/
+build/
+.wrangler/
+.cache/
+*.egg-info/
+*.tsbuildinfo
+.turbo/
+
+# Runtime / local state
+**/store/
+!**/store/.gitkeep
+logs/
+*.log
+*.jsonl
+*.db
+*.sqlite
+*.sqlite3
+local/
+private/
+.local/
+
+# Media
+*.wav
+*.mp3
+
+# Backups & temp
+*.bak
+*.tmp
+*.temp
+*.zip
+*.debris
+*.megaignore
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Local workspaces (not published)
+agents/
+blockchain/
+rootrecord-public/
+rootrecord-online/
+aws-sync/
+rootrecord-aws/
+android/
+rootmc/
+rootmc-mobile-web/
+rootrecord-home/
+media/
+kokoro/store/
+local-data-globe/data/outbox.ndjson

@@ -1,7 +1,0 @@
-# Overworld-only BlueMap — run on Shockbyte after uploading configs (nether/end .conf removed).
-
-bluemap purge world_the_nether
-bluemap purge world_the_end
-bluemap purge world
-bluemap reload
-bluemap update world

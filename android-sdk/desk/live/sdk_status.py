@@ -1,1 +1,0 @@
-../../scripts/sdk_status.py

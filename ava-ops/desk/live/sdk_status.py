@@ -1,1 +1,0 @@
-../../../android-sdk/scripts/sdk_status.py

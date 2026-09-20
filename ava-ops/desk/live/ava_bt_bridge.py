@@ -1,1 +1,0 @@
-../../scripts/ava_bt_bridge.py

@@ -1,1 +1,0 @@
-This folder contains the built output assets for the worker "rootmc-api" generated at 2026-08-02T22:05:56.096Z.

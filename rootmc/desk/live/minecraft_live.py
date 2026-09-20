@@ -1,1 +1,0 @@
-../../../minecraft-live/scripts/minecraft_live.py

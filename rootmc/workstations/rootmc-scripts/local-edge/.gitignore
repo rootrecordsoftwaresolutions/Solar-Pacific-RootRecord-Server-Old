@@ -1,7 +1,0 @@
-cache/
-persist/
-state/
-logs/
-*.log
-!state/.gitkeep
-state/mysql-bootstrap.env

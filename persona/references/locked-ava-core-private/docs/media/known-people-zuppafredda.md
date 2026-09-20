@@ -1,1 +1,0 @@
-../known-people-zuppafredda.md
