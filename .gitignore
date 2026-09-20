@@ -74,3 +74,5 @@ rootrecord-home/
 media/
 kokoro/store/
 local-data-globe/data/outbox.ndjson
+
+communications/*/data/
