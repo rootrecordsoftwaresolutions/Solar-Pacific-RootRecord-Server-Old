@@ -47,3 +47,25 @@ kokoro/store/
 *.swp
 .idea/
 .vscode/
+
+# Separate website repository
+rootrecord-public/
+
+# Generated archives / temporary artifacts
+*.zip
+*.megaignore
+*.debris
+*.temp
+
+# Local external workspaces
+aws-sync/
+jesus/
+ltc-node/
+android-sdk/
+bible-prayers/
+dogecoin/
+bitcoin-cash/
+bitcoin/
+
+# Local telemetry outbox — generated runtime data
+local-data-globe/data/outbox.ndjson
