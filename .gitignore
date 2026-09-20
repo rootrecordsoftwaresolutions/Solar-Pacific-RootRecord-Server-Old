@@ -48,8 +48,9 @@ kokoro/store/
 .idea/
 .vscode/
 
-# Separate website repository
+# Separate website repositories
 rootrecord-public/
+rootrecord-online/
 
 # Generated archives / temporary artifacts
 *.zip
@@ -59,13 +60,20 @@ rootrecord-public/
 
 # Local external workspaces
 aws-sync/
+rootrecord-aws/
 jesus/
 ltc-node/
 android-sdk/
 bible-prayers/
+rootmc/
+rootmc-mobile-web/
+rootrecord-home/
 dogecoin/
 bitcoin-cash/
 bitcoin/
 
 # Local telemetry outbox — generated runtime data
 local-data-globe/data/outbox.ndjson
+
+# Local ignore configuration
+.gitignore
