@@ -12,7 +12,7 @@
 | **Docs / agent context** | [RootRecord-Library](https://github.com/RootRecord-Software-Solutions/RootRecord-Library) |
 | **Data & logs** | [RootRecord-Database](https://github.com/RootRecord-Software-Solutions/RootRecord-Database) |
 | **Deeper archive (G0)** | [`old`](https://github.com/rootrecordsoftwaresolutions/old) — flattened tops; scavenger only |
-| **Last migration pass** | 2026-09-28 HST |
+| **Last migration pass** | 2026-09-28 HST (reports / worklog) |
 
 ---
 
@@ -22,7 +22,7 @@ This is the **Old** Solar Pacific skill tree: dozens of top-level packets (`SKIL
 
 | Gen | Repo | Layout |
 | --- | --- | --- |
-| **G3** (live) | [`RootRecord-Pacific-Solar-Server`](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server) | Domain folders: `Automations/`, `Energy/`, `System/`, … |
+| **G3** (live) | [`RootRecord-Pacific-Solar-Server`](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server) | Domain folders: `Automations/`, `Energy/`, `System/`, `Reports/`, … |
 | **G2** (residual) | [`Solar-Pacific-RootRecord-Server`](https://github.com/rootrecordsoftwaresolutions/Solar-Pacific-RootRecord-Server) | Lowercase skills under desk `~/.ollama/skills` |
 | **G1** (this repo) | `Solar-Pacific-RootRecord-Server-Old` | Grouped historical skill packets |
 | **G0** (deeper) | [`old`](https://github.com/rootrecordsoftwaresolutions/old) | Flattened skill tops — feature scavenger only |
@@ -62,6 +62,7 @@ This is the **Old** Solar Pacific skill tree: dozens of top-level packets (`SKIL
 | Full top-level catalog | [Solar-Pacific-Old-Full-TopLevel-Catalog-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/Solar-Pacific-Old-Full-TopLevel-Catalog-2026-09-28.md) |
 | Import playbook | [Pacific-Domain-Import-Playbook-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/Pacific-Domain-Import-Playbook-2026-09-28.md) |
 | Work orders | [Work-Orders/](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/tree/main/Documentation/06-development/Work-Orders) |
+| WO-RPT-001 | [Reports / worklog](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/06-development/Work-Orders/WO-RPT-001-Reports-Worklog-Domain-Import.md) |
 | G0 README | [old/README.md](https://github.com/rootrecordsoftwaresolutions/old/blob/main/README.md) |
 
 ---
@@ -77,13 +78,14 @@ This is the **Old** Solar Pacific skill tree: dozens of top-level packets (`SKIL
 | **NOT MIGRATED** | Still archive only; may be recovered later under the rules above |
 | **ARCHIVE-ONLY** | Never import into G3 runtime git |
 
-### MIGRATED (G1 → org Pacific Automations)
+### MIGRATED (G1 → org Pacific)
 
 | G1 packet | Status | Production link |
 | --- | --- | --- |
 | [`hybrid-night-poller/`](./hybrid-night-poller/) | **MIGRATED** 2026-09-28 · [MIGRATED.md](./hybrid-night-poller/MIGRATED.md) | [Automations — `rootserver_poller.py` + stack](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Automations) |
 | [`heartbeat/`](./heartbeat/) | **MIGRATED** 2026-09-28 · [MIGRATED.md](./heartbeat/MIGRATED.md) | [Automations — `jobs.py` builtin `heartbeat`](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/blob/main/Automations/scripts/jobs.py) |
 | [`net-gate/`](./net-gate/) | **MIGRATED** 2026-09-28 · [MIGRATED.md](./net-gate/MIGRATED.md) | [Automations — `poller/internet_gate.py`](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/blob/main/Automations/scripts/poller/internet_gate.py) |
+| [`reports/`](./reports/) | **MIGRATED** 2026-09-28 · [MIGRATED.md](./reports/MIGRATED.md) | [Reports — worklog scripts](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Reports) (WO-RPT-001 Phase B LIVE) |
 
 ### LIVE via G2→G3 (not a G1 packet promotion)
 
@@ -94,6 +96,7 @@ These capabilities run on org Pacific. G1 cousins below remain **NOT MIGRATED** 
 | Automations engine (poller, jobs, stack) | [Automations/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Automations) | `hybrid-night-poller`, `heartbeat`, `net-gate` → **MIGRATED**; `scheduler-clock` still NOT MIGRATED |
 | Energy (EcoFlow read path) | [Energy/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Energy) | `energy/` |
 | System (host sample) | [System/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/System) | `host-metrics`, `system-perf`, `uptime-log`, `log-cleanup` |
+| Reports (worklog) | [Reports/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Reports) | `reports/` → **MIGRATED** (worklog path); `hourly-clip-reports/`, `day-board-boot/` still NOT MIGRATED |
 | Communications / tunnel / network globe (partial) | [Communications/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Communications) | `communications/`, `network-globe/`, `local-data-globe/`, `cloudflare-workers/` |
 | Github catalog (partial) | [Github/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Github) | `git-auto-push/` |
 
@@ -108,7 +111,6 @@ These capabilities run on org Pacific. G1 cousins below remain **NOT MIGRATED** 
 | `local-data-globe/` | Communications/network | Globe cousin |
 | `host-metrics/` | [System/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/System) | Align with live System |
 | `git-auto-push/` | [Github/](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server/tree/main/Github) | Compare to G2/G3 github scripts |
-| `reports/` | Reports or Automations helpers | After G2 worklog |
 | `earthquakes/` | Geology/ | Geology owns quake functions |
 | `kilauea/` | Geology/ / Security | Cams / alerts — product split possible |
 | `panels-cam/` | Security/ | |
@@ -155,8 +157,8 @@ These capabilities run on org Pacific. G1 cousins below remain **NOT MIGRATED** 
 
 | Bucket | Count |
 | --- | --- |
-| **MIGRATED** (G1 packet + MIGRATED.md) | **3** |
-| LIVE capability on G3 (via G2→G3, not G1 promotion) | Automations, Energy, System, partial Comms/Github |
+| **MIGRATED** (G1 packet + MIGRATED.md) | **4** |
+| LIVE capability on G3 | Automations, Energy, System, **Reports (worklog)**, partial Comms/Github |
 | NOT MIGRATED (all other tops) | Remainder of ~95 tops |
 | ARCHIVE-ONLY hard stops | `origin/`, `ecosystem-history/`, … |
 
@@ -175,4 +177,4 @@ These capabilities run on org Pacific. G1 cousins below remain **NOT MIGRATED** 
 
 ---
 
-*README updated 2026-09-28 HST (G0 pointer). Update status tables whenever a packet gains `MIGRATED.md` or a domain import completes.*
+*README updated 2026-09-28 HST (reports MIGRATED). Update status tables whenever a packet gains `MIGRATED.md` or a domain import completes.*
