@@ -5,12 +5,13 @@
 
 | Field | Value |
 | --- | --- |
-| **Generation** | **G1** (oldest skill-packet layout) |
+| **Generation** | **G1** (grouped skill-packet layout) |
 | **Role** | Forensic / selective recovery source only |
 | **Production authority** | [RootRecord-Software-Solutions](https://github.com/RootRecord-Software-Solutions) |
 | **Live runtime** | [RootRecord-Pacific-Solar-Server](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server) |
 | **Docs / agent context** | [RootRecord-Library](https://github.com/RootRecord-Software-Solutions/RootRecord-Library) |
 | **Data & logs** | [RootRecord-Database](https://github.com/RootRecord-Software-Solutions/RootRecord-Database) |
+| **Deeper archive (G0)** | [`old`](https://github.com/rootrecordsoftwaresolutions/old) — flattened tops; scavenger only |
 | **Last migration pass** | 2026-09-28 HST |
 
 ---
@@ -23,7 +24,8 @@ This is the **Old** Solar Pacific skill tree: dozens of top-level packets (`SKIL
 | --- | --- | --- |
 | **G3** (live) | [`RootRecord-Pacific-Solar-Server`](https://github.com/RootRecord-Software-Solutions/RootRecord-Pacific-Solar-Server) | Domain folders: `Automations/`, `Energy/`, `System/`, … |
 | **G2** (residual) | [`Solar-Pacific-RootRecord-Server`](https://github.com/rootrecordsoftwaresolutions/Solar-Pacific-RootRecord-Server) | Lowercase skills under desk `~/.ollama/skills` |
-| **G1** (this repo) | `Solar-Pacific-RootRecord-Server-Old` | Historical skill packets |
+| **G1** (this repo) | `Solar-Pacific-RootRecord-Server-Old` | Grouped historical skill packets |
+| **G0** (deeper) | [`old`](https://github.com/rootrecordsoftwaresolutions/old) | Flattened skill tops — feature scavenger only |
 
 **Org is authority.** Auto-sync from catalogued GitHub remotes updates the desk; this repo is read-mostly archive.
 
@@ -35,7 +37,7 @@ This is the **Old** Solar Pacific skill tree: dozens of top-level packets (`SKIL
 
 1. **Never** bulk-merge this repo (especially `origin/`) into G3.  
 2. **Never** point `rr-rootserver-poller` or `jobs.py` at paths in this repo.  
-3. Import order: finish **G2 residual domains → G3** first; only then selectively recover from G1.  
+3. Import order: finish **G2 residual domains → G3** first; only then selectively recover from G1; **G0 last** (diff-only).  
 4. When a packet is fully superseded: keep folder + `SKILL.md`, add **`MIGRATED.md`**, do not run.  
 5. One domain / packet at a time; document both here and in Library.  
 6. Secrets stay local — strip before any copy into G3.
@@ -54,12 +56,13 @@ This is the **Old** Solar Pacific skill tree: dozens of top-level packets (`SKIL
 
 | Doc | URL |
 | --- | --- |
-| Migration index | [MIGRATION-DOCS-INDEX-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/MIGRATION-DOCS-INDEX-2026-09-28.md) |
-| Three generations | [Migration-Lineage-Three-Generations-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/Migration-Lineage-Three-Generations-2026-09-28.md) |
+| Migration index (incl. **G0 scavenger list**) | [MIGRATION-DOCS-INDEX-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/MIGRATION-DOCS-INDEX-2026-09-28.md) |
+| Generations lineage | [Migration-Lineage](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/Migration-Lineage-Three-Generations-2026-09-28.md) |
 | G1 inventory map | [Solar-Pacific-Old-Inventory-Map-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/Solar-Pacific-Old-Inventory-Map-2026-09-28.md) |
 | Full top-level catalog | [Solar-Pacific-Old-Full-TopLevel-Catalog-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/Solar-Pacific-Old-Full-TopLevel-Catalog-2026-09-28.md) |
 | Import playbook | [Pacific-Domain-Import-Playbook-2026-09-28.md](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/blob/main/Documentation/00-architecture/Pacific-Domain-Import-Playbook-2026-09-28.md) |
 | Work orders | [Work-Orders/](https://github.com/RootRecord-Software-Solutions/RootRecord-Library/tree/main/Documentation/06-development/Work-Orders) |
+| G0 README | [old/README.md](https://github.com/rootrecordsoftwaresolutions/old/blob/main/README.md) |
 
 ---
 
@@ -168,7 +171,8 @@ These capabilities run on org Pacific. G1 cousins below remain **NOT MIGRATED** 
 | Library | https://github.com/RootRecord-Software-Solutions/RootRecord-Library |
 | Database | https://github.com/RootRecord-Software-Solutions/RootRecord-Database |
 | G2 intermediate (residual skills) | https://github.com/rootrecordsoftwaresolutions/Solar-Pacific-RootRecord-Server |
+| G0 deepest archive | https://github.com/rootrecordsoftwaresolutions/old |
 
 ---
 
-*README created 2026-09-28 HST. Update the status tables whenever a packet gains `MIGRATED.md` or a domain import completes.*
+*README updated 2026-09-28 HST (G0 pointer). Update status tables whenever a packet gains `MIGRATED.md` or a domain import completes.*
